@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Exercises">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExerciseTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsUserPreference" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ExerciseTypeExercise">
+          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exercises">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExerciseTypeUnitOfMeasure">
+          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
+          <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UnitOfMeasures">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExerciseTypes" EntityType="Self.ExerciseTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasures" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ExerciseTypeExercise" Association="Self.FK_ExerciseTypeExercise">
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
+            <End Role="Exercises" EntitySet="Exercises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExerciseTypeUnitOfMeasure" Association="Self.FK_ExerciseTypeUnitOfMeasure">
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
+            <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Exercises" EntityType="Model.Exercise" />
+          <EntitySet Name="ExerciseTypes" EntityType="Model.ExerciseType" />
+          <EntitySet Name="UnitOfMeasures" EntityType="Model.UnitOfMeasure" />
+          <AssociationSet Name="FK_ExerciseTypeExercise" Association="Model.FK_ExerciseTypeExercise">
+            <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+            <End Role="Exercis" EntitySet="Exercises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExerciseTypeUnitOfMeasure" Association="Model.FK_ExerciseTypeUnitOfMeasure">
+            <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Exercise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeExercise" FromRole="Exercis" ToRole="ExerciseType" />
+        </EntityType>
+        <EntityType Name="ExerciseType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsUserPreference" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Exercises" Relationship="Model.FK_ExerciseTypeExercise" FromRole="ExerciseType" ToRole="Exercis" />
+          <NavigationProperty Name="UnitOfMeasures" Relationship="Model.FK_ExerciseTypeUnitOfMeasure" FromRole="ExerciseType" ToRole="UnitOfMeasure" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasure">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="ExerciseType" />
+        </EntityType>
+        <Association Name="FK_ExerciseTypeExercise">
+          <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
+          <End Type="Model.Exercise" Role="Exercis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exercis">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExerciseTypeUnitOfMeasure">
+          <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
+          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UnitOfMeasure">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
+          <EntitySetMapping Name="Exercises">
+            <EntityTypeMapping TypeName="Model.Exercise">
+              <MappingFragment StoreEntitySet="Exercises">
+                <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExerciseTypes">
+            <EntityTypeMapping TypeName="Model.ExerciseType">
+              <MappingFragment StoreEntitySet="ExerciseTypes">
+                <ScalarProperty Name="IsUserPreference" ColumnName="IsUserPreference" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitOfMeasures">
+            <EntityTypeMapping TypeName="Model.UnitOfMeasure">
+              <MappingFragment StoreEntitySet="UnitOfMeasures">
+                <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
