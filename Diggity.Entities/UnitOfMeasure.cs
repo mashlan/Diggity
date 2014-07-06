@@ -14,11 +14,17 @@ namespace Diggity.Entities
     
     public partial class UnitOfMeasure
     {
+        public UnitOfMeasure()
+        {
+            this.WorkoutSets = new HashSet<WorkoutSet>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int ExerciseTypeId { get; set; }
     
         public virtual ExerciseType ExerciseType { get; set; }
+        public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
     }
 }

@@ -52,6 +52,10 @@
     <Compile Include="RepositoryAggregate.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Diggity.Database\Diggity.Database.csproj">
+      <Project>{9C02DC1E-19A1-40FE-AE3B-3521BD6372B5}</Project>
+      <Name>Diggity.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
       <Project>{707B16A3-451E-4171-A0E4-E07EA2E9075B}</Project>
       <Name>Diggity.Entities</Name>

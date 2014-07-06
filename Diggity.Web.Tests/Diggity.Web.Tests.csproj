@@ -102,6 +102,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Diggity.Services\Diggity.Services.csproj">
+      <Project>{9F53B925-BB51-414C-8FBA-C8BBA74C8282}</Project>
+      <Name>Diggity.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Diggity.Web\Diggity.Web.csproj">
       <Project>{3D4C99D0-B91F-403E-A2BC-1D41C1636717}</Project>
       <Name>Diggity.Web</Name>

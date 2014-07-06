@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA1E9ECF-261A-4CB2-B328-409420683646}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Diggity.IOC</RootNamespace>
+    <AssemblyName>Diggity.IOC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.0.4.125\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IOCConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Diggity.Database\Diggity.Database.csproj">
+      <Project>{9C02DC1E-19A1-40FE-AE3B-3521BD6372B5}</Project>
+      <Name>Diggity.Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
+      <Project>{707B16A3-451E-4171-A0E4-E07EA2E9075B}</Project>
+      <Name>Diggity.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.Repository\Diggity.Repository.csproj">
+      <Project>{CD72BC12-A036-4B06-94C8-5B1B24496829}</Project>
+      <Name>Diggity.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.Rules\Diggity.Rules.csproj">
+      <Project>{8558B9F1-80AC-44AF-945E-DDEDC04C7AF9}</Project>
+      <Name>Diggity.Rules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.Services\Diggity.Services.csproj">
+      <Project>{9F53B925-BB51-414C-8FBA-C8BBA74C8282}</Project>
+      <Name>Diggity.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.SQLExpress\Diggity.SQLExpress.csproj">
+      <Project>{CF849EDE-C75F-418F-B685-1F51EE52ED59}</Project>
+      <Name>Diggity.SQLExpress</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity\Diggity.csproj">
+      <Project>{BA2C7BF6-923D-499D-99C5-3E3CEB4661FA}</Project>
+      <Name>Diggity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -48,6 +48,12 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.3.0.4.125\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -110,6 +116,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.5.1\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -164,6 +173,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DiggityModelBinder.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -199,6 +209,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -216,12 +228,80 @@
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cusel.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
+    <Content Include="Content\jslider.css" />
+    <Content Include="Content\prettyPhoto.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\video-js.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Content\images\icons\button-icons.png" />
+    <Content Include="Content\images\icons\grid-menu-icons.png" />
+    <Content Include="Content\images\icons\menu-icons.png" />
+    <Content Include="Content\images\icons\menu-icons2.png" />
+    <Content Include="Content\images\icons\search.png" />
+    <Content Include="Content\images\icons\search2.png" />
+    <Content Include="Content\images\icons\social-icons2.png" />
+    <Content Include="Content\images\icons\weather-icons.png" />
+    <Content Include="Content\images\icons\weather-main.png" />
+    <Content Include="Content\images\pagination.png" />
+    <Content Include="Content\images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="Content\images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="Content\images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="Content\images\prettyPhoto\dark_rounded\default_thumbnail.gif" />
+    <Content Include="Content\images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="Content\images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="Content\images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="Content\images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="Content\images\prettyPhoto\dark_square\contentPattern.png" />
+    <Content Include="Content\images\prettyPhoto\dark_square\default_thumbnail.gif" />
+    <Content Include="Content\images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="Content\images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="Content\images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="Content\images\prettyPhoto\default\loader.gif" />
+    <Content Include="Content\images\prettyPhoto\default\sprite.png" />
+    <Content Include="Content\images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="Content\images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="Content\images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="Content\images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="Content\images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="Content\images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="Content\images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="Content\images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="Content\images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="Content\images\prettyPhoto\light_rounded\default_thumbnail.gif" />
+    <Content Include="Content\images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="Content\images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="Content\images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="Content\images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="Content\images\prettyPhoto\light_square\default_thumbnail.gif" />
+    <Content Include="Content\images\prettyPhoto\light_square\loader.gif" />
+    <Content Include="Content\images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="Content\images\temp\avatar.png" />
+    <Content Include="Content\images\temp\carousel-1.png" />
+    <Content Include="Content\images\temp\carousel-2.png" />
+    <Content Include="Content\images\temp\carousel-3.png" />
+    <Content Include="Content\images\temp\post_img1.jpg" />
+    <Content Include="Content\images\temp\post_img2.jpg" />
+    <Content Include="Content\images\temp\post_img4.jpg" />
+    <Content Include="Content\images\temp\post_img6.jpg" />
+    <Content Include="Content\images\temp\post_img7.jpg" />
+    <Content Include="Content\images\temp\vjs-poster2.jpg" />
+    <Content Include="Content\images\video-controls-x2.png" />
+    <Content Include="Content\images\video-controls.png" />
+    <Content Include="Content\images\video-js.png" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.js" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.min.js" />
     <Content Include="Scripts\vendors\angularjs\angular-cookies.js" />
@@ -242,7 +322,6 @@
     <Content Include="Scripts\vendors\angularjs\angular.js" />
     <Content Include="Scripts\vendors\angularjs\angular.min.js" />
     <Content Include="Scripts\vendors\bootstrap\bootstrap.js" />
-    <Content Include="Scripts\vendors\bootstrap\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -271,6 +350,13 @@
     <Content Include="Scripts\vendors\angularjs\angular-cookies.min.js.map" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.min.js.map" />
     <Content Include="Scripts\vendors\angularjs\angular.min.js.map" />
+    <Content Include="Content\images\icons\Thumbs.db" />
+    <Content Include="Content\images\temp\Thumbs.db" />
+    <Content Include="Content\images\Thumbs.db" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\vendors\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\vendors\angularjs\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\vendors\angularjs\i18n\angular-locale_af-za.js" />
@@ -551,6 +637,11 @@
     <Content Include="Scripts\vendors\angularjs\i18n\angular-locale_zh.js" />
     <Content Include="Scripts\vendors\angularjs\i18n\angular-locale_zu-za.js" />
     <Content Include="Scripts\vendors\angularjs\i18n\angular-locale_zu.js" />
+    <Content Include="Scripts\vendors\bootstrap\cusel-min.js" />
+    <Content Include="Scripts\vendors\bootstrap\custom.js" />
+    <Content Include="Scripts\vendors\bootstrap\general.js" />
+    <Content Include="Scripts\vendors\bootstrap\progressbar.js" />
+    <Content Include="Scripts\vendors\bootstrap\video.js" />
     <Content Include="Scripts\vendors\jasmine-samples\Player.js" />
     <Content Include="Scripts\vendors\jasmine-samples\PlayerSpec.js" />
     <Content Include="Scripts\vendors\jasmine-samples\Song.js" />
@@ -562,6 +653,15 @@
     <Content Include="Scripts\vendors\jquery\jquery-1.10.2.js" />
     <Content Include="Scripts\vendors\jquery\jquery-1.10.2.min.js" />
     <None Include="Scripts\vendors\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\vendors\jquery\jquery-ui.multidatespicker.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.carouFredSel-6.2.1-packed.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.customInput.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.jscrollpane.min.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.mousewheel.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.powerful-placeholder.min.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.prettyPhoto.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.slider.bundle.js" />
+    <Content Include="Scripts\vendors\jquery\jquery.slider.js" />
     <Content Include="Scripts\vendors\jquery\jquery.validate.js" />
     <Content Include="Scripts\vendors\jquery\jquery.validate.min.js" />
     <Content Include="Scripts\vendors\jquery\jquery.validate.unobtrusive.js" />
@@ -590,6 +690,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -597,6 +698,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Diggity.IOC\Diggity.IOC.csproj">
+      <Project>{FA1E9ECF-261A-4CB2-B328-409420683646}</Project>
+      <Name>Diggity.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity\Diggity.csproj">
+      <Project>{ba2c7bf6-923d-499d-99c5-3e3ceb4661fa}</Project>
+      <Name>Diggity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

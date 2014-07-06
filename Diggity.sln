@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diggity.Services", "Diggity
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diggity.Repository", "Diggity.Repository\Diggity.Repository.csproj", "{CD72BC12-A036-4B06-94C8-5B1B24496829}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diggity.IOC", "Diggity.IOC\Diggity.IOC.csproj", "{FA1E9ECF-261A-4CB2-B328-409420683646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{CD72BC12-A036-4B06-94C8-5B1B24496829}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD72BC12-A036-4B06-94C8-5B1B24496829}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD72BC12-A036-4B06-94C8-5B1B24496829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA1E9ECF-261A-4CB2-B328-409420683646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA1E9ECF-261A-4CB2-B328-409420683646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA1E9ECF-261A-4CB2-B328-409420683646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA1E9ECF-261A-4CB2-B328-409420683646}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,5 +106,6 @@ Global
 		{DD22B5C7-16FB-455A-8305-A1A804DD8024} = {48403F7B-8977-46E2-A1BE-8873BE449C79}
 		{9F53B925-BB51-414C-8FBA-C8BBA74C8282} = {7762B9CA-418E-40DE-956C-AB9624A83D0E}
 		{CD72BC12-A036-4B06-94C8-5B1B24496829} = {02B4EDB2-33A5-4FC2-8DF6-680FBF8BEB26}
+		{FA1E9ECF-261A-4CB2-B328-409420683646} = {31C8948D-8886-4347-9C47-D583273927A7}
 	EndGlobalSection
 EndGlobal

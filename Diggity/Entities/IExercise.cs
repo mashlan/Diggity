@@ -15,5 +15,5 @@ namespace Diggity.Entities
 
         new bool IsValid { get; set; }
         new IList<IValidationError> ValidationErrors { get; set; }
-    }    
+    }
 }

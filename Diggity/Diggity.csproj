@@ -42,13 +42,18 @@
     <Compile Include="Entities\IExercise.cs" />
     <Compile Include="Entities\IExerciseType.cs" />
     <Compile Include="Entities\IUnitOfMeasure.cs" />
+    <Compile Include="Entities\IUser.cs" />
+    <Compile Include="Entities\IWorkout.cs" />
+    <Compile Include="Entities\IWorkoutSet.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\IRepositoryAggregate.cs" />
+    <Compile Include="Services\IServiceAggregate.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Validation\ISpecification.cs" />
     <Compile Include="Validation\IValidationError.cs" />
+    <Compile Include="Validation\IValidationFactory.cs" />
     <Compile Include="Validation\IValidationSummary.cs" />
     <Compile Include="Validation\IValidator.cs" />
   </ItemGroup>

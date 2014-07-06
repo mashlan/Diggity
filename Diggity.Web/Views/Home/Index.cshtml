@@ -1,24 +1,58 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
+﻿<a class="btn btn-blue btn-icon-left" href="http://go.microsoft.com/fwlink/?LinkId=301870"><span>Learn More</span></a>
+<a class="btn btn-yellow" href="http://go.microsoft.com/fwlink/?LinkId=301871"><span>Learn More</span></a>
+<a class="btn btn-red" href="http://go.microsoft.com/fwlink/?LinkId=301872"><span>Learn More</span></a>
+
+<div class="widget_calendar boxed boxed-red">
+    <div class="inner">
+        <input type="text" name="date_departure" id="date_departure" />
+
     </div>
 </div>
+<div class="grid-menu">
+    <div class="grid-box">
+        <a href="#" class="boxed boxed-red">
+            <strong>
+                <i class="fa fa-4x fa-wheelchair"></i>
+            </strong>
+            <span>Hey</span>
+        </a>
+    </div>
+    <div class="grid-box">
+        <a href="#" class="boxed boxed-green">
+            <strong>
+                <i class="fa fa-4x fa-magic"></i>
+            </strong>
+            <span>Magic</span>
+        </a>
+    </div>
+    <div class="grid-box grid-box-large">
+        <a href="#" class="boxed boxed-blue">
+            <strong>
+                <i class="fa fa-5x fa-empire"></i>
+            </strong>
+            <span>Empire</span>
+        </a>
+    </div>
+</div>
+<script>
+    // <![CDATA[
+    jQuery(document).ready(function ($) {
+        var daysRange = 5;
+
+        function assignCalendar(id) {
+            $('<div class="calendar" />')
+                    .insertAfter($(id))
+                    .multiDatesPicker({
+                        dateFormat: 'yy-mm-dd',
+                        minDate: new Date(),
+                        maxDate: '+1y',
+                        altField: id,
+                        firstDay: 1,
+                        showOtherMonths: true
+                    }).prev().hide();
+        }
+
+        assignCalendar('#date_departure');
+    });
+    // ]]>
+</script>

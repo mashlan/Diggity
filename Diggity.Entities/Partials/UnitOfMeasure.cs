@@ -1,6 +1,6 @@
 ﻿namespace Diggity.Entities
 {
-    public partial class UnitOfMeasure : IUnitOfMeasure
+    public partial class UnitOfMeasure : BaseEntity, IUnitOfMeasure
     {
         IExerciseType IUnitOfMeasure.ExerciseType
         {

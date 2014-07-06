@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Diggity.Entities
 {
-    public partial class ExerciseType : IExerciseType
+    public partial class ExerciseType : BaseEntity, IExerciseType
     {
         ICollection<IUnitOfMeasure> IExerciseType.UnitOfMeasures
         {

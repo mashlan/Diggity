@@ -14,6 +14,11 @@ namespace Diggity.Entities
     
     public partial class Exercise
     {
+        public Exercise()
+        {
+            this.WorkoutSets = new HashSet<WorkoutSet>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
         public string Abbreviation { get; set; }
@@ -21,5 +26,6 @@ namespace Diggity.Entities
         public int ExerciseTypeId { get; set; }
     
         public virtual ExerciseType ExerciseType { get; set; }
+        public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
     }
 }

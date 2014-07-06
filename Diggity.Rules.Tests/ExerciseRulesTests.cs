@@ -17,8 +17,7 @@ namespace Diggity.Rules.Tests
         [TestInitialize]
         public void init()
         {
-            var context = new ModelContainer(GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
-            repositoryAggregate = new RepositoryAggregate(context);
+            repositoryAggregate = new RepositoryAggregate(GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
         }
 
         private static string GetConnectionString(string connectionString)

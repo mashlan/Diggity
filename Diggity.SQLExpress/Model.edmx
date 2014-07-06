@@ -4,73 +4,174 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Exercises">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Abbreviation" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ExerciseTypes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="IsUserPreference" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UnitOfMeasures">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_ExerciseTypeExercise">
-          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
-          <End Role="Exercises" Type="Self.Exercises" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ExerciseTypes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Exercises">
-              <PropertyRef Name="ExerciseTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ExerciseTypeUnitOfMeasure">
-          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
-          <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ExerciseTypes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UnitOfMeasures">
-              <PropertyRef Name="ExerciseTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="ModelStoreContainer">
-          <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ExerciseTypes" EntityType="Self.ExerciseTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasures" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ExerciseTypeExercise" Association="Self.FK_ExerciseTypeExercise">
-            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
-            <End Role="Exercises" EntitySet="Exercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ExerciseTypeUnitOfMeasure" Association="Self.FK_ExerciseTypeUnitOfMeasure">
-            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
-            <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Exercises" EntityType="Model.Store.Exercises" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExerciseTypes" EntityType="Model.Store.ExerciseTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UnitOfMeasures" EntityType="Model.Store.UnitOfMeasures" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Workouts" EntityType="Model.Store.Workouts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="Model.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkoutSets" EntityType="Model.Store.WorkoutSets" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_ExerciseTypeExercise" Association="Model.Store.FK_ExerciseTypeExercise">
+      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+      <End Role="Exercis" EntitySet="Exercises" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExerciseTypeUnitOfMeasure" Association="Model.Store.FK_ExerciseTypeUnitOfMeasure">
+      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+    </AssociationSet>
+    <AssociationSet Name="WorkoutUser" Association="Model.Store.WorkoutUser">
+      <End Role="Workout" EntitySet="Workouts" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.Store.WorkoutSetUnitOfMeasure">
+      <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+    </AssociationSet>
+    <AssociationSet Name="ExerciseWorkoutSet" Association="Model.Store.ExerciseWorkoutSet">
+      <End Role="Exercise" EntitySet="Exercises" />
+      <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+    </AssociationSet>
+    <AssociationSet Name="WorkoutWorkoutSet" Association="Model.Store.WorkoutWorkoutSet">
+      <End Role="Workout" EntitySet="Workouts" />
+      <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Exercises">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Abbreviation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExerciseTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsUserPreference" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnitOfMeasures">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Workouts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EndDateTime" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkoutSets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SortOrder" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlannedReps" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActualReps" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlannedWeight" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ActualWeight" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+    <Property Name="ExerciseId" Type="int" Nullable="false" />
+    <Property Name="WorkoutId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ExerciseTypeExercise">
+    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
+    <End Role="Exercis" Type="Model.Store.Exercises" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExerciseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Exercis">
+        <PropertyRef Name="ExerciseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExerciseTypeUnitOfMeasure">
+    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
+    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExerciseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UnitOfMeasure">
+        <PropertyRef Name="ExerciseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkoutUser">
+    <End Role="Workout" Type="Model.Store.Workouts" Multiplicity="*" />
+    <End Role="User" Type="Model.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Workout">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkoutSetUnitOfMeasure">
+    <End Role="WorkoutSet" Type="Model.Store.WorkoutSets" Multiplicity="*" />
+    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutSet">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExerciseWorkoutSet">
+    <End Role="Exercise" Type="Model.Store.Exercises" Multiplicity="1" />
+    <End Role="WorkoutSet" Type="Model.Store.WorkoutSets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exercise">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutSet">
+        <PropertyRef Name="ExerciseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkoutWorkoutSet">
+    <End Role="Workout" Type="Model.Store.Workouts" Multiplicity="1" />
+    <End Role="WorkoutSet" Type="Model.Store.WorkoutSets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workout">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutSet">
+        <PropertyRef Name="WorkoutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -86,6 +187,25 @@
             <End Role="ExerciseType" EntitySet="ExerciseTypes" />
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
           </AssociationSet>
+          <EntitySet Name="Workouts" EntityType="Model.Workout" />
+          <EntitySet Name="Users" EntityType="Model.User" />
+          <AssociationSet Name="WorkoutUser" Association="Model.WorkoutUser">
+            <End Role="Workout" EntitySet="Workouts" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="WorkoutSets" EntityType="Model.WorkoutSet" />
+          <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.WorkoutSetUnitOfMeasure">
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+          </AssociationSet>
+          <AssociationSet Name="ExerciseWorkoutSet" Association="Model.ExerciseWorkoutSet">
+            <End Role="Exercise" EntitySet="Exercises" />
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutWorkoutSet" Association="Model.WorkoutWorkoutSet">
+            <End Role="Workout" EntitySet="Workouts" />
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Exercise">
           <Key>
@@ -97,6 +217,7 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeExercise" FromRole="Exercis" ToRole="ExerciseType" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.ExerciseWorkoutSet" FromRole="Exercise" ToRole="WorkoutSet" />
         </EntityType>
         <EntityType Name="ExerciseType">
           <Key>
@@ -118,6 +239,7 @@
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="ExerciseType" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="WorkoutSet" />
         </EntityType>
         <Association Name="FK_ExerciseTypeExercise">
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
@@ -143,44 +265,169 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Workout">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="StartDateTime" Type="String" Nullable="false" />
+          <Property Name="EndDateTime" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model.WorkoutUser" FromRole="Workout" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutWorkoutSet" FromRole="Workout" ToRole="WorkoutSet" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Workouts" Relationship="Model.WorkoutUser" FromRole="User" ToRole="Workout" />
+        </EntityType>
+        <Association Name="WorkoutUser">
+          <End Type="Model.Workout" Role="Workout" Multiplicity="*" />
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="WorkoutSet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SortOrder" Type="String" Nullable="false" />
+          <Property Name="PlannedReps" Type="String" Nullable="false" />
+          <Property Name="ActualReps" Type="String" Nullable="false" />
+          <Property Name="PlannedWeight" Type="String" Nullable="false" />
+          <Property Name="ActualWeight" Type="String" Nullable="false" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="WorkoutSet" ToRole="UnitOfMeasure" />
+          <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exercise" Relationship="Model.ExerciseWorkoutSet" FromRole="WorkoutSet" ToRole="Exercise" />
+          <Property Name="ExerciseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Workout" Relationship="Model.WorkoutWorkoutSet" FromRole="WorkoutSet" ToRole="Workout" />
+          <Property Name="WorkoutId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="WorkoutSetUnitOfMeasure">
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExerciseWorkoutSet">
+          <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutWorkoutSet">
+          <End Type="Model.Workout" Role="Workout" Multiplicity="1" />
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="WorkoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
-          <EntitySetMapping Name="Exercises">
-            <EntityTypeMapping TypeName="Model.Exercise">
-              <MappingFragment StoreEntitySet="Exercises">
-                <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ExerciseTypes">
-            <EntityTypeMapping TypeName="Model.ExerciseType">
-              <MappingFragment StoreEntitySet="ExerciseTypes">
-                <ScalarProperty Name="IsUserPreference" ColumnName="IsUserPreference" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UnitOfMeasures">
-            <EntityTypeMapping TypeName="Model.UnitOfMeasure">
-              <MappingFragment StoreEntitySet="UnitOfMeasures">
-                <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+    <EntitySetMapping Name="Exercises">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Exercise)">
+        <MappingFragment StoreEntitySet="Exercises">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExerciseTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.ExerciseType)">
+        <MappingFragment StoreEntitySet="ExerciseTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsUserPreference" ColumnName="IsUserPreference" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitOfMeasures">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UnitOfMeasure)">
+        <MappingFragment StoreEntitySet="UnitOfMeasures">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workouts">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.Workout)">
+        <MappingFragment StoreEntitySet="Workouts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutSets">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.WorkoutSet)">
+        <MappingFragment StoreEntitySet="WorkoutSets">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="PlannedReps" ColumnName="PlannedReps" />
+          <ScalarProperty Name="ActualReps" ColumnName="ActualReps" />
+          <ScalarProperty Name="PlannedWeight" ColumnName="PlannedWeight" />
+          <ScalarProperty Name="ActualWeight" ColumnName="ActualWeight" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
+          <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
