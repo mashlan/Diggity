@@ -1,58 +1,46 @@
 ﻿<a class="btn btn-blue btn-icon-left" href="http://go.microsoft.com/fwlink/?LinkId=301870"><span>Learn More</span></a>
 <a class="btn btn-yellow" href="http://go.microsoft.com/fwlink/?LinkId=301871"><span>Learn More</span></a>
 <a class="btn btn-red" href="http://go.microsoft.com/fwlink/?LinkId=301872"><span>Learn More</span></a>
-
-<div class="widget_calendar boxed boxed-red">
-    <div class="inner">
-        <input type="text" name="date_departure" id="date_departure" />
-
+<div class="clearfix"></div>
+<br/>
+<div class="col-lg-6">
+    <div class="grid-menu">
+        <div class="grid-box">
+            <a href="#" class="boxed boxed-red">
+                <strong>
+                    <i class="fa fa-4x fa-wheelchair"></i>
+                </strong>
+                <span>Hey</span>
+            </a>
+        </div>
+        <div class="grid-box">
+            <a href="#" class="boxed boxed-green">
+                <strong>
+                    <i class="fa fa-4x fa-magic"></i>
+                </strong>
+                <span>Magic</span>
+            </a>
+        </div>
+        <div class="grid-box">
+            <a href="#" class="boxed boxed-blue">
+                <strong>
+                    <i class="fa fa-5x fa-spin fa-refresh"></i>
+                </strong>
+                <span>Spinning</span>
+            </a>
+        </div>
     </div>
 </div>
-<div class="grid-menu">
-    <div class="grid-box">
-        <a href="#" class="boxed boxed-red">
-            <strong>
-                <i class="fa fa-4x fa-wheelchair"></i>
-            </strong>
-            <span>Hey</span>
-        </a>
-    </div>
-    <div class="grid-box">
-        <a href="#" class="boxed boxed-green">
-            <strong>
-                <i class="fa fa-4x fa-magic"></i>
-            </strong>
-            <span>Magic</span>
-        </a>
-    </div>
-    <div class="grid-box grid-box-large">
-        <a href="#" class="boxed boxed-blue">
-            <strong>
-                <i class="fa fa-5x fa-empire"></i>
-            </strong>
-            <span>Empire</span>
-        </a>
+<div class="clearfix"></div>
+<div class="checkBoxes">
+    <div class="custom-checkbox">
+        <input type="checkbox" />
+        <label class="">check me out</label>
     </div>
 </div>
-<script>
-    // <![CDATA[
-    jQuery(document).ready(function ($) {
-        var daysRange = 5;
+<div class="clearfix"></div>
+<div class="col-lg-6 add-comment">
+    <textarea rows="5"></textarea>
+</div>
 
-        function assignCalendar(id) {
-            $('<div class="calendar" />')
-                    .insertAfter($(id))
-                    .multiDatesPicker({
-                        dateFormat: 'yy-mm-dd',
-                        minDate: new Date(),
-                        maxDate: '+1y',
-                        altField: id,
-                        firstDay: 1,
-                        showOtherMonths: true
-                    }).prev().hide();
-        }
-
-        assignCalendar('#date_departure');
-    });
-    // ]]>
-</script>
+<div class="clearfix"></div>
