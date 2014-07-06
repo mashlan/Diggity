@@ -93,6 +93,7 @@ body {
     color:#666;
     -webkit-font-smoothing: subpixel-antialiased;
 	position:relative;
+    background-color: #fafafa;
 }
 .body-content {
     padding-top: 80px !important;

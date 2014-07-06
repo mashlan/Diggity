@@ -23,6 +23,20 @@ namespace Diggity.Web
                       "~/Scripts/vendors/bootstrap/general.js",
                       "~/Scripts/vendors/bootstrap/custom.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                "~/Scripts/vendors/angularjs/i18n/angular-locale_en_us.js",
+                "~/Scripts/vendor/angularjs/angular.js",
+                "~/Scripts/vendor/angularjs/angular-route.js",
+                "~/Scripts/vendor/angularjs/angular-resource.js"));
+
+            bundles.Add(new ScriptBundle("~/bundler/MyApp").Include(
+                "~/Scripts/app.js",
+                "~/Scripts/config.js",
+                "~/Scripts/controllers.js",
+                "~/Scripts/directives.js",
+                "~/Scripts/filters.js",
+                "~/Scripts/services.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/style.css",

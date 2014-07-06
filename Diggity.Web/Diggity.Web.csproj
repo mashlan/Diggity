@@ -302,6 +302,15 @@
     <Content Include="Content\images\video-controls-x2.png" />
     <Content Include="Content\images\video-controls.png" />
     <Content Include="Content\images\video-js.png" />
+    <Content Include="Html\Exercise\ExerciseTypeView.html" />
+    <Content Include="Html\Exercise\Test.html" />
+    <Content Include="Scripts\app.js" />
+    <Content Include="Scripts\config.js" />
+    <Content Include="Scripts\controllers.js" />
+    <Content Include="Scripts\directives.js" />
+    <Content Include="Scripts\filters.js" />
+    <Content Include="Scripts\routes.js" />
+    <Content Include="Scripts\services.js" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.js" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.min.js" />
     <Content Include="Scripts\vendors\angularjs\angular-cookies.js" />

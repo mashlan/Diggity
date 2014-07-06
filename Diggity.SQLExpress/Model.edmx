@@ -12,13 +12,11 @@
     <EntitySet Name="Workouts" EntityType="Model.Store.Workouts" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Users" EntityType="Model.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkoutSets" EntityType="Model.Store.WorkoutSets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserPreferences" EntityType="Model.Store.UserPreferences" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Model.Store.UnitOfMeasureExerciseType" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ExerciseTypeExercise" Association="Model.Store.FK_ExerciseTypeExercise">
       <End Role="ExerciseType" EntitySet="ExerciseTypes" />
       <End Role="Exercis" EntitySet="Exercises" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ExerciseTypeUnitOfMeasure" Association="Model.Store.FK_ExerciseTypeUnitOfMeasure">
-      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
-      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
     </AssociationSet>
     <AssociationSet Name="WorkoutUser" Association="Model.Store.WorkoutUser">
       <End Role="Workout" EntitySet="Workouts" />
@@ -35,6 +33,26 @@
     <AssociationSet Name="WorkoutWorkoutSet" Association="Model.Store.WorkoutWorkoutSet">
       <End Role="Workout" EntitySet="Workouts" />
       <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+    </AssociationSet>
+    <AssociationSet Name="UserPreferenceExerciseType" Association="Model.Store.UserPreferenceExerciseType">
+      <End Role="UserPreference" EntitySet="UserPreferences" />
+      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+    </AssociationSet>
+    <AssociationSet Name="UserPreferenceUnitOfMeasure" Association="Model.Store.UserPreferenceUnitOfMeasure">
+      <End Role="UserPreference" EntitySet="UserPreferences" />
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+    </AssociationSet>
+    <AssociationSet Name="UserPreferenceUser" Association="Model.Store.UserPreferenceUser">
+      <End Role="UserPreference" EntitySet="UserPreferences" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure" Association="Model.Store.FK_UnitOfMeasureExerciseType_UnitOfMeasure">
+      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+      <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UnitOfMeasureExerciseType_ExerciseType" Association="Model.Store.FK_UnitOfMeasureExerciseType_ExerciseType">
+      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+      <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Exercises">
@@ -54,7 +72,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="IsUserPreference" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="UnitOfMeasures">
     <Key>
@@ -63,7 +80,6 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Workouts">
     <Key>
@@ -99,6 +115,23 @@
     <Property Name="ExerciseId" Type="int" Nullable="false" />
     <Property Name="WorkoutId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="UserPreferences">
+    <Key>
+      <PropertyRef Name="ExerciseTypeId" />
+      <PropertyRef Name="UnitOfMeasureId" />
+    </Key>
+    <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UnitOfMeasureExerciseType">
+    <Key>
+      <PropertyRef Name="UnitOfMeasures_Id" />
+      <PropertyRef Name="ExerciseTypes_Id" />
+    </Key>
+    <Property Name="UnitOfMeasures_Id" Type="int" Nullable="false" />
+    <Property Name="ExerciseTypes_Id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_ExerciseTypeExercise">
     <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
     <End Role="Exercis" Type="Model.Store.Exercises" Multiplicity="*" />
@@ -107,18 +140,6 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Exercis">
-        <PropertyRef Name="ExerciseTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ExerciseTypeUnitOfMeasure">
-    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
-    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ExerciseType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UnitOfMeasure">
         <PropertyRef Name="ExerciseTypeId" />
       </Dependent>
     </ReferentialConstraint>
@@ -171,6 +192,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="UserPreferenceExerciseType">
+    <End Role="UserPreference" Type="Model.Store.UserPreferences" Multiplicity="*" />
+    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ExerciseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPreference">
+        <PropertyRef Name="ExerciseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPreferenceUnitOfMeasure">
+    <End Role="UserPreference" Type="Model.Store.UserPreferences" Multiplicity="*" />
+    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPreference">
+        <PropertyRef Name="UnitOfMeasureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserPreferenceUser">
+    <End Role="UserPreference" Type="Model.Store.UserPreferences" Multiplicity="*" />
+    <End Role="User" Type="Model.Store.Users" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserPreference">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure">
+    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
+    <End Role="UnitOfMeasureExerciseType" Type="Model.Store.UnitOfMeasureExerciseType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UnitOfMeasure">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UnitOfMeasureExerciseType">
+        <PropertyRef Name="UnitOfMeasures_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UnitOfMeasureExerciseType_ExerciseType">
+    <End Role="UnitOfMeasureExerciseType" Type="Model.Store.UnitOfMeasureExerciseType" Multiplicity="*" />
+    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="ExerciseType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UnitOfMeasureExerciseType">
+        <PropertyRef Name="ExerciseTypes_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -182,10 +263,6 @@
           <AssociationSet Name="FK_ExerciseTypeExercise" Association="Model.FK_ExerciseTypeExercise">
             <End Role="ExerciseType" EntitySet="ExerciseTypes" />
             <End Role="Exercis" EntitySet="Exercises" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ExerciseTypeUnitOfMeasure" Association="Model.FK_ExerciseTypeUnitOfMeasure">
-            <End Role="ExerciseType" EntitySet="ExerciseTypes" />
-            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
           </AssociationSet>
           <EntitySet Name="Workouts" EntityType="Model.Workout" />
           <EntitySet Name="Users" EntityType="Model.User" />
@@ -206,6 +283,23 @@
             <End Role="Workout" EntitySet="Workouts" />
             <End Role="WorkoutSet" EntitySet="WorkoutSets" />
           </AssociationSet>
+          <EntitySet Name="UserPreferences" EntityType="Model.UserPreference" />
+          <AssociationSet Name="UserPreferenceExerciseType" Association="Model.UserPreferenceExerciseType">
+            <End Role="UserPreference" EntitySet="UserPreferences" />
+            <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+          </AssociationSet>
+          <AssociationSet Name="UserPreferenceUnitOfMeasure" Association="Model.UserPreferenceUnitOfMeasure">
+            <End Role="UserPreference" EntitySet="UserPreferences" />
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+          </AssociationSet>
+          <AssociationSet Name="UserPreferenceUser" Association="Model.UserPreferenceUser">
+            <End Role="UserPreference" EntitySet="UserPreferences" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UnitOfMeasureExerciseType" Association="Model.UnitOfMeasureExerciseType">
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+            <End Role="ExerciseType" EntitySet="ExerciseTypes" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Exercise">
           <Key>
@@ -213,7 +307,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" Unicode="true" MaxLength="Max" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeExercise" FromRole="Exercis" ToRole="ExerciseType" />
@@ -226,9 +320,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="IsUserPreference" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Exercises" Relationship="Model.FK_ExerciseTypeExercise" FromRole="ExerciseType" ToRole="Exercis" />
-          <NavigationProperty Name="UnitOfMeasures" Relationship="Model.FK_ExerciseTypeUnitOfMeasure" FromRole="ExerciseType" ToRole="UnitOfMeasure" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceExerciseType" FromRole="ExerciseType" ToRole="UserPreference" />
+          <NavigationProperty Name="UnitOfMeasures" Relationship="Model.UnitOfMeasureExerciseType" FromRole="ExerciseType" ToRole="UnitOfMeasure" />
         </EntityType>
         <EntityType Name="UnitOfMeasure">
           <Key>
@@ -237,9 +331,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="ExerciseType" />
           <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="WorkoutSet" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="UserPreference" />
+          <NavigationProperty Name="ExerciseTypes" Relationship="Model.UnitOfMeasureExerciseType" FromRole="UnitOfMeasure" ToRole="ExerciseType" />
         </EntityType>
         <Association Name="FK_ExerciseTypeExercise">
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
@@ -249,18 +343,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Exercis">
-              <PropertyRef Name="ExerciseTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ExerciseTypeUnitOfMeasure">
-          <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
-          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ExerciseType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UnitOfMeasure">
               <PropertyRef Name="ExerciseTypeId" />
             </Dependent>
           </ReferentialConstraint>
@@ -287,6 +369,7 @@
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="Email" Type="String" Nullable="false" />
           <NavigationProperty Name="Workouts" Relationship="Model.WorkoutUser" FromRole="User" ToRole="Workout" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUser" FromRole="User" ToRole="UserPreference" />
         </EntityType>
         <Association Name="WorkoutUser">
           <End Type="Model.Workout" Role="Workout" Multiplicity="*" />
@@ -353,6 +436,58 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="UserPreference">
+          <Key>
+            <PropertyRef Name="ExerciseTypeId" />
+            <PropertyRef Name="UnitOfMeasureId" />
+          </Key>
+          <NavigationProperty Name="ExerciseType" Relationship="Model.UserPreferenceExerciseType" FromRole="UserPreference" ToRole="ExerciseType" />
+          <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.UserPreferenceUnitOfMeasure" FromRole="UserPreference" ToRole="UnitOfMeasure" />
+          <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model.UserPreferenceUser" FromRole="UserPreference" ToRole="User" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="UserPreferenceExerciseType">
+          <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
+          <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreference">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserPreferenceUnitOfMeasure">
+          <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
+          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreference">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserPreferenceUser">
+          <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
+          <End Type="Model.User" Role="User" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreference">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UnitOfMeasureExerciseType">
+          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
+          <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -376,7 +511,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="IsUserPreference" ColumnName="IsUserPreference" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -386,7 +520,6 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -427,6 +560,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserPreferences">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.UserPreference)">
+        <MappingFragment StoreEntitySet="UserPreferences">
+          <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UnitOfMeasureExerciseType" TypeName="Model.UnitOfMeasureExerciseType" StoreEntitySet="UnitOfMeasureExerciseType">
+      <EndProperty Name="UnitOfMeasure">
+        <ScalarProperty Name="Id" ColumnName="UnitOfMeasures_Id" />
+      </EndProperty>
+      <EndProperty Name="ExerciseType">
+        <ScalarProperty Name="Id" ColumnName="ExerciseTypes_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
