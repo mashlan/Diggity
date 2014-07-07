@@ -8,7 +8,6 @@ angular.module('myApp.routes', ['ngRoute'])
             "use strict";
 
             $routeProvider.when('/home', { templateUrl: '../Html/Exercise/ExerciseTypeView.html', controller: 'ExerciseTypeCtrl' });
-
             $routeProvider.otherwise({ redirectTo: '/home' });
         }
     ]);

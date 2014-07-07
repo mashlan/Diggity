@@ -1,5 +1,9 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using System.Data.Entity.Core.EntityClient;
+using System.Net.Http;
+using System.Web.Http.Controllers;
+using System.Web.Http.Dispatcher;
 using Diggity.Database;
 using Diggity.Entities;
 using Diggity.Repository;
@@ -46,6 +50,25 @@ namespace Diggity.IOC
             };
 
             return test.ToString();
+        }
+    }
+
+
+    public class StructureMapHttpControllerActivator : IHttpControllerActivator
+    {
+        private readonly IContainer container;
+
+        public StructureMapHttpControllerActivator(IContainer container)
+        {
+            this.container = container;
+        }
+
+        public IHttpController Create(
+                HttpRequestMessage request,
+                HttpControllerDescriptor controllerDescriptor,
+                Type controllerType)
+        {
+            return (IHttpController)this.container.GetInstance(controllerType);
         }
     }
 }

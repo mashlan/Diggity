@@ -36,6 +36,11 @@ namespace Diggity.Services
             return Repository.Find(expression);
         }
 
+        public IEnumerable<TInterface> GetAll()
+        {
+            return Repository.GetAll();
+        }
+
         public void Create(TInterface entity)
         {
             try

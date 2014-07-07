@@ -56,5 +56,11 @@ namespace Diggity.Repository
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<TInterface> GetAll()
+        {
+            var data = DataSet.Where(f => true);
+            return data.ToList();
+        }
     }
 }

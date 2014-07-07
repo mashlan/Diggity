@@ -15,6 +15,6 @@ namespace Diggity.Repository
 
         bool SaveChanges();
         void RefreshFromDatabase();
-        
+        IEnumerable<TInterface> GetAll();
     }
 }

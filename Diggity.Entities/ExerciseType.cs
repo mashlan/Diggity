@@ -17,15 +17,16 @@ namespace Diggity.Entities
         public ExerciseType()
         {
             this.Exercises = new HashSet<Exercise>();
+            this.UserPreferences = new HashSet<UserPreference>();
             this.UnitOfMeasures = new HashSet<UnitOfMeasure>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool IsUserPreference { get; set; }
     
         public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual ICollection<UserPreference> UserPreferences { get; set; }
         public virtual ICollection<UnitOfMeasure> UnitOfMeasures { get; set; }
     }
 }

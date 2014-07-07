@@ -8,6 +8,13 @@ myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType',
         $scope.exercisTypeList = [];
         $scope.exerciseType = {};
 
+        ExerciseType.query().then(function(resp) {
+                $scope.exercisTypeList = resp;
+            },
+            function(error) {
+                alert(error.data);
+            });
+
         $scope.toggleUnit = function (scope) {
             var index = $scope.exerciseType.UnitOfMeasures.indexOf(scope.unit._id);
             if (index > -1) {

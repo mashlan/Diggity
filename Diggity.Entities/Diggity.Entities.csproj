@@ -71,6 +71,9 @@
     <Compile Include="User.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserPreference.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Workout.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

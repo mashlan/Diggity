@@ -37,5 +37,6 @@ namespace Diggity.Database
         public virtual DbSet<Workout> Workouts { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WorkoutSet> WorkoutSets { get; set; }
+        public virtual DbSet<UserPreference> UserPreferences { get; set; }
     }
 }
