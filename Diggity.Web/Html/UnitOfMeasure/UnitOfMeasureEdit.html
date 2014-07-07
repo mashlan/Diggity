@@ -1,0 +1,28 @@
+﻿
+<div ng-show="loading">
+    <h2><i class="fa fa-2x fa-spin fa-spinner"></i> Loading Unit . . .</h2>
+</div>
+
+
+<form role="form" ng-hide="loading">
+
+    <h2>Units of Measure</h2>
+    
+    <div class="form-group">
+        <label class="control-label emphasis" for="name">Name</label>
+        <input id="name" type="text" class="" ng-model="unit.Name"/>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label emphasis" for="description">Description</label>
+        <textarea id="description" class="" rows="5" ng-model="unit.Description" ></textarea>
+    </div>
+    
+    <div class="clearfix"></div>
+    <div class="pull-right">
+        <a class="btn btn-green" href="#"><span>Save</span></a>
+        <a class="btn btn-blue" href="#"><span>Cancel</span></a>
+    </div>
+
+</form>

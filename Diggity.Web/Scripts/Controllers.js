@@ -1,15 +1,59 @@
 ﻿
 
+myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure',
+
+    function ($routeParams, $scope, UnitOfMeasure) {
+        'use strict';
+
+        $scope.loading = true;
+
+        UnitOfMeasure.query().then(function(resp) {
+                $scope.unitOfMeasures = resp;
+                $scope.loading = false;
+            },
+            function(error) {
+                $scope.loading = false;
+                alert(error.data);
+            });
+
+    }
+]);
+
+myControllers.controller('UnitOfMeasureEditCtrl', ['$routeParams', '$scope', 'UnitOfMeasure',
+
+    function ($routeParams, $scope, UnitOfMeasure) {
+        'use strict';
+
+        $scope.loading = true;
+
+        if ($routeParams.id !== "new") {
+            UnitOfMeasure.get($routeParams.id).then(
+                function(resp) {
+                    $scope.unit = resp;
+                    $scope.loading = false;
+                },
+                function(error) {
+                    $scope.loading = false;
+                    alert(error.data);
+                });
+        } else {
+            $scope.unit = {};
+            $scope.loading = false;
+        }
+    }
+]);
+
+
 myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType',
     function ($scope, ExerciseType) {
         'use strict';
 
         $scope.hasFormError = false;
-        $scope.exercisTypeList = [];
+        $scope.exerciseTypeList = [];
         $scope.exerciseType = {};
 
         ExerciseType.query().then(function(resp) {
-                $scope.exercisTypeList = resp;
+                $scope.exerciseTypeList = resp;
             },
             function(error) {
                 alert(error.data);

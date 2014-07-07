@@ -86,17 +86,21 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 /* General Styles */
 /*-----------------------------------*/
 
+.emphasis {
+    font-weight: bold;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
-    font-size:13px;
+    font-size: 13px;
     font-weight: 300;
-    color:#666;
+    color: #666;
     -webkit-font-smoothing: subpixel-antialiased;
-	position:relative;
+    position: relative;
     background-color: #fafafa;
 }
 .body-content {
-    padding-top: 80px !important;
+    padding-top: 85px !important;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -686,13 +690,13 @@ input[type="text"],
 input[type="password"],
 textarea,
 .select_styled{
-	border:1px solid #eceff1;
-	border-top:1px solid #d1d9dd;
-	border-bottom:1px solid #f2f2f2;
-	background: transparent;
+	border:2px solid #eceff1;
+	border-top:2px solid #d1d9dd;
+	border-bottom:2px solid #eceff1;
+	background-color: #ffffff;
 	padding:0 12px;
 	font-size:13px;
-    color: #7b8a97;
+    color: #000000;
     width: 100%;
     -webkit-box-shadow: inset 0 2px 3px -1px #ced6db;
     box-shadow: inset 0 2px 3px -1px #ced6db;
@@ -712,7 +716,7 @@ input[type="password"]{
 textarea:focus,
 input[type="text"]:focus,
 input[type="password"]:focus{
-    border:1px solid #f2f2f2;
+    border:2px solid #67b0d1;
 	-webkit-box-shadow: none;
 	box-shadow: none;
 }
@@ -1774,3 +1778,13 @@ input.weather-search-submit{
 }
 .checkBoxes{float: right; width: 45%; padding-top: 8px;}
 .checkBoxes .custom-checkbox label, .checkBoxes .custom-radio label {padding-left: 27px;}
+
+
+.ajax-loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -32px; /* -1 * image width / 2 */
+    margin-top: -32px;  /* -1 * image height / 2 */
+    display: block;     
+}
