@@ -13,5 +13,6 @@ namespace Diggity.Services
         void Create(TInterface entity);
         void Update(TInterface entity);
         bool Delete(Expression<Func<TInterface, bool>> expression);
+        bool Delete(int Id);
     }
 }

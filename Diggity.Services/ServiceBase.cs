@@ -63,6 +63,11 @@ namespace Diggity.Services
         {
             return Repository.Delete(expression);
         }
+
+        public bool Delete(int Id)
+        {
+            return Repository.Delete(Id);
+        }
     }
 
 }

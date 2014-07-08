@@ -7,7 +7,7 @@ using Diggity.Entities;
 
 namespace Diggity.Repository
 {
-    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity where TInterface: class 
+    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity where TInterface: class, IEntity
     {
         private readonly DbContext Context;
         private readonly DbSet<TEntity> DataSet;
@@ -70,6 +70,11 @@ namespace Diggity.Repository
         {
             var data = DataSet.Where(f => true);
             return data.ToList();
+        }
+
+        public bool Delete(int Id)
+        {
+            return Delete(d => d.Id == Id);
         }
     }
 }
