@@ -5,16 +5,17 @@ using Diggity.Entities;
 using Diggity.Exceptions;
 using Diggity.Services;
 
-namespace Diggity.Web.Controllers
+namespace Diggity.WebApi
 {
     public class UnitOfMeasureController : BaseApiController
     {
         // GET: api/UnitOfMeasure
-        public UnitOfMeasureController(IServiceAggregate serviceAggregate) : base(serviceAggregate)
+        public UnitOfMeasureController(IServiceAggregate serviceAggregate)
+            : base(serviceAggregate)
         {
         }
 
-        public HttpResponseMessage  Get()
+        public HttpResponseMessage Get()
         {
             try
             {
@@ -27,12 +28,11 @@ namespace Diggity.Web.Controllers
             }
         }
 
-        // GET: api/UnitOfMeasure/5
         public HttpResponseMessage Get(int id)
         {
             try
             {
-                var result = ServiceAggregate.UnitOfMeasure.Single(u => u.Id == id);
+                var result = ServiceAggregate.UnitOfMeasure.GetById(id);
                 if (result != null) return Request.CreateResponse(HttpStatusCode.OK, result);
 
                 var message = string.Format("Unit Of Measure with Id {0} was not found.", id);
@@ -40,12 +40,11 @@ namespace Diggity.Web.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
 
-        // POST: api/UnitOfMeasure
-        public HttpResponseMessage Post(IUnitOfMeasure unit)
+        public HttpResponseMessage Post(UnitOfMeasure unit)
         {
             try
             {
@@ -62,12 +61,11 @@ namespace Diggity.Web.Controllers
             }
         }
 
-        // PUT: api/UnitOfMeasure/5
-        public HttpResponseMessage Put(IUnitOfMeasure unit)
+        public HttpResponseMessage Put(UnitOfMeasure data)
         {
             try
             {
-                ServiceAggregate.UnitOfMeasure.Update(unit);
+                ServiceAggregate.UnitOfMeasure.Update(data);
                 return Request.CreateResponse(HttpStatusCode.OK, "success");
             }
             catch (ValidationException ex)
@@ -80,7 +78,6 @@ namespace Diggity.Web.Controllers
             }
         }
 
-        // DELETE: api/UnitOfMeasure/5
         public HttpResponseMessage Delete(int id)
         {
             try

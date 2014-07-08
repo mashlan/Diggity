@@ -1,19 +1,20 @@
-﻿using System;
+using System;
 using System.Net;
 using System.Net.Http;
 using Diggity.Entities;
 using Diggity.Exceptions;
 using Diggity.Services;
 
-namespace Diggity.Web.Controllers
+namespace Diggity.WebApi
 {
     public class ExerciseTypeController : BaseApiController
     {
-        public ExerciseTypeController(IServiceAggregate serviceAggregate) : base(serviceAggregate)
+        public ExerciseTypeController(IServiceAggregate serviceAggregate)
+            : base(serviceAggregate)
         {
         }
 
-        public HttpResponseMessage  Get()
+        public HttpResponseMessage Get()
         {
             try
             {

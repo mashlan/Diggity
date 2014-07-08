@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using Diggity.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Diggity.Web;
 using Diggity.Web.Controllers;
+using Moq;
 
 namespace Diggity.Web.Tests.Controllers
 {
@@ -13,14 +13,14 @@ namespace Diggity.Web.Tests.Controllers
         public void Index()
         {
             // Arrange
-            //HomeController controller = new HomeController( );
+            var controller = new HomeController(new Mock<IServiceAggregate>().Object);
 
-            //// Act
-            //ViewResult result = controller.Index() as ViewResult;
+            // Act
+            var result = controller.Index() as ViewResult;
 
-            //// Assert
-            //Assert.IsNotNull(result);
-            //Assert.AreEqual("Home Page", result.ViewBag.Title);
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Home Page", result.ViewBag.Title);
         }
     }
 }

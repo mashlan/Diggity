@@ -179,6 +179,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\StructureMapHttpControllerActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -209,13 +210,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ExerciseTypeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JasmineController.cs" />
-    <Compile Include="Controllers\UnitOfMeasureController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -310,11 +307,13 @@
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
-    <Content Include="Scripts\controllers.js" />
+    <Content Include="Scripts\controllers\exerciseTypeController.js" />
+    <Content Include="Scripts\controllers\unitOfMeasureController.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\filters.js" />
     <Content Include="Scripts\routes.js" />
-    <Content Include="Scripts\services.js" />
+    <Content Include="Scripts\services\exerciseTypeService.js" />
+    <Content Include="Scripts\services\unitOfMeasureService.js" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.js" />
     <Content Include="Scripts\vendors\angularjs\angular-animate.min.js" />
     <Content Include="Scripts\vendors\angularjs\angular-cookies.js" />
@@ -713,9 +712,17 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
+      <Project>{707B16A3-451E-4171-A0E4-E07EA2E9075B}</Project>
+      <Name>Diggity.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Diggity.IOC\Diggity.IOC.csproj">
       <Project>{FA1E9ECF-261A-4CB2-B328-409420683646}</Project>
       <Name>Diggity.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.WebApi\Diggity.WebApi.csproj">
+      <Project>{7535f666-65da-4f12-9240-8a7d423e24e5}</Project>
+      <Name>Diggity.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Diggity\Diggity.csproj">
       <Project>{ba2c7bf6-923d-499d-99c5-3e3ceb4661fa}</Project>

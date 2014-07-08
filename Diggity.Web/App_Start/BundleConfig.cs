@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Diggity.Web
 {
@@ -30,13 +29,22 @@ namespace Diggity.Web
                 "~/Scripts/vendor/angularjs/angular-route.js",
                 "~/Scripts/vendor/angularjs/angular-resource.js"));
 
-            bundles.Add(new ScriptBundle("~/bundler/MyApp").Include(
+            bundles.Add(new ScriptBundle("~/bundles/myApp").Include(
                 "~/Scripts/app.js",
                 "~/Scripts/config.js",
-                "~/Scripts/controllers.js",
                 "~/Scripts/directives.js",
-                "~/Scripts/filters.js",
-                "~/Scripts/services.js"));
+                "~/Scripts/routes.js",
+                "~/Scripts/filters.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/myControllers").Include(
+                "~/Scripts/controllers/exerciseTypeController.js",
+                "~/Scripts/controllers/unitOfMeasureController.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/myServices").Include(
+                "~/Scripts/services/exerciseTypeService.js",
+                "~/Scripts/services/unitOfMeasureService.js"
+                ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

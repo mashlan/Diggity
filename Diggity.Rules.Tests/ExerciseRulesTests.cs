@@ -1,6 +1,5 @@
 ﻿using System.Configuration;
 using System.Data.Entity.Core.EntityClient;
-using Diggity.Database;
 using Diggity.Entities;
 using Diggity.Repository;
 using Diggity.Rules.Validators;
@@ -45,7 +44,6 @@ namespace Diggity.Rules.Tests
             };
 
             var valid = rule.IsValid(exercise);
-
             Assert.IsTrue(valid);
         }
 

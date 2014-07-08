@@ -7,7 +7,7 @@ using Diggity.Entities;
 
 namespace Diggity.Repository
 {
-    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity
+    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity where TInterface: class 
     {
         private readonly DbContext Context;
         private readonly DbSet<TEntity> DataSet;
@@ -41,7 +41,8 @@ namespace Diggity.Repository
 
         public void Update(TInterface entity)
         {
-            if (!DataSet.Local.Contains(entity as TEntity)) DataSet.Attach(entity as TEntity);
+            DataSet.Attach(entity as TEntity);
+            Context.Entry(entity).State = EntityState.Modified;
             SaveChanges();
         }
 
