@@ -3,9 +3,9 @@ using Diggity.Validation;
 
 namespace Diggity.Entities
 {
-    public interface IWorkoutSet : IValidationSummary
+    public interface IWorkoutSet : IValidationSummary, IEntity
     {
-        int Id { get; set; }
+        new int Id { get; set; }
         string SortOrder { get; set; }
         string PlannedReps { get; set; }
         string ActualReps { get; set; }

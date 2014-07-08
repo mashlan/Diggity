@@ -3,9 +3,9 @@ using Diggity.Validation;
 
 namespace Diggity.Entities
 {
-    public interface IUser : IValidationSummary
+    public interface IUser : IValidationSummary, IEntity
     {
-        int Id { get; set; }
+        new int Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         string Email { get; set; }

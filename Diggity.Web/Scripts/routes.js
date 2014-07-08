@@ -7,12 +7,18 @@ angular.module('myApp.routes', ['ngRoute'])
         '$routeProvider', '$locationProvider', function($routeProvider) {
             "use strict";
 
-            $routeProvider.when('/home', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureView.html', controller: 'UnitOfMeasureCtrl' });
+            $routeProvider.when('/unitOfMeasure', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureView.html', controller: 'UnitOfMeasureCtrl' });
             $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
             $routeProvider.when('/unitOfMeasure/new', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
-            $routeProvider.otherwise({ redirectTo: '/home' });
+
+            $routeProvider.when('/exerciseType', { templateUrl: '../Html/Exercise/ExerciseTypeView.html', controller: 'ExerciseTypeCtrl' });
+            $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/Exercise/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
+            $routeProvider.when('/exerciseType/new', { templateUrl: '../Html/UnitOfMeasure/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
+
+            $routeProvider.otherwise({ redirectTo: '/unitOfMeasure' });
         }
     ]);
+
     //.run(function($rootScope) {
     //    $rootScope.$on('$routeChangeStart', function() {
     //        //show loading gif

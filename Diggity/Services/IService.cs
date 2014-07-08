@@ -12,6 +12,6 @@ namespace Diggity.Services
         IEnumerable<TInterface> GetAll();
         void Create(TInterface entity);
         void Update(TInterface entity);
-        bool Delete(TInterface entity);
+        bool Delete(Expression<Func<TInterface, bool>> expression);
     }
 }

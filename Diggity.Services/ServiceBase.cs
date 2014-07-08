@@ -59,25 +59,10 @@ namespace Diggity.Services
             Repository.Update(entity);
         }
 
-        public bool Delete(TInterface entity)
+        public bool Delete(Expression<Func<TInterface, bool>> expression)
         {
-            return Repository.Delete(entity);
+            return Repository.Delete(expression);
         }
     }
 
-    //public class ExerciseService : ServiceBase<IExercise>
-    //{
-    //    public ExerciseService(IRepositoryAggregate repositoryAggregate, IRepository<IExercise> repository, IValidator<IExercise> validator)
-    //        : base(repositoryAggregate, repository, validator)
-    //    {
-    //    }
-    //}
-
-    //public class ExerciseTypeService : ServiceBase<IExerciseType>
-    //{
-    //    public ExerciseTypeService(IRepositoryAggregate repositoryAggregate, IRepository<IExerciseType> repository, IValidator<IExerciseType> validator) :
-    //        base(repositoryAggregate, repository, validator)
-    //    {
-    //    }
-    //}
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using Diggity.Entities;
 
 namespace Diggity.Repository
 {
-    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity: class, TInterface
+    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity
     {
         private readonly DbContext Context;
         private readonly DbSet<TEntity> DataSet;
@@ -19,7 +20,7 @@ namespace Diggity.Repository
 
         public TInterface GetById(int id)
         {
-            throw new NotImplementedException();
+            return DataSet.Find(id);
         }
 
         public TInterface Single(Expression<Func<TInterface, bool>> expression)
@@ -34,22 +35,29 @@ namespace Diggity.Repository
 
         public void Create(TInterface entity)
         {
-            throw new NotImplementedException();
+            DataSet.Attach(entity as TEntity);
+            SaveChanges();
         }
 
         public void Update(TInterface entity)
         {
-            throw new NotImplementedException();
+            if (!DataSet.Local.Contains(entity as TEntity)) DataSet.Attach(entity as TEntity);
+            SaveChanges();
         }
 
-        public bool Delete(TInterface entity)
+        public bool Delete(Expression<Func<TInterface, bool>> expression)
         {
-            throw new NotImplementedException();
+            var results = DataSet.Where(Converter.TransformPredicateLambda<TInterface, TEntity>(expression));
+            foreach (var result in results)
+            {
+                DataSet.Remove(result);
+            }
+            return SaveChanges();
         }
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return Convert.ToBoolean(Context.SaveChanges());
         }
 
         public void RefreshFromDatabase()

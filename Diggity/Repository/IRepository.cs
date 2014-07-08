@@ -11,7 +11,7 @@ namespace Diggity.Repository
         IEnumerable<TInterface> Find(Expression<Func<TInterface, bool>> expression);
         void Create(TInterface entity);
         void Update(TInterface entity);
-        bool Delete(TInterface entity);
+        bool Delete(Expression<Func<TInterface, bool>> expression);
 
         bool SaveChanges();
         void RefreshFromDatabase();
