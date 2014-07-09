@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using Diggity.Entities;
 using Diggity.Exceptions;
 using Diggity.Repository;
 using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class ServiceBase<TInterface>: IService<TInterface> where TInterface: class , IValidationSummary
+    public class ServiceBase<TInterface> : IService<TInterface> where TInterface : class, IValidationSummary
     {
-        private readonly IRepositoryAggregate RepositoryAggregate;
         private readonly IRepository<TInterface> Repository;
+        private readonly IRepositoryAggregate RepositoryAggregate;
         private readonly IValidator<TInterface> Validator;
 
-        public ServiceBase(IRepositoryAggregate repositoryAggregate, IRepository<TInterface> repository, IValidator<TInterface> validator  )
+        public ServiceBase(IRepositoryAggregate repositoryAggregate, IRepository<TInterface> repository,
+            IValidator<TInterface> validator)
         {
             RepositoryAggregate = repositoryAggregate;
             Repository = repository;
@@ -69,5 +69,4 @@ namespace Diggity.Services
             return Repository.Delete(Id);
         }
     }
-
 }

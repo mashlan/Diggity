@@ -1,5 +1,4 @@
-﻿
-namespace Diggity.SQLExpress
+﻿namespace Diggity.SQLExpress
 {
     public class DiggitySQLExpress
     {

@@ -1,4 +1,4 @@
-jQuery.fn.anim_progressbar = function (aOptions) {
+jQuery.fn.anim_progressbar = function(aOptions) {
     // def values
     var iSms = 1000;
     var iMms = 60 * iSms;
@@ -12,7 +12,7 @@ jQuery.fn.anim_progressbar = function (aOptions) {
         finish: new Date().setTime(new Date().getTime() + 65 * iSms), // now + 60 sec
         interval: 100
 
-    }
+    };
     var aOpts = jQuery.extend(aDefOpts, aOptions);
     aOpts.finish = new Date().setTime(new Date().getTime() + aOpts.totaltime * iSms);
     var vPb = this;
@@ -27,7 +27,7 @@ jQuery.fn.anim_progressbar = function (aOptions) {
 
             // looping process
             var vInterval = setInterval(
-                function(){
+                function() {
                     var iLeftMs = aOpts.finish - new Date() + 1000; // left time in MS
                     var iElapsedMs = new Date() - aOpts.start, // elapsed time in MS
                         iDays = parseInt(iLeftMs / iDms), // remained days
@@ -43,32 +43,38 @@ jQuery.fn.anim_progressbar = function (aOptions) {
                         iPerc = (iElapsedMs > 0) ? iElapsedMs / iDuration * 100 : 0; // percentages
 
 
-                        if(iMin<10){iMin='0'+iMin}
-                        if(iSec<10){iSec='0'+iSec}
-                        if(eMin<10){eMin='0'+eMin}
-                        if(eSec<10){eSec='0'+eSec}
+                    if (iMin < 10) {
+                        iMin = '0' + iMin;
+                    }
+                    if (iSec < 10) {
+                        iSec = '0' + iSec;
+                    }
+                    if (eMin < 10) {
+                        eMin = '0' + eMin;
+                    }
+                    if (eSec < 10) {
+                        eSec = '0' + eSec;
+                    }
 
 
                     // display current positions and progress
-                    $(vPb).children('.percent').html('<span>'+iPerc.toFixed()+'%</span>');
-                    if(iHours==0){
-                        $(vPb).children('.elapsed').html(iMin+':'+iSec);
+                    $(vPb).children('.percent').html('<span>' + iPerc.toFixed() + '%</span>');
+                    if (iHours == 0) {
+                        $(vPb).children('.elapsed').html(iMin + ':' + iSec);
+                    } else {
+                        $(vPb).children('.elapsed').html(iHours + ':' + iMin + ':' + iSec);
                     }
-                    else
-                    {
-                        $(vPb).children('.elapsed').html(iHours+':'+iMin+':'+iSec);
+                    if (eHours == 0) {
+                        $(vPb).children('.remained').html(eMin + ':' + eSec);
+                    } else {
+                        $(vPb).children('.remained').html(eHours + ':' + eMin + ':' + eSec);
                     }
-                    if(eHours==0){
-                        $(vPb).children('.remained').html(eMin+':'+eSec);
+                    if (iPerc >= 100) {
+                        iPerc = 100;
                     }
-                    else
-                    {
-                        $(vPb).children('.remained').html(eHours+':'+eMin+':'+eSec);
-                    }
-                    if (iPerc >= 100) {iPerc = 100}
-                    $(vPb).children('.pbar').children('.ui-progressbar-value').css('width', iPerc+'%');
-                    if(iPerc < 4) iPerc = 4;
-                    $(vPb).children('.percent').css('left', iPerc+'%');
+                    $(vPb).children('.pbar').children('.ui-progressbar-value').css('width', iPerc + '%');
+                    if (iPerc < 4) iPerc = 4;
+                    $(vPb).children('.percent').css('left', iPerc + '%');
 
 
                     // in case of Finish
@@ -77,7 +83,7 @@ jQuery.fn.anim_progressbar = function (aOptions) {
                         $(vPb).children('.percent').html('<span>100%</span>');
                         $(vPb).children('.elapsed').html('00:00');
                     }
-                } ,aOpts.interval
+                }, aOpts.interval
             );
         }
     );

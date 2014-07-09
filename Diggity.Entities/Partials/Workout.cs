@@ -15,7 +15,7 @@ namespace Diggity.Entities
         ICollection<IWorkoutSet> IWorkout.WorkoutSets
         {
             get { return WorkoutSets.ToList<IWorkoutSet>(); }
-            set { WorkoutSets = new Collection<WorkoutSet>(value.Select(s => s as WorkoutSet).ToList());}
+            set { WorkoutSets = new Collection<WorkoutSet>(value.Select(s => s as WorkoutSet).ToList()); }
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Diggity.Entities
         ICollection<IUnitOfMeasure> IExerciseType.UnitOfMeasures
         {
             get { return UnitOfMeasures.ToList<IUnitOfMeasure>(); }
-            set { UnitOfMeasures = new Collection<UnitOfMeasure>(value.Select(s => s as UnitOfMeasure).ToList());}
+            set { UnitOfMeasures = new Collection<UnitOfMeasure>(value.Select(s => s as UnitOfMeasure).ToList()); }
         }
 
         ICollection<IExercise> IExerciseType.Exercises

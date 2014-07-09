@@ -19,19 +19,19 @@ angular.module('myApp.routes', ['ngRoute'])
         }
     ]);
 
-    //.run(function($rootScope) {
-    //    $rootScope.$on('$routeChangeStart', function() {
-    //        //show loading gif
-    //        $('#myWaitDiv').show();
-    //    });
+//.run(function($rootScope) {
+//    $rootScope.$on('$routeChangeStart', function() {
+//        //show loading gif
+//        $('#myWaitDiv').show();
+//    });
 
-    //    $rootScope.$on('$routeChangeSuccess', function() {
-    //        //hide loading gif
-    //        $('#myWaitDiv').hide();
-    //    });
+//    $rootScope.$on('$routeChangeSuccess', function() {
+//        //hide loading gif
+//        $('#myWaitDiv').hide();
+//    });
 
-    //    $rootScope.$on('$routeChangeError', function() {
-    //        //hide loading gif
-    //        $('#myWaitDiv').hide();
-    //    });
-    //});
+//    $rootScope.$on('$routeChangeError', function() {
+//        //hide loading gif
+//        $('#myWaitDiv').hide();
+//    });
+//});

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Diggity.Repository;
+﻿using System.Web.Mvc;
 using Diggity.Services;
 
 namespace Diggity.Web.Controllers

@@ -1,10 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self"
+              xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator"
+              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Exercises">
           <Key>
             <PropertyRef Name="Id" />
@@ -205,7 +209,8 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExerciseTypes" EntityType="Self.ExerciseTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Self.UnitOfMeasureExerciseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Self.UnitOfMeasureExerciseType" Schema="dbo"
+                     store:Type="Tables" />
           <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPreferences" EntityType="Self.UserPreferences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -219,11 +224,13 @@
             <End Role="Exercises" EntitySet="Exercises" />
             <End Role="WorkoutSets" EntitySet="WorkoutSets" />
           </AssociationSet>
-          <AssociationSet Name="FK_UnitOfMeasureExerciseType_ExerciseType" Association="Self.FK_UnitOfMeasureExerciseType_ExerciseType">
+          <AssociationSet Name="FK_UnitOfMeasureExerciseType_ExerciseType"
+                          Association="Self.FK_UnitOfMeasureExerciseType_ExerciseType">
             <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
             <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
           </AssociationSet>
-          <AssociationSet Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure" Association="Self.FK_UnitOfMeasureExerciseType_UnitOfMeasure">
+          <AssociationSet Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure"
+                          Association="Self.FK_UnitOfMeasureExerciseType_UnitOfMeasure">
             <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
             <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
           </AssociationSet>
@@ -252,10 +259,15 @@
             <End Role="WorkoutSets" EntitySet="WorkoutSets" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm"
+              xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration"
+              xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model"
+              Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+              annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="ModelContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Exercises" EntityType="Model.Exercise" />
           <EntitySet Name="ExerciseTypes" EntityType="Model.ExerciseType" />
@@ -307,11 +319,15 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Abbreviation" Type="String" Nullable="false" Unicode="true" MaxLength="Max" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Abbreviation" Type="String" Nullable="false" Unicode="true" MaxLength="Max"
+                    FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false"
+                    Unicode="true" />
           <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeExercise" FromRole="Exercis" ToRole="ExerciseType" />
-          <NavigationProperty Name="WorkoutSets" Relationship="Model.ExerciseWorkoutSet" FromRole="Exercise" ToRole="WorkoutSet" />
+          <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeExercise" FromRole="Exercis"
+                              ToRole="ExerciseType" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.ExerciseWorkoutSet" FromRole="Exercise"
+                              ToRole="WorkoutSet" />
         </EntityType>
         <EntityType Name="ExerciseType">
           <Key>
@@ -319,10 +335,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Exercises" Relationship="Model.FK_ExerciseTypeExercise" FromRole="ExerciseType" ToRole="Exercis" />
-          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceExerciseType" FromRole="ExerciseType" ToRole="UserPreference" />
-          <NavigationProperty Name="UnitOfMeasures" Relationship="Model.UnitOfMeasureExerciseType" FromRole="ExerciseType" ToRole="UnitOfMeasure" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false"
+                    Unicode="true" />
+          <NavigationProperty Name="Exercises" Relationship="Model.FK_ExerciseTypeExercise" FromRole="ExerciseType"
+                              ToRole="Exercis" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceExerciseType"
+                              FromRole="ExerciseType" ToRole="UserPreference" />
+          <NavigationProperty Name="UnitOfMeasures" Relationship="Model.UnitOfMeasureExerciseType"
+                              FromRole="ExerciseType" ToRole="UnitOfMeasure" />
         </EntityType>
         <EntityType Name="UnitOfMeasure">
           <Key>
@@ -330,10 +350,14 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="WorkoutSet" />
-          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="UserPreference" />
-          <NavigationProperty Name="ExerciseTypes" Relationship="Model.UnitOfMeasureExerciseType" FromRole="UnitOfMeasure" ToRole="ExerciseType" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false"
+                    Unicode="true" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="UnitOfMeasure"
+                              ToRole="WorkoutSet" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUnitOfMeasure"
+                              FromRole="UnitOfMeasure" ToRole="UserPreference" />
+          <NavigationProperty Name="ExerciseTypes" Relationship="Model.UnitOfMeasureExerciseType"
+                              FromRole="UnitOfMeasure" ToRole="ExerciseType" />
         </EntityType>
         <Association Name="FK_ExerciseTypeExercise">
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
@@ -353,12 +377,16 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="StartDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="EndDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
+                    FixedLength="false" />
+          <Property Name="StartDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
+                    FixedLength="false" />
+          <Property Name="EndDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
+                    FixedLength="false" />
           <NavigationProperty Name="User" Relationship="Model.WorkoutUser" FromRole="Workout" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutWorkoutSet" FromRole="Workout" ToRole="WorkoutSet" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutWorkoutSet" FromRole="Workout"
+                              ToRole="WorkoutSet" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -369,7 +397,8 @@
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Workouts" Relationship="Model.WorkoutUser" FromRole="User" ToRole="Workout" />
-          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUser" FromRole="User" ToRole="UserPreference" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUser" FromRole="User"
+                              ToRole="UserPreference" />
         </EntityType>
         <Association Name="WorkoutUser">
           <End Type="Model.Workout" Role="Workout" Multiplicity="*" />
@@ -389,15 +418,21 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SortOrder" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PlannedReps" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="PlannedReps" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
+                    FixedLength="false" />
           <Property Name="ActualReps" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PlannedWeight" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ActualWeight" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="WorkoutSet" ToRole="UnitOfMeasure" />
+          <Property Name="PlannedWeight" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
+                    FixedLength="false" />
+          <Property Name="ActualWeight" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
+                    FixedLength="false" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="WorkoutSet"
+                              ToRole="UnitOfMeasure" />
           <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Exercise" Relationship="Model.ExerciseWorkoutSet" FromRole="WorkoutSet" ToRole="Exercise" />
+          <NavigationProperty Name="Exercise" Relationship="Model.ExerciseWorkoutSet" FromRole="WorkoutSet"
+                              ToRole="Exercise" />
           <Property Name="ExerciseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Workout" Relationship="Model.WorkoutWorkoutSet" FromRole="WorkoutSet" ToRole="Workout" />
+          <NavigationProperty Name="Workout" Relationship="Model.WorkoutWorkoutSet" FromRole="WorkoutSet"
+                              ToRole="Workout" />
           <Property Name="WorkoutId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="WorkoutSetUnitOfMeasure">
@@ -441,11 +476,14 @@
             <PropertyRef Name="ExerciseTypeId" />
             <PropertyRef Name="UnitOfMeasureId" />
           </Key>
-          <NavigationProperty Name="ExerciseType" Relationship="Model.UserPreferenceExerciseType" FromRole="UserPreference" ToRole="ExerciseType" />
+          <NavigationProperty Name="ExerciseType" Relationship="Model.UserPreferenceExerciseType"
+                              FromRole="UserPreference" ToRole="ExerciseType" />
           <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.UserPreferenceUnitOfMeasure" FromRole="UserPreference" ToRole="UnitOfMeasure" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.UserPreferenceUnitOfMeasure"
+                              FromRole="UserPreference" ToRole="UnitOfMeasure" />
           <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Model.UserPreferenceUser" FromRole="UserPreference" ToRole="User" />
+          <NavigationProperty Name="User" Relationship="Model.UserPreferenceUser" FromRole="UserPreference"
+                              ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="UserPreferenceExerciseType">
@@ -488,97 +526,99 @@
           <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="*" />
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
-    <EntitySetMapping Name="Exercises">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Exercise)">
-        <MappingFragment StoreEntitySet="Exercises">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ExerciseTypes">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.ExerciseType)">
-        <MappingFragment StoreEntitySet="ExerciseTypes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UnitOfMeasures">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.UnitOfMeasure)">
-        <MappingFragment StoreEntitySet="UnitOfMeasures">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Workouts">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Workout)">
-        <MappingFragment StoreEntitySet="Workouts">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.User)">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="WorkoutSets">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.WorkoutSet)">
-        <MappingFragment StoreEntitySet="WorkoutSets">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-          <ScalarProperty Name="PlannedReps" ColumnName="PlannedReps" />
-          <ScalarProperty Name="ActualReps" ColumnName="ActualReps" />
-          <ScalarProperty Name="PlannedWeight" ColumnName="PlannedWeight" />
-          <ScalarProperty Name="ActualWeight" ColumnName="ActualWeight" />
-          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
-          <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
-          <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserPreferences">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.UserPreference)">
-        <MappingFragment StoreEntitySet="UserPreferences">
-          <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
-          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <AssociationSetMapping Name="UnitOfMeasureExerciseType" TypeName="Model.UnitOfMeasureExerciseType" StoreEntitySet="UnitOfMeasureExerciseType">
-      <EndProperty Name="UnitOfMeasure">
-        <ScalarProperty Name="Id" ColumnName="UnitOfMeasures_Id" />
-      </EndProperty>
-      <EndProperty Name="ExerciseType">
-        <ScalarProperty Name="Id" ColumnName="ExerciseTypes_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ModelContainer">
+          <EntitySetMapping Name="Exercises">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Exercise)">
+              <MappingFragment StoreEntitySet="Exercises">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExerciseTypes">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.ExerciseType)">
+              <MappingFragment StoreEntitySet="ExerciseTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnitOfMeasures">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.UnitOfMeasure)">
+              <MappingFragment StoreEntitySet="UnitOfMeasures">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Workouts">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.Workout)">
+              <MappingFragment StoreEntitySet="Workouts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.User)">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkoutSets">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.WorkoutSet)">
+              <MappingFragment StoreEntitySet="WorkoutSets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="PlannedReps" ColumnName="PlannedReps" />
+                <ScalarProperty Name="ActualReps" ColumnName="ActualReps" />
+                <ScalarProperty Name="PlannedWeight" ColumnName="PlannedWeight" />
+                <ScalarProperty Name="ActualWeight" ColumnName="ActualWeight" />
+                <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+                <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
+                <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPreferences">
+            <EntityTypeMapping TypeName="IsTypeOf(Model.UserPreference)">
+              <MappingFragment StoreEntitySet="UserPreferences">
+                <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+                <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UnitOfMeasureExerciseType" TypeName="Model.UnitOfMeasureExerciseType"
+                                 StoreEntitySet="UnitOfMeasureExerciseType">
+            <EndProperty Name="UnitOfMeasure">
+              <ScalarProperty Name="Id" ColumnName="UnitOfMeasures_Id" />
+            </EndProperty>
+            <EndProperty Name="ExerciseType">
+              <ScalarProperty Name="Id" ColumnName="ExerciseTypes_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">

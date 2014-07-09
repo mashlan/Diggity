@@ -5,9 +5,6 @@ namespace Diggity.Rules.Specifications
 {
     internal class AndSpecification<TEntity> : ISpecification<TEntity>
     {
-        private ISpecification<TEntity> Spec1 { get; set; }
-        private ISpecification<TEntity> Spec2 { get; set; }
-
         internal AndSpecification(ISpecification<TEntity> spec1, ISpecification<TEntity> spec2)
         {
             if (spec1 == null)
@@ -19,6 +16,9 @@ namespace Diggity.Rules.Specifications
             Spec1 = spec1;
             Spec2 = spec2;
         }
+
+        private ISpecification<TEntity> Spec1 { get; set; }
+        private ISpecification<TEntity> Spec2 { get; set; }
 
         public bool IsSatisfiedBy(TEntity candidate)
         {

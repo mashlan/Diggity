@@ -11,7 +11,7 @@ namespace Diggity.WebApi
     {
         protected readonly IServiceAggregate ServiceAggregate;
 
-        public BaseApiController(IServiceAggregate serviceAggregate)
+        protected BaseApiController(IServiceAggregate serviceAggregate)
         {
             ServiceAggregate = serviceAggregate;
         }

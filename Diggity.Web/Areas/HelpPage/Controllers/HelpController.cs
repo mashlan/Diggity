@@ -7,7 +7,7 @@ using Diggity.Web.Areas.HelpPage.Models;
 namespace Diggity.Web.Areas.HelpPage.Controllers
 {
     /// <summary>
-    /// The controller that will handle requests for the help page.
+    ///     The controller that will handle requests for the help page.
     /// </summary>
     public class HelpController : Controller
     {

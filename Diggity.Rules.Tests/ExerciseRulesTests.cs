@@ -16,7 +16,9 @@ namespace Diggity.Rules.Tests
         [TestInitialize]
         public void init()
         {
-            repositoryAggregate = new RepositoryAggregate(GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
+            repositoryAggregate =
+                new RepositoryAggregate(
+                    GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
         }
 
         private static string GetConnectionString(string connectionString)
@@ -25,7 +27,7 @@ namespace Diggity.Rules.Tests
             {
                 Metadata = string.Format(
                     "res://{0}/Model.csdl|res://{0}/Model.ssdl|res://{0}/Model.msl",
-                    typeof(DiggitySQLExpress).Assembly.FullName)
+                    typeof (DiggitySQLExpress).Assembly.FullName)
             };
 
             return test.ToString();
@@ -43,7 +45,7 @@ namespace Diggity.Rules.Tests
                 ExerciseTypeId = 5 //exercise type must be set
             };
 
-            var valid = rule.IsValid(exercise);
+            bool valid = rule.IsValid(exercise);
             Assert.IsTrue(valid);
         }
 
@@ -60,7 +62,7 @@ namespace Diggity.Rules.Tests
                 ExerciseTypeId = 5 //exercise type must be set
             };
 
-            var valid = rule.IsValid(exercise);
+            bool valid = rule.IsValid(exercise);
             Assert.IsTrue(valid);
         }
 
@@ -77,7 +79,7 @@ namespace Diggity.Rules.Tests
                 ExerciseTypeId = 5 //exercise type must be set
             };
 
-            var valid = rule.IsValid(exercise);
+            bool valid = rule.IsValid(exercise);
             Assert.IsFalse(valid);
             Assert.IsNotNull(exercise.ValidationErrors);
             Assert.IsTrue(exercise.ValidationErrors[0].PropertyName == "Name");

@@ -4,7 +4,7 @@
     {
         IExerciseType IExercise.ExerciseType
         {
-            get { return ExerciseType; } 
+            get { return ExerciseType; }
             set { ExerciseType = value as ExerciseType; }
         }
     }

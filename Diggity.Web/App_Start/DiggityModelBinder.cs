@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
 using System.Web.Routing;
@@ -24,6 +23,4 @@ namespace Diggity.Web
             }
         }
     }
-
-    
 }

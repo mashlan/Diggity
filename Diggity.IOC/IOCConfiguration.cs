@@ -7,6 +7,7 @@ using Diggity.Rules;
 using Diggity.Services;
 using Diggity.SQLExpress;
 using Diggity.Validation;
+using Diggity.WebApi;
 using StructureMap;
 
 namespace Diggity.IOC
@@ -19,6 +20,7 @@ namespace Diggity.IOC
             {
                 init.Scan(scan =>
                 {
+                    scan.AssemblyContainingType<BaseApiController>();
                     scan.AssemblyContainingType<IExercise>();
                     scan.AssemblyContainingType<ServiceAggregate>();
                     scan.AssemblyContainingType<ValidationFactory>();
@@ -31,7 +33,9 @@ namespace Diggity.IOC
                     scan.WithDefaultConventions();
                 });
                 init.For<IRepositoryAggregate>()
-                    .Use<RepositoryAggregate>().Ctor<string>("connectionString").Is(GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
+                    .Use<RepositoryAggregate>()
+                    .Ctor<string>("connectionString")
+                    .Is(GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
                 init.For<IServiceAggregate>().Use<ServiceAggregate>();
             });
         }
@@ -42,7 +46,7 @@ namespace Diggity.IOC
             {
                 Metadata = string.Format(
                     "res://{0}/Model.csdl|res://{0}/Model.ssdl|res://{0}/Model.msl",
-                    typeof(DiggitySQLExpress).Assembly.FullName)
+                    typeof (DiggitySQLExpress).Assembly.FullName)
             };
 
             return test.ToString();

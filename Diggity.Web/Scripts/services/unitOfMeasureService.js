@@ -1,6 +1,7 @@
 ﻿
-services.factory('UnitOfMeasure', ['$resource',
-    function ($resource) {
+services.factory('UnitOfMeasure', [
+    '$resource',
+    function($resource) {
         var resource = $resource('api/UnitOfMeasure', {},
         {
             query: { method: 'GET', isArray: true },
@@ -11,10 +12,10 @@ services.factory('UnitOfMeasure', ['$resource',
         });
 
         var factory = {
-            query: function () {
+            query: function() {
                 return resource.query({}).$promise;
             },
-            get: function (id) {
+            get: function(id) {
                 return resource.get({ id: id }).$promise;
             },
             create: function(unit) {
@@ -26,8 +27,7 @@ services.factory('UnitOfMeasure', ['$resource',
             remove: function(id) {
                 return resource.remove({ id: id }).$promise;
             }
-        }
-
+        };
         return factory;
     }
 ]);

@@ -20,7 +20,7 @@ namespace Diggity.Web
             HttpControllerDescriptor controllerDescriptor,
             Type controllerType)
         {
-            return (IHttpController)this.container.GetInstance(controllerType);
+            return (IHttpController) container.GetInstance(controllerType);
         }
     }
 }

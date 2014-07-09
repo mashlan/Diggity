@@ -7,7 +7,7 @@ namespace Diggity.Rules
     {
         protected void SetFailedRule(TEntity entity, string propertyName, string rule)
         {
-            if(entity.ValidationErrors == null) entity.ValidationErrors = new List<IValidationError>();
+            if (entity.ValidationErrors == null) entity.ValidationErrors = new List<IValidationError>();
             entity.ValidationErrors.Add(new Rule
             {
                 PropertyName = propertyName,
@@ -15,4 +15,4 @@ namespace Diggity.Rules
             });
         }
     }
-}       
+}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using Diggity.Entities;
@@ -18,7 +19,7 @@ namespace Diggity.WebApi
         {
             try
             {
-                var results = ServiceAggregate.ExerciseType.GetAll();
+                IEnumerable<IExerciseType> results = ServiceAggregate.ExerciseType.GetAll();
                 return Request.CreateResponse(HttpStatusCode.OK, results);
             }
             catch (Exception ex)
@@ -32,10 +33,10 @@ namespace Diggity.WebApi
         {
             try
             {
-                var result = ServiceAggregate.ExerciseType.Single(u => u.Id == id);
+                IExerciseType result = ServiceAggregate.ExerciseType.Single(u => u.Id == id);
                 if (result != null) return Request.CreateResponse(HttpStatusCode.OK, result);
 
-                var message = string.Format("Unit Of Measure with Id {0} was not found.", id);
+                string message = string.Format("Unit Of Measure with Id {0} was not found.", id);
                 return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
             }
             catch (Exception ex)

@@ -1,9 +1,8 @@
-@using System.Web.Http
-@using Diggity.Web.Areas.HelpPage.Models
-@model HelpPageApiModel
+@using System.Web.Http.Description
+@model Diggity.Web.Areas.HelpPage.Models.HelpPageApiModel
 
 @{
-    var description = Model.ApiDescription;
+    ApiDescription description = Model.ApiDescription;
     ViewBag.Title = description.HttpMethod.Method + " " + description.RelativePath;
 }
 

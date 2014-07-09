@@ -9,7 +9,7 @@ namespace Diggity.Entities
         ICollection<IWorkout> IUser.Workouts
         {
             get { return Workouts.ToList<IWorkout>(); }
-            set { Workouts = new Collection<Workout>(value.Select(s => s as Workout).ToList());}
+            set { Workouts = new Collection<Workout>(value.Select(s => s as Workout).ToList()); }
         }
     }
 }

@@ -9,6 +9,6 @@ namespace Diggity.Services
         IService<IUnitOfMeasure> UnitOfMeasure { get; }
         IService<IUser> User { get; }
         IService<IWorkout> Workout { get; }
-        IService<IWorkoutSet> WorkoutSet { get; } 
+        IService<IWorkoutSet> WorkoutSet { get; }
     }
 }

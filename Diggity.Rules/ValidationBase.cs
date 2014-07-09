@@ -3,7 +3,7 @@ using Diggity.Validation;
 
 namespace Diggity.Rules
 {
-    public class ValidationBase<TInterface>: IValidator<TInterface> where TInterface : IValidationSummary
+    public class ValidationBase<TInterface> : IValidator<TInterface> where TInterface : IValidationSummary
     {
         protected readonly IRepositoryAggregate RepositoryAggregate;
 

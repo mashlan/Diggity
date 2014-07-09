@@ -9,18 +9,18 @@ namespace Diggity.Services
         private readonly IRepositoryAggregate repositoryAggregate;
         private readonly IValidationFactory validationFactory;
 
-        public ServiceAggregate(IRepositoryAggregate repositoryAggregate, IValidationFactory validationFactory)
-        {
-            this.repositoryAggregate = repositoryAggregate;
-            this.validationFactory = validationFactory;
-        }
-
         private IService<IExercise> exercise;
         private IService<IExerciseType> exerciseType;
         private IService<IUnitOfMeasure> unitOfMeasure;
         private IService<IUser> user;
         private IService<IWorkout> workout;
         private IService<IWorkoutSet> workoutSet;
+
+        public ServiceAggregate(IRepositoryAggregate repositoryAggregate, IValidationFactory validationFactory)
+        {
+            this.repositoryAggregate = repositoryAggregate;
+            this.validationFactory = validationFactory;
+        }
 
         public IService<IExercise> Exercise
         {

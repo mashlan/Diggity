@@ -8,11 +8,6 @@ namespace Diggity.Repository
     {
         private readonly DbContext context;
 
-        public RepositoryAggregate(string connectionString)
-        {
-            context = new ModelContainer(connectionString);
-        }
-
         private IRepository<IExercise> exercise;
         private IRepository<IExerciseType> exerciseType;
         private IRepository<IUnitOfMeasure> unitOfMeasure;
@@ -20,14 +15,19 @@ namespace Diggity.Repository
         private IRepository<IWorkout> workout;
         private IRepository<IWorkoutSet> workoutSet;
 
+        public RepositoryAggregate(string connectionString)
+        {
+            context = new ModelContainer(connectionString);
+        }
+
         public IRepository<IExercise> Exercise
         {
-            get { return exercise ?? (exercise = new Repository<Exercise,IExercise>(context)); }
+            get { return exercise ?? (exercise = new Repository<Exercise, IExercise>(context)); }
         }
 
         public IRepository<IExerciseType> ExerciseType
         {
-            get { return exerciseType ?? (exerciseType = new Repository<ExerciseType,IExerciseType>(context)); }
+            get { return exerciseType ?? (exerciseType = new Repository<ExerciseType, IExerciseType>(context)); }
         }
 
         public IRepository<IUnitOfMeasure> UnitOfMeasure

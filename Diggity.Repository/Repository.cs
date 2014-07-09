@@ -7,11 +7,12 @@ using Diggity.Entities;
 
 namespace Diggity.Repository
 {
-    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity where TInterface: class, IEntity
+    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity
+        where TInterface : class, IEntity
     {
         private readonly DbContext Context;
         private readonly DbSet<TEntity> DataSet;
- 
+
         public Repository(DbContext context)
         {
             Context = context;
@@ -48,8 +49,9 @@ namespace Diggity.Repository
 
         public bool Delete(Expression<Func<TInterface, bool>> expression)
         {
-            var results = DataSet.Where(Converter.TransformPredicateLambda<TInterface, TEntity>(expression));
-            foreach (var result in results)
+            IQueryable<TEntity> results =
+                DataSet.Where(Converter.TransformPredicateLambda<TInterface, TEntity>(expression));
+            foreach (TEntity result in results)
             {
                 DataSet.Remove(result);
             }
@@ -68,7 +70,7 @@ namespace Diggity.Repository
 
         public IEnumerable<TInterface> GetAll()
         {
-            var data = DataSet.Where(f => true);
+            IQueryable<TEntity> data = DataSet.Where(f => true);
             return data.ToList();
         }
 

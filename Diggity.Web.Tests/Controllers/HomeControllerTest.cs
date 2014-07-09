@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Diggity.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Diggity.Web.Controllers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace Diggity.Web.Tests.Controllers

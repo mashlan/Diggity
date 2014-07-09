@@ -2,9 +2,9 @@
 /**********************************************************************
  * *************** Unit of Meassure View ******************************
  *********************************************************************/
-myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure',
-
-    function ($routeParams, $scope, UnitOfMeasure) {
+myControllers.controller('UnitOfMeasureCtrl', [
+    '$routeParams', '$scope', 'UnitOfMeasure',
+    function($routeParams, $scope, UnitOfMeasure) {
         'use strict';
 
         $scope.loading = true;
@@ -29,9 +29,9 @@ myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOf
 /**********************************************************************
  * ********** Unit of Meassure Edit and Create ************************
  *********************************************************************/
-myControllers.controller('UnitOfMeasureEditCtrl', ['$routeParams', '$scope', 'UnitOfMeasure',
-
-    function ($routeParams, $scope, UnitOfMeasure) {
+myControllers.controller('UnitOfMeasureEditCtrl', [
+    '$routeParams', '$scope', 'UnitOfMeasure',
+    function($routeParams, $scope, UnitOfMeasure) {
         'use strict';
 
         $scope.loading = true;
@@ -46,7 +46,6 @@ myControllers.controller('UnitOfMeasureEditCtrl', ['$routeParams', '$scope', 'Un
             $scope.loading = false;
         }
 
-        
 
         $scope.saveUnit = function() {
             if ($scope.unit.Id > 0) {
@@ -56,11 +55,11 @@ myControllers.controller('UnitOfMeasureEditCtrl', ['$routeParams', '$scope', 'Un
                     .finally(queryFinally);
             } else {
                 UnitOfMeasure.create($scope.unit)
-                    .then(saveSuccess ,queryError)
+                    .then(saveSuccess, queryError)
                     .catch(queryError)
                     .finally(queryFinally);
             }
-        }
+        };
 
         function saveSuccess() {
             window.alertShow("success", "Woo Hoo! Record saved success");
