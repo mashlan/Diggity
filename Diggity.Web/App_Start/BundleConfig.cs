@@ -49,6 +49,7 @@ namespace Diggity.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/style.css",
+                "~/Content/Site.css",
                 "~/Content/font-awesome.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,

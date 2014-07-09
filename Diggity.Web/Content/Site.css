@@ -1,18 +1,41 @@
-﻿body {
-    padding-bottom: 20px;
-    padding-top: 50px;
+﻿
+i {
+    vertical-align: middle;
 }
 
-/* Set padding to keep content from hitting the edges */
-
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 100px !important;
+.list-heading {
+    font-weight: bold;
+    color: #ffffff;
+    height: 45px;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
+.list-heading h4 {
+    margin: 0;
+    color: #ffffff;
+    width: 70%;
+    float: left;
+}
+.list-heading h4 a {
+    color: #ffffff;
+}
 
-input,
-select,
-textarea { max-width: 280px; }
+.list-heading span {
+    float: right;
+    width: 25%;
+    text-align: right;
+    display: inline;
+}
+
+.list-heading span input {
+    width: 150px;
+    height: 25px;
+}
+
+.list-heading span button {
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+.list-heading span button:hover,.list-heading h4 a:hover {
+    color: #000000;
+}

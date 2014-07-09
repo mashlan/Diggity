@@ -184,7 +184,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\StructureMapHttpControllerActivator.cs" />
+    <Compile Include="Dependency Resolver\StructureMapDependencyResolver.cs" />
+    <Compile Include="Dependency Resolver\StructureMapDependencyScope.cs" />
+    <Compile Include="Dependency Resolver\StructureMapHttpControllerActivator.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -324,6 +326,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.js" />
+    <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.min.js" />
+    <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.js" />
+    <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.min.js" />
     <Content Include="Scripts\vendors\modernizr\modernizr-2.7.2.js" />
     <Content Include="Scripts\routes.js" />
     <Content Include="Scripts\services\exerciseTypeService.js" />

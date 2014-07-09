@@ -4,22 +4,45 @@
 
 <form role="form" ng-hide="loading">
 
-    <h2>Unit of Measure</h2>
-    
-    <div class="form-group">
-        <label class="control-label emphasis" for="name">Name</label>
-        <input id="name" type="text" class="" ng-model="unit.Name"/>
-    </div>
+    <div class="panel">
+        <div class="panel-heading list-heading boxed-blue">
+            <h4><a href="#/unitOfMeasure" tooltip="Return to Units Of Measure List"><i class="fa fa-backward"></i></a> Unit of Measure</h4>
+            <span>
+                <button ng-hide="isEditing" tooltip="Delete {{unit.Name}}" class="btn btn-link" type="button" ng-click="deleteRecord()"><i class="fa fa-trash-o"></i></button>
+                <button ng-hide="isEditing" tooltip="Edit {{unit.Name}}" class="btn btn-link" type="button" ng-click="editRecord()"><i class="fa fa-pencil"></i></button>
+                <button ng-show="isEditing" tooltip="Save {{unit.Name}}" class="btn btn-link" type="button" ng-click="saveUnit()"><i class="fa fa-save"></i></button>
+                <button ng-show="isEditing && unit.Id != null" tooltip="Cancel Edits to {{unit.Name}}" class="btn btn-link" type="button" ng-click="cancelEdit()"><i class="fa fa-times-circle"></i></button>
+            </span>
+        </div>
 
-    <div class="form-group">
-        <label class="control-label emphasis" for="description">Description</label>
-        <textarea id="description" class="" rows="5" ng-model="unit.Description" ></textarea>
-    </div>
-    
-    <div class="clearfix"></div>
-    <div class="pull-right">
-        <button class="btn btn-green" type="button" ng-click="saveUnit()"><span>Save</span></button>
-        <a class="btn btn-blue" href="#"><span>Cancel</span></a>
+        <div class="clearfix"></div>
+        <br />
+        
+        <!-- Edit Record -->
+        <div ng-show="isEditing">
+            <div class="form-group">
+                <label class="control-label emphasis" for="name">Name</label>
+                <input id="name" type="text" class="" ng-model="unit.Name" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label emphasis" for="description">Description</label>
+                <textarea id="description" class="" rows="5" ng-model="unit.Description"></textarea>
+            </div>
+        </div>
+        
+        <!-- View Record-->    
+        <div ng-hide="isEditing">
+            <div class="form-group">
+                <label class="control-label emphasis">Name:</label>
+                <label>{{unit.Name}}</label>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label emphasis">Description:</label>
+                <label>{{unit.Description}}</label>
+            </div>
+        </div>
     </div>
 
 </form>

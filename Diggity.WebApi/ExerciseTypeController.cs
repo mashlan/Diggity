@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Net;
 using System.Net.Http;
 using Diggity.Entities;
-using Diggity.Exceptions;
 using Diggity.Services;
 
 namespace Diggity.WebApi
@@ -17,82 +14,30 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Get()
         {
-            try
-            {
-                IEnumerable<IExerciseType> results = ServiceAggregate.ExerciseType.GetAll();
-                return Request.CreateResponse(HttpStatusCode.OK, results);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
+            return ApiGetFunc(ServiceAggregate.ExerciseType.GetAll, null);
         }
 
-        // GET: api/UnitOfMeasure/5
         public HttpResponseMessage Get(int id)
         {
-            try
-            {
-                IExerciseType result = ServiceAggregate.ExerciseType.Single(u => u.Id == id);
-                if (result != null) return Request.CreateResponse(HttpStatusCode.OK, result);
-
-                string message = string.Format("Unit Of Measure with Id {0} was not found.", id);
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
+            var message = string.Format("Exercise Type with Id {0} was not found.", id);
+            Func<IExerciseType> func = () => ServiceAggregate.ExerciseType.GetById(id);
+            return ApiGetFunc(func, message);
         }
 
-        // POST: api/UnitOfMeasure
-        public HttpResponseMessage Post(IExerciseType exerciseType)
+        public HttpResponseMessage Post(ExerciseType exerciseType)
         {
-            try
-            {
-                ServiceAggregate.ExerciseType.Create(exerciseType);
-                return Request.CreateResponse(HttpStatusCode.OK, "success");
-            }
-            catch (ValidationException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
+            return ApiSaveFunc(ServiceAggregate.ExerciseType.Create, exerciseType);
         }
-
-        // PUT: api/UnitOfMeasure/5
-        public HttpResponseMessage Put(IExerciseType exerciseType)
+        
+        public HttpResponseMessage Put(ExerciseType exerciseType)
         {
-            try
-            {
-                ServiceAggregate.ExerciseType.Update(exerciseType);
-                return Request.CreateResponse(HttpStatusCode.OK, "success");
-            }
-            catch (ValidationException ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
+            return ApiSaveFunc(ServiceAggregate.ExerciseType.Update, exerciseType);
         }
 
-        // DELETE: api/UnitOfMeasure/5
         public HttpResponseMessage Delete(int id)
         {
-            try
-            {
-                ServiceAggregate.ExerciseType.Delete(d => d.Id == id);
-                return Request.CreateResponse(HttpStatusCode.OK, "success");
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
-            }
+            Func<bool> func = () => ServiceAggregate.ExerciseType.Delete(id);
+            return ApiDeleteFunc(func);
         }
     }
 }

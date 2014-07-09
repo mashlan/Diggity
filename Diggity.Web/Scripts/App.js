@@ -1,6 +1,6 @@
 ﻿
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['myApp.config', 'myApp.routes', 'myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers'], null);
+angular.module('myApp', ['myApp.config', 'myApp.routes', 'myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers', 'ui.bootstrap'], null);
 
 // Declare controller module
 var myControllers = angular.module('myApp.controllers', []);

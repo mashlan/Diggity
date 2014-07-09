@@ -3,21 +3,20 @@
 </div>  
 
 <div ng-hide="loading">
-    <h2 class="col-lg-4 col-md-4 col-sm-4">Units of Measure</h2>
-
-    <div class="pull-right">
-        <div class="tf_pagination" style="margin: 0">
-            <div class="inner">
-                <a href="#/unitOfMeasure/new" class="page-numbers fa fa-plus"></a>
-            </div>
+    <div class="panel boxed-blue">
+        <div class="panel-heading list-heading">
+            <h4>Units of Measure</h4>
+            <span>
+                <input class="menu-search-field" type="text" ng-model="searchText.Name" placeholder="search"/>
+                <button class="btn btn-link" tooltip="Add New Unit of Measure" type="button" ng-click="addNew()"><i class="fa fa-plus"></i></button>
+            </span>
         </div>
-    </div>
-    <div class="clearfix"></div>
-    
-    <div class="list-group">
-        <a href="#/unitOfMeasure/{{unit.Id}}" class="list-group-item" ng-repeat="unit in unitOfMeasures">
-            <i class="fa fa-leaf"></i>
-            <strong>{{unit.Name}}</strong>
-        </a>
+
+        <div class="list-group">
+            <a href="#/unitOfMeasure/{{unit.Id}}" class="list-group-item" ng-repeat="unit in unitOfMeasures |filter:searchText">
+                <i class="fa fa-caret-right"></i>
+                <strong>{{unit.Name}}</strong>
+            </a>
+        </div>
     </div>
 </div>

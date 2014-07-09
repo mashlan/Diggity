@@ -15,7 +15,7 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Get()
         {
-            return ApiGetFunc(ServiceAggregate.UnitOfMeasure.GetAll, null);
+           return ApiGetFunc(ServiceAggregate.UnitOfMeasure.GetAll, null);
         }
 
         public HttpResponseMessage Get(int id)

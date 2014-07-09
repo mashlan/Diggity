@@ -49,7 +49,7 @@ namespace Diggity.Services
             {
                 return unitOfMeasure ??
                        (unitOfMeasure =
-                           new ServiceBase<IUnitOfMeasure>(repositoryAggregate, repositoryAggregate.UnitOfMeasure,
+                           new UnitOfMeasureService(repositoryAggregate, repositoryAggregate.UnitOfMeasure,
                                validationFactory.GetValidator<IUnitOfMeasure>(repositoryAggregate)));
             }
         }

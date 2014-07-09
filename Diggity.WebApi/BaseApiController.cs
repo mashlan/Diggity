@@ -30,7 +30,7 @@ namespace Diggity.WebApi
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-
+        
         protected HttpResponseMessage ApiSaveFunc<TReturnType>(Action<TReturnType> action, TReturnType entity)
         {
             try

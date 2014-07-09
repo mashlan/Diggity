@@ -19,7 +19,7 @@ services.factory('UnitOfMeasure', [
                 return resource.get({ id: id }).$promise;
             },
             create: function(unit) {
-                return resource.create({ unit: unit }).$promise;
+                return resource.create(unit).$promise;
             },
             update: function(unit) {
                 return resource.update(unit).$promise;
