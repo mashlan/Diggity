@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="BaseSpecification.cs" />
     <Compile Include="Exercise\ExerciseMustBeUnique.cs" />
+    <Compile Include="UnitOfMeasure\NameCannotBeNull.cs" />
     <Compile Include="ValidationBase.cs" />
     <Compile Include="ValidationFactory.cs" />
     <Compile Include="Validators\ExerciseValidator.cs" />
@@ -53,6 +54,7 @@
     <Compile Include="Specifications\NotSpecification.cs" />
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="ValidationSummary.cs" />
+    <Compile Include="Validators\UnitOfMeasureValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diggity\Diggity.csproj">

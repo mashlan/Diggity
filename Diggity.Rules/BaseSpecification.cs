@@ -3,7 +3,7 @@ using Diggity.Validation;
 
 namespace Diggity.Rules
 {
-    internal abstract class BaseSpecification<TEntity> where TEntity : IValidationSummary
+    public abstract class BaseSpecification<TEntity> where TEntity : IValidationSummary
     {
         protected void SetFailedRule(TEntity entity, string propertyName, string rule)
         {

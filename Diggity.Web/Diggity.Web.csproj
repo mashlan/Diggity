@@ -724,17 +724,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
-      <Project>{707B16A3-451E-4171-A0E4-E07EA2E9075B}</Project>
-      <Name>Diggity.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Diggity.IOC\Diggity.IOC.csproj">
       <Project>{FA1E9ECF-261A-4CB2-B328-409420683646}</Project>
       <Name>Diggity.IOC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Diggity.WebApi\Diggity.WebApi.csproj">
-      <Project>{7535f666-65da-4f12-9240-8a7d423e24e5}</Project>
-      <Name>Diggity.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Diggity\Diggity.csproj">
       <Project>{ba2c7bf6-923d-499d-99c5-3e3ceb4661fa}</Project>

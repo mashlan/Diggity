@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Diggity.Entities;
 using Diggity.Repository;
@@ -17,7 +16,7 @@ namespace Diggity.Rules
 
         public bool IsSatisfiedBy(IExercise entity)
         {
-            IEnumerable<IExercise> dubs = repository.Find(e => e.Name == entity.Name);
+            var dubs = repository.Find(e => e.Name == entity.Name);
             return !dubs.Any();
         }
     }

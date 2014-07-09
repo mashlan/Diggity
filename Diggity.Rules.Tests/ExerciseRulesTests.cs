@@ -1,42 +1,45 @@
-﻿using System.Configuration;
-using System.Data.Entity.Core.EntityClient;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using Diggity.Entities;
 using Diggity.Repository;
 using Diggity.Rules.Validators;
-using Diggity.SQLExpress;
+using Diggity.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace Diggity.Rules.Tests
 {
     [TestClass]
     public class ExerciseRulesTests
     {
-        private IRepositoryAggregate repositoryAggregate;
+        private Mock<IRepositoryAggregate> repositoryAggregate = new Mock<IRepositoryAggregate>();
+        private ExerciseValidator rule; 
+        private IList<Exercise> exerciseList = new List<Exercise>();
 
         [TestInitialize]
         public void init()
         {
-            repositoryAggregate =
-                new RepositoryAggregate(
-                    GetConnectionString(ConfigurationManager.ConnectionStrings["ModelContainer"].ConnectionString));
-        }
-
-        private static string GetConnectionString(string connectionString)
-        {
-            var test = new EntityConnectionStringBuilder(connectionString)
-            {
-                Metadata = string.Format(
-                    "res://{0}/Model.csdl|res://{0}/Model.ssdl|res://{0}/Model.msl",
-                    typeof (DiggitySQLExpress).Assembly.FullName)
-            };
-
-            return test.ToString();
+            for(var i = 0; i < 10; i++)
+                exerciseList.Add(new Exercise
+                {
+                    Id = i,
+                    Name = "Exercise " + i,
+                    Abbreviation = i.ToString() + i,
+                    ExerciseTypeId = i + 5
+                });
+            repositoryAggregate = new Mock<IRepositoryAggregate>();
+            repositoryAggregate.Setup(s => s.Exercise).Returns(new Mock<IRepository<IExercise>>().Object);
+            
+            rule = new ExerciseValidator(repositoryAggregate.Object);
+            
         }
 
         [TestMethod]
         public void TestRulesPass()
         {
-            var rule = new ExerciseValidator(repositoryAggregate);
+            repositoryAggregate.Setup(s => s.Exercise.Find(It.IsAny<Expression<Func<IExercise, bool>>>())).Returns(new List<Exercise>());
+
             var exercise = new Exercise
             {
                 Id = 1,
@@ -45,15 +48,13 @@ namespace Diggity.Rules.Tests
                 ExerciseTypeId = 5 //exercise type must be set
             };
 
-            bool valid = rule.IsValid(exercise);
+            var valid = rule.IsValid(exercise);
             Assert.IsTrue(valid);
         }
 
         [TestMethod]
         public void TestNameIsNotNullPass()
         {
-            var rule = new ExerciseValidator(repositoryAggregate);
-
             var exercise = new Exercise
             {
                 Id = 1,
@@ -62,15 +63,13 @@ namespace Diggity.Rules.Tests
                 ExerciseTypeId = 5 //exercise type must be set
             };
 
-            bool valid = rule.IsValid(exercise);
+            var valid = rule.IsValid(exercise);
             Assert.IsTrue(valid);
         }
 
         [TestMethod]
         public void TestNameIsNotNullFail()
         {
-            var rule = new ExerciseValidator(repositoryAggregate);
-
             var exercise = new Exercise
             {
                 Id = 1,
