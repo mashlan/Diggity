@@ -1,17 +1,23 @@
 ﻿<div ng-show="loading">
     <h2><i class="fa fa-2x fa-spin fa-spinner"></i> Loading Units . . .</h2>
-</div>  
+</div>
 
 <div ng-hide="loading">
-    <div class="panel boxed-blue">
-        <div class="panel-heading list-heading">
-            <h4>Units of Measure</h4>
-            <span>
-                <input class="menu-search-field" type="text" ng-model="searchText.Name" placeholder="search"/>
-                <button class="btn btn-link" tooltip="Add New Unit of Measure" type="button" ng-click="addNew()"><i class="fa fa-plus"></i></button>
-            </span>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="col-lg-9 panel-title">Units of Measure</div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchText.Name">
+                        <button class="btn btn-link btn-sm btn-navigation" tooltip="Add New Unit of Measure" type="button" ng-click="addNew()"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>  
+            </div>
+            <div class="clearfix"></div>
         </div>
 
+        <div class="clearfix"></div>
         <div class="list-group">
             <a href="#/unitOfMeasure/{{unit.Id}}" class="list-group-item" ng-repeat="unit in unitOfMeasures |filter:searchText">
                 <i class="fa fa-caret-right"></i>

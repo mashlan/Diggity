@@ -1,38 +1,48 @@
 ﻿
+body {
+    margin-top: 60px;
+}
+
+.panel-title {
+    font-size: 1.4em;
+}
+
+.btn-navigation i {
+    color: #ffffff;
+}
+
+.btn-navigation i:hover {
+    color: #000000;
+}
+
 i {
     vertical-align: middle;
 }
 
 .list-heading {
     font-weight: bold;
-    color: #ffffff;
     height: 45px;
 }
 
 .list-heading h4 {
     margin: 0;
-    color: #ffffff;
     width: 70%;
     float: left;
 }
-.list-heading h4 a {
-    color: #ffffff;
-}
 
-.list-heading span {
-    float: right;
+
+.list-heading .left {
     width: 25%;
     text-align: right;
     display: inline;
 }
 
-.list-heading span input {
+.list-heading .left input {
     width: 150px;
     height: 25px;
 }
 
 .list-heading span button {
-    color: #ffffff;
     margin-left: 10px;
 }
 
