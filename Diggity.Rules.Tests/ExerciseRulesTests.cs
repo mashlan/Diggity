@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using Diggity.Entities;
 using Diggity.Repository;
 using Diggity.Rules.Validators;
-using Diggity.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -29,7 +28,7 @@ namespace Diggity.Rules.Tests
                     ExerciseTypeId = i + 5
                 });
             repositoryAggregate = new Mock<IRepositoryAggregate>();
-            repositoryAggregate.Setup(s => s.Exercise).Returns(new Mock<IRepository<IExercise>>().Object);
+            repositoryAggregate.Setup(s => s.Exercise).Returns(new Mock<IRepository<Exercise>>().Object);
             
             rule = new ExerciseValidator(repositoryAggregate.Object);
             
@@ -38,7 +37,7 @@ namespace Diggity.Rules.Tests
         [TestMethod]
         public void TestRulesPass()
         {
-            repositoryAggregate.Setup(s => s.Exercise.Find(It.IsAny<Expression<Func<IExercise, bool>>>())).Returns(new List<Exercise>());
+            repositoryAggregate.Setup(s => s.Exercise.Find(It.IsAny<Expression<Func<Exercise, bool>>>())).Returns(new List<Exercise>());
 
             var exercise = new Exercise
             {

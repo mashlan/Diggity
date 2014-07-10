@@ -1,10 +1,11 @@
-﻿using Diggity.Repository;
+﻿using Diggity.Entities;
+using Diggity.Repository;
 
 namespace Diggity.Validation
 {
     public interface IValidationFactory
     {
-        IValidator<TInterface> GetValidator<TInterface>(IRepositoryAggregate repositoryAggregate)
-            where TInterface : IValidationSummary;
+        IValidator<TEntity> GetValidator<TEntity>(IRepositoryAggregate repositoryAggregate)
+            where TEntity : DiggityEntity;
     }
 }

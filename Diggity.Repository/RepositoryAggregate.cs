@@ -8,46 +8,46 @@ namespace Diggity.Repository
     {
         private readonly DbContext context;
 
-        private IRepository<IExercise> exercise;
-        private IRepository<IExerciseType> exerciseType;
-        private IRepository<IUnitOfMeasure> unitOfMeasure;
-        private IRepository<IUser> user;
-        private IRepository<IWorkout> workout;
-        private IRepository<IWorkoutSet> workoutSet;
+        private IRepository<Exercise> exercise;
+        private IRepository<ExerciseType> exerciseType;
+        private IRepository<UnitOfMeasure> unitOfMeasure;
+        private IRepository<User> user;
+        private IRepository<Workout> workout;
+        private IRepository<WorkoutSet> workoutSet;
 
         public RepositoryAggregate(string connectionString)
         {
             context = new ModelContainer(connectionString);
         }
 
-        public IRepository<IExercise> Exercise
+        public IRepository<Exercise> Exercise
         {
-            get { return exercise ?? (exercise = new Repository<Exercise, IExercise>(context)); }
+            get { return exercise ?? (exercise = new Repository<Exercise>(context)); }
         }
 
-        public IRepository<IExerciseType> ExerciseType
+        public IRepository<ExerciseType> ExerciseType
         {
-            get { return exerciseType ?? (exerciseType = new Repository<ExerciseType, IExerciseType>(context)); }
+            get { return exerciseType ?? (exerciseType = new Repository<ExerciseType>(context)); }
         }
 
-        public IRepository<IUnitOfMeasure> UnitOfMeasure
+        public IRepository<UnitOfMeasure> UnitOfMeasure
         {
-            get { return unitOfMeasure ?? (unitOfMeasure = new Repository<UnitOfMeasure, IUnitOfMeasure>(context)); }
+            get { return unitOfMeasure ?? (unitOfMeasure = new Repository<UnitOfMeasure>(context)); }
         }
 
-        public IRepository<IUser> User
+        public IRepository<User> User
         {
-            get { return user ?? (user = new Repository<User, IUser>(context)); }
+            get { return user ?? (user = new Repository<User>(context)); }
         }
 
-        public IRepository<IWorkout> Workout
+        public IRepository<Workout> Workout
         {
-            get { return workout ?? (workout = new Repository<Workout, IWorkout>(context)); }
+            get { return workout ?? (workout = new Repository<Workout>(context)); }
         }
 
-        public IRepository<IWorkoutSet> WorkoutSet
+        public IRepository<WorkoutSet> WorkoutSet
         {
-            get { return workoutSet ?? (workoutSet = new Repository<WorkoutSet, IWorkoutSet>(context)); }
+            get { return workoutSet ?? (workoutSet = new Repository<WorkoutSet>(context)); }
         }
     }
 }

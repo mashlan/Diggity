@@ -4,11 +4,11 @@ namespace Diggity.Services
 {
     public interface IServiceAggregate
     {
-        IService<IExercise> Exercise { get; }
-        IService<IExerciseType> ExerciseType { get; }
-        IService<IUnitOfMeasure> UnitOfMeasure { get; }
-        IService<IUser> User { get; }
-        IService<IWorkout> Workout { get; }
-        IService<IWorkoutSet> WorkoutSet { get; }
+        IService<Exercise> Exercise { get; }
+        IService<ExerciseType> ExerciseType { get; }
+        IService<UnitOfMeasure> UnitOfMeasure { get; }
+        IService<User> User { get; }
+        IService<Workout> Workout { get; }
+        IService<WorkoutSet> WorkoutSet { get; }
     }
 }

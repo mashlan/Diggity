@@ -1,8 +1,6 @@
-﻿using Diggity.Validation;
-
-namespace Diggity.Rules
+﻿namespace Diggity.Validation
 {
-    public class Rule : IValidationError
+    public class ValidationError
     {
         public string PropertyName { get; set; }
         public string ErrorMessage { get; set; }

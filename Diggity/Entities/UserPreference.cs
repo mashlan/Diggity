@@ -12,20 +12,15 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Exercise
+    public partial class UserPreference : DiggityEntity, IEntity
     {
-        public Exercise()
-        {
-            this.WorkoutSets = new HashSet<WorkoutSet>();
-        }
-    
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Abbreviation { get; set; }
-        public string Description { get; set; }
         public int ExerciseTypeId { get; set; }
+        public int UnitOfMeasureId { get; set; }
+        public int UserId { get; set; }
+        public int Id { get; set; }
     
         public virtual ExerciseType ExerciseType { get; set; }
-        public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
+        public virtual User User { get; set; }
     }
 }

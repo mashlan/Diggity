@@ -4,11 +4,11 @@ namespace Diggity.Repository
 {
     public interface IRepositoryAggregate
     {
-        IRepository<IExercise> Exercise { get; }
-        IRepository<IExerciseType> ExerciseType { get; }
-        IRepository<IUnitOfMeasure> UnitOfMeasure { get; }
-        IRepository<IUser> User { get; }
-        IRepository<IWorkout> Workout { get; }
-        IRepository<IWorkoutSet> WorkoutSet { get; }
+        IRepository<Exercise> Exercise { get; }
+        IRepository<ExerciseType> ExerciseType { get; }
+        IRepository<UnitOfMeasure> UnitOfMeasure { get; }
+        IRepository<User> User { get; }
+        IRepository<Workout> Workout { get; }
+        IRepository<WorkoutSet> WorkoutSet { get; }
     }
 }

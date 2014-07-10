@@ -9,12 +9,12 @@ namespace Diggity.Services
         private readonly IRepositoryAggregate repositoryAggregate;
         private readonly IValidationFactory validationFactory;
 
-        private IService<IExercise> exercise;
-        private IService<IExerciseType> exerciseType;
-        private IService<IUnitOfMeasure> unitOfMeasure;
-        private IService<IUser> user;
-        private IService<IWorkout> workout;
-        private IService<IWorkoutSet> workoutSet;
+        private IService<Exercise> exercise;
+        private IService<ExerciseType> exerciseType;
+        private IService<UnitOfMeasure> unitOfMeasure;
+        private IService<User> user;
+        private IService<Workout> workout;
+        private IService<WorkoutSet> workoutSet;
 
         public ServiceAggregate(IRepositoryAggregate repositoryAggregate, IValidationFactory validationFactory)
         {
@@ -22,63 +22,63 @@ namespace Diggity.Services
             this.validationFactory = validationFactory;
         }
 
-        public IService<IExercise> Exercise
+        public IService<Exercise> Exercise
         {
             get
             {
                 return exercise ??
-                       (exercise = new ServiceBase<IExercise>(repositoryAggregate, repositoryAggregate.Exercise,
-                           validationFactory.GetValidator<IExercise>(repositoryAggregate)));
+                       (exercise = new ServiceBase<Exercise>(repositoryAggregate, repositoryAggregate.Exercise,
+                           validationFactory.GetValidator<Exercise>(repositoryAggregate)));
             }
         }
 
-        public IService<IExerciseType> ExerciseType
+        public IService<ExerciseType> ExerciseType
         {
             get
             {
                 return exerciseType ??
                        (exerciseType =
-                           new ServiceBase<IExerciseType>(repositoryAggregate, repositoryAggregate.ExerciseType,
-                               validationFactory.GetValidator<IExerciseType>(repositoryAggregate)));
+                           new ServiceBase<ExerciseType>(repositoryAggregate, repositoryAggregate.ExerciseType,
+                               validationFactory.GetValidator<ExerciseType>(repositoryAggregate)));
             }
         }
 
-        public IService<IUnitOfMeasure> UnitOfMeasure
+        public IService<UnitOfMeasure> UnitOfMeasure
         {
             get
             {
                 return unitOfMeasure ??
                        (unitOfMeasure =
                            new UnitOfMeasureService(repositoryAggregate, repositoryAggregate.UnitOfMeasure,
-                               validationFactory.GetValidator<IUnitOfMeasure>(repositoryAggregate)));
+                               validationFactory.GetValidator<UnitOfMeasure>(repositoryAggregate)));
             }
         }
 
-        public IService<IUser> User
+        public IService<User> User
         {
             get
             {
-                return user ?? (user = new ServiceBase<IUser>(repositoryAggregate, repositoryAggregate.User,
-                    validationFactory.GetValidator<IUser>(repositoryAggregate)));
+                return user ?? (user = new ServiceBase<User>(repositoryAggregate, repositoryAggregate.User,
+                    validationFactory.GetValidator<User>(repositoryAggregate)));
             }
         }
 
-        public IService<IWorkout> Workout
+        public IService<Workout> Workout
         {
             get
             {
-                return workout ?? (workout = new ServiceBase<IWorkout>(repositoryAggregate, repositoryAggregate.Workout,
-                    validationFactory.GetValidator<IWorkout>(repositoryAggregate)));
+                return workout ?? (workout = new ServiceBase<Workout>(repositoryAggregate, repositoryAggregate.Workout,
+                    validationFactory.GetValidator<Workout>(repositoryAggregate)));
             }
         }
 
-        public IService<IWorkoutSet> WorkoutSet
+        public IService<WorkoutSet> WorkoutSet
         {
             get
             {
                 return workoutSet ??
-                       (workoutSet = new ServiceBase<IWorkoutSet>(repositoryAggregate, repositoryAggregate.WorkoutSet,
-                           validationFactory.GetValidator<IWorkoutSet>(repositoryAggregate)));
+                       (workoutSet = new ServiceBase<WorkoutSet>(repositoryAggregate, repositoryAggregate.WorkoutSet,
+                           validationFactory.GetValidator<WorkoutSet>(repositoryAggregate)));
             }
         }
     }

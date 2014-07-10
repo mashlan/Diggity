@@ -8,10 +8,10 @@ using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class UnitOfMeasureService : ServiceBase<IUnitOfMeasure>
+    public class UnitOfMeasureService : ServiceBase<UnitOfMeasure>
     {
-        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<IUnitOfMeasure> repository,
-            IValidator<IUnitOfMeasure> validator)
+        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<UnitOfMeasure> repository,
+            IValidator<UnitOfMeasure> validator)
             : base(repositoryAggregate, repository, validator)
         {
         }
@@ -22,7 +22,7 @@ namespace Diggity.Services
             return new List<object>(data.Select(a => new {a.Name, a.Description, a.Id}));
         }
 
-        public override object SingleSimple(Expression<Func<IUnitOfMeasure, bool>> expression)
+        public override object SingleSimple(Expression<Func<UnitOfMeasure, bool>> expression)
         {
             var result = base.Single(expression);
             return new

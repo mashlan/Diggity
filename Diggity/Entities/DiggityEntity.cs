@@ -3,9 +3,9 @@ using Diggity.Validation;
 
 namespace Diggity.Entities
 {
-    public abstract class BaseEntity : IValidationSummary
+    public abstract class DiggityEntity 
     {
         public bool IsValid { get; set; }
-        public IList<IValidationError> ValidationErrors { get; set; }
+        public IList<ValidationError> ValidationErrors { get; set; }
     }
 }

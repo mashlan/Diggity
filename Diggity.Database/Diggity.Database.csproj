@@ -66,10 +66,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
-      <Project>{707b16a3-451e-4171-a0e4-e07ea2e9075b}</Project>
-      <Name>Diggity.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Diggity\Diggity.csproj">
       <Project>{BA2C7BF6-923D-499D-99C5-3E3CEB4661FA}</Project>
       <Name>Diggity</Name>

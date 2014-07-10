@@ -72,10 +72,6 @@
       <Project>{9C02DC1E-19A1-40FE-AE3B-3521BD6372B5}</Project>
       <Name>Diggity.Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
-      <Project>{707B16A3-451E-4171-A0E4-E07EA2E9075B}</Project>
-      <Name>Diggity.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Diggity.Repository\Diggity.Repository.csproj">
       <Project>{CD72BC12-A036-4B06-94C8-5B1B24496829}</Project>
       <Name>Diggity.Repository</Name>

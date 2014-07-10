@@ -12,21 +12,20 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ExerciseType
+    public partial class User : DiggityEntity, IEntity
     {
-        public ExerciseType()
+        public User()
         {
-            this.Exercises = new HashSet<Exercise>();
+            this.Workouts = new HashSet<Workout>();
             this.UserPreferences = new HashSet<UserPreference>();
-            this.UnitOfMeasures = new HashSet<UnitOfMeasure>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
     
-        public virtual ICollection<Exercise> Exercises { get; set; }
+        public virtual ICollection<Workout> Workouts { get; set; }
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
-        public virtual ICollection<UnitOfMeasure> UnitOfMeasures { get; set; }
     }
 }

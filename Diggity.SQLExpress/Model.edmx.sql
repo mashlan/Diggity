@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/07/2014 08:05:07
+-- Date Created: 07/10/2014 07:16:54
 -- Generated from EDMX file: C:\Users\eric.mashlan\Documents\GitHub\Diggity\Diggity.SQLExpress\Model.edmx
 -- --------------------------------------------------
 
@@ -20,17 +20,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ExerciseTypeExercise]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Exercises] DROP CONSTRAINT [FK_ExerciseTypeExercise];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutSetUnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetUnitOfMeasure];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ExerciseWorkoutSet]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_ExerciseWorkoutSet];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutWorkoutSet];
+IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_ExerciseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_ExerciseType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_UnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_UnitOfMeasure];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserPreferenceExerciseType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceExerciseType];
@@ -41,11 +38,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserPreferenceUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_UnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_UnitOfMeasure];
+IF OBJECT_ID(N'[dbo].[FK_WorkoutSetUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetUnitOfMeasure];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_ExerciseType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_ExerciseType];
+IF OBJECT_ID(N'[dbo].[FK_WorkoutUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutWorkoutSet];
 GO
 
 -- --------------------------------------------------
@@ -58,23 +58,23 @@ GO
 IF OBJECT_ID(N'[dbo].[ExerciseTypes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ExerciseTypes];
 GO
+IF OBJECT_ID(N'[dbo].[UnitOfMeasureExerciseType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UnitOfMeasureExerciseType];
+GO
 IF OBJECT_ID(N'[dbo].[UnitOfMeasures]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UnitOfMeasures];
-GO
-IF OBJECT_ID(N'[dbo].[Workouts]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Workouts];
-GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
-GO
-IF OBJECT_ID(N'[dbo].[WorkoutSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WorkoutSets];
 GO
 IF OBJECT_ID(N'[dbo].[UserPreferences]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UserPreferences];
 GO
-IF OBJECT_ID(N'[dbo].[UnitOfMeasureExerciseType]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UnitOfMeasureExerciseType];
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Workouts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Workouts];
+GO
+IF OBJECT_ID(N'[dbo].[WorkoutSets]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkoutSets];
 GO
 
 -- --------------------------------------------------
@@ -145,7 +145,8 @@ GO
 CREATE TABLE [dbo].[UserPreferences] (
     [ExerciseTypeId] int  NOT NULL,
     [UnitOfMeasureId] int  NOT NULL,
-    [UserId] int  NOT NULL
+    [UserId] int  NOT NULL,
+    [Id] int  NOT NULL
 );
 GO
 
@@ -196,10 +197,10 @@ ADD CONSTRAINT [PK_WorkoutSets]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [ExerciseTypeId], [UnitOfMeasureId] in table 'UserPreferences'
+-- Creating primary key on [Id] in table 'UserPreferences'
 ALTER TABLE [dbo].[UserPreferences]
 ADD CONSTRAINT [PK_UserPreferences]
-    PRIMARY KEY CLUSTERED ([ExerciseTypeId], [UnitOfMeasureId] ASC);
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [UnitOfMeasures_Id], [ExerciseTypes_Id] in table 'UnitOfMeasureExerciseType'
@@ -294,6 +295,12 @@ ADD CONSTRAINT [FK_UserPreferenceExerciseType]
     REFERENCES [dbo].[ExerciseTypes]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPreferenceExerciseType'
+CREATE INDEX [IX_FK_UserPreferenceExerciseType]
+ON [dbo].[UserPreferences]
+    ([ExerciseTypeId]);
 GO
 
 -- Creating foreign key on [UnitOfMeasureId] in table 'UserPreferences'

@@ -59,10 +59,6 @@
     <Compile Include="UnitOfMeasureController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Diggity.Entities\Diggity.Entities.csproj">
-      <Project>{707B16A3-451E-4171-A0E4-E07EA2E9075B}</Project>
-      <Name>Diggity.Entities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Diggity\Diggity.csproj">
       <Project>{BA2C7BF6-923D-499D-99C5-3E3CEB4661FA}</Project>
       <Name>Diggity</Name>

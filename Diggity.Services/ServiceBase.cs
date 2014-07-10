@@ -9,41 +9,41 @@ using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class ServiceBase<TInterface> : IService<TInterface> where TInterface : class, IValidationSummary, IEntity
+    public class ServiceBase<TEntity> : IService<TEntity> where TEntity : DiggityEntity, IEntity
     {
-        protected readonly IRepository<TInterface> Repository;
+        protected readonly IRepository<TEntity> Repository;
         protected readonly IRepositoryAggregate RepositoryAggregate;
-        protected readonly IValidator<TInterface> Validator;
+        protected readonly IValidator<TEntity> Validator;
 
-        public ServiceBase(IRepositoryAggregate repositoryAggregate, IRepository<TInterface> repository, IValidator<TInterface> validator)
+        public ServiceBase(IRepositoryAggregate repositoryAggregate, IRepository<TEntity> repository, IValidator<TEntity> validator)
         {
             RepositoryAggregate = repositoryAggregate;
             Repository = repository;
             Validator = validator;
         }
 
-        public virtual TInterface GetById(int id)
+        public virtual TEntity GetById(int id)
         {
             return Repository.GetById(id);
         }
 
-        public virtual TInterface Single(Expression<Func<TInterface, bool>> expression)
+        public virtual TEntity Single(Expression<Func<TEntity, bool>> expression)
         {
             return Repository.Single(expression);
         }
 
-        public virtual object SingleSimple(Expression<Func<TInterface, bool>> expression)
+        public virtual object SingleSimple(Expression<Func<TEntity, bool>> expression)
         {
             var result = Repository.Single(expression);
-            return new {Id = result.Id};
+            return new {result.Id};
         }
 
-        public virtual IEnumerable<TInterface> Find(Expression<Func<TInterface, bool>> expression)
+        public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
         {
             return Repository.Find(expression);
         }
 
-        public virtual IEnumerable<object> FindSimple(Expression<Func<TInterface, bool>> expression)
+        public virtual IEnumerable<object> FindSimple(Expression<Func<TEntity, bool>> expression)
         {
             throw new NotImplementedException();
         }
@@ -53,12 +53,12 @@ namespace Diggity.Services
             return Repository.GetAll().Select(s => new { s.Id });
         }
 
-        public virtual IEnumerable<TInterface> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return Repository.GetAll();
         }
 
-        public virtual void Create(TInterface entity)
+        public virtual void Create(TEntity entity)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace Diggity.Services
             }
         }
 
-        public virtual void Update(TInterface entity)
+        public virtual void Update(TEntity entity)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Diggity.Services
             }
         }
 
-        public virtual bool Delete(Expression<Func<TInterface, bool>> expression)
+        public virtual bool Delete(Expression<Func<TEntity, bool>> expression)
         {
             return Repository.Delete(expression);
         }

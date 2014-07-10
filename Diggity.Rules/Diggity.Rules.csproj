@@ -48,12 +48,10 @@
     <Compile Include="Exercise\ExerciseTypeMustBeSet.cs" />
     <Compile Include="Exercise\NameCannotBeNull.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rule.cs" />
     <Compile Include="Specifications\AndSpecification.cs" />
     <Compile Include="Specifications\ExtensionMethods.cs" />
     <Compile Include="Specifications\NotSpecification.cs" />
     <Compile Include="Specifications\OrSpecification.cs" />
-    <Compile Include="ValidationSummary.cs" />
     <Compile Include="Validators\UnitOfMeasureValidator.cs" />
   </ItemGroup>
   <ItemGroup>

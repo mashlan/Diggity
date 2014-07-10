@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Diggity.Entities;
 using Diggity.Validation;
 
 namespace Diggity.Exceptions
 {
     public class ValidationException : Exception
     {
-        public ValidationException(IValidationSummary validationSummary)
+        public ValidationException(DiggityEntity entity)
         {
-            ValidationErrors = validationSummary.ValidationErrors;
+            ValidationErrors = entity.ValidationErrors;
         }
 
-        public IList<IValidationError> ValidationErrors { get; private set; }
+        public IList<ValidationError> ValidationErrors { get; private set; }
     }
 }

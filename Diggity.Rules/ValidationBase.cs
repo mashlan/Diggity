@@ -1,9 +1,10 @@
-﻿using Diggity.Repository;
+﻿using Diggity.Entities;
+using Diggity.Repository;
 using Diggity.Validation;
 
 namespace Diggity.Rules
 {
-    public class ValidationBase<TInterface> : IValidator<TInterface> where TInterface : IValidationSummary
+    public class ValidationBase<TEntity> : IValidator<TEntity> where TEntity : DiggityEntity
     {
         protected readonly IRepositoryAggregate RepositoryAggregate;
 
@@ -12,7 +13,7 @@ namespace Diggity.Rules
             RepositoryAggregate = repositoryAggregate;
         }
 
-        public virtual bool IsValid(TInterface entity)
+        public virtual bool IsValid(TEntity entity)
         {
             return true;
         }

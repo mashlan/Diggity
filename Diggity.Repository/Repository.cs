@@ -9,8 +9,7 @@ using Diggity.Entities;
 
 namespace Diggity.Repository
 {
-    public class Repository<TEntity, TInterface> : IRepository<TInterface> where TEntity : class, TInterface, IEntity
-        where TInterface : class, IEntity
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : DiggityEntity, IEntity
     {
         private readonly DbContext Context;
         private readonly DbSet<TEntity> DataSet;
@@ -21,7 +20,7 @@ namespace Diggity.Repository
             DataSet = context.Set<TEntity>();
         }
 
-        public TInterface GetById(int id)
+        public TEntity GetById(int id)
         {
             try
             {
@@ -33,11 +32,11 @@ namespace Diggity.Repository
             }
         }
 
-        public TInterface Single(Expression<Func<TInterface, bool>> expression)
+        public TEntity Single(Expression<Func<TEntity, bool>> expression)
         {
             try
             {
-                return DataSet.Single(Converter.TransformPredicateLambda<TInterface, TEntity>(expression));
+                return DataSet.Single(expression);
             }
             catch (Exception ex)
             {
@@ -45,11 +44,11 @@ namespace Diggity.Repository
             }
         }
 
-        public IEnumerable<TInterface> Find(Expression<Func<TInterface, bool>> expression)
+        public IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
         {
             try
             {
-                return DataSet.Where(Converter.TransformPredicateLambda<TInterface, TEntity>(expression));
+                return DataSet.Where(expression);
             }
             catch (Exception ex)
             {
@@ -57,22 +56,22 @@ namespace Diggity.Repository
             }
         }
 
-        public void Create(TInterface entity)
+        public void Create(TEntity entity)
         {
-            DataSet.Add(entity as TEntity);
+            DataSet.Add(entity);
             SaveChanges();
         }
 
-        public void Update(TInterface entity)
+        public void Update(TEntity entity)
         {
-            DataSet.Attach(entity as TEntity);
+            DataSet.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
             SaveChanges();
         }
 
-        public bool Delete(Expression<Func<TInterface, bool>> expression)
+        public bool Delete(Expression<Func<TEntity, bool>> expression)
         {
-            var results = DataSet.Where(Converter.TransformPredicateLambda<TInterface, TEntity>(expression));
+            var results = DataSet.Where(expression);
             foreach (var result in results)  DataSet.Remove(result);
             return SaveChanges();
         }
@@ -102,7 +101,7 @@ namespace Diggity.Repository
             }
         }
         
-        public IEnumerable<TInterface> GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
             try
             {

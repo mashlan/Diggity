@@ -12,7 +12,7 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class WorkoutSet
+    public partial class WorkoutSet : DiggityEntity, IEntity
     {
         public int Id { get; set; }
         public string SortOrder { get; set; }

@@ -21,7 +21,7 @@ namespace Diggity.IOC
                 init.Scan(scan =>
                 {
                     scan.AssemblyContainingType<BaseApiController>();
-                    scan.AssemblyContainingType<IExercise>();
+                    scan.AssemblyContainingType<Exercise>();
                     scan.AssemblyContainingType<ServiceAggregate>();
                     scan.AssemblyContainingType<ValidationFactory>();
                     scan.AssemblyContainingType<ModelContainer>();

@@ -20,7 +20,7 @@ namespace Diggity.WebApi
         public HttpResponseMessage Get(int id)
         {
             var message = string.Format("Exercise Type with Id {0} was not found.", id);
-            Func<IExerciseType> func = () => ServiceAggregate.ExerciseType.GetById(id);
+            Func<ExerciseType> func = () => ServiceAggregate.ExerciseType.GetById(id);
             return ApiGetFunc(func, message);
         }
 
