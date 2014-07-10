@@ -108,11 +108,11 @@ namespace Diggity.Repository
             {
                 DataSet.AsNoTracking();
                 var data = DataSet.Where(f => true);
-                return data.ToList();
+                return data;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error gettting records: " + ex.Message, ex);
+                throw new Exception("Error getting records: " + ex.Message, ex);
             }
         }
 

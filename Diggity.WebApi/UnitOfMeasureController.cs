@@ -15,12 +15,12 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Get()
         {
-           return ApiGetFunc(ServiceAggregate.UnitOfMeasure.GetAll, null);
+           return ApiGetFunc(ServiceAggregate.UnitOfMeasure.GetAllSimple, null);
         }
 
         public HttpResponseMessage Get(int id)
         {
-            Func<IUnitOfMeasure> func = () => ServiceAggregate.UnitOfMeasure.GetById(id);
+            Func<object> func = () => ServiceAggregate.UnitOfMeasure.SingleSimple(s => s.Id == id);
             return ApiGetFunc(func, string.Format("Unit Of Measure with Id {0} was not found.", id));
         }
 

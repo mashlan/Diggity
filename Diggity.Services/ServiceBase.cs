@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
+using Diggity.Entities;
 using Diggity.Exceptions;
 using Diggity.Repository;
 using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class ServiceBase<TInterface> : IService<TInterface> where TInterface : class, IValidationSummary
+    public class ServiceBase<TInterface> : IService<TInterface> where TInterface : class, IValidationSummary, IEntity
     {
         protected readonly IRepository<TInterface> Repository;
         protected readonly IRepositoryAggregate RepositoryAggregate;
@@ -30,12 +32,28 @@ namespace Diggity.Services
             return Repository.Single(expression);
         }
 
+        public virtual object SingleSimple(Expression<Func<TInterface, bool>> expression)
+        {
+            var result = Repository.Single(expression);
+            return new {Id = result.Id};
+        }
+
         public virtual IEnumerable<TInterface> Find(Expression<Func<TInterface, bool>> expression)
         {
             return Repository.Find(expression);
         }
 
-        public virtual IEnumerable<object> GetAll()
+        public virtual IEnumerable<object> FindSimple(Expression<Func<TInterface, bool>> expression)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual IEnumerable<object> GetAllSimple()
+        {
+            return Repository.GetAll().Select(s => new { s.Id });
+        }
+
+        public virtual IEnumerable<TInterface> GetAll()
         {
             return Repository.GetAll();
         }

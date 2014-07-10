@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Diggity.Entities;
 using Diggity.Repository;
 using Diggity.Validation;
@@ -8,27 +10,29 @@ namespace Diggity.Services
 {
     public class UnitOfMeasureService : ServiceBase<IUnitOfMeasure>
     {
-        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<IUnitOfMeasure> repository, IValidator<IUnitOfMeasure> validator) 
+        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<IUnitOfMeasure> repository,
+            IValidator<IUnitOfMeasure> validator)
             : base(repositoryAggregate, repository, validator)
         {
         }
 
-        public override IEnumerable<object> GetAll()
+        public override IEnumerable<object> GetAllSimple()
         {
-            var data = Repository.GetAll().ToArray();
+            var data = Repository.GetAll();
+            return new List<object>(data.Select(a => new {a.Name, a.Description, a.Id}));
+        }
 
-            var list = new object[data.Count()];
-            for (var i = 0; i < data.Count(); i++)
+        public override object SingleSimple(Expression<Func<IUnitOfMeasure, bool>> expression)
+        {
+            var result = base.Single(expression);
+            return new
             {
-                list[i] = new
-                {
-                    data[i].Description,
-                    data[i].Name,
-                    data[i].Id
-                };
-            }
-
-            return list;
+                result.Id,
+                result.Description,
+                result.Name,
+                result.IsValid,
+                result.ValidationErrors
+            };
         }
     }
 }

@@ -8,8 +8,11 @@ namespace Diggity.Services
     {
         TInterface GetById(int id);
         TInterface Single(Expression<Func<TInterface, bool>> expression);
+        object SingleSimple(Expression<Func<TInterface, bool>> expression);
         IEnumerable<TInterface> Find(Expression<Func<TInterface, bool>> expression);
-        IEnumerable<object> GetAll();
+        IEnumerable<object> FindSimple(Expression<Func<TInterface, bool>> expression);
+        IEnumerable<object> GetAllSimple();
+        IEnumerable<TInterface> GetAll(); 
         void Create(TInterface entity);
         void Update(TInterface entity);
         bool Delete(Expression<Func<TInterface, bool>> expression);
