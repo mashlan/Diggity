@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Hosting;
 using Diggity.Entities;
@@ -17,7 +16,7 @@ namespace Diggity.WebApi.Tests
     public class TestUnitOfMeasureController
     {
         private readonly Mock<IServiceAggregate> serviceAggregate = new Mock<IServiceAggregate>();
-        private readonly Mock<IService<IUnitOfMeasure>> unitOfMeasureService = new Mock<IService<IUnitOfMeasure>>();
+        private readonly Mock<IService<UnitOfMeasure>> unitOfMeasureService = new Mock<IService<UnitOfMeasure>>();
         private readonly List<UnitOfMeasure> unitOfMeasures = new List<UnitOfMeasure>();
         private UnitOfMeasureController controller;
 
@@ -33,17 +32,16 @@ namespace Diggity.WebApi.Tests
                     Description = "Test Unit " + i
                 });
 
-            unitOfMeasureService.Setup(s => s.GetAll()).Returns(unitOfMeasures);
+            unitOfMeasureService.Setup(s => s.GetAllSimple()).Returns(unitOfMeasures);
             serviceAggregate.Setup(s => s.UnitOfMeasure).Returns(unitOfMeasureService.Object);
-            controller = new UnitOfMeasureController(serviceAggregate.Object);
-            controller.Request = new HttpRequestMessage();
+            controller = new UnitOfMeasureController(serviceAggregate.Object) {Request = new HttpRequestMessage()};
             controller.Request.Properties.Add(HttpPropertyKeys.HttpConfigurationKey, new HttpConfiguration());
         }
 
         [TestMethod]
         public void GetAllUnitOfMeasures()
         {
-            HttpResponseMessage response = controller.Get();
+            var response = controller.Get();
 
             Assert.IsNotNull(response);
             Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
@@ -56,29 +54,26 @@ namespace Diggity.WebApi.Tests
         public void GetUnitOfMeasure()
         {
             const int id = 5;
-            unitOfMeasureService.Setup(s => s.GetById(id)).Returns(unitOfMeasures.Single(u => u.Id == id));
+            unitOfMeasureService.Setup(ss => ss.SingleSimple(It.IsAny<Expression<Func<UnitOfMeasure, bool>>>())).Returns(new { Id = "", Description = "" });
 
-            HttpResponseMessage response = controller.Get(id);
+            var response = controller.Get(id);
             Assert.IsNotNull(response);
             Assert.IsTrue(response.StatusCode == HttpStatusCode.OK);
             Assert.IsNotNull(response.Content);
-
-            Task<object> test = response.Content.ReadAsAsync(typeof (IUnitOfMeasure));
-            var unit = test.Result as UnitOfMeasure;
         }
 
         [TestMethod]
         public void GetUnitOfMeasureFail()
         {
             const int id = 11;
-            unitOfMeasureService.Setup(s => s.GetById(id)).Throws(new Exception("oops"));
+            unitOfMeasureService.Setup(ss => ss.SingleSimple(It.IsAny<Expression<Func<UnitOfMeasure, bool>>>())).Throws(new Exception("oops"));
 
-            HttpResponseMessage response = controller.Get(id);
+            var response = controller.Get(id);
             Assert.IsNotNull(response);
             Assert.IsTrue(response.StatusCode == HttpStatusCode.InternalServerError);
             Assert.IsNotNull(response.Content);
 
-            Task<object> test = response.Content.ReadAsAsync(typeof (HttpError));
+            var test = response.Content.ReadAsAsync(typeof (HttpError));
             var unit = test.Result as HttpError;
             Assert.IsTrue(unit.Message == "oops");
         }
@@ -87,12 +82,12 @@ namespace Diggity.WebApi.Tests
         public void GetUnitOfMeasureNotFound()
         {
             const int id = 11;
-            HttpResponseMessage response = controller.Get(id);
+            var response = controller.Get(id);
             Assert.IsNotNull(response);
             Assert.IsTrue(response.StatusCode == HttpStatusCode.NotFound);
             Assert.IsNotNull(response.Content);
 
-            Task<object> test = response.Content.ReadAsAsync(typeof (HttpError));
+            var test = response.Content.ReadAsAsync(typeof (HttpError));
             var unit = test.Result as HttpError;
             Assert.IsTrue(unit.Message == "Unit Of Measure with Id 11 was not found.");
         }

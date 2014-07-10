@@ -79,6 +79,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Diggity.Services\Diggity.Services.csproj">
+      <Project>{9F53B925-BB51-414C-8FBA-C8BBA74C8282}</Project>
+      <Name>Diggity.Services</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Diggity.WebApi\Diggity.WebApi.csproj">
       <Project>{7535F666-65DA-4F12-9240-8A7D423E24E5}</Project>
       <Name>Diggity.WebApi</Name>
