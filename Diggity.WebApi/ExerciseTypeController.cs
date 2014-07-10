@@ -14,13 +14,13 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Get()
         {
-            return ApiGetFunc(ServiceAggregate.ExerciseType.GetAll, null);
+            return ApiGetFunc(ServiceAggregate.ExerciseType.GetAllSimple, null);
         }
 
         public HttpResponseMessage Get(int id)
         {
             var message = string.Format("Exercise Type with Id {0} was not found.", id);
-            Func<ExerciseType> func = () => ServiceAggregate.ExerciseType.GetById(id);
+            Func<object> func = () => ServiceAggregate.ExerciseType.SingleSimple(e => e.Id == id);
             return ApiGetFunc(func, message);
         }
 

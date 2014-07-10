@@ -1,6 +1,5 @@
 ﻿
-services.factory('UnitOfMeasure', [
-    '$resource',
+services.factory('UnitOfMeasure', ['$resource',
     function($resource) {
         var resource = $resource('api/UnitOfMeasure', {},
         {

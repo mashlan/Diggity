@@ -245,13 +245,16 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Html\Exercise\ExerciseTypeView.html" />
+    <Content Include="Html\ExerciseType\ExerciseTypeEdit.html" />
+    <Content Include="Html\ExerciseType\ExerciseTypeView.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
+    <Content Include="Scripts\controllers\exerciseTypeEditController.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />
+    <Content Include="Scripts\controllers\unitOfMeasureEditController.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\filters.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -639,6 +642,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Html\Exercise\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

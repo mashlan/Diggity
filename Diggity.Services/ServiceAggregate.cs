@@ -38,7 +38,7 @@ namespace Diggity.Services
             {
                 return exerciseType ??
                        (exerciseType =
-                           new ServiceBase<ExerciseType>(repositoryAggregate, repositoryAggregate.ExerciseType,
+                           new ExerciseTypeService(repositoryAggregate, repositoryAggregate.ExerciseType,
                                validationFactory.GetValidator<ExerciseType>(repositoryAggregate)));
             }
         }

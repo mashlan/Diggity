@@ -64,7 +64,7 @@ namespace Diggity.Repository
 
         public void Update(TEntity entity)
         {
-            DataSet.Attach(entity);
+            if (!DataSet.Contains(entity)) DataSet.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
             SaveChanges();
         }
@@ -105,7 +105,6 @@ namespace Diggity.Repository
         {
             try
             {
-                DataSet.AsNoTracking();
                 var data = DataSet.Where(f => true);
                 return data;
             }

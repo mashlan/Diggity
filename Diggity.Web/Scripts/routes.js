@@ -11,8 +11,8 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
             $routeProvider.when('/unitOfMeasure/new', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
 
-            $routeProvider.when('/exerciseType', { templateUrl: '../Html/Exercise/ExerciseTypeView.html', controller: 'ExerciseTypeCtrl' });
-            $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/Exercise/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
+            $routeProvider.when('/exerciseType', { templateUrl: '../Html/ExerciseType/ExerciseTypeView.html', controller: 'ExerciseTypeCtrl' });
+            $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/ExerciseType/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
             $routeProvider.when('/exerciseType/new', { templateUrl: '../Html/UnitOfMeasure/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
 
             $routeProvider.otherwise({ redirectTo: '/unitOfMeasure' });

@@ -2,67 +2,32 @@
 /**********************************************************************
  * *************** Exercise Type View  ********************************
  *********************************************************************/
-myControllers.controller('ExerciseTypeCtrl', [
-    '$scope', 'ExerciseType',
-    function($scope, ExerciseType) {
+myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType', '$location',
+    function($scope, ExerciseType, $location) {
         'use strict';
 
-        $scope.hasFormError = false;
-        $scope.exerciseTypeList = [];
-        $scope.exerciseType = {};
+        $scope.exerciseTypes = [];
+        $scope.isLoading = true;
 
-        ExerciseType.query().then(function(resp) {
-                $scope.exerciseTypeList = resp;
-            },
-            function(error) {
-                alert(error.data);
-            });
+        ExerciseType.query()
+            .then(function(resp) { $scope.exerciseTypes = resp; }, queryError)
+            .catch(queryError)
+            .finally(queryFinally);
 
-        $scope.toggleUnit = function(scope) {
-            var index = $scope.exerciseType.UnitOfMeasures.indexOf(scope.unit._id);
-            if (index > -1) {
-                $scope.exerciseType.UnitOfMeasures.splice(index, 1);
-                scope.unit.selected = false;
-            } else {
-                $scope.exerciseType.UnitOfMeasures.push(scope.unit);
-                scope.unit.selected = true;
-            }
-        };
+        function queryFinally() {
+            $scope.loading = false;
+        }
 
-        $scope.setUnitOfMeasureString = function(scope) {
-            scope.exerciseType.UnitOfMeasuresString = "";
-            $.each(scope.exerciseType.UnitOfMeasures, function(i, v) {
-                var comma = scope.exerciseType.UnitOfMeasuresString.length > 0 ? ", " : "";
-                scope.exerciseType.UnitOfMeasuresString += comma + v.Name;
-            });
-        };
+        function queryError(error) {
+            window.alertShow("error", error.data.Message);
+        }
 
-        $scope.setActiveRow = function(scope) {
-            $("#exerciseTypeTable").find("tr").removeClass("info");
-            $("#exerciseType_" + scope.exerciseType._id).addClass("info");
-        };
+        $scope.addNew = function () {
+            $location.path("/exerciseType/new");
+        }
 
-        $scope.getExerciseType = function(id) {
-            ExerciseType.get(id).then(function(data) {
-                $scope.exerciseType = data;
-                setUnitOfMeasureButtons();
-            });
-        };
-
-        $scope.editRecord = function(scope) {
-            $scope.setActiveRow(scope);
-            $scope.editExerciseType();
-        };
-
-        function setUnitOfMeasureButtons() {
-            $.each($scope.unitsList, function(i, v) {
-                var unit = $.grep($scope.exerciseType.UnitOfMeasures, function(e) { return e._id === v._id; });
-                if (unit.length > 0) {
-                    v.selected = true;
-                } else {
-                    v.selected = false;
-                }
-            });
+        $scope.search = function () {
+            $scope.showSearch = !$scope.showSearch;
         }
     }
 ]);

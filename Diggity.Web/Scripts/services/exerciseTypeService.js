@@ -1,38 +1,33 @@
 ﻿
 
-services.factory("ExerciseType", [
-    '$resource', '$q',
-    function($resource, $q) {
+services.factory("ExerciseType", ['$resource',
+    function ($resource) {
+
         var resource = $resource('api/ExerciseType', {}, {
-            query: { method: 'GET', params: {}, isArray: true },
-            get: { method: 'GET', params: { id: 0 } }
+            query: { method: 'GET', isArray: true },
+            get: { method: 'GET', params: { id: '@id' } },
+            create: { method: 'POST' },
+            update: { method: 'PUT' },
+            remove: { method: 'DELETE' }
         });
 
         var factory = {
-            query: function() {
-                var deferred = $q.defer();
-                resource.query({},
-                    function(resp) { deferred.resolve(resp); },
-                    function(error) { deferred.reject(error); }
-                );
-
-                return deferred.promise;
+            query: function () {
+                return resource.query({}).$promise;
             },
-            get: function(id) {
-                var deferred = $q.defer();
-                resource.get({ id: id },
-                    function(resp) {
-                        deferred.resolve(resp);
-                    },
-                    function(error) {
-                        deferred.reject(error);
-                    }
-                );
-
-                return deferred.promise;
+            get: function (id) {
+                return resource.get({ id: id }).$promise;
+            },
+            create: function (data) {
+                return resource.create(data).$promise;
+            },
+            update: function (data) {
+                return resource.update(data).$promise;
+            },
+            remove: function (id) {
+                return resource.remove({ id: id }).$promise;
             }
         };
-
         return factory;
     }
 ]);

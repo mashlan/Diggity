@@ -10,8 +10,7 @@ namespace Diggity.Services
 {
     public class UnitOfMeasureService : ServiceBase<UnitOfMeasure>
     {
-        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<UnitOfMeasure> repository,
-            IValidator<UnitOfMeasure> validator)
+        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<UnitOfMeasure> repository, IValidator<UnitOfMeasure> validator)
             : base(repositoryAggregate, repository, validator)
         {
         }
