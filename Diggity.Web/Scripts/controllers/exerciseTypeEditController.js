@@ -70,7 +70,7 @@ myControllers.controller('ExerciseTypeEditCtrl', ['$scope', 'ExerciseType', '$lo
 
         function deleteSuccess() {
             window.alertShow("success", "Woo Hoo! Record deleted successfully");
-            $location.path('/unitOfMeasure');
+            $location.path('/exerciseType');
         }
         
         $scope.editRecord = function () {

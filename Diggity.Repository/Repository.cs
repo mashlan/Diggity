@@ -64,7 +64,7 @@ namespace Diggity.Repository
 
         public void Update(TEntity entity)
         {
-            if (!DataSet.Contains(entity)) DataSet.Attach(entity);
+            if (!DataSet.Local.Contains(entity)) DataSet.Attach(entity);
             Context.Entry(entity).State = EntityState.Modified;
             SaveChanges();
         }
@@ -100,11 +100,30 @@ namespace Diggity.Repository
                 throw new Exception("Entity Validation Errors: " + errors, dbEx);
             }
         }
+
+        public void AttachChildren<TChildCollection>(TEntity entity, IEnumerable<TChildCollection> children) where TChildCollection: class
+        {
+            if(!DataSet.Local.Contains(entity)) DataSet.Attach(entity);
+            foreach (var child in children) Context.Set<TChildCollection>().Attach(child);
+        }
+
+        public void DetatchChildren<TChildCollection>(TEntity entity, IEnumerable<TChildCollection> children) where TChildCollection : class
+        {
+            if(!DataSet.Local.Contains(entity)) DataSet.Attach(entity);
+            var childSet = Context.Set<TChildCollection>();
+            foreach (var child in children)
+            {
+                if (!childSet.Contains(child)) childSet.Attach(child);
+                Context.Entry(child).State = EntityState.Modified;
+            }
+
+        }
         
         public IEnumerable<TEntity> GetAll()
         {
             try
             {
+                DataSet.AsNoTracking();
                 var data = DataSet.Where(f => true);
                 return data;
             }

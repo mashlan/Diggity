@@ -7,7 +7,7 @@ myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType', '$locati
         'use strict';
 
         $scope.exerciseTypes = [];
-        $scope.isLoading = true;
+        $scope.loading = true;
 
         ExerciseType.query()
             .then(function(resp) { $scope.exerciseTypes = resp; }, queryError)

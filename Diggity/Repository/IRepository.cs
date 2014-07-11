@@ -14,5 +14,7 @@ namespace Diggity.Repository
         void Update(TEntity entity);
         bool Delete(Expression<Func<TEntity, bool>> expression);
         bool Delete(int Id);
+        void AttachChildren<TChildCollection>(TEntity entity, IEnumerable<TChildCollection> children) where TChildCollection : class;
+        void DetatchChildren<TChildCollection>(TEntity entity, IEnumerable<TChildCollection> children) where TChildCollection : class;
     }
 }
