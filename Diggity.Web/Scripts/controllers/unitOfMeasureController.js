@@ -1,6 +1,6 @@
 ﻿
 /**********************************************************************
- * *************** Unit of Meassure View ******************************
+ * *************** Unit of Measure View ******************************
  *********************************************************************/
 myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure','$location',
     function ($routeParams, $scope, UnitOfMeasure, $location) {
@@ -23,6 +23,6 @@ myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOf
 
         $scope.addNew = function() {
             $location.path("/unitOfMeasure/new");
-        }
+        };
     }
 ]);

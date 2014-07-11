@@ -41,9 +41,11 @@
   <ItemGroup>
     <Compile Include="BaseSpecification.cs" />
     <Compile Include="Exercise\ExerciseMustBeUnique.cs" />
+    <Compile Include="ExerciseType\ExerciseTypeMustBeUnique.cs" />
     <Compile Include="UnitOfMeasure\NameCannotBeNull.cs" />
     <Compile Include="ValidationBase.cs" />
     <Compile Include="ValidationFactory.cs" />
+    <Compile Include="Validators\ExerciseTypeValidator.cs" />
     <Compile Include="Validators\ExerciseValidator.cs" />
     <Compile Include="Exercise\ExerciseTypeMustBeSet.cs" />
     <Compile Include="Exercise\NameCannotBeNull.cs" />

@@ -12,7 +12,7 @@
                     <button class="btn btn-link btn-sm btn-navigation" ng-hide="isEditing" tooltip="Delete {{exerciseType.Name}}" class="btn btn-link" type="button" ng-click="deleteRecord()"><i class="fa fa-trash-o"></i></button>
                     <button class="btn btn-link btn-sm btn-navigation" ng-hide="isEditing" tooltip="Edit {{exerciseType.Name}}" class="btn btn-link" type="button" ng-click="editRecord()"><i class="fa fa-pencil"></i></button>
                     <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing" tooltip="Save {{exerciseType.Name}}" class="btn btn-link" type="button" ng-click="saveUnit()"><i class="fa fa-save"></i></button>
-                    <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing && unit.Id != null" tooltip="Cancel Edits to {{exerciseType.Name}}" class="btn btn-link" type="button" ng-click="cancelEdit()"><i class="fa fa-times-circle"></i></button>
+                    <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing && exerciseType.Id != null" tooltip="Cancel Edits to {{exerciseType.Name}}" class="btn btn-link" type="button" ng-click="cancelEdit()"><i class="fa fa-times-circle"></i></button>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -36,10 +36,11 @@
                 <div class="clearfix"></div>
                 <ul class="list-group">
                     <li class="list-group-item col-lg-3" ng-repeat="unit in availableUnitsOfMeasure">
-                        <button class="btn btn-default" type="button" ng-click="toggleSelection(unit)"><i class="fa" ng-class="{'fa-check-square-o': unit.selected, 'fa-square-o': !unit.selected}"></i> {{unit.Name}}</button> 
+                        <button class="btn btn-default" type="button" ng-click="toggleSelection(unit)" style="font-size: 1.5em;">
+                            <i class="fa" ng-class="{'fa-check-square-o text-success': unit.selected, 'fa-square-o': !unit.selected}"></i> {{unit.Name}}
+                        </button> 
                     </li>
                 </ul>
-
             </div>
 
             <!-- View Record-->
