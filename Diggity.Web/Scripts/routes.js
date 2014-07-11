@@ -7,6 +7,8 @@ angular.module('myApp.routes', ['ngRoute'])
         '$routeProvider', '$locationProvider', function($routeProvider) {
             "use strict";
 
+            $routeProvider.when('/', { templateUrl: '../Html/Home.html', controller: 'HomeCtrl' });
+
             $routeProvider.when('/unitOfMeasure', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureView.html', controller: 'UnitOfMeasureCtrl' });
             $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
             $routeProvider.when('/unitOfMeasure/new', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
@@ -15,7 +17,8 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/ExerciseType/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
             $routeProvider.when('/exerciseType/new', { templateUrl: '../Html/UnitOfMeasure/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
 
-            $routeProvider.otherwise({ redirectTo: '/unitOfMeasure' });
+            $routeProvider.when('/exercise', { templateUrl: '../Html/Exercise/ExerciseView.html', controller: 'ExerciseCtrl' });
+            $routeProvider.otherwise({ redirectTo: '/' });
         }
     ]);
 

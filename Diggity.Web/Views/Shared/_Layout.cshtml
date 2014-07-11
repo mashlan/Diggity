@@ -1,44 +1,82 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width" />
-        <title>WOD Diggity</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>WOD Diggity</title>
 
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 
-        <script src="~/Scripts/vendors/angularjs/angular.min.js"></script>
-        <script src="~/Scripts/vendors/angularjs/angular-route.min.js"></script>
-        <script src="~/Scripts/vendors/angularjs/angular-resource.min.js"></script>
-        <script src="~/Scripts/vendors/bootstrap/ui-bootstrap-0.11.0.min.js"></script>
-        <script src="~/Scripts/vendors/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="~/Scripts/vendors/angularjs/angular.min.js"></script>
+    <script src="~/Scripts/vendors/angularjs/angular-route.min.js"></script>
+    <script src="~/Scripts/vendors/angularjs/angular-resource.min.js"></script>
+    <script src="~/Scripts/vendors/bootstrap/ui-bootstrap-0.11.0.min.js"></script>
+    <script src="~/Scripts/vendors/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
 
-        @Scripts.Render("~/bundles/myApp")
+    @Scripts.Render("~/bundles/myApp")
 
 
-        @* Angular JS Scripts *@
-        @if (HttpContext.Current.IsDebuggingEnabled)
-        {
-            <script src="~/Scripts/controllers/exerciseTypeController.js"></script>
-            <script src="~/Scripts/controllers/exerciseTypeEditController.js"></script>
-            <script src="~/Scripts/controllers/unitOfMeasureController.js"></script>
-            <script src="~/Scripts/controllers/unitOfMeasureEditController.js"></script>
-            <script src="~/Scripts/services/exerciseTypeService.js"></script>
-            <script src="~/Scripts/services/unitOfMeasureService.js"></script>
+    @* Angular JS Scripts *@
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <script src="~/Scripts/controllers/exerciseTypeController.js"></script>
+        <script src="~/Scripts/controllers/exerciseTypeEditController.js"></script>
+        <script src="~/Scripts/controllers/unitOfMeasureController.js"></script>
+        <script src="~/Scripts/controllers/unitOfMeasureEditController.js"></script>
+        <script src="~/Scripts/controllers/exerciseController.js"></script>
+        <script src="~/Scripts/controllers/homeController.js"></script>
+        <script src="~/Scripts/services/exerciseTypeService.js"></script>
+        <script src="~/Scripts/services/unitOfMeasureService.js"></script>
+    }
+    else
+    {
+        @Scripts.Render("~/bundles/myControllers")
+        @Scripts.Render("~/bundles/myServices")
+    }
+
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    @RenderBody()
+    @RenderSection("scripts", false)
+
+    <script type="text/javascript">
+        function alertShow(notificationType, data, callback) {
+            $("#alertPopup h4").html('');
+            $("#alertPopup .alert").removeClass("alert-success");
+            $("#alertPopup .alert").removeClass("alert-danger");
+            $("#alertPopup .alert").removeClass("alert-warning");
+
+            var delay = 5000;
+
+            if (notificationType === "error") {
+                $("#alertPopup .alert").addClass("alert-danger");
+                $("#alertPopup h4").html("Error!");
+                $("#alertMessage").text(data);
+            } else if (notificationType === 'warning') {
+                $("#alertPopup .alert").addClass("alert-warning");
+                $("#alertPopup h4").html("Warning");
+                $("#alertMessage").text(data);
+            } else if (notificationType === 'success') {
+                $("#alertPopup .alert").addClass("alert-success");
+                $("#alertPopup h4").html("Success!");
+                $("#alertMessage").text(data || "Record Saved Successfully!");
+                delay = 2500;
+            }
+
+            $("#alertPopup").modal({ backdrop: false }).modal('show');
+
+            if (notificationType !== "error") {
+                window.setTimeout(function () {
+                    $("#alertPopup").modal('hide');
+                    if (callback) callback();
+                }, delay);
+            }
         }
-        else
-        {
-            @Scripts.Render("~/bundles/myControllers")
-            @Scripts.Render("~/bundles/myServices")
-        }
+    </script>
 
-        <meta name="description" content="The description of my page" />
-    </head>
-    <body>
-        @RenderBody()
-        @RenderSection("scripts", false)
-    </body>
+</body>
 </html>

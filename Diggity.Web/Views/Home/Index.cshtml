@@ -26,10 +26,11 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#/exerciseType" target="_self" class="dropdown-toggle" data-toggle="dropdown">Exercise Admin <span class="caret"></span></a>
+                            <a href="#/exerciseType" target="_self" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#/exerciseType">Exercise Type</a></li>
+                                <li><a href="#/exerciseType">Exercise Types</a></li>
                                 <li><a href="#unitOfMeasure">Units Of Measure</a></li>
+                                <li><a href="#exercise">Exercise</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -58,41 +59,5 @@
                 </div>
             </div>
         </div>
-        
-        
-        <script type="text/javascript">
-            function alertShow(notificationType, data, callback) {
-                $("#alertPopup h4").html('');
-                $("#alertPopup .alert").removeClass("alert-success");
-                $("#alertPopup .alert").removeClass("alert-danger");
-                $("#alertPopup .alert").removeClass("alert-warning");
-
-                var delay = 5000;
-
-                if (notificationType === "error") {
-                    $("#alertPopup .alert").addClass("alert-danger");
-                    $("#alertPopup h4").html("Error!");
-                    $("#alertMessage").text(data);
-                } else if (notificationType === 'warning') {
-                    $("#alertPopup .alert").addClass("alert-warning");
-                    $("#alertPopup h4").html("Warning");
-                    $("#alertMessage").text(data);
-                } else if (notificationType === 'success') {
-                    $("#alertPopup .alert").addClass("alert-success");
-                    $("#alertPopup h4").html("Success!");
-                    $("#alertMessage").text(data || "Record Saved Successfully!");
-                    delay = 2500;
-                }
-
-                $("#alertPopup").modal({ backdrop: false }).modal('show');
-
-                if (notificationType !== "error") {
-                    window.setTimeout(function() {
-                        $("#alertPopup").modal('hide');
-                        if (callback) callback();
-                    }, delay);
-                }
-            }
-        </script>
     </body>
 </html>
