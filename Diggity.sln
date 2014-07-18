@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diggity.Services.Tests", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diggity.Repository.Tests", "Diggity.Repository.Tests\Diggity.Repository.Tests.csproj", "{54C977BD-C93D-4C01-8C00-7D54E9E405AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Diggity.Security", "Diggity.Security\Diggity.Security.csproj", "{4BBB5517-1FD5-4248-89F0-F077B528103B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{54C977BD-C93D-4C01-8C00-7D54E9E405AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54C977BD-C93D-4C01-8C00-7D54E9E405AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54C977BD-C93D-4C01-8C00-7D54E9E405AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BBB5517-1FD5-4248-89F0-F077B528103B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBB5517-1FD5-4248-89F0-F077B528103B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBB5517-1FD5-4248-89F0-F077B528103B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBB5517-1FD5-4248-89F0-F077B528103B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,5 +137,6 @@ Global
 		{79D1BFFE-5F8C-40F3-A2D4-F0553D1462C6} = {48403F7B-8977-46E2-A1BE-8873BE449C79}
 		{B3832E0B-949E-44EE-89E1-053B7790B41A} = {48403F7B-8977-46E2-A1BE-8873BE449C79}
 		{54C977BD-C93D-4C01-8C00-7D54E9E405AD} = {48403F7B-8977-46E2-A1BE-8873BE449C79}
+		{4BBB5517-1FD5-4248-89F0-F077B528103B} = {31C8948D-8886-4347-9C47-D583273927A7}
 	EndGlobalSection
 EndGlobal

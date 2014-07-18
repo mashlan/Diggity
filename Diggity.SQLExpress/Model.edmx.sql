@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 07/10/2014 07:16:54
+-- Date Created: 07/18/2014 10:31:15
 -- Generated from EDMX file: C:\Users\eric.mashlan\Documents\GitHub\Diggity\Diggity.SQLExpress\Model.edmx
 -- --------------------------------------------------
 
@@ -20,14 +20,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ExerciseTypeExercise]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Exercises] DROP CONSTRAINT [FK_ExerciseTypeExercise];
 GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutSetUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetUnitOfMeasure];
+GO
 IF OBJECT_ID(N'[dbo].[FK_ExerciseWorkoutSet]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_ExerciseWorkoutSet];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_ExerciseType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_ExerciseType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_UnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_UnitOfMeasure];
+IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutWorkoutSet];
 GO
 IF OBJECT_ID(N'[dbo].[FK_UserPreferenceExerciseType]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceExerciseType];
@@ -35,17 +35,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_UserPreferenceUnitOfMeasure]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceUnitOfMeasure];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserPreferenceUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceUser];
+IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_UnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_UnitOfMeasure];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutSetUnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetUnitOfMeasure];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutWorkoutSet];
+IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_ExerciseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_ExerciseType];
 GO
 
 -- --------------------------------------------------
@@ -58,23 +52,20 @@ GO
 IF OBJECT_ID(N'[dbo].[ExerciseTypes]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ExerciseTypes];
 GO
-IF OBJECT_ID(N'[dbo].[UnitOfMeasureExerciseType]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UnitOfMeasureExerciseType];
-GO
 IF OBJECT_ID(N'[dbo].[UnitOfMeasures]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UnitOfMeasures];
-GO
-IF OBJECT_ID(N'[dbo].[UserPreferences]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserPreferences];
-GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
 GO
 IF OBJECT_ID(N'[dbo].[Workouts]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Workouts];
 GO
 IF OBJECT_ID(N'[dbo].[WorkoutSets]', 'U') IS NOT NULL
     DROP TABLE [dbo].[WorkoutSets];
+GO
+IF OBJECT_ID(N'[dbo].[UserPreferences]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserPreferences];
+GO
+IF OBJECT_ID(N'[dbo].[UnitOfMeasureExerciseType]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UnitOfMeasureExerciseType];
 GO
 
 -- --------------------------------------------------
@@ -114,16 +105,8 @@ CREATE TABLE [dbo].[Workouts] (
     [Description] nvarchar(max)  NOT NULL,
     [StartDateTime] nvarchar(max)  NOT NULL,
     [EndDateTime] nvarchar(max)  NOT NULL,
-    [UserId] int  NOT NULL
-);
-GO
-
--- Creating table 'Users'
-CREATE TABLE [dbo].[Users] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [FirstName] nvarchar(max)  NOT NULL,
-    [LastName] nvarchar(max)  NOT NULL,
-    [Email] nvarchar(max)  NOT NULL
+    [UserId] int  NOT NULL,
+    [AspNetUserId] nvarchar(128)  NOT NULL
 );
 GO
 
@@ -146,7 +129,8 @@ CREATE TABLE [dbo].[UserPreferences] (
     [ExerciseTypeId] int  NOT NULL,
     [UnitOfMeasureId] int  NOT NULL,
     [UserId] int  NOT NULL,
-    [Id] int  NOT NULL
+    [Id] int  NOT NULL,
+    [AspNetUserId] nvarchar(128)  NOT NULL
 );
 GO
 
@@ -185,12 +169,6 @@ ADD CONSTRAINT [PK_Workouts]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Users'
-ALTER TABLE [dbo].[Users]
-ADD CONSTRAINT [PK_Users]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'WorkoutSets'
 ALTER TABLE [dbo].[WorkoutSets]
 ADD CONSTRAINT [PK_WorkoutSets]
@@ -226,21 +204,6 @@ GO
 CREATE INDEX [IX_FK_ExerciseTypeExercise]
 ON [dbo].[Exercises]
     ([ExerciseTypeId]);
-GO
-
--- Creating foreign key on [UserId] in table 'Workouts'
-ALTER TABLE [dbo].[Workouts]
-ADD CONSTRAINT [FK_WorkoutUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[Users]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_WorkoutUser'
-CREATE INDEX [IX_FK_WorkoutUser]
-ON [dbo].[Workouts]
-    ([UserId]);
 GO
 
 -- Creating foreign key on [UnitOfMeasureId] in table 'WorkoutSets'
@@ -316,21 +279,6 @@ GO
 CREATE INDEX [IX_FK_UserPreferenceUnitOfMeasure]
 ON [dbo].[UserPreferences]
     ([UnitOfMeasureId]);
-GO
-
--- Creating foreign key on [UserId] in table 'UserPreferences'
-ALTER TABLE [dbo].[UserPreferences]
-ADD CONSTRAINT [FK_UserPreferenceUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[Users]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserPreferenceUser'
-CREATE INDEX [IX_FK_UserPreferenceUser]
-ON [dbo].[UserPreferences]
-    ([UserId]);
 GO
 
 -- Creating foreign key on [UnitOfMeasures_Id] in table 'UnitOfMeasureExerciseType'

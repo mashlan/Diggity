@@ -1,11 +1,10 @@
-﻿using Diggity.Web.Models;
+﻿using Diggity.Security.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.DataProtection;
 
-namespace Diggity.Web
+namespace Diggity.Security
 {
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
 
@@ -30,17 +29,17 @@ namespace Diggity.Web
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
+                RequireNonLetterOrDigit = false,
                 RequireDigit = true,
                 RequireLowercase = true,
                 RequireUppercase = true,
             };
-            IDataProtectionProvider dataProtectionProvider = options.DataProtectionProvider;
+
+            var dataProtectionProvider = options.DataProtectionProvider;
+            
             if (dataProtectionProvider != null)
-            {
-                manager.UserTokenProvider =
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            }
+                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+
             return manager;
         }
     }

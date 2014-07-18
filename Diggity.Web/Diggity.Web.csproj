@@ -16,9 +16,9 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -68,6 +68,9 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin.Security.Providers">
+      <HintPath>..\packages\Owin.Security.Providers.1.4.0\lib\net45\Owin.Security.Providers.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\packages\structuremap.3.0.4.125\lib\net40\StructureMap.dll</HintPath>
@@ -181,9 +184,7 @@
     <Compile Include="App_Start\DiggityModelBinder.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Dependency Resolver\StructureMapDependencyResolver.cs" />
     <Compile Include="Dependency Resolver\StructureMapDependencyScope.cs" />
     <Compile Include="Dependency Resolver\StructureMapHttpControllerActivator.cs" />
@@ -225,11 +226,8 @@
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -614,6 +612,7 @@
     <Content Include="Scripts\vendors\jasmine\jasmine-html.js" />
     <Content Include="Scripts\vendors\jasmine\jasmine.js" />
     <Content Include="Scripts\vendors\jquery\jquery-2.1.1.min.map" />
+    <Content Include="App_Data\google.credentials.json" />
     <None Include="Scripts\vendors\jquery\jquery.validate-vsdoc.js" />
     <None Include="Scripts\vendors\jquery\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\vendors\jquery\jquery-2.1.1.js" />
@@ -643,9 +642,25 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Jasmine\SpecRunner.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_MainMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Views\AccountApi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -655,6 +670,14 @@
     <ProjectReference Include="..\Diggity.IOC\Diggity.IOC.csproj">
       <Project>{FA1E9ECF-261A-4CB2-B328-409420683646}</Project>
       <Name>Diggity.IOC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.Security\Diggity.Security.csproj">
+      <Project>{4BBB5517-1FD5-4248-89F0-F077B528103B}</Project>
+      <Name>Diggity.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Diggity.WebApi\Diggity.WebApi.csproj">
+      <Project>{7535F666-65DA-4F12-9240-8A7D423E24E5}</Project>
+      <Name>Diggity.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Diggity\Diggity.csproj">
       <Project>{ba2c7bf6-923d-499d-99c5-3e3ceb4661fa}</Project>
@@ -679,7 +702,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51368</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:50936/</IISUrl>
+          <IISUrl>https://localhost:44300/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

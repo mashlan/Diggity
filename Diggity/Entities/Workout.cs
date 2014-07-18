@@ -25,8 +25,8 @@ namespace Diggity.Entities
         public string StartDateTime { get; set; }
         public string EndDateTime { get; set; }
         public int UserId { get; set; }
+        public string AspNetUserId { get; set; }
     
-        public virtual User User { get; set; }
         public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
     }
 }

@@ -11,5 +11,7 @@ namespace Diggity.Web.Controllers
         {
             ServiceAggregate = serviceAggregate;
         }
+
+        
     }
 }

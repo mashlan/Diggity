@@ -4,14 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="51be51a772da45758c0361c8d61e27f2" Name="Diagram1" >
+      <Diagram DiagramId="51be51a772da45758c0361c8d61e27f2" Name="Main" >
         <EntityTypeShape EntityType="Model.Exercise" Width="1.5" PointX="5.25" PointY="3.625" />
         <EntityTypeShape EntityType="Model.ExerciseType" Width="1.5" PointX="3" PointY="3.75" />
         <EntityTypeShape EntityType="Model.UnitOfMeasure" Width="1.5" PointX="9.75" PointY="3.625" />
         <AssociationConnector Association="Model.FK_ExerciseTypeExercise" />
         <EntityTypeShape EntityType="Model.Workout" Width="1.5" PointX="0.75" PointY="7.125" />
-        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="3" PointY="0.75" />
-        <AssociationConnector Association="Model.WorkoutUser" />
         <EntityTypeShape EntityType="Model.WorkoutSet" Width="1.5" PointX="7.5" PointY="3.125" />
         <AssociationConnector Association="Model.WorkoutSetUnitOfMeasure" />
         <AssociationConnector Association="Model.ExerciseWorkoutSet" />
@@ -19,7 +17,6 @@
         <EntityTypeShape EntityType="Model.UserPreference" Width="1.5" PointX="0.75" PointY="3.75" />
         <AssociationConnector Association="Model.UserPreferenceExerciseType" />
         <AssociationConnector Association="Model.UserPreferenceUnitOfMeasure" />
-        <AssociationConnector Association="Model.UserPreferenceUser" />
         <AssociationConnector Association="Model.UnitOfMeasureExerciseType" />
       </Diagram>
     </edmx:Diagrams>

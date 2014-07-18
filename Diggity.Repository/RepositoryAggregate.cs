@@ -11,7 +11,6 @@ namespace Diggity.Repository
         private IRepository<Exercise> exercise;
         private IRepository<ExerciseType> exerciseType;
         private IRepository<UnitOfMeasure> unitOfMeasure;
-        private IRepository<User> user;
         private IRepository<Workout> workout;
         private IRepository<WorkoutSet> workoutSet;
 
@@ -33,11 +32,6 @@ namespace Diggity.Repository
         public IRepository<UnitOfMeasure> UnitOfMeasure
         {
             get { return unitOfMeasure ?? (unitOfMeasure = new Repository<UnitOfMeasure>(context)); }
-        }
-
-        public IRepository<User> User
-        {
-            get { return user ?? (user = new Repository<User>(context)); }
         }
 
         public IRepository<Workout> Workout

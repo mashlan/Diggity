@@ -1,10 +1,10 @@
-﻿using Diggity.Web;
+﻿using Diggity.Security;
 using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartup(typeof (Startup))]
 
-namespace Diggity.Web
+namespace Diggity.Security
 {
     public partial class Startup
     {

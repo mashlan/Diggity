@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Diggity.Web.Models;
+using Diggity.Security.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 
-namespace Diggity.Web.Providers
+namespace Diggity.Security.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
@@ -36,10 +35,8 @@ namespace Diggity.Web.Providers
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-                OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager);
+            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager);
 
             AuthenticationProperties properties = CreateProperties(user.UserName);
             var ticket = new AuthenticationTicket(oAuthIdentity, properties);

@@ -11,17 +11,12 @@
     <EntitySet Name="ExerciseTypes" EntityType="Model.Store.ExerciseTypes" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UnitOfMeasures" EntityType="Model.Store.UnitOfMeasures" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Workouts" EntityType="Model.Store.Workouts" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Users" EntityType="Model.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkoutSets" EntityType="Model.Store.WorkoutSets" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserPreferences" EntityType="Model.Store.UserPreferences" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Model.Store.UnitOfMeasureExerciseType" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_ExerciseTypeExercise" Association="Model.Store.FK_ExerciseTypeExercise">
       <End Role="ExerciseType" EntitySet="ExerciseTypes" />
       <End Role="Exercis" EntitySet="Exercises" />
-    </AssociationSet>
-    <AssociationSet Name="WorkoutUser" Association="Model.Store.WorkoutUser">
-      <End Role="Workout" EntitySet="Workouts" />
-      <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.Store.WorkoutSetUnitOfMeasure">
       <End Role="WorkoutSet" EntitySet="WorkoutSets" />
@@ -42,10 +37,6 @@
     <AssociationSet Name="UserPreferenceUnitOfMeasure" Association="Model.Store.UserPreferenceUnitOfMeasure">
       <End Role="UserPreference" EntitySet="UserPreferences" />
       <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
-    </AssociationSet>
-    <AssociationSet Name="UserPreferenceUser" Association="Model.Store.UserPreferenceUser">
-      <End Role="UserPreference" EntitySet="UserPreferences" />
-      <End Role="User" EntitySet="Users" />
     </AssociationSet>
     <AssociationSet Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure" Association="Model.Store.FK_UnitOfMeasureExerciseType_UnitOfMeasure">
       <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
@@ -92,15 +83,7 @@
     <Property Name="StartDateTime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="EndDateTime" Type="nvarchar(max)" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <EntityType Name="WorkoutSets">
     <Key>
@@ -124,6 +107,7 @@
     <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
   </EntityType>
   <EntityType Name="UnitOfMeasureExerciseType">
     <Key>
@@ -142,18 +126,6 @@
       </Principal>
       <Dependent Role="Exercis">
         <PropertyRef Name="ExerciseTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="WorkoutUser">
-    <End Role="Workout" Type="Model.Store.Workouts" Multiplicity="*" />
-    <End Role="User" Type="Model.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Workout">
-        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -217,18 +189,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="UserPreferenceUser">
-    <End Role="UserPreference" Type="Model.Store.UserPreferences" Multiplicity="*" />
-    <End Role="User" Type="Model.Store.Users" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserPreference">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure">
     <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
     <End Role="UnitOfMeasureExerciseType" Type="Model.Store.UnitOfMeasureExerciseType" Multiplicity="*" />
@@ -270,11 +230,6 @@
             <End Role="Exercis" EntitySet="Exercises" />
           </AssociationSet>
           <EntitySet Name="Workouts" EntityType="Model.Workout" />
-          <EntitySet Name="Users" EntityType="Model.User" />
-          <AssociationSet Name="WorkoutUser" Association="Model.WorkoutUser">
-            <End Role="Workout" EntitySet="Workouts" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <EntitySet Name="WorkoutSets" EntityType="Model.WorkoutSet" />
           <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.WorkoutSetUnitOfMeasure">
             <End Role="WorkoutSet" EntitySet="WorkoutSets" />
@@ -297,15 +252,11 @@
             <End Role="UserPreference" EntitySet="UserPreferences" />
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
           </AssociationSet>
-          <AssociationSet Name="UserPreferenceUser" Association="Model.UserPreferenceUser">
-            <End Role="UserPreference" EntitySet="UserPreferences" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="UnitOfMeasureExerciseType" Association="Model.UnitOfMeasureExerciseType">
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
             <End Role="ExerciseType" EntitySet="ExerciseTypes" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Exercise">
           <Key>
             <PropertyRef Name="Id" />
@@ -376,35 +327,11 @@
                     FixedLength="false" />
           <Property Name="EndDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
                     FixedLength="false" />
-          <NavigationProperty Name="User" Relationship="Model.WorkoutUser" FromRole="Workout" ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutWorkoutSet" FromRole="Workout"
                               ToRole="WorkoutSet" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Workouts" Relationship="Model.WorkoutUser" FromRole="User" ToRole="Workout" />
-          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUser" FromRole="User"
-                              ToRole="UserPreference" />
-        </EntityType>
-        <Association Name="WorkoutUser">
-          <End Type="Model.Workout" Role="Workout" Multiplicity="*" />
-          <End Type="Model.User" Role="User" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Workout">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="WorkoutSet">
           <Key>
             <PropertyRef Name="Id" />
@@ -474,10 +401,9 @@
           <NavigationProperty Name="UnitOfMeasure" Relationship="Model.UserPreferenceUnitOfMeasure"
                               FromRole="UserPreference" ToRole="UnitOfMeasure" />
           <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Model.UserPreferenceUser" FromRole="UserPreference"
-                              ToRole="User" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="UserPreferenceExerciseType">
           <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
@@ -503,23 +429,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserPreferenceUser">
-          <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
-          <End Type="Model.User" Role="User" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="UserPreference">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="UnitOfMeasureExerciseType">
           <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="*" />
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -563,16 +477,7 @@
           <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
           <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.User)">
-        <MappingFragment StoreEntitySet="Users">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-          <ScalarProperty Name="LastName" ColumnName="LastName" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -598,6 +503,7 @@
           <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
           <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

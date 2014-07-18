@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
+using System.Web.Mvc;
 using Diggity.Entities;
 using Diggity.Services;
 
 namespace Diggity.WebApi
 {
+    [Authorize]
     public class ExerciseTypeController : BaseApiController
     {
         public ExerciseTypeController(IServiceAggregate serviceAggregate)

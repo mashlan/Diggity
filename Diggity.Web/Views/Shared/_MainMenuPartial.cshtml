@@ -1,0 +1,23 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <ul class="nav navbar-nav">
+        <li><a href="#/WOD">WODs</a></li>
+        <li>
+            <a href="#/wendler" target="_self" class="dropdown-toggle" data-toggle="dropdown">Wendlers <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#/wendler/create">Create</a></li>
+            </ul>
+        </li>
+        @if (User.IsInRole("Admin"))
+        {
+            <li>
+                <a href="#/exerciseType" target="_self" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#/exerciseType">Exercise Types</a></li>
+                    <li><a href="#unitOfMeasure">Units Of Measure</a></li>
+                    <li><a href="#exercise">Exercise</a></li>
+                </ul>
+            </li>
+        }
+    </ul>
+}

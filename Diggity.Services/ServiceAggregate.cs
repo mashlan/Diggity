@@ -12,7 +12,6 @@ namespace Diggity.Services
         private IService<Exercise> exercise;
         private IService<ExerciseType> exerciseType;
         private IService<UnitOfMeasure> unitOfMeasure;
-        private IService<User> user;
         private IService<Workout> workout;
         private IService<WorkoutSet> workoutSet;
 
@@ -53,16 +52,7 @@ namespace Diggity.Services
                                validationFactory.GetValidator<UnitOfMeasure>(repositoryAggregate)));
             }
         }
-
-        public IService<User> User
-        {
-            get
-            {
-                return user ?? (user = new ServiceBase<User>(repositoryAggregate, repositoryAggregate.User,
-                    validationFactory.GetValidator<User>(repositoryAggregate)));
-            }
-        }
-
+        
         public IService<Workout> Workout
         {
             get

@@ -18,9 +18,9 @@ namespace Diggity.Entities
         public int UnitOfMeasureId { get; set; }
         public int UserId { get; set; }
         public int Id { get; set; }
+        public string AspNetUserId { get; set; }
     
         public virtual ExerciseType ExerciseType { get; set; }
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-        public virtual User User { get; set; }
     }
 }

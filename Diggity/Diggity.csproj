@@ -55,9 +55,6 @@
     <Compile Include="Entities\UnitOfMeasure.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\User.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\UserPreference.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
