@@ -32,6 +32,15 @@ namespace Diggity.Security
 
         public static string PublicClientId { get; private set; }
 
+        private static bool IsAjaxRequest(IOwinRequest request)
+        {
+            var query = request.Query;
+            if ((query != null) && (query["X-Requested-With"] == "XMLHttpRequest")) return true;
+            
+            var headers = request.Headers;
+            return ((headers != null) && (headers["X-Requested-With"] == "XMLHttpRequest"));
+        }
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public static void ConfigureAuth(IAppBuilder app)
         {
@@ -47,7 +56,11 @@ namespace Diggity.Security
                 Provider = new CookieAuthenticationProvider
                 {
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager,
-                        ApplicationUser>(TimeSpan.FromMinutes(20), (manager, user) => user.GenerateUserIdentityAsync(manager))
+                        ApplicationUser>(TimeSpan.FromMinutes(20), (manager, user) => user.GenerateUserIdentityAsync(manager)),
+                    OnApplyRedirect = ctx =>
+                    {
+                        if (!ctx.Request.Path.StartsWithSegments(new PathString("/api"))) ctx.Response.Redirect(ctx.RedirectUri);
+                    }
                 }
             });
 

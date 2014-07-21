@@ -27,3 +27,11 @@ INSERT INTO [dbo].[UnitOfMeasures]([Name],[Description])
 GO
 
 
+insert into AspNetRoles (id, Name)values (1,'Admin');
+go
+insert into AspNetRoles (id, Name)values (2,'Coach');
+go
+
+--insert into AspNetUserRoles (UserId, RoleId)
+--values ((select Id from AspNetUsers where UserName = 'eric.mashlan@gmail.com'), 1);
+--go

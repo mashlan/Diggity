@@ -2,13 +2,14 @@
 {
     <ul class="nav navbar-nav">
         <li><a href="#/WOD">WODs</a></li>
+        <li><a href="#/timer">Timer</a></li>
         <li>
             <a href="#/wendler" target="_self" class="dropdown-toggle" data-toggle="dropdown">Wendlers <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="#/wendler/create">Create</a></li>
             </ul>
         </li>
-        @if (User.IsInRole("Admin"))
+        @if (User.IsInRole("Admin") == true)
         {
             <li>
                 <a href="#/exerciseType" target="_self" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>

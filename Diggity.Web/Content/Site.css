@@ -49,3 +49,15 @@ i {
 .list-heading span button:hover,.list-heading h4 a:hover {
     color: #000000;
 }
+
+.timer span {
+    font-size: 14em;
+}
+
+@media only screen and (max-width: 992px) {
+   .timer span { font-size: 10em; }
+}
+
+@media only screen and (max-width: 768px) {
+   .timer span { font-size: 8em; }
+}

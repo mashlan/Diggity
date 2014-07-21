@@ -1,12 +1,11 @@
 using System;
 using System.Net.Http;
-using System.Web.Mvc;
+using System.Web.Http;
 using Diggity.Entities;
 using Diggity.Services;
 
 namespace Diggity.WebApi
 {
-    [Authorize]
     public class ExerciseTypeController : BaseApiController
     {
         public ExerciseTypeController(IServiceAggregate serviceAggregate)
@@ -14,6 +13,7 @@ namespace Diggity.WebApi
         {
         }
 
+        [Authorize(Roles = "Coach")]
         public HttpResponseMessage Get()
         {
             return ApiGetFunc(ServiceAggregate.ExerciseType.GetAllSimple, null);

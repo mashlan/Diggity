@@ -1,6 +1,5 @@
 ﻿using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security.OAuth;
 
 namespace Diggity.Web
 {

@@ -24,7 +24,7 @@ namespace Diggity.Web.Controllers
         }
 
 
-        public ApplicationUserManager UserManager
+        private ApplicationUserManager UserManager
         {
             get
             {
@@ -80,7 +80,7 @@ namespace Diggity.Web.Controllers
                     await SignInAsync(user, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 }
-                ModelState.AddModelError("", "Invalid username or password.");
+                ModelState.AddModelError("", "Invalid user name or password.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -468,10 +468,10 @@ namespace Diggity.Web.Controllers
             return false;
         }
 
-        private void SendEmail(string email, string callbackUrl, string subject, string message)
-        {
-            // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
-        }
+        //private void SendEmail(string email, string callbackUrl, string subject, string message)
+        //{
+        //    // For information on sending mail, please visit http://go.microsoft.com/fwlink/?LinkID=320771
+        //}
 
         public enum ManageMessageId
         {
@@ -506,7 +506,7 @@ namespace Diggity.Web.Controllers
 
             public override void ExecuteResult(ControllerContext context)
             {
-                var properties = new AuthenticationProperties() { RedirectUri = RedirectUri };
+                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
                 if (UserId != null)
                 {
                     properties.Dictionary[XsrfKey] = UserId;
