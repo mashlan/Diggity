@@ -1,12 +1,33 @@
-﻿<div class="form-inline">
-    <div class="form-group timer">
-        <span>{{timer.hour}} : </span>
-        <span>{{timer.minute}} : </span>
-        <span>{{timer.second}}</span>
+﻿
+<div class="timer">
+    <div class="left">
+        <i class="fa fa-plus-circle" ng-click="increaseMinute()"></i>
+        <i class="fa fa-minus-circle" ng-click="decreaseMinute()"></i>
     </div>
+    <div class="right">
+        <i class="fa fa-plus-circle" ng-click="increaseSecond()"></i>
+        <i class="fa fa-minus-circle" ng-click="decreaseSecond()"></i>
+    </div>
+    
+    <span ng-class="{'text-danger': lessThanTen}">{{timer.minute}} : </span>
+    <span ng-class="{'text-danger': lessThanTen}">{{timer.second}}</span>
 </div>
+<div class="clearfix"></div>
+
+<div class="checkbox">
+    <label>
+        <input type="checkbox" ng-model="timer.isCountDown">
+        Count Down
+    </label>
+</div>
+
+<audio id="beep_sound">
+    <source src="../../Content/audio/beep-07.wav" type="audio/wav"/>
+</audio>
+
 
 <div class="form-group">
     <button class="btn-lg btn btn-success" type="button" ng-click="startTimer()">Start</button>
     <button class="btn btn-lg btn-danger" type="button" ng-click="stopTimer()">Stop</button>
+    <button class="btn btn-lg btn-warning" type="button" ng-click="resetTimer()">Reset</button>
 </div>

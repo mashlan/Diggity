@@ -50,8 +50,30 @@ i {
     color: #000000;
 }
 
+.timer {
+    margin: 0 auto;
+    width: 900px;
+    font-weight: bold;
+}
 .timer span {
-    font-size: 14em;
+    font-size: 20em;
+    margin: 0;
+}
+
+.timer div {
+    font-size: 3em;
+    width: 50%;
+}
+
+.timer div i {
+    cursor: pointer;
+}
+.timer div.right {
+    float: right;
+    text-align: right;
+}
+.timer div.left {
+    float: left;
 }
 
 @media only screen and (max-width: 992px) {
