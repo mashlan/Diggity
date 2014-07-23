@@ -249,6 +249,7 @@
     <Content Include="Html\Exercise\ExerciseView.html" />
     <Content Include="Html\Home.html" />
     <Content Include="Html\Timers\BasicTimer.html" />
+    <Content Include="Html\Timers\NumberPanel.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
     <Content Include="Scripts\app.js" />
