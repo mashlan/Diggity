@@ -1,83 +1,43 @@
 ﻿
-<div class="timer">
-    <div class="left">
-        <i class="fa fa-plus-circle" ng-click="increaseMinute()"></i>
-        <i class="fa fa-minus-circle" ng-click="decreaseMinute()"></i>
-    </div>
-    <div class="right">
-        <i class="fa fa-plus-circle" ng-click="increaseSecond()"></i>
-        <i class="fa fa-minus-circle" ng-click="decreaseSecond()"></i>
-    </div>
-    
-    <span ng-class="{'text-danger': lessThanTen}">{{timer.minute}} : </span>
-    <span ng-class="{'text-danger': lessThanTen}">{{timer.second}}</span>
-</div>
-<div class="clearfix"></div>
-
 
 <div class="timer">
-    <ul id="hour_tens">
-        <li class="selected">0</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
+    <ul id="minutes_tens" ng-class="{'text-danger': lessThanTen}">
+        <li id="{{tens.id}}" ng-repeat="tens in Minutes.TenSpot"
+            ng-class="{selected: tens.isSelected}"
+            ng-click="changeTime(Minutes.TenSpot, tens.id)">{{tens.value}}</li>
     </ul>
-    <ul>
-        <li class="selected">0</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
+    <ul id="minutes_ones" ng-class="{'text-danger': lessThanTen}">
+        <li id="{{ones.id}}"
+            ng-repeat="ones in Minutes.OneSpot"
+            ng-click="changeTime(Minutes.OneSpot, ones.id)"
+            ng-class="{selected: ones.isSelected}">{{ones.value}}</li>
     </ul>
-    <ul class="spacer">
-        <li>:</li>
+
+    <ul class="spacer" ng-class="{'text-danger': lessThanTen}"><li>:</li></ul>
+
+    <ul id="seconds_tens" ng-class="{'text-danger': lessThanTen}">
+        <li id="{{tens.id}}"
+            ng-click="changeTime(Seconds.TenSpot, tens.id)"
+            ng-repeat="tens in Seconds.TenSpot"
+            ng-class="{selected: tens.isSelected}">{{tens.value}}</li>
     </ul>
-    <ul>
-        <li class="selected">0</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-    </ul>
-    <ul>
-        <li class="selected">0</li>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
+    <ul id="seconds_ones" ng-class="{'text-danger': lessThanTen}">
+        <li id="{{ones.id}}"
+            ng-click="changeTime(Seconds.OneSpot, ones.id)"
+            ng-repeat="ones in Seconds.OneSpot"
+            ng-class="{selected: ones.isSelected}">{{ones.value}}</li>
     </ul>
 </div>
 
 <div class="checkbox">
     <label>
-        <input type="checkbox" ng-model="timer.isCountDown">
+        <input type="checkbox" ng-model="isCountDown">
         Count Down
     </label>
 </div>
 
 <audio id="beep_sound">
-    <source src="../../Content/audio/beep-07.wav" type="audio/wav"/>
+    <source src="../../Content/audio/beep-07.wav" type="audio/wav" />
 </audio>
 
 
@@ -90,45 +50,18 @@
 
 <script type="text/javascript">
     $(function () {
+
+        //$('ul').click(function () {
+        //    changeTime(this, 1000);
+        //});
+
+        //$('ul').bind("mousewheel", function (e) {
+        //    var moveUp = (e.originalEvent.wheelDelta >= 0);
+        //    e.preventDefault();
+        //    changeTime(this, 100, moveUp);
+        //});
+
         
-        $('ul').click(function () {
-            var selected = changeTime(this);
-
-            $(this).animate({
-                scrollTop: 306 * selected
-            }, 1000);
-        });
-
-        $('ul').bind("mousewheel", function (e) {
-            var moveUp = (e.originalEvent.wheelDelta >= 0);
-            e.preventDefault();
-            var selected = changeTime(this, moveUp);
-
-            $(this).animate({
-                scrollTop: 306 * selected
-            }, 100);
-        });
-
-
-        function changeTime(element, moveup) {
-            var $this = $(element);
-
-            //get currently selected
-            var selected = parseInt($this.find('.selected').text());
-            if (selected === 9 && !moveup) return 9;
-            
-            if (moveup) {
-                selected = selected === 0 ? 0 : selected - 1;
-            } else {
-                selected++;
-            }
-
-            //clear classes
-            $this.children().removeClass('selected');
-            $this.find('li:contains(' + selected + ')').addClass('selected');
-
-            return selected;
-        }
 
     });
 </script>

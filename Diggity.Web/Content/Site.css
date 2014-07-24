@@ -52,15 +52,15 @@ i {
 
 .timer {
     margin: 0 auto;
-    width: 930px;
+    width: 980px;
     font-weight: bold;
 }
 
     .timer ul {
-        width: 180px;
+        width: 220px;
         margin: 0;
         padding: 0;
-        height: 304px;
+        height: 334px;
         overflow-y: scroll;
         -webkit-overflow-scrolling: auto;
         -ms-overflow-style: none;
@@ -77,15 +77,15 @@ i {
         cursor: default !important;
     }
 
-.timer span, .timer select, .timer ul li {
-    font-size: 20em;
+.timer ul li {
+    font-size: 24em;
     line-height: 1;
     margin: 2px;
-    border: 1px solid #ffffff;
+    /*border: 1px solid #ffffff;*/
     text-align: center;
     cursor: pointer;
     display: inline-block;
-    background-color: #708090;
+    /*background-color: #708090;*/
 }
 
 .timer div {
@@ -105,11 +105,18 @@ i {
 }
 
 @media only screen and (max-width: 992px) {
-   .timer span { font-size: 10em; }
+   .timer{ width: 80%;}
+    .timer ul {
+        width: 20%;
+        height: 180px;
+    }
+
+    .timer ul li { font-size: 12em; }
+
 }
 
 @media only screen and (max-width: 768px) {
-    .timer span {font-size: 8em;}
+    .timer ul li {font-size: 8em;}
 }
 
 .number-panel {
