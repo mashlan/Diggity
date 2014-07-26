@@ -1,6 +1,7 @@
 ﻿
 body {
-    margin-top: 60px;
+    margin-top: 70px;
+    background-color: #fafafa;
 }
 
 .panel-title {
@@ -52,7 +53,7 @@ i {
 
 .timer {
     margin: 0 auto;
-    width: 980px;
+    width: 990px;
     font-weight: bold;
 }
 
@@ -60,14 +61,14 @@ i {
         width: 220px;
         margin: 0;
         padding: 0;
-        height: 334px;
+        height: 360px;
         overflow-y: scroll;
         -webkit-overflow-scrolling: auto;
         -ms-overflow-style: none;
         overflow: -moz-scrollbars-none;
         display: inline-block;
     }
-
+    
     .timer ul::-webkit-scrollbar {
         display: none;
     }
@@ -79,8 +80,9 @@ i {
 
 .timer ul li {
     font-size: 24em;
+    padding: 0;
+    margin: 0;
     line-height: 1;
-    margin: 2px;
     /*border: 1px solid #ffffff;*/
     text-align: center;
     cursor: pointer;

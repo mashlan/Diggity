@@ -7,6 +7,12 @@ myControllers.controller('TimerCtrl', ['$routeParams', '$scope', '$location',
 
         $scope.isCountDown = false;
         $scope.lessThanTen = false;
+        $scope.MinutesTens = createNumberArray(9);
+        $scope.MinutesOnes = createNumberArray(9);
+        $scope.SecondsTens = createNumberArray(5);
+        $scope.SecondsOnes = createNumberArray(9);
+
+
         $scope.Minutes = {
             TenSpot: createNumberArray(9, "min_tens"),
             OneSpot: createNumberArray(9, "min_ones")
@@ -17,7 +23,7 @@ myControllers.controller('TimerCtrl', ['$routeParams', '$scope', '$location',
         }
 
         var myTimer;
-        var scrollMargin = 364;
+        var scrollMargin = 360;
         var minTenUl = $("#minutes_tens");
         var minOneUl = $("#minutes_ones");
         var secTenUl = $("#seconds_tens");
@@ -38,7 +44,7 @@ myControllers.controller('TimerCtrl', ['$routeParams', '$scope', '$location',
         $(secOneUl).bind("mousewheel", function (e) {
             wheel(secOneUl, $scope.Seconds.OneSpot, e);
         });
-
+        
         function wheel(element, array, event) {
             var moveUp = (event.originalEvent.wheelDelta >= 0);
             event.preventDefault();
@@ -195,33 +201,6 @@ myControllers.controller('TimerCtrl', ['$routeParams', '$scope', '$location',
                     return false;
                 }
             });
-
-
-
-
-            //var $this = $(element);
-
-            ////get currently selected
-            //var selected = parseInt($this.find('.selected').text());
-
-            ////if (selected === 9 && !moveup) return;
-
-            //if (moveup) {
-            //    selected = selected === 0 ? 0 : selected - 1;
-            //} else {
-            //    selected++;
-            //}
-
-            ////clear classes
-            //$this.children().removeClass('selected');
-            //var child = $this.find('li:contains(' + selected + ')');
-
-            //if (child.length > 0) {
-            //    child.addClass('selected');
-            //} else {
-            //    selected = moveup ? selected + 1 : selected - 1;
-            //}
-
             
 
         }

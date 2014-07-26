@@ -9,6 +9,71 @@ angular.module('myApp.directives', [])
             };
         }
     ])
+
+    .directive('timerClick', function() {
+            return function(scope, element, attr) {
+                element.bind("click",
+                    function(e) {
+                        e.preventDefault();
+                        var scrollOffset = element.height();
+                        var moveUp = (e.originalEvent.wheelDelta >= 0);
+                        var children = element.find('li');
+                        var selected = element.find('.selected');
+                        if (selected.length === 0) {
+                            selected = children.first();
+                        }
+                        var top = parseInt(selected.text());
+
+                        //exit if we are at the bottom of the list
+                        if (top < children.length -1 && top >= 0) {
+                            top = moveUp ? top - 1 : top + 1;
+
+                            element.animate({
+                                scrollTop: scrollOffset * top
+                            }, 200);
+
+                            //set next selected
+                            element.find('li:contains(' + top + ')').addClass('selected');
+                            selected.removeClass('selected');
+                        }
+                    }
+                );
+            }
+        }
+    )
+
+    .directive('timerScroll', function() {
+            return function(scope, element, attr) {
+                element.bind("touchmove",
+                    function(e) {
+                        e.preventDefault();
+                        var moveUp = (e.originalEvent.wheelDelta >= 0);
+                        var children = element.find('li');
+                        var selected = element.find('.selected');
+                        if (selected.length === 0) {
+                            selected = children.first();
+                        }
+                        var top = parseInt(selected.text());
+
+                        //exit if we are at the bottom of the list
+                        if (top < children.length -1 && top >= 0) {
+
+                            top = moveUp ? top - 1 : top + 1;
+
+                            element.animate({
+                                scrollTop: 364 * top
+                            }, 100);
+
+                            //set next selected
+                            element.find('li:contains(' + top + ')').addClass('selected');
+                            selected.removeClass('selected');
+                        }
+                    }
+                );
+            }
+        }
+    )
+
     .directive('oneRepMaxForm', [
         function() {
             return {

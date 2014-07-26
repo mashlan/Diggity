@@ -6,10 +6,9 @@
             ng-class="{selected: tens.isSelected}"
             ng-click="changeTime(Minutes.TenSpot, tens.id)">{{tens.value}}</li>
     </ul>
-    <ul id="minutes_ones" ng-class="{'text-danger': lessThanTen}">
+    <ul id="minutes_ones" ng-class="{'text-danger': lessThanTen}" timer-click>
         <li id="{{ones.id}}"
             ng-repeat="ones in Minutes.OneSpot"
-            ng-click="changeTime(Minutes.OneSpot, ones.id)"
             ng-class="{selected: ones.isSelected}">{{ones.value}}</li>
     </ul>
 
