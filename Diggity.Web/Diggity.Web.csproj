@@ -231,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\audio\47434^BUZZER.mp3" />
     <Content Include="Content\audio\beep-07.wav" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -258,7 +259,6 @@
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
     <Content Include="Scripts\controllers\exerciseTypeEditController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
-    <Content Include="Scripts\controllers\timerController.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />
     <Content Include="Scripts\controllers\unitOfMeasureEditController.js" />
     <Content Include="Scripts\directives.js" />

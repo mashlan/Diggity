@@ -51,7 +51,12 @@ i {
     color: #000000;
 }
 
-.timer {
+.ready-timer {
+    display: none;
+    width: 100px !important;
+}
+
+.timer{
     margin: 0 auto;
     width: 990px;
     font-weight: bold;
