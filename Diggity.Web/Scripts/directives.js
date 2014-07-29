@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 /* Common Directives */
-angular.module('myApp.directives', ['template/timer/timer.html'])
+angular.module('myApp.directives', [])
     .directive('appVersion', [
         'version', function(version) {
             return function(scope, elm, attrs) {
@@ -9,17 +9,6 @@ angular.module('myApp.directives', ['template/timer/timer.html'])
             };
         }
     ])
-
-    .directive('hittTimer', function($compile) {
-            return {
-                restrict: 'E',
-                templateUrl: 'template/timer/timer.html',
-                link: function(scope, element, attr) {
-                    element.attr("timer-click", "");
-                }
-            }
-        }
-    )
 
     .directive('timerClick', function() {
             return function(scope, element, attr) {
@@ -214,9 +203,3 @@ angular.module('myApp.directives', ['template/timer/timer.html'])
             };
         }
     ]);
-
-
-angular.module("template/timer/timer.html", []).run(["$templateCache", function ($templateCache) {
-    $templateCache.put("template/timer/timer.html",
-      '<div class="timer"><ul><li class="selected">0</li><li>1</li><li>2</li></ul></div>');
-}]);
