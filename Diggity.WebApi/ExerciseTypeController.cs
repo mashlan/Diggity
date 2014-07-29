@@ -13,7 +13,7 @@ namespace Diggity.WebApi
         {
         }
 
-        [Authorize(Roles = "Coach")]
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Get()
         {
             return ApiGetFunc(ServiceAggregate.ExerciseType.GetAllSimple, null);
@@ -26,16 +26,19 @@ namespace Diggity.WebApi
             return ApiGetFunc(func, message);
         }
 
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Post(ExerciseType exerciseType)
         {
             return ApiSaveFunc(ServiceAggregate.ExerciseType.Create, exerciseType);
         }
-        
+
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Put(ExerciseType exerciseType)
         {
             return ApiSaveFunc(ServiceAggregate.ExerciseType.Update, exerciseType);
         }
 
+        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(int id)
         {
             Func<bool> func = () => ServiceAggregate.ExerciseType.Delete(id);

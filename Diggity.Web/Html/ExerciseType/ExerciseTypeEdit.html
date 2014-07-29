@@ -35,11 +35,11 @@
                 <label class="control-label">Units Of Measure</label>
                 <div class="clearfix"></div>
 
-                <ul class="list-group">
+                <ul class="list-group check-group">
                     <li class="list-group-item col-lg-3" ng-repeat="unit in availableUnitsOfMeasure">
-                        <button class="btn btn-default" type="button" ng-click="toggleSelection(unit)" style="font-size: 1.5em;">
+                        <span class="" ng-click="toggleSelection(unit)">
                             <i class="fa" ng-class="{'fa-check-square-o text-success': unit.selected, 'fa-square-o': !unit.selected}"></i> {{unit.Name}}
-                        </button> 
+                        </span> 
                     </li>
                 </ul>
             </div>

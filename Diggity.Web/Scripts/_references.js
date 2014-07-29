@@ -39,3 +39,6 @@
 /// <reference path="vendors/modernizr/modernizr-2.7.2.js" />
 /// <reference path="vendors/respond/respond.js" />
 /// <reference path="vendors/respond/respond.matchmedia.addlistener.js" />
+/// <reference path="hitt_timer.js" />
+/// <reference path="services/exerciseservice.js" />
+/// <reference path="controllers/exerciseeditcontroller.js" />

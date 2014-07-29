@@ -26,6 +26,7 @@ namespace Diggity.Web
                 "~/Scripts/vendor/angularjs/angular-resource.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/myApp").Include(
+                "~/Scripts/hitt_timer.js",
                 "~/Scripts/app.js",
                 "~/Scripts/config.js",
                 "~/Scripts/directives.js",
@@ -34,6 +35,7 @@ namespace Diggity.Web
 
             bundles.Add(new ScriptBundle("~/bundles/myControllers").Include(
                 "~/Scripts/controllers/exerciseTypeController.js",
+                "~/Scripts/controllers/exerciseEditController.js",
                 "~/Scripts/controllers/exerciseTypeEditController.js",
                 "~/Scripts/controllers/unitOfMeasureController.js",
                 "~/Scripts/Controllers/unitOfMeasureEditController.js"

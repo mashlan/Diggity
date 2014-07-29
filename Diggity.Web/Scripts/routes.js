@@ -9,17 +9,25 @@ angular.module('myApp.routes', ['ngRoute'])
 
             $routeProvider.when('/', { templateUrl: '../Html/Home.html', controller: 'HomeCtrl' });
 
+            //Units of Measure
             $routeProvider.when('/unitOfMeasure', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureView.html', controller: 'UnitOfMeasureCtrl' });
             $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
             $routeProvider.when('/unitOfMeasure/new', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
 
+            //Exercise Types
             $routeProvider.when('/exerciseType', { templateUrl: '../Html/ExerciseType/ExerciseTypeView.html', controller: 'ExerciseTypeCtrl' });
             $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/ExerciseType/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
             $routeProvider.when('/exerciseType/new', { templateUrl: '../Html/UnitOfMeasure/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
 
+            //Exercise
             $routeProvider.when('/exercise', { templateUrl: '../Html/Exercise/ExerciseView.html', controller: 'ExerciseCtrl' });
+            $routeProvider.when('/exercise/:id', { templateUrl: '../Html/Exercise/ExerciseEdit.html', controller: 'ExerciseEditCtrl' });
+            $routeProvider.when('/exercise/new', { templateUrl: '../Html/Exercise/ExerciseEdit.html', controller: 'ExerciseEditCtrl' });
 
-            $routeProvider.when('/timer', { templateUrl: '../Html/Timers/BasicTimer.html', controller: 'TimerCtrl' });
+            //HIT Timer
+            $routeProvider.when('/timer', { templateUrl: '../Html/Timers/BasicTimer.html' });
+
+            //All else
             $routeProvider.otherwise({ redirectTo: '/' });
         }
     ])
@@ -27,7 +35,7 @@ angular.module('myApp.routes', ['ngRoute'])
         '$q', '$location', function($q, $location) {
             return {
                 response: function(response) {
-                    if (response.status === 401) {
+                    if (response.status === 401) {  
                         console.log("Response 401");
                     }
                     return response || $q.when(response);

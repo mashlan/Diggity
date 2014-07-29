@@ -1,2 +1,29 @@
 ﻿
-<h1>Exercises</h1>
+<div ng-show="loading">
+    <h2><i class="fa fa-2x fa-spin fa-spinner"></i> Loading Exercises . . .</h2>
+</div>
+
+<div ng-hide="loading">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="col-lg-9 panel-title">Exercises</div>
+            <div class="col-lg-3">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchText.Name">
+                        <button class="btn btn-link btn-sm btn-navigation" tooltip="Add New Exercise" type="button" ng-click="addNew()"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="list-group">
+            <a href="#/exercise/{{exercise.Id}}" class="list-group-item" ng-repeat="exercise in exercises |filter:searchText">
+                <i class="fa fa-caret-right"></i>
+                <strong>{{exercise.Name}}</strong>
+            </a>
+        </div>
+    </div>
+</div>

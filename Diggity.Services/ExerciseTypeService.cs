@@ -18,28 +18,13 @@ namespace Diggity.Services
         public override IEnumerable<object> GetAllSimple()
         {
             var data = Repository.GetAll();
-            return new List<object>(data.Select(
-                a =>
-                    new
-                    {
-                        a.Id,
-                        a.Description,
-                        a.Name,
-                        UnitOfMeasures = a.UnitOfMeasures.Select(u => new {u.Id, u.Name})
-                    }));
-
+            return new List<object>(data.Select(GetSimpleObject));
         }
 
         public override object SingleSimple(Expression<Func<ExerciseType, bool>> expression)
         {
             var data = Repository.Single(expression);
-            return new
-            {
-                data.Id,
-                data.Description,
-                data.Name,
-                UnitOfMeasures = data.UnitOfMeasures.Select(u => new {u.Id, u.Name})
-            };
+            return GetSimpleObject(data);
         }
 
         public override void Create(ExerciseType entity)
@@ -69,6 +54,17 @@ namespace Diggity.Services
             
             //update entity
             base.Update(ex);
+        }
+
+        private static object GetSimpleObject(ExerciseType exerciseType)
+        {
+            return new
+            {
+                exerciseType.Id,
+                exerciseType.Description,
+                exerciseType.Name,
+                UnitOfMeasures = exerciseType.UnitOfMeasures.Select(u => new {u.Id, u.Name})
+            };
         }
     }
 }

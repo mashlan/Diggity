@@ -142,3 +142,15 @@ i {
     display: inline-block;
     background-color: #708090;
 }
+
+.check-group li{
+    border: none;
+}
+
+.check-group li span {
+    font-size: 1.5em;
+}
+
+.check-group li span:hover {
+    cursor: pointer;
+}

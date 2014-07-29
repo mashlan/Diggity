@@ -231,6 +231,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\app.css" />
     <Content Include="Content\audio\47434^BUZZER.mp3" />
     <Content Include="Content\audio\beep-07.wav" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -247,6 +248,7 @@
     <Content Include="Global.asax" />
     <Content Include="Html\ExerciseType\ExerciseTypeEdit.html" />
     <Content Include="Html\ExerciseType\ExerciseTypeView.html" />
+    <Content Include="Html\Exercise\ExerciseEdit.html" />
     <Content Include="Html\Exercise\ExerciseView.html" />
     <Content Include="Html\Home.html" />
     <Content Include="Html\Timers\BasicTimer.html" />
@@ -256,6 +258,7 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\exerciseController.js" />
+    <Content Include="Scripts\controllers\exerciseEditController.js" />
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
     <Content Include="Scripts\controllers\exerciseTypeEditController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
@@ -268,6 +271,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Scripts\hitt_timer.js" />
+    <Content Include="Scripts\services\exerciseService.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.min.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.js" />

@@ -1,8 +1,8 @@
 ﻿
-services.factory("ExerciseType", ['$resource',
+services.factory("Exercise", ['$resource',
     function ($resource) {
 
-        var resource = $resource('api/ExerciseType', {}, {
+        var resource = $resource('api/Exercise', {}, {
             query: { method: 'GET', isArray: true },
             get: { method: 'GET', params: { id: '@id' } },
             create: { method: 'POST' },
