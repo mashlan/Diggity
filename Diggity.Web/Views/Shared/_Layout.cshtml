@@ -22,6 +22,7 @@
     @* Angular JS Scripts *@
     @if (HttpContext.Current.IsDebuggingEnabled)
     {
+        <script src="~/Scripts/hitt_timer.js"></script>
         <script src="~/Scripts/app.js"></script>
         <script src="~/Scripts/config.js"></script>
         <script src="~/Scripts/directives.js"></script>
@@ -32,10 +33,11 @@
         <script src="~/Scripts/controllers/unitOfMeasureController.js"></script>
         <script src="~/Scripts/controllers/unitOfMeasureEditController.js"></script>
         <script src="~/Scripts/controllers/exerciseController.js"></script>
+        <script src="~/Scripts/controllers/exerciseEditController.js"></script>
         <script src="~/Scripts/controllers/homeController.js"></script>
-        <script src="~/Scripts/controllers/timerController.js"></script>
         <script src="~/Scripts/services/exerciseTypeService.js"></script>
         <script src="~/Scripts/services/unitOfMeasureService.js"></script>
+        <script src="~/Scripts/services/exerciseService.js"></script>
     }
     else
     {

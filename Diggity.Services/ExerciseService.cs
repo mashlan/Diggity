@@ -8,9 +8,9 @@ using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class UnitOfMeasureService : ServiceBase<UnitOfMeasure>
+    public class ExerciseService : ServiceBase<Exercise>
     {
-        public UnitOfMeasureService(IRepositoryAggregate repositoryAggregate, IRepository<UnitOfMeasure> repository, IValidator<UnitOfMeasure> validator)
+        public ExerciseService(IRepositoryAggregate repositoryAggregate, IRepository<Exercise> repository, IValidator<Exercise> validator) 
             : base(repositoryAggregate, repository, validator)
         {
         }
@@ -21,21 +21,22 @@ namespace Diggity.Services
             return new List<object>(data.Select(GetSimpleObject));
         }
 
-        public override object SingleSimple(Expression<Func<UnitOfMeasure, bool>> expression)
+        public override object SingleSimple(Expression<Func<Exercise, bool>> expression)
         {
             var result = base.Single(expression);
             return GetSimpleObject(result);
         }
 
-        private static object GetSimpleObject(UnitOfMeasure unit)
+        private static object GetSimpleObject(Exercise ex)
         {
             return new
             {
-                unit.Id,
-                unit.Description,
-                unit.Name,
-                unit.IsValid,
-                unit.ValidationErrors
+                ex.Name,
+                ex.Abbreviation,
+                ex.Description,
+                ExerciseTypeName = ex.ExerciseType.Name,
+                ex.ExerciseTypeId,
+                ex.Id
             };
         }
     }

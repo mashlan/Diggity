@@ -26,7 +26,7 @@ namespace Diggity.Services
             get
             {
                 return exercise ??
-                       (exercise = new ServiceBase<Exercise>(repositoryAggregate, repositoryAggregate.Exercise,
+                       (exercise = new ExerciseService(repositoryAggregate, repositoryAggregate.Exercise,
                            validationFactory.GetValidator<Exercise>(repositoryAggregate)));
             }
         }

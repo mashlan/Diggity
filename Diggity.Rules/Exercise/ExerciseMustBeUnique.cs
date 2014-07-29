@@ -16,7 +16,7 @@ namespace Diggity.Rules
 
         public bool IsSatisfiedBy(Exercise entity)
         {
-            var dubs = repository.Find(e => e.Name == entity.Name);
+            var dubs = repository.Find(e => e.Name == entity.Name && e.Id != entity.Id);
             return !dubs.Any();
         }
     }

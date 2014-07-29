@@ -1,66 +1,9 @@
 ﻿
 
-<div class="timer">
-    <ul id="minutes_tens" ng-class="{'text-danger': lessThanTen}">
-        <li id="{{tens.id}}" ng-repeat="tens in Minutes.TenSpot"
-            ng-class="{selected: tens.isSelected}"
-            ng-click="changeTime(Minutes.TenSpot, tens.id)">{{tens.value}}</li>
-    </ul>
-    <ul id="minutes_ones" ng-class="{'text-danger': lessThanTen}" timer-click>
-        <li id="{{ones.id}}"
-            ng-repeat="ones in Minutes.OneSpot"
-            ng-class="{selected: ones.isSelected}">{{ones.value}}</li>
-    </ul>
-
-    <ul class="spacer" ng-class="{'text-danger': lessThanTen}"><li>:</li></ul>
-
-    <ul id="seconds_tens" ng-class="{'text-danger': lessThanTen}">
-        <li id="{{tens.id}}"
-            ng-click="changeTime(Seconds.TenSpot, tens.id)"
-            ng-repeat="tens in Seconds.TenSpot"
-            ng-class="{selected: tens.isSelected}">{{tens.value}}</li>
-    </ul>
-    <ul id="seconds_ones" ng-class="{'text-danger': lessThanTen}">
-        <li id="{{ones.id}}"
-            ng-click="changeTime(Seconds.OneSpot, ones.id)"
-            ng-repeat="ones in Seconds.OneSpot"
-            ng-class="{selected: ones.isSelected}">{{ones.value}}</li>
-    </ul>
-</div>
-
-<div class="checkbox">
-    <label>
-        <input type="checkbox" ng-model="isCountDown">
-        Count Down
-    </label>
-</div>
-
-<audio id="beep_sound">
-    <source src="../../Content/audio/beep-07.wav" type="audio/wav" />
-</audio>
-
-
-<div class="form-group">
-    <button class="btn-lg btn btn-success" type="button" ng-click="startTimer()">Start</button>
-    <button class="btn btn-lg btn-danger" type="button" ng-click="stopTimer()">Stop</button>
-    <button class="btn btn-lg btn-warning" type="button" ng-click="resetTimer()">Reset</button>
-</div>
-
-
-<script type="text/javascript">
-    $(function () {
-
-        //$('ul').click(function () {
-        //    changeTime(this, 1000);
-        //});
-
-        //$('ul').bind("mousewheel", function (e) {
-        //    var moveUp = (e.originalEvent.wheelDelta >= 0);
-        //    e.preventDefault();
-        //    changeTime(this, 100, moveUp);
-        //});
-
-        
-
-    });
-</script>
+<hitt-timer enable-click="true"
+            enable-mousewheel="true"
+            end-file-scource=""
+            show-ready-timer="true"
+            buzzard-file-source="../../Content/audio/47434^BUZZER.mp3"
+            beep-file-source="../../Content/audio/beep-07.wav">
+</hitt-timer>
