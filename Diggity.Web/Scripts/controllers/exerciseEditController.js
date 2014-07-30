@@ -10,21 +10,30 @@ myControllers.controller('ExerciseEditCtrl', ['$routeParams', '$scope', '$locati
         $scope.isEditing = false;
         $scope.ExerciseTypes = [];
 
-        ExerciseType.query()
-            .then(function (resp) { $scope.availableExerciseTypes = resp; }, queryError)
-            .catch(queryError);
-        
-        if ($routeParams.id != 'new') {
-            Exercise.get($routeParams.id)
-                .then(getOne, queryError)
+        $scope.getAllExercises = function() {
+            Exercise.query()
+                .then(function(resp) { $scope.exercises = resp; }, queryError)
                 .catch(queryError)
                 .finally(queryFinally);
-        } else {
-            $scope.exercise = {
-                Id: 0
-            };
-            $scope.loading = false;
-            $scope.isEditing = true;
+        }
+
+        $scope.getExercise = function() {
+            ExerciseType.query()
+                .then(function(resp) { $scope.availableExerciseTypes = resp; }, queryError)
+                .catch(queryError);
+
+            if ($routeParams.id != 'new') {
+                Exercise.get($routeParams.id)
+                    .then(getOne, queryError)
+                    .catch(queryError)
+                    .finally(queryFinally);
+            } else {
+                $scope.exercise = {
+                    Id: 0
+                };
+                $scope.loading = false;
+                $scope.isEditing = true;
+            }
         }
 
         $scope.saveExercise = function () {
@@ -62,7 +71,7 @@ myControllers.controller('ExerciseEditCtrl', ['$routeParams', '$scope', '$locati
             $scope.ExerciseTypeId = type.Id;
         }
 
-        function saveSuccess(resp) {
+        function saveSuccess() {
             $scope.isEditing = false;
             window.alertShow("success", "Woo Hoo! Record saved success");
         }

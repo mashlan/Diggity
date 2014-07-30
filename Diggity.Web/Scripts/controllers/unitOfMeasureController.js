@@ -2,11 +2,9 @@
 /**********************************************************************
  * *************** Unit of Measure View ******************************
  *********************************************************************/
-myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure','$location',
-    function ($routeParams, $scope, UnitOfMeasure, $location) {
+myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure',
+    function ($routeParams, $scope, UnitOfMeasure) {
         'use strict';
-
-        $scope.loading = true;
 
         UnitOfMeasure.query()
             .then(function(resp) { $scope.unitOfMeasures = resp; }, queryError)
@@ -14,15 +12,11 @@ myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOf
             .finally(queryFinally);
         
         function queryFinally() {
-            $scope.loading = false;
+            console.log("finished loading record(s) from database");
         }
 
         function queryError(error) {
             window.alertShow("error", error.data.Message);
         }
-
-        $scope.addNew = function() {
-            $location.path("/unitOfMeasure/new");
-        };
     }
 ]);

@@ -1,11 +1,7 @@
-﻿<div ng-show="loading">
-    <h2><i class="fa fa-2x fa-spin fa-spinner"></i> Loading Exercise Types . . .</h2>
-</div>
-
-<div ng-hide="loading">
-    <diggity-grid title="Exercise Types"
-                  hover-text="Add New Exercise Type"
-                  nav-url="exerciseType"
-                  records="exerciseTypes">
-    </diggity-grid>
-</div>
+﻿
+<diggity-grid header-title="Exercise Types"
+              hover-text="Add New Exercise Type"
+              nav-url="exerciseType"
+              records="exerciseTypes"
+              show-loading='true'>
+</diggity-grid>

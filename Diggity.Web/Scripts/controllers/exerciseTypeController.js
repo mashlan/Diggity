@@ -2,12 +2,9 @@
 /**********************************************************************
  * *************** Exercise Type View  ********************************
  *********************************************************************/
-myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType', '$location',
-    function($scope, ExerciseType, $location) {
+myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType',
+    function($scope, ExerciseType) {
         'use strict';
-
-        $scope.exerciseTypes = [];
-        $scope.loading = true;
 
         ExerciseType.query()
             .then(function(resp) { $scope.exerciseTypes = resp; }, queryError)
@@ -15,19 +12,11 @@ myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType', '$locati
             .finally(queryFinally);
 
         function queryFinally() {
-            $scope.loading = false;
+            console.log('finished loading records from database');
         }
 
         function queryError(error) {
             window.alertShow("error", error.data.Message);
-        }
-
-        $scope.addNew = function () {
-            $location.path("/exerciseType/new");
-        }
-
-        $scope.search = function () {
-            $scope.showSearch = !$scope.showSearch;
         }
     }
 ]);

@@ -21,8 +21,7 @@ angular.module('myApp.routes', ['ngRoute'])
 
             //Exercise
             $routeProvider.when('/exercise', { templateUrl: '../Html/Exercise/ExerciseView.html', controller: 'ExerciseCtrl' });
-            $routeProvider.when('/exercise/:id', { templateUrl: '../Html/Exercise/ExerciseEdit.html', controller: 'ExerciseEditCtrl' });
-            $routeProvider.when('/exercise/new', { templateUrl: '../Html/Exercise/ExerciseEdit.html', controller: 'ExerciseEditCtrl' });
+            $routeProvider.when('/exercise/:id', { templateUrl: '../Html/Exercise/ExerciseEdit.html', controller: 'ExerciseCtrl' });
 
             //HIT Timer
             $routeProvider.when('/timer', { templateUrl: '../Html/Timers/BasicTimer.html' });
