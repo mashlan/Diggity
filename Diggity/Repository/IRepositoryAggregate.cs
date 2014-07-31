@@ -9,5 +9,7 @@ namespace Diggity.Repository
         IRepository<UnitOfMeasure> UnitOfMeasure { get; }
         IRepository<Workout> Workout { get; }
         IRepository<WorkoutSet> WorkoutSet { get; }
+        IRepository<UserPreference> UserPreference { get; }
+        IRepository<PersonalRecord> PersonalRecordHistory { get; } 
     }
 }

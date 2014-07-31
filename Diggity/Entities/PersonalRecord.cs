@@ -12,7 +12,7 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class PersonalRecordHistory : DiggityEntity
+    public partial class PersonalRecord : DiggityEntity
     {
         public int Id { get; set; }
         public System.DateTime RecordDate { get; set; }

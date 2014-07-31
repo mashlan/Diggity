@@ -41,10 +41,12 @@
   <ItemGroup>
     <Compile Include="ExerciseService.cs" />
     <Compile Include="ExerciseTypeService.cs" />
+    <Compile Include="PersonalRecordHistoryService.cs" />
     <Compile Include="ServiceAggregate.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfMeasureService.cs" />
+    <Compile Include="UserPreferenceService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diggity\Diggity.csproj">

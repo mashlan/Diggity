@@ -65,6 +65,10 @@ namespace Diggity.Services
                 if (!Validator.IsValid(entity)) throw new ValidationException(entity);
                 Repository.Create(entity);
             }
+            catch (ValidationException ve)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 throw new Exception("Error Creating record: " + ex.Message, ex);
@@ -77,6 +81,10 @@ namespace Diggity.Services
             {
                 if (!Validator.IsValid(entity)) throw new ValidationException(entity);
                 Repository.Update(entity);
+            }
+            catch (ValidationException ve)
+            {
+                throw;
             }
             catch (Exception ex)
             {

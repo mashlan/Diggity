@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseSpecification.cs" />
+    <Compile Include="PersonalRecords\PersonalRecordCannotBeInTheFuture.cs" />
+    <Compile Include="PersonalRecords\PersonalRecordMustBeUnique.cs" />
     <Compile Include="Exercise\ExerciseMustBeUnique.cs" />
     <Compile Include="ExerciseType\ExerciseTypeMustBeUnique.cs" />
     <Compile Include="UnitOfMeasure\NameCannotBeNull.cs" />
@@ -54,13 +56,18 @@
     <Compile Include="Specifications\ExtensionMethods.cs" />
     <Compile Include="Specifications\NotSpecification.cs" />
     <Compile Include="Specifications\OrSpecification.cs" />
+    <Compile Include="Validators\PersonalRecordHistoryValidator.cs" />
     <Compile Include="Validators\UnitOfMeasureValidator.cs" />
+    <Compile Include="Validators\UserPreferenceValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diggity\Diggity.csproj">
       <Project>{BA2C7BF6-923D-499D-99C5-3E3CEB4661FA}</Project>
       <Name>Diggity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UserPreference\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

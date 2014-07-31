@@ -20,7 +20,7 @@
         <AssociationConnector Association="Model.UnitOfMeasureExerciseType" />
         <EntityTypeShape EntityType="Model.AspNetUser" Width="1.875" PointX="3" PointY="3.875" />
         <AssociationConnector Association="Model.UserPreferenceAspNetUser" />
-        <EntityTypeShape EntityType="Model.PersonalRecordHistory" Width="1.875" PointX="5.625" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.PersonalRecord" Width="1.875" PointX="5.625" PointY="0.75" />
         <AssociationConnector Association="Model.PersonalRecordHistoryUnitOfMeasure" />
         <AssociationConnector Association="Model.PersonalRecordHistoryExercise" />
         <AssociationConnector Association="Model.PersonalRecordHistoryAspNetUser" />

@@ -9,6 +9,9 @@ angular.module('myApp.routes', ['ngRoute'])
 
             $routeProvider.when('/', { templateUrl: '../Html/Home.html', controller: 'HomeCtrl' });
 
+            //User landing page
+            $routeProvider.when('/user', { templateUrl: '../Html/Account/Index.html', controller: 'AccountCtrl' });
+
             //Units of Measure
             $routeProvider.when('/unitOfMeasure', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureView.html', controller: 'UnitOfMeasureCtrl' });
             $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureCtrl' });

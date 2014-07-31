@@ -14,6 +14,8 @@ namespace Diggity.Services
         private IService<UnitOfMeasure> unitOfMeasure;
         private IService<Workout> workout;
         private IService<WorkoutSet> workoutSet;
+        private IService<UserPreference> userPreference;
+        private IService<PersonalRecord> personalRecordHistory;
 
         public ServiceAggregate(IRepositoryAggregate repositoryAggregate, IValidationFactory validationFactory)
         {
@@ -69,6 +71,29 @@ namespace Diggity.Services
                 return workoutSet ??
                        (workoutSet = new ServiceBase<WorkoutSet>(repositoryAggregate, repositoryAggregate.WorkoutSet,
                            validationFactory.GetValidator<WorkoutSet>(repositoryAggregate)));
+            }
+        }
+
+        public IService<UserPreference> UserPreference
+        {
+            get
+            {
+                return userPreference ??
+                       (userPreference =
+                           new UserPreferenceService(repositoryAggregate, repositoryAggregate.UserPreference,
+                               validationFactory.GetValidator<UserPreference>(repositoryAggregate)));
+            }
+        }
+
+        public IService<PersonalRecord> PersonalRecordHistory
+        {
+            get
+            {
+                return personalRecordHistory ??
+                       (personalRecordHistory =
+                           new PersonalRecordHistoryService(repositoryAggregate,
+                               repositoryAggregate.PersonalRecordHistory,
+                               validationFactory.GetValidator<PersonalRecord>(repositoryAggregate)));
             }
         }
     }

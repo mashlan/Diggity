@@ -39,3 +39,5 @@
 /// <reference path="vendors/respond/respond.matchmedia.addlistener.js" />
 /// <reference path="hitt_timer.js" />
 /// <reference path="services/exerciseservice.js" />
+/// <reference path="controllers/accountctrl.js" />
+/// <reference path="services/accountservices.js" />

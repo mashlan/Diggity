@@ -19,7 +19,7 @@ namespace Diggity.Entities
             this.WorkoutSets = new HashSet<WorkoutSet>();
             this.UserPreferences = new HashSet<UserPreference>();
             this.ExerciseTypes = new HashSet<ExerciseType>();
-            this.PersonalRecordHistories = new HashSet<PersonalRecordHistory>();
+            this.PersonalRecordHistories = new HashSet<PersonalRecord>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace Diggity.Entities
         public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
         public virtual ICollection<ExerciseType> ExerciseTypes { get; set; }
-        public virtual ICollection<PersonalRecordHistory> PersonalRecordHistories { get; set; }
+        public virtual ICollection<PersonalRecord> PersonalRecordHistories { get; set; }
     }
 }

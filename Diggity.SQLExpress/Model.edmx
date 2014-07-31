@@ -471,17 +471,17 @@
             <End Role="UserPreference" EntitySet="UserPreferences" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <EntitySet Name="PersonalRecordHistories" EntityType="Model.PersonalRecordHistory" />
+          <EntitySet Name="PersonalRecords" EntityType="Model.PersonalRecord" />
           <AssociationSet Name="PersonalRecordHistoryUnitOfMeasure" Association="Model.PersonalRecordHistoryUnitOfMeasure">
-            <End Role="PersonalRecordHistory" EntitySet="PersonalRecordHistories" />
+            <End Role="PersonalRecordHistory" EntitySet="PersonalRecords" />
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
           </AssociationSet>
           <AssociationSet Name="PersonalRecordHistoryExercise" Association="Model.PersonalRecordHistoryExercise">
-            <End Role="PersonalRecordHistory" EntitySet="PersonalRecordHistories" />
+            <End Role="PersonalRecordHistory" EntitySet="PersonalRecords" />
             <End Role="Exercise" EntitySet="Exercises" />
           </AssociationSet>
           <AssociationSet Name="PersonalRecordHistoryAspNetUser" Association="Model.PersonalRecordHistoryAspNetUser">
-            <End Role="PersonalRecordHistory" EntitySet="PersonalRecordHistories" />
+            <End Role="PersonalRecordHistory" EntitySet="PersonalRecords" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRole" />
@@ -752,7 +752,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="PersonalRecordHistory">
+        <EntityType Name="PersonalRecord">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -767,7 +767,7 @@
           <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="PersonalRecordHistoryUnitOfMeasure">
-          <End Type="Model.PersonalRecordHistory" Role="PersonalRecordHistory" Multiplicity="*" />
+          <End Type="Model.PersonalRecord" Role="PersonalRecordHistory" Multiplicity="*" />
           <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="UnitOfMeasure">
@@ -779,7 +779,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PersonalRecordHistoryExercise">
-          <End Type="Model.PersonalRecordHistory" Role="PersonalRecordHistory" Multiplicity="*" />
+          <End Type="Model.PersonalRecord" Role="PersonalRecordHistory" Multiplicity="*" />
           <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Exercise">
@@ -791,7 +791,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PersonalRecordHistoryAspNetUser">
-          <End Type="Model.PersonalRecordHistory" Role="PersonalRecordHistory" Multiplicity="*" />
+          <End Type="Model.PersonalRecord" Role="PersonalRecordHistory" Multiplicity="*" />
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="AspNetUser">
@@ -925,8 +925,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="PersonalRecordHistories">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.PersonalRecordHistory)">
+    <EntitySetMapping Name="PersonalRecords">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PersonalRecord)">
         <MappingFragment StoreEntitySet="PersonalRecordHistories">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />

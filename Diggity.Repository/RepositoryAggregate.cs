@@ -13,6 +13,8 @@ namespace Diggity.Repository
         private IRepository<UnitOfMeasure> unitOfMeasure;
         private IRepository<Workout> workout;
         private IRepository<WorkoutSet> workoutSet;
+        private IRepository<UserPreference> userPreference;
+        private IRepository<PersonalRecord> personalRecordHistory;
 
         public RepositoryAggregate(string connectionString)
         {
@@ -42,6 +44,16 @@ namespace Diggity.Repository
         public IRepository<WorkoutSet> WorkoutSet
         {
             get { return workoutSet ?? (workoutSet = new Repository<WorkoutSet>(context)); }
+        }
+
+        public IRepository<UserPreference> UserPreference
+        {
+            get { return userPreference ?? (userPreference = new Repository<UserPreference>(context)); }
+        }
+
+        public IRepository<PersonalRecord> PersonalRecordHistory
+        {
+            get { return personalRecordHistory ?? (personalRecordHistory = new Repository<PersonalRecord>(context)); }
         }
     }
 }

@@ -63,7 +63,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Entities\PersonalRecordHistory.cs">
+    <Compile Include="Entities\PersonalRecord.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\UnitOfMeasure.cs">

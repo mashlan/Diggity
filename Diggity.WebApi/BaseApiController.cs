@@ -42,7 +42,7 @@ namespace Diggity.WebApi
             }
             catch (ValidationException ex)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Errors);
             }
             catch (Exception ex)
             {

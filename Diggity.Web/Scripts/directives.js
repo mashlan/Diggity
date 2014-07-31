@@ -16,6 +16,13 @@ angular.module('myApp.directives', [])
             }
         }
     })
+    .directive('prEntry', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '../Html/Account/EnterPR.html'
+        }
+    })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',
