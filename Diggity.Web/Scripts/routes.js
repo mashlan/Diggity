@@ -11,13 +11,11 @@ angular.module('myApp.routes', ['ngRoute'])
 
             //Units of Measure
             $routeProvider.when('/unitOfMeasure', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureView.html', controller: 'UnitOfMeasureCtrl' });
-            $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
-            $routeProvider.when('/unitOfMeasure/new', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureEditCtrl' });
+            $routeProvider.when('/unitOfMeasure/:id', { templateUrl: '../Html/UnitOfMeasure/UnitOfMeasureEdit.html', controller: 'UnitOfMeasureCtrl' });
 
             //Exercise Types
             $routeProvider.when('/exerciseType', { templateUrl: '../Html/ExerciseType/ExerciseTypeView.html', controller: 'ExerciseTypeCtrl' });
-            $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/ExerciseType/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
-            $routeProvider.when('/exerciseType/new', { templateUrl: '../Html/UnitOfMeasure/ExerciseTypeEdit.html', controller: 'ExerciseTypeEditCtrl' });
+            $routeProvider.when('/exerciseType/:id', { templateUrl: '../Html/ExerciseType/ExerciseTypeEdit.html', controller: 'ExerciseTypeCtrl' });
 
             //Exercise
             $routeProvider.when('/exercise', { templateUrl: '../Html/Exercise/ExerciseView.html', controller: 'ExerciseCtrl' });

@@ -1,22 +1,86 @@
 ﻿
 /**********************************************************************
- * *************** Unit of Measure View ******************************
+ * ********** Unit of Meassure Controller **** ************************
  *********************************************************************/
-myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure',
-    function ($routeParams, $scope, UnitOfMeasure) {
+myControllers.controller('UnitOfMeasureCtrl', ['$routeParams', '$scope', 'UnitOfMeasure', '$location',
+    function ($routeParams, $scope, UnitOfMeasure, $location) {
         'use strict';
 
-        UnitOfMeasure.query()
-            .then(function(resp) { $scope.unitOfMeasures = resp; }, queryError)
-            .catch(queryError)
-            .finally(queryFinally);
-        
+        $scope.loading = true;
+
+        $scope.getAll = function () {
+            UnitOfMeasure.query()
+           .then(function (resp) { $scope.unitOfMeasures = resp; }, queryError)
+           .catch(queryError)
+           .finally(queryFinally);
+        }
+
+        if ($routeParams.id) {
+            getSingle();
+        }
+
+        function getSingle() {
+            if ($routeParams.id !== "new") {
+                UnitOfMeasure.get($routeParams.id)
+                    .then(function (resp) { $scope.unit = resp; }, queryError)
+                    .catch(queryError)
+                    .finally(queryFinally);
+            } else {
+                $scope.unit = {};
+                $scope.loading = false;
+                $scope.isEditing = true;
+            }
+        }
+
+        $scope.saveUnit = function () {
+            if ($scope.unit.Id > 0) {
+                UnitOfMeasure.update($scope.unit)
+                    .then(saveSuccess, queryError)
+                    .catch(queryError)
+                    .finally(queryFinally);
+            } else {
+                UnitOfMeasure.create($scope.unit)
+                    .then(saveSuccess, queryError)
+                    .catch(queryError)
+                    .finally(queryFinally);
+            }
+        };
+
+        function saveSuccess() {
+            $scope.isEditing = false;
+            window.alertShow("success", "Woo Hoo! Record saved success");
+        }
+
+        function deleteSuccess() {
+            window.alertShow("success", "Woo Hoo! Record deleted successfully");
+            $location.path('/unitOfMeasure');
+        }
+
         function queryFinally() {
-            console.log("finished loading record(s) from database");
+            $scope.loading = false;
         }
 
         function queryError(error) {
-            window.alertShow("error", error.data.Message);
+            var msg = error.data.ExceptionMessage ? error.data.ExceptionMessage : error.data.Message;
+            window.alertShow("error", msg);
         }
+
+        $scope.editRecord = function () {
+            $scope.isEditing = true;
+            $scope.currentRecord = angular.copy($scope.unit);
+        }
+
+        $scope.cancelEdit = function () {
+            $scope.isEditing = false;
+            $scope.unit = angular.copy($scope.currentRecord);
+        }
+
+        $scope.deleteRecord = function () {
+            UnitOfMeasure.remove($scope.unit.Id)
+                    .then(deleteSuccess, queryError)
+                    .catch(queryError)
+                    .finally(queryFinally);
+        }
+
     }
 ]);

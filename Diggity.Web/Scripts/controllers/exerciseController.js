@@ -1,5 +1,5 @@
 ﻿/**********************************************************************
- * ********************* Exercise Edit ********************************
+ * ********************* Exercise Controller **************************
  *********************************************************************/
 myControllers.controller('ExerciseCtrl', ['$routeParams', '$scope', '$location', 'Exercise', 'ExerciseType',
     function ($routeParams, $scope, $location, Exercise, ExerciseType) {

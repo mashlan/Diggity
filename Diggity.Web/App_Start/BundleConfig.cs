@@ -35,10 +35,8 @@ namespace Diggity.Web
 
             bundles.Add(new ScriptBundle("~/bundles/myControllers").Include(
                 "~/Scripts/controllers/exerciseTypeController.js",
-                "~/Scripts/controllers/exerciseEditController.js",
-                "~/Scripts/controllers/exerciseTypeEditController.js",
                 "~/Scripts/controllers/unitOfMeasureController.js",
-                "~/Scripts/Controllers/unitOfMeasureEditController.js"
+                "~/Scripts/controllers/exerciseController.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/myServices").Include(

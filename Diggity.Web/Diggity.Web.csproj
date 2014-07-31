@@ -251,6 +251,7 @@
     <Content Include="Html\Exercise\ExerciseEdit.html" />
     <Content Include="Html\Exercise\ExerciseView.html" />
     <Content Include="Html\Home.html" />
+    <Content Include="Html\Shared\DiggityGrid.html" />
     <Content Include="Html\Timers\BasicTimer.html" />
     <Content Include="Html\Timers\NumberPanel.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
@@ -258,12 +259,9 @@
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\exerciseController.js" />
-    <Content Include="Scripts\controllers\exerciseEditController.js" />
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
-    <Content Include="Scripts\controllers\exerciseTypeEditController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />
-    <Content Include="Scripts\controllers\unitOfMeasureEditController.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\filters.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
