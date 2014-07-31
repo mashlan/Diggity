@@ -38,7 +38,7 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Delete(int id)
         {
-            Func<bool> func = () => ServiceAggregate.UnitOfMeasure.Delete(id);
+            Func<bool> func = () => ServiceAggregate.UnitOfMeasure.Delete(d => d.Id == id);
             return ApiDeleteFunc(func);
         }
     }

@@ -9,7 +9,7 @@ using Diggity.Entities;
 
 namespace Diggity.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : DiggityEntity, IEntity
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : DiggityEntity
     {
         private readonly DbContext Context;
         private readonly DbSet<TEntity> DataSet;
@@ -131,11 +131,6 @@ namespace Diggity.Repository
             {
                 throw new Exception("Error getting records: " + ex.Message, ex);
             }
-        }
-
-        public bool Delete(int Id)
-        {
-            return Delete(d => d.Id == Id);
         }
     }
 }

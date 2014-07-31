@@ -12,11 +12,12 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Exercise : DiggityEntity, IEntity
+    public partial class Exercise : DiggityEntity
     {
         public Exercise()
         {
             this.WorkoutSets = new HashSet<WorkoutSet>();
+            this.PersonalRecordHistories = new HashSet<PersonalRecordHistory>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,6 @@ namespace Diggity.Entities
     
         public virtual ExerciseType ExerciseType { get; set; }
         public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
+        public virtual ICollection<PersonalRecordHistory> PersonalRecordHistories { get; set; }
     }
 }

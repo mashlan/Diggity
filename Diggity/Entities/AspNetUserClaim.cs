@@ -12,15 +12,13 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class UserPreference : DiggityEntity
+    public partial class AspNetUserClaim : DiggityEntity
     {
-        public int ExerciseTypeId { get; set; }
-        public int UnitOfMeasureId { get; set; }
-        public string UserId { get; set; }
         public int Id { get; set; }
+        public string UserId { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
     
-        public virtual ExerciseType ExerciseType { get; set; }
-        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }

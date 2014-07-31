@@ -12,15 +12,17 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class UserPreference : DiggityEntity
+    public partial class PersonalRecordHistory : DiggityEntity
     {
-        public int ExerciseTypeId { get; set; }
-        public int UnitOfMeasureId { get; set; }
-        public string UserId { get; set; }
         public int Id { get; set; }
+        public System.DateTime RecordDate { get; set; }
+        public double Value { get; set; }
+        public int UnitOfMeasureId { get; set; }
+        public int ExerciseId { get; set; }
+        public string AspNetUserId { get; set; }
     
-        public virtual ExerciseType ExerciseType { get; set; }
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
+        public virtual Exercise Exercise { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
     }
 }

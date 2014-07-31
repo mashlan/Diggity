@@ -12,13 +12,14 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class UnitOfMeasure : DiggityEntity, IEntity
+    public partial class UnitOfMeasure : DiggityEntity
     {
         public UnitOfMeasure()
         {
             this.WorkoutSets = new HashSet<WorkoutSet>();
             this.UserPreferences = new HashSet<UserPreference>();
             this.ExerciseTypes = new HashSet<ExerciseType>();
+            this.PersonalRecordHistories = new HashSet<PersonalRecordHistory>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,6 @@ namespace Diggity.Entities
         public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
         public virtual ICollection<ExerciseType> ExerciseTypes { get; set; }
+        public virtual ICollection<PersonalRecordHistory> PersonalRecordHistories { get; set; }
     }
 }

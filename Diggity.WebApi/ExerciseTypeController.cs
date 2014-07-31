@@ -41,7 +41,7 @@ namespace Diggity.WebApi
         [Authorize(Roles = "Admin")]
         public HttpResponseMessage Delete(int id)
         {
-            Func<bool> func = () => ServiceAggregate.ExerciseType.Delete(id);
+            Func<bool> func = () => ServiceAggregate.ExerciseType.Delete(d => d.Id == id);
             return ApiDeleteFunc(func);
         }
     }

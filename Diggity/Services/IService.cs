@@ -16,6 +16,5 @@ namespace Diggity.Services
         void Create(TEntity entity);
         void Update(TEntity entity);
         bool Delete(Expression<Func<TEntity, bool>> expression);
-        bool Delete(int Id);
     }
 }

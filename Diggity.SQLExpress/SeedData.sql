@@ -1,4 +1,4 @@
-﻿USE [WodDiggity] GO
+﻿USE [WodDiggity]
 
 SET IDENTITY_INSERT [dbo].[UnitOfMeasures] ON
 INSERT INTO [dbo].[UnitOfMeasures] ([Id], [Name], [Description]) VALUES (1, N'lbs', N'Pounds')
@@ -11,16 +11,26 @@ INSERT INTO [dbo].[UnitOfMeasures] ([Id], [Name], [Description]) VALUES (7, N'ca
 INSERT INTO [dbo].[UnitOfMeasures] ([Id], [Name], [Description]) VALUES (8, N'minutes', N'Minutes')
 INSERT INTO [dbo].[UnitOfMeasures] ([Id], [Name], [Description]) VALUES (9, N'seconds', N'when a minute is too much')
 SET IDENTITY_INSERT [dbo].[UnitOfMeasures] OFF
+go
 
+--User and roles seed data
 insert into AspNetRoles (id, Name)values (1,'Admin');
 go
 insert into AspNetRoles (id, Name)values (2,'Coach');
 go
 
---insert into AspNetUserRoles (UserId, RoleId)
---values ((select Id from AspNetUsers where UserName = 'eric.mashlan@gmail.com'), 1);
---go
+INSERT INTO [dbo].[AspNetUsers] ([Id], [Hometown], [Email], [EmailConfirmed], [PasswordHash], [SecurityStamp], [PhoneNumber], [PhoneNumberConfirmed], [TwoFactorEnabled], [LockoutEndDateUtc], [LockoutEnabled], [AccessFailedCount], [UserName])
+VALUES (N'3692ec33-5b1b-44a6-b919-d180be23459d', NULL, N'eric.mashlan@gmail.com', 0, NULL, N'9b408ead-0e56-4c8d-8a9b-d32f2113c7bd', NULL, 0, 0, NULL, 0, 0, N'eric.mashlan@gmail.com')
+GO
 
+INSERT INTO [dbo].[AspNetUserLogins] ([LoginProvider], [ProviderKey], [UserId])
+VALUES (N'GooglePlus', N'106049790352278785517', N'3692ec33-5b1b-44a6-b919-d180be23459d')
+go
+
+insert into AspNetUserRoles (UserId, RoleId)
+values ((select Id from AspNetUsers where UserName = 'eric.mashlan@gmail.com'), 1);
+go
+--
 
 SET IDENTITY_INSERT [dbo].[ExerciseTypes] ON
 INSERT INTO [dbo].[ExerciseTypes] ([Id], [Name], [Description]) VALUES (1, N'Calories', N'it''s a type and a unit of measure. it''s special')
@@ -29,7 +39,7 @@ INSERT INTO [dbo].[ExerciseTypes] ([Id], [Name], [Description]) VALUES (3, N'Rep
 INSERT INTO [dbo].[ExerciseTypes] ([Id], [Name], [Description]) VALUES (4, N'Time', N'It keeps on ticking into the future')
 INSERT INTO [dbo].[ExerciseTypes] ([Id], [Name], [Description]) VALUES (5, N'Weight', N'Weight Lifting')
 SET IDENTITY_INSERT [dbo].[ExerciseTypes] OFF
-
+GO
 
 INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTypes_Id]) VALUES (7, 1)
 INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTypes_Id]) VALUES (3, 2)
@@ -40,6 +50,7 @@ INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTyp
 INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTypes_Id]) VALUES (9, 4)
 INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTypes_Id]) VALUES (1, 5)
 INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTypes_Id]) VALUES (2, 5)
+GO
 
 SET IDENTITY_INSERT [dbo].[Exercises] ON
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (1, N'Air Squat', N'Air SQ', N'Body weight Squat', 3)
@@ -70,3 +81,4 @@ INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [Exe
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (26, N'Sprint', N'sprint', N'Run as close to 100% as possible.', 2)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (27, N'Box Jumps', N'Box jumbs', N'From ground jump upon raised platform and jump down. repeate', 3)
 SET IDENTITY_INSERT [dbo].[Exercises] OFF
+GO

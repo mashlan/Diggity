@@ -5,215 +5,415 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="ModelStoreContainer">
-    <EntitySet Name="Exercises" EntityType="Model.Store.Exercises" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ExerciseTypes" EntityType="Model.Store.ExerciseTypes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UnitOfMeasures" EntityType="Model.Store.UnitOfMeasures" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Workouts" EntityType="Model.Store.Workouts" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="WorkoutSets" EntityType="Model.Store.WorkoutSets" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserPreferences" EntityType="Model.Store.UserPreferences" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Model.Store.UnitOfMeasureExerciseType" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_ExerciseTypeExercise" Association="Model.Store.FK_ExerciseTypeExercise">
-      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
-      <End Role="Exercis" EntitySet="Exercises" />
-    </AssociationSet>
-    <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.Store.WorkoutSetUnitOfMeasure">
-      <End Role="WorkoutSet" EntitySet="WorkoutSets" />
-      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
-    </AssociationSet>
-    <AssociationSet Name="ExerciseWorkoutSet" Association="Model.Store.ExerciseWorkoutSet">
-      <End Role="Exercise" EntitySet="Exercises" />
-      <End Role="WorkoutSet" EntitySet="WorkoutSets" />
-    </AssociationSet>
-    <AssociationSet Name="WorkoutWorkoutSet" Association="Model.Store.WorkoutWorkoutSet">
-      <End Role="Workout" EntitySet="Workouts" />
-      <End Role="WorkoutSet" EntitySet="WorkoutSets" />
-    </AssociationSet>
-    <AssociationSet Name="UserPreferenceExerciseType" Association="Model.Store.UserPreferenceExerciseType">
-      <End Role="UserPreference" EntitySet="UserPreferences" />
-      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
-    </AssociationSet>
-    <AssociationSet Name="UserPreferenceUnitOfMeasure" Association="Model.Store.UserPreferenceUnitOfMeasure">
-      <End Role="UserPreference" EntitySet="UserPreferences" />
-      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure" Association="Model.Store.FK_UnitOfMeasureExerciseType_UnitOfMeasure">
-      <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
-      <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UnitOfMeasureExerciseType_ExerciseType" Association="Model.Store.FK_UnitOfMeasureExerciseType_ExerciseType">
-      <End Role="ExerciseType" EntitySet="ExerciseTypes" />
-      <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Exercises">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Abbreviation" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ExerciseTypes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UnitOfMeasures">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Workouts">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StartDateTime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="EndDateTime" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-  </EntityType>
-  <EntityType Name="WorkoutSets">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SortOrder" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PlannedReps" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ActualReps" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="PlannedWeight" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="ActualWeight" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
-    <Property Name="ExerciseId" Type="int" Nullable="false" />
-    <Property Name="WorkoutId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="UserPreferences">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
-    <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="AspNetUserId" Type="nvarchar" Nullable="false" MaxLength="128" />
-  </EntityType>
-  <EntityType Name="UnitOfMeasureExerciseType">
-    <Key>
-      <PropertyRef Name="UnitOfMeasures_Id" />
-      <PropertyRef Name="ExerciseTypes_Id" />
-    </Key>
-    <Property Name="UnitOfMeasures_Id" Type="int" Nullable="false" />
-    <Property Name="ExerciseTypes_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="FK_ExerciseTypeExercise">
-    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
-    <End Role="Exercis" Type="Model.Store.Exercises" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ExerciseType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Exercis">
-        <PropertyRef Name="ExerciseTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="WorkoutSetUnitOfMeasure">
-    <End Role="WorkoutSet" Type="Model.Store.WorkoutSets" Multiplicity="*" />
-    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="UnitOfMeasure">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="WorkoutSet">
-        <PropertyRef Name="UnitOfMeasureId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ExerciseWorkoutSet">
-    <End Role="Exercise" Type="Model.Store.Exercises" Multiplicity="1" />
-    <End Role="WorkoutSet" Type="Model.Store.WorkoutSets" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Exercise">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="WorkoutSet">
-        <PropertyRef Name="ExerciseId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="WorkoutWorkoutSet">
-    <End Role="Workout" Type="Model.Store.Workouts" Multiplicity="1" />
-    <End Role="WorkoutSet" Type="Model.Store.WorkoutSets" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Workout">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="WorkoutSet">
-        <PropertyRef Name="WorkoutId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserPreferenceExerciseType">
-    <End Role="UserPreference" Type="Model.Store.UserPreferences" Multiplicity="*" />
-    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="ExerciseType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserPreference">
-        <PropertyRef Name="ExerciseTypeId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="UserPreferenceUnitOfMeasure">
-    <End Role="UserPreference" Type="Model.Store.UserPreferences" Multiplicity="*" />
-    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="UnitOfMeasure">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserPreference">
-        <PropertyRef Name="UnitOfMeasureId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure">
-    <End Role="UnitOfMeasure" Type="Model.Store.UnitOfMeasures" Multiplicity="1" />
-    <End Role="UnitOfMeasureExerciseType" Type="Model.Store.UnitOfMeasureExerciseType" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UnitOfMeasure">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UnitOfMeasureExerciseType">
-        <PropertyRef Name="UnitOfMeasures_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UnitOfMeasureExerciseType_ExerciseType">
-    <End Role="UnitOfMeasureExerciseType" Type="Model.Store.UnitOfMeasureExerciseType" Multiplicity="*" />
-    <End Role="ExerciseType" Type="Model.Store.ExerciseTypes" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="ExerciseType">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UnitOfMeasureExerciseType">
-        <PropertyRef Name="ExerciseTypes_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Hometown" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exercises">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Abbreviation" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExerciseTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PersonalRecordHistories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecordDate" Type="datetime" Nullable="false" />
+          <Property Name="Value" Type="float" Nullable="false" />
+          <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+          <Property Name="ExerciseId" Type="int" Nullable="false" />
+          <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasureExerciseType">
+          <Key>
+            <PropertyRef Name="UnitOfMeasures_Id" />
+            <PropertyRef Name="ExerciseTypes_Id" />
+          </Key>
+          <Property Name="UnitOfMeasures_Id" Type="int" Nullable="false" />
+          <Property Name="ExerciseTypes_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UnitOfMeasures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserPreferences">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ExerciseTypeId" Type="int" Nullable="false" />
+          <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Workouts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDateTime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EndDateTime" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkoutSets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SortOrder" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PlannedReps" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ActualReps" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PlannedWeight" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ActualWeight" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+          <Property Name="ExerciseId" Type="int" Nullable="false" />
+          <Property Name="WorkoutId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AspNetUserRoles_AspNetRole">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExerciseTypeExercise">
+          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Exercises">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExerciseWorkoutSet">
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
+          <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSets">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalRecordHistoryAspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="PersonalRecordHistories" Type="Self.PersonalRecordHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalRecordHistories">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalRecordHistoryExercise">
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
+          <End Role="PersonalRecordHistories" Type="Self.PersonalRecordHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalRecordHistories">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PersonalRecordHistoryUnitOfMeasure">
+          <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="1" />
+          <End Role="PersonalRecordHistories" Type="Self.PersonalRecordHistories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalRecordHistories">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnitOfMeasureExerciseType_ExerciseType">
+          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
+          <End Role="UnitOfMeasureExerciseType" Type="Self.UnitOfMeasureExerciseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UnitOfMeasureExerciseType">
+              <PropertyRef Name="ExerciseTypes_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure">
+          <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="1" />
+          <End Role="UnitOfMeasureExerciseType" Type="Self.UnitOfMeasureExerciseType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UnitOfMeasureExerciseType">
+              <PropertyRef Name="UnitOfMeasures_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPreferenceAspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserPreferences" Type="Self.UserPreferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreferences">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPreferenceExerciseType">
+          <End Role="ExerciseTypes" Type="Self.ExerciseTypes" Multiplicity="1" />
+          <End Role="UserPreferences" Type="Self.UserPreferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExerciseTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreferences">
+              <PropertyRef Name="ExerciseTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPreferenceUnitOfMeasure">
+          <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="1" />
+          <End Role="UserPreferences" Type="Self.UserPreferences" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreferences">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutSetUnitOfMeasure">
+          <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="1" />
+          <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSets">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutWorkoutSet">
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="1" />
+          <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workouts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSets">
+              <PropertyRef Name="WorkoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExerciseTypes" EntityType="Self.ExerciseTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalRecordHistories" EntityType="Self.PersonalRecordHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Self.UnitOfMeasureExerciseType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPreferences" EntityType="Self.UserPreferences" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Workouts" EntityType="Self.Workouts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkoutSets" EntityType="Self.WorkoutSets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRole" Association="Self.FK_AspNetUserRoles_AspNetRole">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="Self.FK_AspNetUserRoles_AspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExerciseTypeExercise" Association="Self.FK_ExerciseTypeExercise">
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
+            <End Role="Exercises" EntitySet="Exercises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExerciseWorkoutSet" Association="Self.FK_ExerciseWorkoutSet">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="WorkoutSets" EntitySet="WorkoutSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalRecordHistoryAspNetUser" Association="Self.FK_PersonalRecordHistoryAspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PersonalRecordHistories" EntitySet="PersonalRecordHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalRecordHistoryExercise" Association="Self.FK_PersonalRecordHistoryExercise">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="PersonalRecordHistories" EntitySet="PersonalRecordHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PersonalRecordHistoryUnitOfMeasure" Association="Self.FK_PersonalRecordHistoryUnitOfMeasure">
+            <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
+            <End Role="PersonalRecordHistories" EntitySet="PersonalRecordHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitOfMeasureExerciseType_ExerciseType" Association="Self.FK_UnitOfMeasureExerciseType_ExerciseType">
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
+            <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UnitOfMeasureExerciseType_UnitOfMeasure" Association="Self.FK_UnitOfMeasureExerciseType_UnitOfMeasure">
+            <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
+            <End Role="UnitOfMeasureExerciseType" EntitySet="UnitOfMeasureExerciseType" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPreferenceAspNetUser" Association="Self.FK_UserPreferenceAspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserPreferences" EntitySet="UserPreferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPreferenceExerciseType" Association="Self.FK_UserPreferenceExerciseType">
+            <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
+            <End Role="UserPreferences" EntitySet="UserPreferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPreferenceUnitOfMeasure" Association="Self.FK_UserPreferenceUnitOfMeasure">
+            <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
+            <End Role="UserPreferences" EntitySet="UserPreferences" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutSetUnitOfMeasure" Association="Self.FK_WorkoutSetUnitOfMeasure">
+            <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
+            <End Role="WorkoutSets" EntitySet="WorkoutSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutWorkoutSet" Association="Self.FK_WorkoutWorkoutSet">
+            <End Role="Workouts" EntitySet="Workouts" />
+            <End Role="WorkoutSets" EntitySet="WorkoutSets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm"
@@ -256,6 +456,39 @@
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
             <End Role="ExerciseType" EntitySet="ExerciseTypes" />
           </AssociationSet>
+          <EntitySet Name="AspNetUserClaims" EntityType="Model.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Model.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="Model.AspNetUser" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="UserPreferenceAspNetUser" Association="Model.UserPreferenceAspNetUser">
+            <End Role="UserPreference" EntitySet="UserPreferences" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="PersonalRecordHistories" EntityType="Model.PersonalRecordHistory" />
+          <AssociationSet Name="PersonalRecordHistoryUnitOfMeasure" Association="Model.PersonalRecordHistoryUnitOfMeasure">
+            <End Role="PersonalRecordHistory" EntitySet="PersonalRecordHistories" />
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+          </AssociationSet>
+          <AssociationSet Name="PersonalRecordHistoryExercise" Association="Model.PersonalRecordHistoryExercise">
+            <End Role="PersonalRecordHistory" EntitySet="PersonalRecordHistories" />
+            <End Role="Exercise" EntitySet="Exercises" />
+          </AssociationSet>
+          <AssociationSet Name="PersonalRecordHistoryAspNetUser" Association="Model.PersonalRecordHistoryAspNetUser">
+            <End Role="PersonalRecordHistory" EntitySet="PersonalRecordHistories" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRole" />
+          <AssociationSet Name="AspNetUserRoles" Association="Model.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Exercise">
           <Key>
@@ -272,6 +505,7 @@
                               ToRole="ExerciseType" />
           <NavigationProperty Name="WorkoutSets" Relationship="Model.ExerciseWorkoutSet" FromRole="Exercise"
                               ToRole="WorkoutSet" />
+          <NavigationProperty Name="PersonalRecordHistories" Relationship="Model.PersonalRecordHistoryExercise" FromRole="Exercise" ToRole="PersonalRecordHistory" />
         </EntityType>
         <EntityType Name="ExerciseType">
           <Key>
@@ -302,6 +536,7 @@
                               FromRole="UnitOfMeasure" ToRole="UserPreference" />
           <NavigationProperty Name="ExerciseTypes" Relationship="Model.UnitOfMeasureExerciseType"
                               FromRole="UnitOfMeasure" ToRole="ExerciseType" />
+          <NavigationProperty Name="PersonalRecordHistories" Relationship="Model.PersonalRecordHistoryUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="PersonalRecordHistory" />
         </EntityType>
         <Association Name="FK_ExerciseTypeExercise">
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
@@ -401,9 +636,9 @@
           <NavigationProperty Name="UnitOfMeasure" Relationship="Model.UserPreferenceUnitOfMeasure"
                               FromRole="UserPreference" ToRole="UnitOfMeasure" />
           <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.UserPreferenceAspNetUser" FromRole="UserPreference" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="UserPreferenceExerciseType">
           <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
@@ -432,6 +667,152 @@
         <Association Name="UnitOfMeasureExerciseType">
           <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="*" />
+        </Association>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Hometown" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceAspNetUser" FromRole="AspNetUser" ToRole="UserPreference" />
+          <NavigationProperty Name="PersonalRecordHistories" Relationship="Model.PersonalRecordHistoryAspNetUser" FromRole="AspNetUser" ToRole="PersonalRecordHistory" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserPreferenceAspNetUser">
+          <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserPreference">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PersonalRecordHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecordDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Value" Type="Double" Nullable="false" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.PersonalRecordHistoryUnitOfMeasure" FromRole="PersonalRecordHistory" ToRole="UnitOfMeasure" />
+          <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Exercise" Relationship="Model.PersonalRecordHistoryExercise" FromRole="PersonalRecordHistory" ToRole="Exercise" />
+          <Property Name="ExerciseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.PersonalRecordHistoryAspNetUser" FromRole="PersonalRecordHistory" ToRole="AspNetUser" />
+          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="PersonalRecordHistoryUnitOfMeasure">
+          <End Type="Model.PersonalRecordHistory" Role="PersonalRecordHistory" Multiplicity="*" />
+          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalRecordHistory">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonalRecordHistoryExercise">
+          <End Type="Model.PersonalRecordHistory" Role="PersonalRecordHistory" Multiplicity="*" />
+          <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Exercise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalRecordHistory">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PersonalRecordHistoryAspNetUser">
+          <End Type="Model.PersonalRecordHistory" Role="PersonalRecordHistory" Multiplicity="*" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PersonalRecordHistory">
+              <PropertyRef Name="AspNetUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="AspNetUserRoles">
+          <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -503,6 +884,55 @@
           <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
           <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserClaim)">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserLogin)">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUser)">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonalRecordHistories">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.PersonalRecordHistory)">
+        <MappingFragment StoreEntitySet="PersonalRecordHistories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
           <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -515,6 +945,22 @@
         <ScalarProperty Name="Id" ColumnName="ExerciseTypes_Id" />
       </EndProperty>
     </AssociationSetMapping>
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="Model.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

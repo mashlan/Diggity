@@ -9,7 +9,7 @@ using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class ServiceBase<TEntity> : IService<TEntity> where TEntity : DiggityEntity, IEntity
+    public class ServiceBase<TEntity> : IService<TEntity> where TEntity : DiggityEntity
     {
         protected readonly IRepository<TEntity> Repository;
         protected readonly IRepositoryAggregate RepositoryAggregate;
@@ -35,7 +35,7 @@ namespace Diggity.Services
         public virtual object SingleSimple(Expression<Func<TEntity, bool>> expression)
         {
             var result = Repository.Single(expression);
-            return new {result.Id};
+            return new {result};
         }
 
         public virtual IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> expression)
@@ -50,7 +50,7 @@ namespace Diggity.Services
 
         public virtual IEnumerable<object> GetAllSimple()
         {
-            return Repository.GetAll().Select(s => new { s.Id });
+            return Repository.GetAll().Select(s => new { s.IsValid });
         }
 
         public virtual IEnumerable<TEntity> GetAll()
@@ -87,11 +87,6 @@ namespace Diggity.Services
         public virtual bool Delete(Expression<Func<TEntity, bool>> expression)
         {
             return Repository.Delete(expression);
-        }
-
-        public virtual bool Delete(int Id)
-        {
-            return Repository.Delete(Id);
         }
     }
 }

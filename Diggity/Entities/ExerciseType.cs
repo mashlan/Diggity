@@ -12,7 +12,7 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ExerciseType : DiggityEntity, IEntity
+    public partial class ExerciseType : DiggityEntity
     {
         public ExerciseType()
         {
