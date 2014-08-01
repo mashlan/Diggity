@@ -36,7 +36,8 @@ angular.module('myApp.directives', [])
             replace: true,
             templateUrl: '../Html/Account/EditPR.html',
             scope: {
-                recordInfo: '=record'
+                recordInfo: '=record',
+                openDatepicker: '&'
             }
         }
     })

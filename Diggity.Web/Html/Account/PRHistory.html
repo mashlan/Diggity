@@ -1,5 +1,5 @@
 ﻿
-<div class="panel panel-success">
+<div class="panel panel-diggity">
     <div class="panel-heading">
         <div class="panel-title">
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Personal Best</div>
@@ -9,7 +9,7 @@
         </div>
         <div class="clearfix"></div>
     </div>
-    
+
     <div style="margin: 10px;">
         <pr-entry></pr-entry>
     </div>
@@ -23,7 +23,7 @@
         </div>
     </div>-->
     <div class="clearfix"></div>
-    <table class="table table-condensed table-hover table-bordered" ng-hide="loadingHistory">
+    <table class="table table-condensed table-hover" ng-hide="loadingHistory">
         <tbody ng-repeat="history in exerciseHistory | filter:searchText">
             <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory">
                 <td>{{history.ExerciseName}}</td>
@@ -33,13 +33,23 @@
                 <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-edit"></span></a></td>
             </tr>
             <tr ng-show="history.showEditHistory">
-                <td colspan="5" >
-                    <div class="panel panel-success" style="margin-bottom: 0">
+                <td colspan="5">
+                    <div class="panel panel-diggity" style="margin-bottom: 0">
                         <div class="text-success">
-                            <div class="panel-title">{{history.ExerciseName}}</div>
+                            <div class="panel-title">
+                                <div class="panel-heading">
+                                    {{history.ExerciseName}}
+                                    <button type="button" class="close" ng-click="history.showEditHistory = false;" tooltip="Close">
+                                        <span class="text-primary">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="clearfix"></div><br/>
-                        <edit-history-record record="editHistory" ng-repeat="editHistory in editHistoryRecords"></edit-history-record>
+                        <div class="clearfix"></div>
+                        <edit-history-record record="editHistory"
+                                             ng-repeat="editHistory in editHistoryRecords"
+                                             open-datepicker="openDatePicker($event)">
+                        </edit-history-record>
                     </div>
                 </td>
             </tr>

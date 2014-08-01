@@ -154,3 +154,45 @@ i {
 .check-group li span:hover {
     cursor: pointer;
 }
+.test {
+    border-color: #F7941E;
+}
+
+.panel-diggity {
+  border-color: #5F5F65;
+}
+
+.panel-diggity > .panel-heading {
+  color: #ffffff;
+  background-color: #5F5F65;
+  border-color: #5F5F65;
+}
+
+.panel-diggity > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #5F5F65;
+}
+
+.panel-diggity > .panel-heading .badge {
+  color: #5F5F65;
+  background-color: #ffffff;
+}
+
+
+/*.panel-diggity {
+  border-color: #CC7A1B;
+}
+
+.panel-diggity > .panel-heading {
+  color: #ffffff;
+  background-color: #CC7A1B;
+  border-color: #CC7A1B;
+}
+
+.panel-diggity > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #CC7A1B;
+}
+
+.panel-diggity > .panel-heading .badge {
+  color: #CC7A1B;
+  background-color: #ffffff;
+}*/
