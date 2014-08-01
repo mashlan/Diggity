@@ -85,7 +85,7 @@ namespace Diggity.Services
             }
         }
 
-        public IService<PersonalRecord> PersonalRecordHistory
+        public IService<PersonalRecord> PersonalRecord
         {
             get
             {

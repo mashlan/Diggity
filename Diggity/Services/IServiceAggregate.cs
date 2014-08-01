@@ -10,6 +10,6 @@ namespace Diggity.Services
         IService<Workout> Workout { get; }
         IService<WorkoutSet> WorkoutSet { get; }
         IService<UserPreference> UserPreference { get; }
-        IService<PersonalRecord> PersonalRecordHistory { get; } 
+        IService<PersonalRecord> PersonalRecord { get; } 
     }
 }
