@@ -23,6 +23,13 @@ angular.module('myApp.directives', [])
             templateUrl: '../Html/Account/EnterPR.html'
         }
     })
+    .directive('prHistory', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '../Html/Account/PRHistory.html'
+        }
+    })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',

@@ -6,7 +6,8 @@
                     ng-options="exercise as exercise.Name for exercise in exerciseList"
                     ng-model="newPR.Exercise"
                     ng-class="{error: newPrForm.uExerciseList.$error.required && prInvalid}"
-                    ng-change="onExerciseSelect()"></select>
+                    ng-change="onExerciseSelect()">
+            </select>
             <span class="form-control" ng-show="loadingExercises"><i class="fa fa-circle-o-notch fa-spin"></i> Loading...</span>
             <label ng-show="newPrForm.uExerciseList.$error.required && prInvalid" class="text-danger">Required!</label>
         </div>

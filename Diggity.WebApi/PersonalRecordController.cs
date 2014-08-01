@@ -14,7 +14,9 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Get()
         {
-            return ApiGetFunc(ServiceAggregate.PersonalRecordHistory.GetAllSimple, null);
+            var userId = User.Identity.GetUserId();
+            Func<object> func =() => ServiceAggregate.PersonalRecordHistory.FindSimple(pr => pr.AspNetUserId == userId);
+            return ApiGetFunc(func, null);
         }
 
         public HttpResponseMessage Get(int id)

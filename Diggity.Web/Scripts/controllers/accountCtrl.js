@@ -9,6 +9,12 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
         $scope.valuePlaceholder = "Amount";
         $scope.loadingExercises = true;
         $scope.newPR = {};
+        $scope.historySortOptions = [
+            { id: 0, value: 'Last Recorded'},
+            { id: 1, value: 'Max Effort'}
+        ];
+
+        $scope.sortOption = 0;
 
         //get all exercises
         Exercise.query()
@@ -19,7 +25,7 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             .catch(queryError)
             .finally(function () { $scope.loadingExercises = false; });
 
-        //get alll exercise types
+        //get all exercise types
         ExerciseType.query()
             .then(function (resp) {
                 $scope.exerciseTypes = resp;
@@ -38,6 +44,46 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
 
         function savePRSuccess() {
             window.alertShow("success", "Personal Record Saved!");
+        }
+
+        function prHistoryQueryComplete(resp) {
+            $scope.History = resp;
+            $scope.sortHistoy(0);
+        }
+
+        $scope.sortHistoy = function(sortId) {
+            $scope.exerciseHistory = [];
+            $.each($scope.History, function (i, v) {
+                //default to record with most current date
+                var mostRecent = {};
+                $.each(v.History, function (index, value) {
+                    if (sortId === 0) {
+                        if (mostRecent.RecordDate === undefined) {
+                            mostRecent = value;
+                        }
+                        var recentDate = new Date(mostRecent.RecordDate);
+                        var nextDate = new Date(value.RecordDate);
+                        if (recentDate < nextDate) {
+                            mostRecent = value;
+                        }
+                    } else {
+                        if (mostRecent.Value === undefined) {
+                            mostRecent = value;
+                        }
+                        if (parseFloat(mostRecent.Value) < parseFloat(value.Value)) {
+                            mostRecent = value;
+                        }
+                    }
+                });
+                $scope.exerciseHistory.push(mostRecent);
+            });
+        }
+
+        $scope.getHistory = function() {
+            PersonalRecords.query()
+                .then(prHistoryQueryComplete, queryError)
+                .catch(queryError)
+                .finally(queryFinally);
         }
 
         $scope.onExerciseSelect = function () {

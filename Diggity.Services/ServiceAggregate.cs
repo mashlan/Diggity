@@ -91,7 +91,7 @@ namespace Diggity.Services
             {
                 return personalRecordHistory ??
                        (personalRecordHistory =
-                           new PersonalRecordHistoryService(repositoryAggregate,
+                           new PersonalRecordService(repositoryAggregate,
                                repositoryAggregate.PersonalRecordHistory,
                                validationFactory.GetValidator<PersonalRecord>(repositoryAggregate)));
             }

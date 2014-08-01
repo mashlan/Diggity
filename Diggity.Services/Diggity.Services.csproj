@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="ExerciseService.cs" />
     <Compile Include="ExerciseTypeService.cs" />
-    <Compile Include="PersonalRecordHistoryService.cs" />
+    <Compile Include="PersonalRecordService.cs" />
     <Compile Include="ServiceAggregate.cs" />
     <Compile Include="ServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
