@@ -8,10 +8,12 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
 
         $scope.valuePlaceholder = "Amount";
         $scope.loadingExercises = true;
+        $scope.loadingHistory = true;
         $scope.newPR = {};
         $scope.historySortOptions = [
-            { id: 0, value: 'Last Recorded'},
-            { id: 1, value: 'Max Effort'}
+            { id: 0, value: 'Most Recent'},
+            { id: 1, value: 'Max Effort' },
+            { id: 2, value: 'Sort Alphabetically' }
         ];
 
         $scope.sortOption = 0;
@@ -49,6 +51,25 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
         function prHistoryQueryComplete(resp) {
             $scope.History = resp;
             $scope.sortHistoy(0);
+            $scope.loadingHistory = false;
+        }
+
+        $scope.selectRow = function(scope) {
+            var histories = scope.$parent.exerciseHistory;
+            $.each(histories, function (i, v) { v.selected = false;});
+            scope.history.selected = true;
+        }
+
+        $scope.editHistory = function(scope) {
+            var histories = scope.$parent.exerciseHistory;
+            $.each(histories, function (i, v) { v.showEditHistory = false; });
+            var exerciseId = scope.history.ExerciseId;
+            $scope.editHistoryRecords = $.grep($scope.History, function (v) { return v.ExerciseId == exerciseId; })[0].History;
+            var units = getUnitsOfMeasure(exerciseId);
+            $.each($scope.editHistoryRecords, function(i, v) {
+                v.units = units;
+            });
+            scope.history.showEditHistory = true;
         }
 
         $scope.sortHistoy = function(sortId) {
@@ -91,6 +112,12 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             var exerciseType = $.grep($scope.exerciseTypes, function (v) { return v.Id === exercise.ExerciseTypeId; })[0];
             $scope.valuePlaceholder = exerciseType.Name;
             $scope.unitsList = exerciseType.UnitOfMeasures;
+        }
+
+        function getUnitsOfMeasure(exerciseId) {
+            var exercise = $.grep($scope.exerciseList, function(v) { return v.Id == exerciseId; })[0];
+            var exerciseType = $.grep($scope.exerciseTypes, function (v) { return v.Id === exercise.ExerciseTypeId; })[0];
+            return exerciseType.UnitOfMeasures;
         }
 
         $scope.openDatePicker = function ($event) {

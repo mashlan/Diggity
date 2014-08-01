@@ -5207,22 +5207,22 @@ a.list-group-item-danger.active:focus {
   border-bottom-color: #34495e;
 }
 .panel-success {
-  border-color: #336e7b;
+  border-color: #15a589;
 }
 .panel-success > .panel-heading {
   color: #ffffff;
-  background-color: #336e7b;
-  border-color: #336e7b;
+  background-color: #15a589;
+  border-color: #15a589;
 }
 .panel-success > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #336e7b;
+  border-top-color: #15a589;
 }
 .panel-success > .panel-heading .badge {
-  color: #336e7b;
+  color: #15a589;
   background-color: #ffffff;
 }
 .panel-success > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #336e7b;
+  border-bottom-color: #15a589;
 }
 .panel-info {
   border-color: #3498db;

@@ -1,0 +1,33 @@
+﻿
+<div class="row" style="margin-left:10px;">
+    <div class="col-lg-4 col-md-4">
+        <div class="input-group">
+            <input class="form-control input-sm"
+                   ng-model="recordInfo.RecordDate"
+                   datepicker-popup="MM/dd/yyyy" show-button-bar="true" show-weeks="false" is-open="opened"
+                   type="text" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-default btn-sm" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3">
+        <div class="form-group">
+            <input class="form-control input-sm" ng-model="recordInfo.Value" type="number" />
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3">
+        <div class="form-group">
+            <select ng-model="recordInfo.UnitOfMeasureId"
+                    ng-options="unit.Id as unit.Name for unit in recordInfo.units"
+                    class="form-control input-sm"></select>
+        </div>
+    </div>
+    <div class="col-lg-1 col-md-1">
+        <button class="btn btn-default btn-sm" type="button" ng-click="saveEditPR()" tooltip="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+    </div>
+    <div class="col-lg-1 col-md-1">
+        <button class="btn btn-default btn-sm" type="button" ng-click="saveEditPR()" tooltip="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+</div>
+

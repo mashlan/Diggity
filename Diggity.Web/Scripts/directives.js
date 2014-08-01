@@ -30,6 +30,16 @@ angular.module('myApp.directives', [])
             templateUrl: '../Html/Account/PRHistory.html'
         }
     })
+    .directive('editHistoryRecord', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '../Html/Account/EditPR.html',
+            scope: {
+                recordInfo: '=record'
+            }
+        }
+    })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',

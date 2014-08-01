@@ -1,34 +1,51 @@
 ﻿
-<div class="panel panel-primary">
+<div class="panel panel-success">
     <div class="panel-heading">
-        <div class="col-lg-6 panel-title">PR's</div>
-        <div class="col-lg-6">
-            <label class="control-label col-lg-4 text-right">Show:</label>
-            <div class="col-lg-8">
-                <select class="form-control input-sm"
-                        ng-model="sortOption"
-                        ng-options="option.id as option.value for option in historySortOptions"
-                        ng-change="sortHistoy(sortOption)"></select>
+        <div class="panel-title">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Personal Best</div>
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+                <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchText.ExerciseName">
             </div>
         </div>
         <div class="clearfix"></div>
     </div>
-    <table class="table table-condensed table-hover table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>Exercise</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>Units</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="history in exerciseHistory">
+    
+    <div style="margin: 10px;">
+        <pr-entry></pr-entry>
+    </div>
+
+    <!--<div class="form-group">
+        <div class="">
+            <select class="form-control"
+                    ng-model="sortOption"
+                    ng-options="option.id as option.value for option in historySortOptions"
+                    ng-change="sortHistoy(sortOption)"></select>
+        </div>
+    </div>-->
+    <div class="clearfix"></div>
+    <table class="table table-condensed table-hover table-bordered" ng-hide="loadingHistory">
+        <tbody ng-repeat="history in exerciseHistory | filter:searchText">
+            <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory">
                 <td>{{history.ExerciseName}}</td>
-                <td>{{history.RecordDate}}</td>
-                <td>{{history.Value}}</td>
-                <td>{{history.UnitsName}}</td>
+                <td>{{history.Value}} {{history.UnitsName}}</td>
+                <td>On {{history.RecordDate}}</td>
+                <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats"></span></a></td>
+                <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-edit"></span></a></td>
+            </tr>
+            <tr ng-show="history.showEditHistory">
+                <td colspan="5" >
+                    <div class="panel panel-success" style="margin-bottom: 0">
+                        <div class="text-success">
+                            <div class="panel-title">{{history.ExerciseName}}</div>
+                        </div>
+                        <div class="clearfix"></div><br/>
+                        <edit-history-record record="editHistory" ng-repeat="editHistory in editHistoryRecords"></edit-history-record>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
+    <div ng-show="loadingHistory">
+        <span class="form-control">Loading PR History . . <i class="fa fa-spin fa-spinner"></i></span>
+    </div>
 </div>

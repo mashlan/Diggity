@@ -1,5 +1,5 @@
 ﻿<form name="newPrForm" novalidate>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-md-4">
         <div class="form-group">
             <label class="control-label">Exercise</label>
             <select name="uExerciseList" class="form-control" required ng-hide="loadingExercises"
@@ -12,7 +12,7 @@
             <label ng-show="newPrForm.uExerciseList.$error.required && prInvalid" class="text-danger">Required!</label>
         </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-md-3">
         <div class="form-group">
             <label class="control-label">Date</label>
             <div class="input-group">
@@ -23,13 +23,13 @@
                        datepicker-popup="MM/dd/yyyy" show-button-bar="true" show-weeks="false" is-open="opened"
                        type="text" />
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-success" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                    <button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
             </div>
             <label ng-show="newPrForm.uRecordDate.$error.required && prInvalid" class="text-danger">Required!</label>
         </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2 col-md-2">
         <div class="form-group">
             <label class="control-label">{{valuePlaceholder}}</label>
             <input name="uValue" class="form-control"
@@ -39,7 +39,7 @@
             <label ng-show="newPrForm.uValue.$error.required && prInvalid" class="text-danger">Required!</label>
         </div>
     </div>
-    <div class="col-lg-2">
+    <div class="col-lg-2 col-md-2">
         <div class="form-group">
             <label class="control-label">Units</label>
             <select name="uUnits"
@@ -52,10 +52,10 @@
             <label ng-show="newPrForm.uUnits.$error.required && prInvalid" class="text-danger">Required!</label>
         </div>
     </div>
-    <div class="col-lg-1">
+    <div class="col-lg-1 col-md-1">
         <div class="form-group">
             <label class="control-label">&nbsp;</label>
-            <button class="form-control btn-success" type="button" ng-click="savePR()" tooltip="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+            <button class="form-control btn-default" type="button" ng-click="savePR()" tooltip="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button>
         </div>
     </div>
 </form>
