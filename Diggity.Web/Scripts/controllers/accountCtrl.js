@@ -145,5 +145,8 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             }
         }
 
+        $scope.hideEnterPrForm = function() {
+            $scope.showAddPr = false;
+        }
     }
 ]);

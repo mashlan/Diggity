@@ -1,7 +1,7 @@
 ﻿
 body {
     margin-top: 70px;
-    background-color: #fafafa;
+    background-color: #f0f0f0;
 }
 
 .panel-title {
@@ -159,21 +159,21 @@ i {
 }
 
 .panel-diggity {
-  border-color: #5F5F65;
+  border-color: #5F6A6F;
 }
 
 .panel-diggity > .panel-heading {
   color: #ffffff;
-  background-color: #5F5F65;
-  border-color: #5F5F65;
+  background-color: #5F6A6F;
+  border-color: #5F6A6F;
 }
 
 .panel-diggity > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #5F5F65;
+  border-top-color: #5F6A6F;
 }
 
 .panel-diggity > .panel-heading .badge {
-  color: #5F5F65;
+  color: #5F6A6F;
   background-color: #ffffff;
 }
 

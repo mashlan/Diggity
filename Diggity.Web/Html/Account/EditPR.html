@@ -7,7 +7,7 @@
                    datepicker-popup="MM/dd/yyyy" show-button-bar="true" show-weeks="false" is-open="opened"
                    type="text" />
             <span class="input-group-btn">
-                <button type="button" class="btn btn-default btn-sm" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                <button type="button" class="btn btn-info btn-sm" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
         </div>
     </div>
@@ -23,11 +23,9 @@
                     class="form-control input-sm"></select>
         </div>
     </div>
-    <div class="col-lg-1 col-md-1">
-        <button class="btn btn-default btn-sm" type="button" ng-click="saveEditPR()" tooltip="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-    </div>
-    <div class="col-lg-1 col-md-1">
-        <button class="btn btn-default btn-sm" type="button" ng-click="saveEditPR()" tooltip="Delete"><span class="glyphicon glyphicon-trash"></span></button>
+    <div class="col-lg-2 col-md-2">
+        <button class="btn btn-info btn-sm" type="button" ng-click="saveEditPR()" tooltip="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+        <button class="btn btn-info btn-sm" type="button" ng-click="saveEditPR()" tooltip="Delete"><span class="glyphicon glyphicon-trash"></span></button>
     </div>
 </div>
 

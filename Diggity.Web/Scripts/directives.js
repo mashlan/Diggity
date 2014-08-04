@@ -9,8 +9,8 @@ angular.module('myApp.directives', [])
             };
         }
     ])
-    .directive('repeatDone', function () {
-        return function (scope) {
+    .directive('repeatDone', function() {
+        return function(scope) {
             if (scope.$last) {
                 scope.$parent.showLoading = false;
             }
@@ -28,6 +28,20 @@ angular.module('myApp.directives', [])
             restrict: 'E',
             replace: true,
             templateUrl: '../Html/Account/PRHistory.html'
+        }
+    })
+    .directive('heroHistory', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '../Html/Account/HeroHistory.html'
+        }
+    })
+    .directive('girlsHistory', function() {
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: '../Html/Account/GirlsHistory.html'
         }
     })
     .directive('editHistoryRecord', function() {

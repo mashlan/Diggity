@@ -17,7 +17,7 @@ namespace Diggity.Services
 
         public override IEnumerable<object> FindSimple(Expression<Func<PersonalRecord, bool>> expression)
         {
-            var entities = Repository.Find(expression).GroupBy(g => g.ExerciseId);
+            var entities = Repository.Find(expression).OrderBy(o => o.Exercise.Name).GroupBy(g => g.ExerciseId);
             return GetGroupedObject(entities);
         }
 

@@ -17,7 +17,7 @@ namespace Diggity.Services
 
         public override IEnumerable<object> GetAllSimple()
         {
-            var data = Repository.GetAll();
+            var data = Repository.GetAll().OrderBy(o => o.Name);
             return new List<object>(data.Select(GetSimpleObject));
         }
 

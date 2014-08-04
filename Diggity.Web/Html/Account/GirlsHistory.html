@@ -1,0 +1,62 @@
+﻿<div class="panel panel-diggity">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Girls</div>
+            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchGirls.Name">
+                    <div class="input-group-btn">
+                        <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#/user" ng-click="showAddGirl = true"><span class="fa fa-plus-square-o"></span> New Girl PR</a></li>
+                            <li><a href="#/user" ng-click="sortGirlHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
+                            <li><a href="#/user" ng-click="sortGirlHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Best Effort</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+
+    <!--<div style="margin: 10px;" ng-show="showAddPr">
+        <pr-entry></pr-entry>
+    </div>-->
+
+    <div class="clearfix"></div>
+    <table class="table table-condensed table-hover" ng-hide="loadingGirlHistory">
+        <tbody ng-repeat="girl in girlsHistory | filter:searchGirls">
+            <tr ng-class="{active: girl.selected}" ng-click="selectRow(this)" ng-hide="girl.showEditHistory">
+                <td>{{girl.Name}}</td>
+                <td>{{girl.Time}}</td>
+                <td>On {{girl.RecordDate}}</td>
+                <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
+                <td><a href="#/user" tooltip="Edit" ng-click="editGirlHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
+            </tr>
+            <tr ng-show="girl.showEditHistory">
+                <td colspan="5">
+                    <div class="panel panel-diggity" style="margin-bottom: 0">
+                        <div class="text-success">
+                            <div class="panel-title">
+                                <div class="panel-heading text-info">
+                                    {{girl.Name}}
+                                    <button type="button" class="close" ng-click="girl.showEditHistory = false;" tooltip="Close">
+                                        <span class="text-info">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <edit-girl-record record="editGirlHistory"
+                                             ng-repeat="editHistory in editGirlHistoryRecords"
+                                             open-datepicker="openDatePicker($event)">
+                        </edit-girl-record>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div ng-show="loadingGirlHistory">
+        <span class="form-control">Loading Girl History . . <i class="fa fa-spin fa-spinner"></i></span>
+    </div>
+</div>
