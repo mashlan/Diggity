@@ -16,19 +16,19 @@ namespace Diggity.Entities
     {
         public UnitOfMeasure()
         {
-            this.WorkoutSets = new HashSet<WorkoutSet>();
             this.UserPreferences = new HashSet<UserPreference>();
             this.ExerciseTypes = new HashSet<ExerciseType>();
             this.PersonalRecordHistories = new HashSet<PersonalRecord>();
+            this.WorkoutSets = new HashSet<WorkoutSet>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
         public virtual ICollection<ExerciseType> ExerciseTypes { get; set; }
         public virtual ICollection<PersonalRecord> PersonalRecordHistories { get; set; }
+        public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
     }
 }

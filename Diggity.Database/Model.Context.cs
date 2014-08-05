@@ -13,6 +13,8 @@ namespace Diggity.Database
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using DayOfWeek = Diggity.Entities.DayOfWeek;
+    
     
     public partial class ModelContainer : DbContext
     {
@@ -42,5 +44,8 @@ namespace Diggity.Database
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<PersonalRecord> PersonalRecords { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<WorkoutTemplate> WorkoutTemplates { get; set; }
+        public virtual DbSet<TemplateDays> TemplateDays { get; set; }
+        public virtual DbSet<DayOfWeek> DayOfWeeks { get; set; }
     }
 }

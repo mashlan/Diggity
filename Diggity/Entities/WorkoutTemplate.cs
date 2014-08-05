@@ -12,22 +12,23 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Workout : DiggityEntity
+    public partial class WorkoutTemplate : DiggityEntity
     {
-        public Workout()
+        public WorkoutTemplate()
         {
-            this.WorkoutSets = new HashSet<WorkoutSet>();
+            this.TemplateDays = new HashSet<TemplateDays>();
+            this.Workouts = new HashSet<Workout>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public System.DateTime WorkoutDate { get; set; }
+        public System.DateTime StartDate { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
         public string UserId { get; set; }
-        public Nullable<int> WorkoutTemplateId { get; set; }
     
-        public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
+        public virtual ICollection<TemplateDays> TemplateDays { get; set; }
+        public virtual ICollection<Workout> Workouts { get; set; }
         public virtual AspNetUser User { get; set; }
-        public virtual WorkoutTemplate WorkoutTemplate { get; set; }
     }
 }

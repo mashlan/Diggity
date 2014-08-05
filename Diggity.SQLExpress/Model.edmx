@@ -58,6 +58,13 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="DayOfWeeks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="Exercises">
           <Key>
             <PropertyRef Name="Id" />
@@ -76,7 +83,7 @@
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
-        <EntityType Name="PersonalRecordHistories">
+        <EntityType Name="PersonalRecords">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -85,7 +92,16 @@
           <Property Name="Value" Type="float" Nullable="false" />
           <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
           <Property Name="ExerciseId" Type="int" Nullable="false" />
-          <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TemplateDays">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IsRepeat" Type="bit" Nullable="false" />
+          <Property Name="WorkoutTemplateId" Type="int" Nullable="false" />
+          <Property Name="DayOfWeekId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="UnitOfMeasureExerciseType">
           <Key>
@@ -119,24 +135,34 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="StartDateTime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="EndDateTime" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="AspNetUserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="WorkoutDate" Type="datetime" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="WorkoutTemplateId" Type="int" />
         </EntityType>
         <EntityType Name="WorkoutSets">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SortOrder" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PlannedReps" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ActualReps" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PlannedWeight" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="ActualWeight" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+          <Property Name="SortOrder" Type="smallint" Nullable="false" />
+          <Property Name="Repetitions" Type="smallint" Nullable="false" />
+          <Property Name="Weight" Type="float" Nullable="false" />
+          <Property Name="Note" Type="nvarchar(max)" />
           <Property Name="ExerciseId" Type="int" Nullable="false" />
-          <Property Name="WorkoutId" Type="int" Nullable="false" />
+          <Property Name="UnitOfMeasureId" Type="int" Nullable="false" />
+          <Property Name="WorkoutId" Type="int" />
+          <Property Name="TemplateDaysId" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkoutTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <Association Name="FK_AspNetUserRoles_AspNetRole">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
@@ -202,51 +228,63 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ExerciseWorkoutSet">
-          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
-          <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Exercises">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WorkoutSets">
-              <PropertyRef Name="ExerciseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PersonalRecordHistoryAspNetUser">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="PersonalRecordHistories" Type="Self.PersonalRecordHistories" Multiplicity="*" />
+          <End Role="PersonalRecords" Type="Self.PersonalRecords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetUsers">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PersonalRecordHistories">
-              <PropertyRef Name="AspNetUserId" />
+            <Dependent Role="PersonalRecords">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonalRecordHistoryExercise">
           <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
-          <End Role="PersonalRecordHistories" Type="Self.PersonalRecordHistories" Multiplicity="*" />
+          <End Role="PersonalRecords" Type="Self.PersonalRecords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Exercises">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PersonalRecordHistories">
+            <Dependent Role="PersonalRecords">
               <PropertyRef Name="ExerciseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PersonalRecordHistoryUnitOfMeasure">
           <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="1" />
-          <End Role="PersonalRecordHistories" Type="Self.PersonalRecordHistories" Multiplicity="*" />
+          <End Role="PersonalRecords" Type="Self.PersonalRecords" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UnitOfMeasures">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="PersonalRecordHistories">
+            <Dependent Role="PersonalRecords">
               <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateDaysDayOfWeek">
+          <End Role="DayOfWeeks" Type="Self.DayOfWeeks" Multiplicity="1" />
+          <End Role="TemplateDays" Type="Self.TemplateDays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DayOfWeeks">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TemplateDays">
+              <PropertyRef Name="DayOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateDaysWorkoutSet">
+          <End Role="TemplateDays" Type="Self.TemplateDays" Multiplicity="0..1" />
+          <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TemplateDays">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSets">
+              <PropertyRef Name="TemplateDaysId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -310,6 +348,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WorkoutAspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workouts">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutSetExercise">
+          <End Role="Exercises" Type="Self.Exercises" Multiplicity="1" />
+          <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exercises">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSets">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WorkoutSetUnitOfMeasure">
           <End Role="UnitOfMeasures" Type="Self.UnitOfMeasures" Multiplicity="1" />
           <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
@@ -322,8 +384,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WorkoutTemplateAspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="WorkoutTemplates" Type="Self.WorkoutTemplates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutTemplates">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkoutTemplateTemplateDays">
+          <End Role="WorkoutTemplates" Type="Self.WorkoutTemplates" Multiplicity="1" />
+          <End Role="TemplateDays" Type="Self.TemplateDays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkoutTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TemplateDays">
+              <PropertyRef Name="WorkoutTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WorkoutWorkoutSet">
-          <End Role="Workouts" Type="Self.Workouts" Multiplicity="1" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="0..1" />
           <End Role="WorkoutSets" Type="Self.WorkoutSets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Workouts">
@@ -334,20 +420,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_WorkoutWorkoutTemplate">
+          <End Role="WorkoutTemplates" Type="Self.WorkoutTemplates" Multiplicity="0..1" />
+          <End Role="Workouts" Type="Self.Workouts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkoutTemplates">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workouts">
+              <PropertyRef Name="WorkoutTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DayOfWeeks" EntityType="Self.DayOfWeeks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Exercises" EntityType="Self.Exercises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExerciseTypes" EntityType="Self.ExerciseTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PersonalRecordHistories" EntityType="Self.PersonalRecordHistories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PersonalRecords" EntityType="Self.PersonalRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TemplateDays" EntityType="Self.TemplateDays" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Self.UnitOfMeasureExerciseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPreferences" EntityType="Self.UserPreferences" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Workouts" EntityType="Self.Workouts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WorkoutSets" EntityType="Self.WorkoutSets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkoutTemplates" EntityType="Self.WorkoutTemplates" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUserRoles_AspNetRole" Association="Self.FK_AspNetUserRoles_AspNetRole">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
@@ -368,21 +469,25 @@
             <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
             <End Role="Exercises" EntitySet="Exercises" />
           </AssociationSet>
-          <AssociationSet Name="FK_ExerciseWorkoutSet" Association="Self.FK_ExerciseWorkoutSet">
-            <End Role="Exercises" EntitySet="Exercises" />
-            <End Role="WorkoutSets" EntitySet="WorkoutSets" />
-          </AssociationSet>
           <AssociationSet Name="FK_PersonalRecordHistoryAspNetUser" Association="Self.FK_PersonalRecordHistoryAspNetUser">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="PersonalRecordHistories" EntitySet="PersonalRecordHistories" />
+            <End Role="PersonalRecords" EntitySet="PersonalRecords" />
           </AssociationSet>
           <AssociationSet Name="FK_PersonalRecordHistoryExercise" Association="Self.FK_PersonalRecordHistoryExercise">
             <End Role="Exercises" EntitySet="Exercises" />
-            <End Role="PersonalRecordHistories" EntitySet="PersonalRecordHistories" />
+            <End Role="PersonalRecords" EntitySet="PersonalRecords" />
           </AssociationSet>
           <AssociationSet Name="FK_PersonalRecordHistoryUnitOfMeasure" Association="Self.FK_PersonalRecordHistoryUnitOfMeasure">
             <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
-            <End Role="PersonalRecordHistories" EntitySet="PersonalRecordHistories" />
+            <End Role="PersonalRecords" EntitySet="PersonalRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateDaysDayOfWeek" Association="Self.FK_TemplateDaysDayOfWeek">
+            <End Role="DayOfWeeks" EntitySet="DayOfWeeks" />
+            <End Role="TemplateDays" EntitySet="TemplateDays" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateDaysWorkoutSet" Association="Self.FK_TemplateDaysWorkoutSet">
+            <End Role="TemplateDays" EntitySet="TemplateDays" />
+            <End Role="WorkoutSets" EntitySet="WorkoutSets" />
           </AssociationSet>
           <AssociationSet Name="FK_UnitOfMeasureExerciseType_ExerciseType" Association="Self.FK_UnitOfMeasureExerciseType_ExerciseType">
             <End Role="ExerciseTypes" EntitySet="ExerciseTypes" />
@@ -404,13 +509,33 @@
             <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
             <End Role="UserPreferences" EntitySet="UserPreferences" />
           </AssociationSet>
+          <AssociationSet Name="FK_WorkoutAspNetUser" Association="Self.FK_WorkoutAspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Workouts" EntitySet="Workouts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutSetExercise" Association="Self.FK_WorkoutSetExercise">
+            <End Role="Exercises" EntitySet="Exercises" />
+            <End Role="WorkoutSets" EntitySet="WorkoutSets" />
+          </AssociationSet>
           <AssociationSet Name="FK_WorkoutSetUnitOfMeasure" Association="Self.FK_WorkoutSetUnitOfMeasure">
             <End Role="UnitOfMeasures" EntitySet="UnitOfMeasures" />
             <End Role="WorkoutSets" EntitySet="WorkoutSets" />
           </AssociationSet>
+          <AssociationSet Name="FK_WorkoutTemplateAspNetUser" Association="Self.FK_WorkoutTemplateAspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkoutTemplates" EntitySet="WorkoutTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutTemplateTemplateDays" Association="Self.FK_WorkoutTemplateTemplateDays">
+            <End Role="WorkoutTemplates" EntitySet="WorkoutTemplates" />
+            <End Role="TemplateDays" EntitySet="TemplateDays" />
+          </AssociationSet>
           <AssociationSet Name="FK_WorkoutWorkoutSet" Association="Self.FK_WorkoutWorkoutSet">
             <End Role="Workouts" EntitySet="Workouts" />
             <End Role="WorkoutSets" EntitySet="WorkoutSets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkoutWorkoutTemplate" Association="Self.FK_WorkoutWorkoutTemplate">
+            <End Role="WorkoutTemplates" EntitySet="WorkoutTemplates" />
+            <End Role="Workouts" EntitySet="Workouts" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -431,18 +556,6 @@
           </AssociationSet>
           <EntitySet Name="Workouts" EntityType="Model.Workout" />
           <EntitySet Name="WorkoutSets" EntityType="Model.WorkoutSet" />
-          <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.WorkoutSetUnitOfMeasure">
-            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
-            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
-          </AssociationSet>
-          <AssociationSet Name="ExerciseWorkoutSet" Association="Model.ExerciseWorkoutSet">
-            <End Role="Exercise" EntitySet="Exercises" />
-            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
-          </AssociationSet>
-          <AssociationSet Name="WorkoutWorkoutSet" Association="Model.WorkoutWorkoutSet">
-            <End Role="Workout" EntitySet="Workouts" />
-            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
-          </AssociationSet>
           <EntitySet Name="UserPreferences" EntityType="Model.UserPreference" />
           <AssociationSet Name="UserPreferenceExerciseType" Association="Model.UserPreferenceExerciseType">
             <End Role="UserPreference" EntitySet="UserPreferences" />
@@ -485,6 +598,45 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRole" />
+          <AssociationSet Name="WorkoutSetExercise" Association="Model.WorkoutSetExercise">
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+            <End Role="Exercise" EntitySet="Exercises" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutSetUnitOfMeasure" Association="Model.WorkoutSetUnitOfMeasure">
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+            <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutWorkoutSet" Association="Model.WorkoutWorkoutSet">
+            <End Role="Workout" EntitySet="Workouts" />
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutAspNetUser" Association="Model.WorkoutAspNetUser">
+            <End Role="Workout" EntitySet="Workouts" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="WorkoutTemplates" EntityType="Model.WorkoutTemplate" />
+          <EntitySet Name="TemplateDays" EntityType="Model.TemplateDays" />
+          <AssociationSet Name="TemplateDaysWorkoutSet" Association="Model.TemplateDaysWorkoutSet">
+            <End Role="TemplateDays" EntitySet="TemplateDays" />
+            <End Role="WorkoutSet" EntitySet="WorkoutSets" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutTemplateTemplateDays" Association="Model.WorkoutTemplateTemplateDays">
+            <End Role="WorkoutTemplate" EntitySet="WorkoutTemplates" />
+            <End Role="TemplateDays" EntitySet="TemplateDays" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutWorkoutTemplate" Association="Model.WorkoutWorkoutTemplate">
+            <End Role="Workout" EntitySet="Workouts" />
+            <End Role="WorkoutTemplate" EntitySet="WorkoutTemplates" />
+          </AssociationSet>
+          <AssociationSet Name="WorkoutTemplateAspNetUser" Association="Model.WorkoutTemplateAspNetUser">
+            <End Role="WorkoutTemplate" EntitySet="WorkoutTemplates" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="DayOfWeeks" EntityType="Model.DayOfWeek" />
+          <AssociationSet Name="TemplateDaysDayOfWeek" Association="Model.TemplateDaysDayOfWeek">
+            <End Role="TemplateDays" EntitySet="TemplateDays" />
+            <End Role="DayOfWeek" EntitySet="DayOfWeeks" />
+          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Model.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -503,9 +655,8 @@
           <Property Name="ExerciseTypeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ExerciseType" Relationship="Model.FK_ExerciseTypeExercise" FromRole="Exercis"
                               ToRole="ExerciseType" />
-          <NavigationProperty Name="WorkoutSets" Relationship="Model.ExerciseWorkoutSet" FromRole="Exercise"
-                              ToRole="WorkoutSet" />
           <NavigationProperty Name="PersonalRecordHistories" Relationship="Model.PersonalRecordHistoryExercise" FromRole="Exercise" ToRole="PersonalRecordHistory" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetExercise" FromRole="Exercise" ToRole="WorkoutSet" />
         </EntityType>
         <EntityType Name="ExerciseType">
           <Key>
@@ -530,13 +681,12 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false"
                     Unicode="true" />
-          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="UnitOfMeasure"
-                              ToRole="WorkoutSet" />
           <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceUnitOfMeasure"
                               FromRole="UnitOfMeasure" ToRole="UserPreference" />
           <NavigationProperty Name="ExerciseTypes" Relationship="Model.UnitOfMeasureExerciseType"
                               FromRole="UnitOfMeasure" ToRole="ExerciseType" />
           <NavigationProperty Name="PersonalRecordHistories" Relationship="Model.PersonalRecordHistoryUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="PersonalRecordHistory" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="UnitOfMeasure" ToRole="WorkoutSet" />
         </EntityType>
         <Association Name="FK_ExerciseTypeExercise">
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="1" />
@@ -558,74 +708,31 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
                     FixedLength="false" />
-          <Property Name="StartDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
-                    FixedLength="false" />
-          <Property Name="EndDateTime" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
-                    FixedLength="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutWorkoutSet" FromRole="Workout"
-                              ToRole="WorkoutSet" />
-          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="WorkoutDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.WorkoutWorkoutSet" FromRole="Workout" ToRole="WorkoutSet" />
+          <NavigationProperty Name="User" Relationship="Model.WorkoutAspNetUser" FromRole="Workout" ToRole="AspNetUser" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WorkoutTemplate" Relationship="Model.WorkoutWorkoutTemplate" FromRole="Workout" ToRole="WorkoutTemplate" />
+          <Property Name="WorkoutTemplateId" Type="Int32" />
         </EntityType>
         <EntityType Name="WorkoutSet">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SortOrder" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PlannedReps" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
-                    FixedLength="false" />
-          <Property Name="ActualReps" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PlannedWeight" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
-                    FixedLength="false" />
-          <Property Name="ActualWeight" Type="String" Nullable="false" MaxLength="Max" Unicode="true"
-                    FixedLength="false" />
-          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="WorkoutSet"
-                              ToRole="UnitOfMeasure" />
-          <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Exercise" Relationship="Model.ExerciseWorkoutSet" FromRole="WorkoutSet"
-                              ToRole="Exercise" />
+          <Property Name="SortOrder" Type="Int16" Nullable="false" />
+          <Property Name="Repetitions" Type="Int16" Nullable="false" />
+          <Property Name="Weight" Type="Double" Nullable="false" />
+          <Property Name="Note" Type="String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Exercise" Relationship="Model.WorkoutSetExercise" FromRole="WorkoutSet" ToRole="Exercise" />
           <Property Name="ExerciseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Workout" Relationship="Model.WorkoutWorkoutSet" FromRole="WorkoutSet"
-                              ToRole="Workout" />
-          <Property Name="WorkoutId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UnitOfMeasure" Relationship="Model.WorkoutSetUnitOfMeasure" FromRole="WorkoutSet" ToRole="UnitOfMeasure" />
+          <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Workout" Relationship="Model.WorkoutWorkoutSet" FromRole="WorkoutSet" ToRole="Workout" />
+          <Property Name="WorkoutId" Type="Int32" />
+          <NavigationProperty Name="TemplateDay" Relationship="Model.TemplateDaysWorkoutSet" FromRole="WorkoutSet" ToRole="TemplateDays" />
+          <Property Name="TemplateDaysId" Type="Int32" />
         </EntityType>
-        <Association Name="WorkoutSetUnitOfMeasure">
-          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
-          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="UnitOfMeasure">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WorkoutSet">
-              <PropertyRef Name="UnitOfMeasureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ExerciseWorkoutSet">
-          <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
-          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Exercise">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WorkoutSet">
-              <PropertyRef Name="ExerciseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="WorkoutWorkoutSet">
-          <End Type="Model.Workout" Role="Workout" Multiplicity="1" />
-          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Workout">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WorkoutSet">
-              <PropertyRef Name="WorkoutId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="UserPreference">
           <Key>
             <PropertyRef Name="Id" />
@@ -638,7 +745,7 @@
           <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Model.UserPreferenceAspNetUser" FromRole="UserPreference" ToRole="AspNetUser" />
+          <NavigationProperty Name="User" Relationship="Model.UserPreferenceAspNetUser" FromRole="UserPreference" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="UserPreferenceExerciseType">
           <End Type="Model.UserPreference" Role="UserPreference" Multiplicity="*" />
@@ -710,6 +817,8 @@
           <NavigationProperty Name="AspNetUserLogins" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="UserPreferences" Relationship="Model.UserPreferenceAspNetUser" FromRole="AspNetUser" ToRole="UserPreference" />
           <NavigationProperty Name="PersonalRecordHistories" Relationship="Model.PersonalRecordHistoryAspNetUser" FromRole="AspNetUser" ToRole="PersonalRecordHistory" />
+          <NavigationProperty Name="Workouts" Relationship="Model.WorkoutAspNetUser" FromRole="AspNetUser" ToRole="Workout" />
+          <NavigationProperty Name="WorkoutTemplates" Relationship="Model.WorkoutTemplateAspNetUser" FromRole="AspNetUser" ToRole="WorkoutTemplate" />
           <NavigationProperty Name="AspNetRoles" Relationship="Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
@@ -763,8 +872,8 @@
           <Property Name="UnitOfMeasureId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Exercise" Relationship="Model.PersonalRecordHistoryExercise" FromRole="PersonalRecordHistory" ToRole="Exercise" />
           <Property Name="ExerciseId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Model.PersonalRecordHistoryAspNetUser" FromRole="PersonalRecordHistory" ToRole="AspNetUser" />
-          <Property Name="AspNetUserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Model.PersonalRecordHistoryAspNetUser" FromRole="PersonalRecordHistory" ToRole="AspNetUser" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="PersonalRecordHistoryUnitOfMeasure">
           <End Type="Model.PersonalRecord" Role="PersonalRecordHistory" Multiplicity="*" />
@@ -798,7 +907,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PersonalRecordHistory">
-              <PropertyRef Name="AspNetUserId" />
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -810,6 +919,148 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
+        <Association Name="WorkoutSetExercise">
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Exercise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="ExerciseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutSetUnitOfMeasure">
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="UnitOfMeasure">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="UnitOfMeasureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutWorkoutSet">
+          <End Type="Model.Workout" Role="Workout" Multiplicity="0..1" />
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Workout">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="WorkoutId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutAspNetUser">
+          <End Type="Model.Workout" Role="Workout" Multiplicity="*" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="WorkoutTemplate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="true" Precision="3" />
+          <NavigationProperty Name="TemplateDays" Relationship="Model.WorkoutTemplateTemplateDays" FromRole="WorkoutTemplate" ToRole="TemplateDays" />
+          <NavigationProperty Name="Workouts" Relationship="Model.WorkoutWorkoutTemplate" FromRole="WorkoutTemplate" ToRole="Workout" />
+          <NavigationProperty Name="User" Relationship="Model.WorkoutTemplateAspNetUser" FromRole="WorkoutTemplate" ToRole="AspNetUser" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TemplateDays">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IsRepeat" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="WorkoutSets" Relationship="Model.TemplateDaysWorkoutSet" FromRole="TemplateDays" ToRole="WorkoutSet" />
+          <NavigationProperty Name="WorkoutTemplate" Relationship="Model.WorkoutTemplateTemplateDays" FromRole="TemplateDays" ToRole="WorkoutTemplate" />
+          <Property Name="WorkoutTemplateId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DayOfWeek" Relationship="Model.TemplateDaysDayOfWeek" FromRole="TemplateDays" ToRole="DayOfWeek" />
+          <Property Name="DayOfWeekId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="TemplateDaysWorkoutSet">
+          <End Type="Model.TemplateDays" Role="TemplateDays" Multiplicity="0..1" />
+          <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TemplateDays">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutSet">
+              <PropertyRef Name="TemplateDaysId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutTemplateTemplateDays">
+          <End Type="Model.WorkoutTemplate" Role="WorkoutTemplate" Multiplicity="1" />
+          <End Type="Model.TemplateDays" Role="TemplateDays" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkoutTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TemplateDays">
+              <PropertyRef Name="WorkoutTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutWorkoutTemplate">
+          <End Type="Model.Workout" Role="Workout" Multiplicity="*" />
+          <End Type="Model.WorkoutTemplate" Role="WorkoutTemplate" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="WorkoutTemplate">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Workout">
+              <PropertyRef Name="WorkoutTemplateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkoutTemplateAspNetUser">
+          <End Type="Model.WorkoutTemplate" Role="WorkoutTemplate" Multiplicity="*" />
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkoutTemplate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DayOfWeek">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TemplateDays" Relationship="Model.TemplateDaysDayOfWeek" FromRole="DayOfWeek" ToRole="TemplateDays" />
+        </EntityType>
+        <Association Name="TemplateDaysDayOfWeek">
+          <End Type="Model.TemplateDays" Role="TemplateDays" Multiplicity="*" />
+          <End Type="Model.DayOfWeek" Role="DayOfWeek" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="DayOfWeek">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TemplateDays">
+              <PropertyRef Name="DayOfWeekId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -855,10 +1106,9 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-          <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+          <ScalarProperty Name="WorkoutDate" ColumnName="WorkoutDate" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="WorkoutTemplateId" ColumnName="WorkoutTemplateId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -867,13 +1117,13 @@
         <MappingFragment StoreEntitySet="WorkoutSets">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
-          <ScalarProperty Name="PlannedReps" ColumnName="PlannedReps" />
-          <ScalarProperty Name="ActualReps" ColumnName="ActualReps" />
-          <ScalarProperty Name="PlannedWeight" ColumnName="PlannedWeight" />
-          <ScalarProperty Name="ActualWeight" ColumnName="ActualWeight" />
-          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="Repetitions" ColumnName="Repetitions" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
           <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
           <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+          <ScalarProperty Name="TemplateDaysId" ColumnName="TemplateDaysId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -927,13 +1177,51 @@
     </EntitySetMapping>
     <EntitySetMapping Name="PersonalRecords">
       <EntityTypeMapping TypeName="IsTypeOf(Model.PersonalRecord)">
-        <MappingFragment StoreEntitySet="PersonalRecordHistories">
+        <MappingFragment StoreEntitySet="PersonalRecords">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RecordDate" ColumnName="RecordDate" />
           <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
           <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
-          <ScalarProperty Name="AspNetUserId" ColumnName="AspNetUserId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetRole)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutTemplates">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.WorkoutTemplate)">
+        <MappingFragment StoreEntitySet="WorkoutTemplates">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemplateDays">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.TemplateDays)">
+        <MappingFragment StoreEntitySet="TemplateDays">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IsRepeat" ColumnName="IsRepeat" />
+          <ScalarProperty Name="WorkoutTemplateId" ColumnName="WorkoutTemplateId" />
+          <ScalarProperty Name="DayOfWeekId" ColumnName="DayOfWeekId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DayOfWeeks">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.DayOfWeek)">
+        <MappingFragment StoreEntitySet="DayOfWeeks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -945,14 +1233,6 @@
         <ScalarProperty Name="Id" ColumnName="ExerciseTypes_Id" />
       </EndProperty>
     </AssociationSetMapping>
-          <EntitySetMapping Name="AspNetRoles">
-            <EntityTypeMapping TypeName="Model.AspNetRole">
-              <MappingFragment StoreEntitySet="AspNetRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />

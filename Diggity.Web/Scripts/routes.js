@@ -24,6 +24,9 @@ angular.module('myApp.routes', ['ngRoute'])
             $routeProvider.when('/exercise', { templateUrl: '../Html/Exercise/ExerciseView.html', controller: 'ExerciseCtrl' });
             $routeProvider.when('/exercise/:id', { templateUrl: '../Html/Exercise/ExerciseEdit.html', controller: 'ExerciseCtrl' });
 
+            //Wendlers
+            $routeProvider.when('/wendler', { templateUrl: '../Html/Wendler/Index.html', controller: 'WendlerCtrl' });
+
             //HIT Timer
             $routeProvider.when('/timer', { templateUrl: '../Html/Timers/BasicTimer.html' });
 

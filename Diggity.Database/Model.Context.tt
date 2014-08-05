@@ -44,6 +44,8 @@ using Diggity.Entities;
 using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using DayOfWeek = Diggity.Entities.DayOfWeek;
+
 <#
 if (container.FunctionImports.Any())
 {

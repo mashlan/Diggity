@@ -20,7 +20,7 @@ namespace Diggity.Rules
         public bool IsSatisfiedBy(PersonalRecord entity)
         {
             var dups = repository.Find(p =>
-                p.ExerciseId == entity.ExerciseId && p.AspNetUserId == entity.AspNetUserId &&
+                p.ExerciseId == entity.ExerciseId && p.UserId == entity.UserId &&
                 p.RecordDate == entity.RecordDate && p.Id != entity.Id);
 
             var valid = !dups.Any();

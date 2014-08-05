@@ -262,6 +262,7 @@
     <Content Include="Html\Timers\NumberPanel.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
+    <Content Include="Html\Wendler\Index.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\accountCtrl.js" />
@@ -269,6 +270,7 @@
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />
+    <Content Include="Scripts\controllers\wendlerCtrl.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\filters.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -279,6 +281,7 @@
     <Content Include="Scripts\hitt_timer.js" />
     <Content Include="Scripts\services\accountServices.js" />
     <Content Include="Scripts\services\exerciseService.js" />
+    <Content Include="Scripts\services\wendlerService.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.min.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.js" />

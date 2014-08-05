@@ -15,7 +15,7 @@ namespace Diggity.WebApi
         public HttpResponseMessage Get()
         {
             var userId = User.Identity.GetUserId();
-            Func<object> func =() => ServiceAggregate.PersonalRecord.FindSimple(pr => pr.AspNetUserId == userId);
+            Func<object> func = () => ServiceAggregate.PersonalRecord.FindSimple(pr => pr.UserId == userId);
             return ApiGetFunc(func, null);
         }
 
@@ -28,13 +28,13 @@ namespace Diggity.WebApi
 
         public HttpResponseMessage Post(PersonalRecord pr)
         {
-            pr.AspNetUserId = User.Identity.GetUserId();
+            pr.UserId = User.Identity.GetUserId();
             return ApiSaveFunc(ServiceAggregate.PersonalRecord.Create, pr);
         }
 
         public HttpResponseMessage Put(PersonalRecord pr)
         {
-            pr.AspNetUserId = User.Identity.GetUserId();
+            pr.UserId = User.Identity.GetUserId();
             return ApiSaveFunc(ServiceAggregate.PersonalRecord.Update, pr);
         }
 

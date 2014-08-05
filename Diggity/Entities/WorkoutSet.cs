@@ -15,17 +15,18 @@ namespace Diggity.Entities
     public partial class WorkoutSet : DiggityEntity
     {
         public int Id { get; set; }
-        public string SortOrder { get; set; }
-        public string PlannedReps { get; set; }
-        public string ActualReps { get; set; }
-        public string PlannedWeight { get; set; }
-        public string ActualWeight { get; set; }
-        public int UnitOfMeasureId { get; set; }
+        public short SortOrder { get; set; }
+        public short Repetitions { get; set; }
+        public double Weight { get; set; }
+        public string Note { get; set; }
         public int ExerciseId { get; set; }
-        public int WorkoutId { get; set; }
+        public int UnitOfMeasureId { get; set; }
+        public Nullable<int> WorkoutId { get; set; }
+        public Nullable<int> TemplateDaysId { get; set; }
     
-        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         public virtual Exercise Exercise { get; set; }
+        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         public virtual Workout Workout { get; set; }
+        public virtual TemplateDays TemplateDay { get; set; }
     }
 }

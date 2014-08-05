@@ -51,6 +51,9 @@
     <Compile Include="Entities\AspNetUserLogin.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DayOfWeek.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\DiggityEntity.cs" />
     <Compile Include="Entities\Exercise.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -66,6 +69,9 @@
     <Compile Include="Entities\PersonalRecord.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\TemplateDays.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\UnitOfMeasure.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -76,6 +82,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\WorkoutSet.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\WorkoutTemplate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ValidationException.cs" />
