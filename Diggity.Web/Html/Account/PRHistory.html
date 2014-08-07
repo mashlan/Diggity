@@ -9,7 +9,7 @@
                     <div class="input-group-btn">
                         <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/user" ng-click="showAddPr = true"><span class="fa fa-plus-square-o"></span> New PR</a></li>
+                            <li><a href="#/user" ng-click="hideEnterPrForm(true)"><span class="fa fa-plus-square-o"></span> New PR</a></li>
                             <li><a href="#/user" ng-click="sortHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
                             <li><a href="#/user" ng-click="sortHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Max Effort</a></li>
                         </ul>
@@ -20,28 +20,26 @@
         <div class="clearfix"></div>
     </div>
 
-    <div style="margin: 10px;" ng-show="showAddPr">
-        <pr-entry></pr-entry>
-    </div>
+    <pr-entry class="pr-entry" style="margin: 10px; display: none;"></pr-entry>
 
     <div class="clearfix"></div>
     <table class="table table-condensed table-hover" ng-hide="loadingHistory">
         <tbody ng-repeat="history in exerciseHistory | filter:searchText">
-            <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory">
+            <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" class="pr-history-{{history.Id}}">
                 <td>{{history.ExerciseName}}</td>
                 <td>{{history.Value}} {{history.UnitsName}}</td>
                 <td>On {{history.RecordDate}}</td>
                 <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
                 <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
             </tr>
-            <tr ng-show="history.showEditHistory">
+            <tr class="pr-edit-history-{{history.Id}}" style="display: none;">
                 <td colspan="5">
                     <div class="panel panel-diggity" style="margin-bottom: 0">
                         <div class="text-success">
                             <div class="panel-title">
                                 <div class="panel-heading text-info">
                                     {{history.ExerciseName}}
-                                    <button type="button" class="close" ng-click="history.showEditHistory = false;" tooltip="Close">
+                                    <button type="button" class="close" ng-click="hideEditHistory(this)" tooltip="Close">
                                         <span class="text-info">&times;</span><span class="sr-only">Close</span>
                                     </button>
                                 </div>
