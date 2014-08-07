@@ -22,6 +22,7 @@ namespace Diggity.Web
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/vendors/angularjs/i18n/angular-locale_en_us.js",
                 "~/Scripts/vendor/angularjs/angular.js",
+                "~/Scripts/vendor/angularjs/angular-animate.js",
                 "~/Scripts/vendor/angularjs/angular-route.js",
                 "~/Scripts/vendor/angularjs/angular-resource.js"));
 

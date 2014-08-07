@@ -62,7 +62,7 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
 
         $scope.editHistory = function(scope) {
             var histories = scope.$parent.exerciseHistory;
-            //$.each(histories, function (i, v) { v.showEditHistory = false; });
+            $.each(histories, function (i, v) { v.showEditHistory = false; });
             var exerciseId = scope.history.ExerciseId;
             $scope.editHistoryRecords = $.grep($scope.History, function (v) { return v.ExerciseId == exerciseId; })[0].History;
             var units = getUnitsOfMeasure(exerciseId);
@@ -70,19 +70,9 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
                 v.units = units;
             });
 
-            var historyTr = $('.pr-edit-history-' + scope.history.Id);
-            var history = $('.pr-history-' + scope.history.Id);
-            history.slideUp();
-            historyTr.slideDown();
+            scope.history.showEditHistory = true;
         }
-
-        $scope.hideEditHistory = function (scope) {
-            var historyTr = $('.pr-edit-history-' + scope.history.Id);
-            var history = $('.pr-history-' + scope.history.Id);
-            history.slideDown();
-            historyTr.slideUp();
-        }
-
+        
         $scope.sortHistoy = function(sortId) {
             $scope.exerciseHistory = [];
             $.each($scope.History, function (i, v) {
@@ -156,7 +146,7 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             }
         }
 
-        $scope.hideEnterPrForm = function(show) {
+        $scope.hideEnterPrForm = function (show) {
             var prForm = $('.pr-entry');
             if (show) {
                 prForm.slideDown();

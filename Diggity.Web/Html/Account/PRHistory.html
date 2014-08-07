@@ -1,61 +1,84 @@
 ﻿
-<div class="panel panel-diggity">
-    <div class="panel-heading">
-        <div class="panel-title">
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Personal Best</div>
-            <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchText.ExerciseName">
-                    <div class="input-group-btn">
-                        <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/user" ng-click="hideEnterPrForm(true)"><span class="fa fa-plus-square-o"></span> New PR</a></li>
-                            <li><a href="#/user" ng-click="sortHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
-                            <li><a href="#/user" ng-click="sortHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Max Effort</a></li>
-                        </ul>
+<div>
+    <style type="text/css">
+        .sample-show-hide {
+            /*padding:10px;
+            border:1px solid black;
+            background:white;*/
+        }
+
+        .sample-show-hide {
+            -webkit-transition: all 2s;
+            -moz-transition: all 2s;
+            -o-transition: all 2s;
+            transition: all 2s;
+        }
+
+        .sample-show-hide.ng-hide {
+            opacity:0;
+            display: none;
+        }
+    </style>
+
+
+    <div class="panel panel-diggity">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Personal Best</div>
+                <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchText.ExerciseName">
+                        <div class="input-group-btn">
+                            <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#/user" ng-click="hideEnterPrForm(true)"><span class="fa fa-plus-square-o"></span> New PR</a></li>
+                                <li><a href="#/user" ng-click="sortHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
+                                <li><a href="#/user" ng-click="sortHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Max Effort</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
+
+        <pr-entry class="pr-entry" style="margin: 10px; display: none;"></pr-entry>
+
         <div class="clearfix"></div>
-    </div>
-
-    <pr-entry class="pr-entry" style="margin: 10px; display: none;"></pr-entry>
-
-    <div class="clearfix"></div>
-    <table class="table table-condensed table-hover" ng-hide="loadingHistory">
-        <tbody ng-repeat="history in exerciseHistory | filter:searchText">
-            <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" class="pr-history-{{history.Id}}">
-                <td>{{history.ExerciseName}}</td>
-                <td>{{history.Value}} {{history.UnitsName}}</td>
-                <td>On {{history.RecordDate}}</td>
-                <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
-                <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
-            </tr>
-            <tr class="pr-edit-history-{{history.Id}}" style="display: none;">
-                <td colspan="5">
-                    <div class="panel panel-diggity" style="margin-bottom: 0">
-                        <div class="text-success">
-                            <div class="panel-title">
-                                <div class="panel-heading text-info">
-                                    {{history.ExerciseName}}
-                                    <button type="button" class="close" ng-click="hideEditHistory(this)" tooltip="Close">
-                                        <span class="text-info">&times;</span><span class="sr-only">Close</span>
-                                    </button>
+        <table class="table table-condensed table-hover" ng-hide="loadingHistory">
+            <tbody ng-repeat="history in exerciseHistory | filter:searchText">
+                <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory" class="sample-show-hide">
+                    <td>{{history.ExerciseName}}</td>
+                    <td>{{history.Value}} {{history.UnitsName}}</td>
+                    <td>On {{history.RecordDate}}</td>
+                    <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
+                    <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
+                </tr>
+                <tr ng-show="history.showEditHistory" class="sample-show-hide">
+                    <td colspan="5">
+                        <div class="panel panel-diggity" style="margin-bottom: 0">
+                            <div class="text-success">
+                                <div class="panel-title">
+                                    <div class="panel-heading text-info">
+                                        {{history.ExerciseName}}
+                                        <button type="button" class="close" ng-click="history.showEditHistory = false;" tooltip="Close">
+                                            <span class="text-info">&times;</span><span class="sr-only">Close</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                            <div class="clearfix"></div>
+                            <edit-history-record record="editHistory"
+                                                 ng-repeat="editHistory in editHistoryRecords"
+                                                 open-datepicker="openDatePicker($event)">
+                            </edit-history-record>
                         </div>
-                        <div class="clearfix"></div>
-                        <edit-history-record record="editHistory"
-                                             ng-repeat="editHistory in editHistoryRecords"
-                                             open-datepicker="openDatePicker($event)">
-                        </edit-history-record>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div ng-show="loadingHistory">
-        <span class="form-control">Loading PR History . . <i class="fa fa-spin fa-spinner"></i></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div ng-show="loadingHistory">
+            <span class="form-control">Loading PR History . . <i class="fa fa-spin fa-spinner"></i></span>
+        </div>
     </div>
 </div>
