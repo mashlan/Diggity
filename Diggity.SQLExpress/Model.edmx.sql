@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/05/2014 09:40:38
+-- Date Created: 08/11/2014 10:49:03
 -- Generated from EDMX file: C:\Users\eric.mashlan\Documents\GitHub\Diggity\Diggity.SQLExpress\Model.edmx
 -- --------------------------------------------------
 
@@ -50,12 +50,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonalRecordHistoryAspNetUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PersonalRecords] DROP CONSTRAINT [FK_PersonalRecordHistoryAspNetUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRole]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRole];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
-GO
 IF OBJECT_ID(N'[dbo].[FK_WorkoutSetExercise]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetExercise];
 GO
@@ -82,6 +76,30 @@ IF OBJECT_ID(N'[dbo].[FK_WorkoutTemplateAspNetUser]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_TemplateDaysDayOfWeek]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TemplateDays] DROP CONSTRAINT [FK_TemplateDaysDayOfWeek];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRole]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRole];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodUnitOfMeasureWodUnitType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodUnitOfMeasures] DROP CONSTRAINT [FK_WodUnitOfMeasureWodUnitType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodExerciseWodRound]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseWodRound];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodRoundWod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodRounds] DROP CONSTRAINT [FK_WodRoundWod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodExerciseExercise]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseExercise];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodExerciseUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseUnitOfMeasure];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodWodUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Wods] DROP CONSTRAINT [FK_WodWodUnitOfMeasure];
 GO
 
 -- --------------------------------------------------
@@ -129,6 +147,21 @@ IF OBJECT_ID(N'[dbo].[TemplateDays]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[DayOfWeeks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DayOfWeeks];
+GO
+IF OBJECT_ID(N'[dbo].[WodUnitTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodUnitTypes];
+GO
+IF OBJECT_ID(N'[dbo].[WodUnitOfMeasures]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodUnitOfMeasures];
+GO
+IF OBJECT_ID(N'[dbo].[Wods]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Wods];
+GO
+IF OBJECT_ID(N'[dbo].[WodRounds]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodRounds];
+GO
+IF OBJECT_ID(N'[dbo].[WodExercises]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodExercises];
 GO
 IF OBJECT_ID(N'[dbo].[UnitOfMeasureExerciseType]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UnitOfMeasureExerciseType];
@@ -281,6 +314,53 @@ CREATE TABLE [dbo].[DayOfWeeks] (
 );
 GO
 
+-- Creating table 'WodUnitTypes'
+CREATE TABLE [dbo].[WodUnitTypes] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Discription] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'WodUnitOfMeasures'
+CREATE TABLE [dbo].[WodUnitOfMeasures] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [WodUnitTypeId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Wods'
+CREATE TABLE [dbo].[Wods] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL,
+    [Note] nvarchar(max)  NOT NULL,
+    [WodUnitOfMeasureId] int  NOT NULL
+);
+GO
+
+-- Creating table 'WodRounds'
+CREATE TABLE [dbo].[WodRounds] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [SortOrder] smallint  NOT NULL,
+    [WodId] int  NOT NULL
+);
+GO
+
+-- Creating table 'WodExercises'
+CREATE TABLE [dbo].[WodExercises] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [WodRoundId] int  NOT NULL,
+    [ExerciseId] int  NOT NULL,
+    [Value] float  NOT NULL,
+    [UnitOfMeasureId] int  NOT NULL,
+    [Reps] smallint  NULL,
+    [Time] time  NULL
+);
+GO
+
 -- Creating table 'UnitOfMeasureExerciseType'
 CREATE TABLE [dbo].[UnitOfMeasureExerciseType] (
     [UnitOfMeasures_Id] int  NOT NULL,
@@ -383,13 +463,43 @@ ADD CONSTRAINT [PK_DayOfWeeks]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'WodUnitTypes'
+ALTER TABLE [dbo].[WodUnitTypes]
+ADD CONSTRAINT [PK_WodUnitTypes]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'WodUnitOfMeasures'
+ALTER TABLE [dbo].[WodUnitOfMeasures]
+ADD CONSTRAINT [PK_WodUnitOfMeasures]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Wods'
+ALTER TABLE [dbo].[Wods]
+ADD CONSTRAINT [PK_Wods]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'WodRounds'
+ALTER TABLE [dbo].[WodRounds]
+ADD CONSTRAINT [PK_WodRounds]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'WodExercises'
+ALTER TABLE [dbo].[WodExercises]
+ADD CONSTRAINT [PK_WodExercises]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [UnitOfMeasures_Id], [ExerciseTypes_Id] in table 'UnitOfMeasureExerciseType'
 ALTER TABLE [dbo].[UnitOfMeasureExerciseType]
 ADD CONSTRAINT [PK_UnitOfMeasureExerciseType]
     PRIMARY KEY CLUSTERED ([UnitOfMeasures_Id], [ExerciseTypes_Id] ASC);
 GO
 
--- Creating primary key on [RoleId], [UserId] in table 'AspNetUserRoles'
+-- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [PK_AspNetUserRoles]
     PRIMARY KEY CLUSTERED ([RoleId], [UserId] ASC);
@@ -558,30 +668,6 @@ ON [dbo].[PersonalRecords]
     ([UserId]);
 GO
 
--- Creating foreign key on [RoleId] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRole]
-    FOREIGN KEY ([RoleId])
-    REFERENCES [dbo].[AspNetRoles]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [UserId] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUser'
-CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUser]
-ON [dbo].[AspNetUserRoles]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [ExerciseId] in table 'WorkoutSets'
 ALTER TABLE [dbo].[WorkoutSets]
 ADD CONSTRAINT [FK_WorkoutSetExercise]
@@ -715,6 +801,120 @@ GO
 CREATE INDEX [IX_FK_TemplateDaysDayOfWeek]
 ON [dbo].[TemplateDays]
     ([DayOfWeekId]);
+GO
+
+-- Creating foreign key on [AspNetRoles_Id] in table 'AspNetUserRoles'
+ALTER TABLE [dbo].[AspNetUserRoles]
+ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRole]
+    FOREIGN KEY ([RoleId])
+    REFERENCES [dbo].[AspNetRoles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [AspNetUsers_Id] in table 'AspNetUserRoles'
+ALTER TABLE [dbo].[AspNetUserRoles]
+ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUser'
+CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUser]
+ON [dbo].[AspNetUserRoles]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [WodUnitTypeId] in table 'WodUnitOfMeasures'
+ALTER TABLE [dbo].[WodUnitOfMeasures]
+ADD CONSTRAINT [FK_WodUnitOfMeasureWodUnitType]
+    FOREIGN KEY ([WodUnitTypeId])
+    REFERENCES [dbo].[WodUnitTypes]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WodUnitOfMeasureWodUnitType'
+CREATE INDEX [IX_FK_WodUnitOfMeasureWodUnitType]
+ON [dbo].[WodUnitOfMeasures]
+    ([WodUnitTypeId]);
+GO
+
+-- Creating foreign key on [WodRoundId] in table 'WodExercises'
+ALTER TABLE [dbo].[WodExercises]
+ADD CONSTRAINT [FK_WodExerciseWodRound]
+    FOREIGN KEY ([WodRoundId])
+    REFERENCES [dbo].[WodRounds]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WodExerciseWodRound'
+CREATE INDEX [IX_FK_WodExerciseWodRound]
+ON [dbo].[WodExercises]
+    ([WodRoundId]);
+GO
+
+-- Creating foreign key on [WodId] in table 'WodRounds'
+ALTER TABLE [dbo].[WodRounds]
+ADD CONSTRAINT [FK_WodRoundWod]
+    FOREIGN KEY ([WodId])
+    REFERENCES [dbo].[Wods]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WodRoundWod'
+CREATE INDEX [IX_FK_WodRoundWod]
+ON [dbo].[WodRounds]
+    ([WodId]);
+GO
+
+-- Creating foreign key on [ExerciseId] in table 'WodExercises'
+ALTER TABLE [dbo].[WodExercises]
+ADD CONSTRAINT [FK_WodExerciseExercise]
+    FOREIGN KEY ([ExerciseId])
+    REFERENCES [dbo].[Exercises]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WodExerciseExercise'
+CREATE INDEX [IX_FK_WodExerciseExercise]
+ON [dbo].[WodExercises]
+    ([ExerciseId]);
+GO
+
+-- Creating foreign key on [UnitOfMeasureId] in table 'WodExercises'
+ALTER TABLE [dbo].[WodExercises]
+ADD CONSTRAINT [FK_WodExerciseUnitOfMeasure]
+    FOREIGN KEY ([UnitOfMeasureId])
+    REFERENCES [dbo].[UnitOfMeasures]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WodExerciseUnitOfMeasure'
+CREATE INDEX [IX_FK_WodExerciseUnitOfMeasure]
+ON [dbo].[WodExercises]
+    ([UnitOfMeasureId]);
+GO
+
+-- Creating foreign key on [WodUnitOfMeasureId] in table 'Wods'
+ALTER TABLE [dbo].[Wods]
+ADD CONSTRAINT [FK_WodWodUnitOfMeasure]
+    FOREIGN KEY ([WodUnitOfMeasureId])
+    REFERENCES [dbo].[WodUnitOfMeasures]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WodWodUnitOfMeasure'
+CREATE INDEX [IX_FK_WodWodUnitOfMeasure]
+ON [dbo].[Wods]
+    ([WodUnitOfMeasureId]);
 GO
 
 -- --------------------------------------------------

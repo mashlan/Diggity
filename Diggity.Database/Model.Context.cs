@@ -47,5 +47,10 @@ namespace Diggity.Database
         public virtual DbSet<WorkoutTemplate> WorkoutTemplates { get; set; }
         public virtual DbSet<TemplateDays> TemplateDays { get; set; }
         public virtual DbSet<DayOfWeek> DayOfWeeks { get; set; }
+        public virtual DbSet<WodUnitType> WodUnitTypes { get; set; }
+        public virtual DbSet<WodUnitOfMeasure> WodUnitOfMeasures { get; set; }
+        public virtual DbSet<Wod> Wods { get; set; }
+        public virtual DbSet<WodRound> WodRounds { get; set; }
+        public virtual DbSet<WodExercise> WodExercises { get; set; }
     }
 }

@@ -20,9 +20,9 @@ namespace Diggity.Entities
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.UserPreferences = new HashSet<UserPreference>();
             this.PersonalRecordHistories = new HashSet<PersonalRecord>();
-            this.AspNetRoles = new HashSet<AspNetRole>();
             this.Workouts = new HashSet<Workout>();
             this.WorkoutTemplates = new HashSet<WorkoutTemplate>();
+            this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
         public string Id { get; set; }
@@ -43,8 +43,8 @@ namespace Diggity.Entities
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual ICollection<UserPreference> UserPreferences { get; set; }
         public virtual ICollection<PersonalRecord> PersonalRecordHistories { get; set; }
-        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
         public virtual ICollection<Workout> Workouts { get; set; }
         public virtual ICollection<WorkoutTemplate> WorkoutTemplates { get; set; }
+        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }

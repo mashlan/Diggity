@@ -33,6 +33,17 @@
         <AssociationConnector Association="Model.WorkoutTemplateAspNetUser" />
         <EntityTypeShape EntityType="Model.DayOfWeek" Width="1.5" PointX="5.25" PointY="21.625" />
         <AssociationConnector Association="Model.TemplateDaysDayOfWeek" />
+        <EntityTypeShape EntityType="Model.WodUnitType" Width="1.75" PointX="9.125" PointY="17.875" />
+        <EntityTypeShape EntityType="Model.WodUnitOfMeasure" Width="1.75" PointX="6.5" PointY="15.75" />
+        <AssociationConnector Association="Model.WodUnitOfMeasureWodUnitType" />
+        <EntityTypeShape EntityType="Model.Wod" Width="1.875" PointX="12" PointY="15.25" />
+        <EntityTypeShape EntityType="Model.WodRound" Width="1.5" PointX="12.125" PointY="18.5" />
+        <EntityTypeShape EntityType="Model.WodExercise" Width="1.5" PointX="9.5" PointY="20.125" />
+        <AssociationConnector Association="Model.WodExerciseWodRound" />
+        <AssociationConnector Association="Model.WodRoundWod" />
+        <AssociationConnector Association="Model.WodExerciseExercise" />
+        <AssociationConnector Association="Model.WodExerciseUnitOfMeasure" />
+        <AssociationConnector Association="Model.WodWodUnitOfMeasure" />
         </Diagram>
       <Diagram DiagramId="5a610bbe7ae342578ab849f2f1cd6b2c" Name="User Model" >
         <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />

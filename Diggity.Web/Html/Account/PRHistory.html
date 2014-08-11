@@ -1,26 +1,5 @@
 ﻿
 <div>
-    <style type="text/css">
-        .sample-show-hide {
-            /*padding:10px;
-            border:1px solid black;
-            background:white;*/
-        }
-
-        .sample-show-hide {
-            -webkit-transition: all 2s;
-            -moz-transition: all 2s;
-            -o-transition: all 2s;
-            transition: all 2s;
-        }
-
-        .sample-show-hide.ng-hide {
-            opacity:0;
-            display: none;
-        }
-    </style>
-
-
     <div class="panel panel-diggity">
         <div class="panel-heading">
             <div class="panel-title">
@@ -47,14 +26,14 @@
         <div class="clearfix"></div>
         <table class="table table-condensed table-hover" ng-hide="loadingHistory">
             <tbody ng-repeat="history in exerciseHistory | filter:searchText">
-                <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory" class="sample-show-hide">
+                <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory">
                     <td>{{history.ExerciseName}}</td>
                     <td>{{history.Value}} {{history.UnitsName}}</td>
                     <td>On {{history.RecordDate}}</td>
                     <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
                     <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
                 </tr>
-                <tr ng-show="history.showEditHistory" class="sample-show-hide">
+                <tr ng-show="history.showEditHistory" >
                     <td colspan="5">
                         <div class="panel panel-diggity" style="margin-bottom: 0">
                             <div class="text-success">
