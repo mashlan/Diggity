@@ -176,22 +176,9 @@ i {
   background-color: #ffffff;
 }
 
-
-/*.panel-diggity {
-  border-color: #CC7A1B;
+.btn-round {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 0;
 }
-
-.panel-diggity > .panel-heading {
-  color: #ffffff;
-  background-color: #CC7A1B;
-  border-color: #CC7A1B;
-}
-
-.panel-diggity > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #CC7A1B;
-}
-
-.panel-diggity > .panel-heading .badge {
-  color: #CC7A1B;
-  background-color: #ffffff;
-}*/

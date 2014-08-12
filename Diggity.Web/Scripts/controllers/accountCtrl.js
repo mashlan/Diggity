@@ -44,8 +44,10 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             window.alertShow("error", error.data.Message);
         }
 
-        function savePRSuccess() {
+        function savePRSuccess(resp) {
             window.alertShow("success", "Personal Record Saved!");
+            $scope.getHistory();
+            $scope.hideEnterPrForm();
         }
 
         function prHistoryQueryComplete(resp) {
@@ -61,18 +63,18 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
         }
 
         $scope.editHistory = function(scope) {
+            
             var histories = scope.$parent.exerciseHistory;
-            $.each(histories, function (i, v) { v.showEditHistory = false; });
+            $.each(histories, function(i, v) { v.showEditHistory = false; });
             var exerciseId = scope.history.ExerciseId;
-            $scope.editHistoryRecords = $.grep($scope.History, function (v) { return v.ExerciseId == exerciseId; })[0].History;
+            $scope.editHistoryRecords = $.grep($scope.History, function(v) { return v.ExerciseId == exerciseId; })[0].History;
             var units = getUnitsOfMeasure(exerciseId);
             $.each($scope.editHistoryRecords, function(i, v) {
                 v.units = units;
             });
-
             scope.history.showEditHistory = true;
         }
-        
+
         $scope.sortHistoy = function(sortId) {
             $scope.exerciseHistory = [];
             $.each($scope.History, function (i, v) {

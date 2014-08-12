@@ -3,16 +3,19 @@
     <div class="panel panel-diggity">
         <div class="panel-heading">
             <div class="panel-title">
-                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">Personal Best</div>
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <button type="button" class="btn btn-round btn-warning" ng-click="hideEnterPrForm(true)" tooltip="Add New PR">
+                        <span class="fa fa-bold fa-plus-square-o"></span>
+                    </button> Personal Best
+                </div>
                 <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
                     <div class="input-group input-group-sm">
                         <input type="text" class="form-control input-sm" placeholder="Search" ng-model="searchText.ExerciseName">
                         <div class="input-group-btn">
                             <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#/user" ng-click="hideEnterPrForm(true)"><span class="fa fa-plus-square-o"></span> New PR</a></li>
-                                <li><a href="#/user" ng-click="sortHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
-                                <li><a href="#/user" ng-click="sortHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Max Effort</a></li>
+                                <li><a href="#/user" ng-click="sortHistoy(0)"><span class="fa fa-calendar"></span> Show Most Recent</a></li>
+                                <li><a href="#/user" ng-click="sortHistoy(1)"><span class="fa fa-exclamation"></span> Show Max Effort</a></li>
                             </ul>
                         </div>
                     </div>
@@ -27,14 +30,16 @@
         <table class="table table-condensed table-hover" ng-hide="loadingHistory">
             <tbody ng-repeat="history in exerciseHistory | filter:searchText">
                 <tr ng-class="{active: history.selected}" ng-click="selectRow(this)" ng-hide="history.showEditHistory">
-                    <td>{{history.ExerciseName}}</td>
-                    <td>{{history.Value}} {{history.UnitsName}}</td>
-                    <td>On {{history.RecordDate}}</td>
-                    <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
-                    <td><a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
+                    <td class="col-lg-4">{{history.ExerciseName}}</td>
+                    <td class="col-lg-3">{{history.Value}} {{history.UnitsName}}</td>
+                    <td class="col-lg-4">On {{history.RecordDate}}</td>
+                    <td class="col-lg-1">
+                        <a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a>
+                        <a href="#/user" tooltip="Edit" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a>
+                    </td>
                 </tr>
-                <tr ng-show="history.showEditHistory" >
-                    <td colspan="5">
+                <tr ng-show="history.showEditHistory">
+                    <td colspan="4">
                         <div class="panel panel-diggity" style="margin-bottom: 0">
                             <div class="text-success">
                                 <div class="panel-title">
@@ -48,8 +53,8 @@
                             </div>
                             <div class="clearfix"></div>
                             <edit-history-record record="editHistory"
-                                                 ng-repeat="editHistory in editHistoryRecords"
-                                                 open-datepicker="openDatePicker($event)">
+                                                 ng-repeat="editHistory in editHistoryRecords">
+                                <!--open-datepicker="openDatePicker($event)">-->
                             </edit-history-record>
                         </div>
                     </td>
