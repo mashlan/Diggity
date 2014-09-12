@@ -182,3 +182,8 @@ i {
     width: 30px;
     padding: 0;
 }
+
+.white {
+    background-color: #ffffff;
+    padding: 5px;
+}

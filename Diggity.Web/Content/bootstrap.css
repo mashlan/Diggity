@@ -3605,13 +3605,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   height: 1px;
   margin: 9.5px 0;
   overflow: hidden;
-  background-color: #e5e5e5;
+  background-color: #598276;
 }
 .nav > li > a > img {
   max-width: none;
 }
 .nav-tabs {
-  border-bottom: 1px solid #ecf0f1;
+  border-bottom: 1px solid #598276;
 }
 .nav-tabs > li {
   float: left;
@@ -3624,14 +3624,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-radius: 0;
 }
 .nav-tabs > li > a:hover {
-  border-color: #ecf0f1 #ecf0f1 #ecf0f1;
+  border-color: #598276 #598276 #598276;
 }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-  color: #5F5F65;
-  background-color: #ffffff;
-  border: 1px solid #ecf0f1;
+  color: #fff;
+  background-color: #598276;
+  border: 1px solid #598276;
   border-bottom-color: transparent;
   cursor: default;
 }
@@ -3666,17 +3666,17 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-tabs.nav-justified > .active > a,
 .nav-tabs.nav-justified > .active > a:hover,
 .nav-tabs.nav-justified > .active > a:focus {
-  border: 1px solid #ecf0f1;
+  border: 1px solid #598276;
 }
 @media (min-width: 768px) {
   .nav-tabs.nav-justified > li > a {
-    border-bottom: 1px solid #ecf0f1;
+    border-bottom: 1px solid #598276;
     border-radius: 0;
   }
   .nav-tabs.nav-justified > .active > a,
   .nav-tabs.nav-justified > .active > a:hover,
   .nav-tabs.nav-justified > .active > a:focus {
-    border-bottom-color: #ffffff;
+    border-bottom-color: #598276;
   }
 }
 .nav-pills > li {

@@ -26,6 +26,7 @@ angular.module('myApp.routes', ['ngRoute'])
 
             //Wendlers
             $routeProvider.when('/wendler', { templateUrl: '../Html/Wendler/Index.html', controller: 'WendlerCtrl' });
+            $routeProvider.when('/wendler/create', { templateUrl: '../Html/Wendler/Index.html', controller: 'WendlerCtrl' });
 
             //HIT Timer
             $routeProvider.when('/timer', { templateUrl: '../Html/Timers/BasicTimer.html' });
