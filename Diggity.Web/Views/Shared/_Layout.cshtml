@@ -55,7 +55,17 @@
     @RenderSection("scripts", false)
     
     <script type="text/javascript">
-        
+        function toggleNav() {
+            var menu = $("#main-menu");
+            if (menu.hasClass("in")) {
+                menu.removeClass("in");
+                $("#settings-menu").removeClass("in");
+            } else {
+                menu.addClass("in");
+                $("#settings-menu").addClass("in");
+            }
+        }
+
         function alertShow(notificationType, data, callback) {
             $("#alertPopup h4").html('');
             $("#alertPopup .alert").removeClass("alert-success");

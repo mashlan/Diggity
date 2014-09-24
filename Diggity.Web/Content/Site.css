@@ -176,6 +176,10 @@ i {
   background-color: #ffffff;
 }
 
+.timer-btns button {
+    margin-right: 5px;
+}
+
 .btn-round {
     border-radius: 50%;
     height: 30px;
@@ -186,4 +190,53 @@ i {
 .white {
     background-color: #ffffff;
     padding: 5px;
+}
+
+.nav-slide{
+    background-color: #598276;
+    width: 200px;
+    height: -moz-calc(100% - 50px);
+    height: -webkit-calc(100% - 50px);
+    height: calc(100% - 50px);
+    position: absolute;
+    top: 0;
+    left: -200px;
+    margin-top: 50px;
+    z-index: 2000;
+}
+
+#settings-menu {
+    background-color: #598276;
+    width: 200px;
+    position: absolute;
+    top: 0;
+    left: -200px;
+    margin-top: 50px;
+    z-index: 2000;
+}
+
+#settings-menu.in {
+    right: 0;
+    -webkit-transition: ease .3s;
+    -moz-transition: ease .3s;
+    -ms-transition: ease .3s;
+    -o-transition: ease .3s;
+    transition: ease .3s;
+}
+
+.nav-slide.in{
+    left: 0;
+    -webkit-transition: ease .3s;
+    -moz-transition: ease .3s;
+    -ms-transition: ease .3s;
+    -o-transition: ease .3s;
+    transition: ease .3s;
+}
+
+.nav-slide a{
+    color: #ffffff;
+}
+
+.nav-slide ul li a:hover{
+    background-color: #333333;
 }

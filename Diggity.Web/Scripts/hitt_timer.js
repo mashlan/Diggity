@@ -295,7 +295,7 @@ angular.module("template/timer/timer.html", []).run(["$templateCache", function 
             '<div class="checkbox">' +
                 '<label><input type="checkbox" ng-model="isCountDown" >Count Down</label>' +
             '</div>' +
-            '<div class="form-group">' +
+            '<div class="form-group timer-btns">' +
                 '<button class="btn-lg btn btn-success" type="button" ng-click="startTimer()" >Start</button>' +
                 '<button class="btn btn-lg btn-danger" type="button" ng-click="stopTimer()" >Stop</button>' +
                 '<button class="btn btn-lg btn-warning" type="button" ng-click="resetTimer()" >Reset</button>' +
