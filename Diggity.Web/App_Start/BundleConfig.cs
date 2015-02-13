@@ -17,7 +17,9 @@ namespace Diggity.Web
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/vendors/bootstrap/bootstrap.js",
-                "~/Scripts/vendors/respond/respond.js"));
+                "~/Scripts/vendors/respond/respond.js",
+                "~/Scripts/vendors/bootstrap/material.js",
+                "~/Scripts/vendors/bootstrap/ripples.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/vendors/angularjs/i18n/angular-locale_en_us.js",
@@ -52,6 +54,8 @@ namespace Diggity.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
+                "~/Content/material-wfont.css",
+                "~/Content/ripples.css",
                 "~/Content/Site.css",
                 "~/Content/font-awesome.css"));
 

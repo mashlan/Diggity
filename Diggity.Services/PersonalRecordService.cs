@@ -8,12 +8,21 @@ using Diggity.Validation;
 
 namespace Diggity.Services
 {
-    public class PersonalRecordService : ServiceBase<PersonalRecord>
+    public class PersonalRecordService : ServiceBase<PersonalRecord>, IPersonalRecordService
     {
         public PersonalRecordService(IRepositoryAggregate repositoryAggregate, IRepository<PersonalRecord> repository, IValidator<PersonalRecord> validator) 
             : base(repositoryAggregate, repository, validator)
         {
         }
+
+        public IEnumerable<object> GetMaxEfforts(string userId)
+        {
+            var entities = Repository.Find(pr => pr.UserId == userId && pr.Exercise.ExerciseTypeId == 5)
+                .GroupBy(g => g.ExerciseId)
+                .Select(s => s.Single(w => w.RecordDate == s.Max(m => m.RecordDate)));
+
+            return entities.Select(GetObject);
+        } 
 
         public override IEnumerable<object> FindSimple(Expression<Func<PersonalRecord, bool>> expression)
         {

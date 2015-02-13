@@ -1,11 +1,14 @@
 ﻿/**********************************************************************
  * ********************* Wendler Workouts *****************************
  *********************************************************************/
-myControllers.controller('WendlerCtrl', ['$routeParams', '$scope', '$location',
-    function ($routeParams, $scope, $location) {
+myControllers.controller('WendlerCtrl', ['$routeParams', '$scope', '$location', 'MaxLifts',
+    function ($routeParams, $scope, $location, MaxLifts) {
         'use strict';
 
-        $scope.title = "hey there";
+        MaxLifts.query()
+            .then(function(resp) {
+                console.log(resp);
+            });
 
     }
 ]);

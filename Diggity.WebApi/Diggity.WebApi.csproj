@@ -74,6 +74,7 @@
     <Compile Include="BaseApiController.cs" />
     <Compile Include="ExerciseController.cs" />
     <Compile Include="ExerciseTypeController.cs" />
+    <Compile Include="MaxLiftsController.cs" />
     <Compile Include="PersonalRecordController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfMeasureController.cs" />

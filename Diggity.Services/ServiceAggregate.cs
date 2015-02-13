@@ -15,7 +15,7 @@ namespace Diggity.Services
         private IService<Workout> workout;
         private IService<WorkoutSet> workoutSet;
         private IService<UserPreference> userPreference;
-        private IService<PersonalRecord> personalRecordHistory;
+        private IPersonalRecordService personalRecordHistory;
 
         public ServiceAggregate(IRepositoryAggregate repositoryAggregate, IValidationFactory validationFactory)
         {
@@ -85,7 +85,7 @@ namespace Diggity.Services
             }
         }
 
-        public IService<PersonalRecord> PersonalRecord
+        public IPersonalRecordService PersonalRecord
         {
             get
             {

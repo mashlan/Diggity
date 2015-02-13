@@ -240,8 +240,16 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\LICENSE.txt" />
+    <Content Include="Content\fonts\Material-Design-Icons.svg" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
+    <Content Include="Content\material-wfont.css" />
+    <Content Include="Content\material-wfont.min.css" />
+    <Content Include="Content\material.css" />
+    <Content Include="Content\material.min.css" />
+    <Content Include="Content\ripples.css" />
+    <Content Include="Content\ripples.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -285,7 +293,12 @@
     <Content Include="Scripts\hitt_timer.js" />
     <Content Include="Scripts\services\accountServices.js" />
     <Content Include="Scripts\services\exerciseService.js" />
+    <Content Include="Scripts\services\recordLiftsService.js" />
     <Content Include="Scripts\services\wendlerService.js" />
+    <Content Include="Scripts\vendors\bootstrap\material.js" />
+    <Content Include="Scripts\vendors\bootstrap\material.min.js" />
+    <Content Include="Scripts\vendors\bootstrap\ripples.js" />
+    <Content Include="Scripts\vendors\bootstrap\ripples.min.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.min.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.js" />
@@ -638,6 +651,17 @@
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.min.js.map">
       <DependentUpon>ui-bootstrap-tpls-0.11.0.min.js</DependentUpon>
     </Content>
+    <Content Include="Content\material-wfont.css.map" />
+    <Content Include="Content\material-wfont.min.css.map" />
+    <Content Include="Content\material.css.map" />
+    <Content Include="Content\material.min.css.map" />
+    <Content Include="Content\ripples.css.map" />
+    <Content Include="Content\ripples.min.css.map" />
+    <Content Include="Content\fonts\Material-Design-Icons.eot" />
+    <Content Include="Content\fonts\Material-Design-Icons.ttf" />
+    <Content Include="Content\fonts\Material-Design-Icons.woff" />
+    <Content Include="Scripts\vendors\bootstrap\material.min.js.map" />
+    <Content Include="Scripts\vendors\bootstrap\ripples.min.js.map" />
     <None Include="Scripts\vendors\jquery\jquery.validate-vsdoc.js" />
     <None Include="Scripts\vendors\jquery\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\vendors\jquery\jquery-2.1.1.js" />
