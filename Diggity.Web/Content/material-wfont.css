@@ -6950,10 +6950,10 @@ body .jumbotron-material-blue-grey-A700,
 }
 .btn.btn-fab {
   margin: 0;
-  padding: 15px;
+  padding: 5px;
   font-size: 26px;
-  width: 56px;
-  height: 56px;
+  width: 36px;
+  height: 36px;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.23), 0 10px 30px rgba(0, 0, 0, 0.19);
 }
 .btn.btn-fab,

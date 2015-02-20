@@ -55,52 +55,57 @@
 <body>
     @RenderBody()
     @RenderSection("scripts", false)
+
+<script type="text/javascript">
     
-    <script type="text/javascript">
-        function toggleNav() {
-            var menu = $("#main-menu");
-            if (menu.hasClass("in")) {
-                menu.removeClass("in");
-                $("#settings-menu").removeClass("in");
-            } else {
-                menu.addClass("in");
-                $("#settings-menu").addClass("in");
-            }
+    $(document).ready(function () {
+        $.material.init();
+    });
+
+    function toggleNav() {
+        var menu = $("#main-menu");
+        if (menu.hasClass("in")) {
+            menu.removeClass("in");
+            $("#settings-menu").removeClass("in");
+        } else {
+            menu.addClass("in");
+            $("#settings-menu").addClass("in");
+        }
+    }
+
+    function alertShow(notificationType, data, callback) {
+        $("#alertPopup h4").html('');
+        $("#alertPopup .alert").removeClass("alert-success");
+        $("#alertPopup .alert").removeClass("alert-danger");
+        $("#alertPopup .alert").removeClass("alert-warning");
+
+        var delay = 5000;
+
+        if (notificationType === "error") {
+            $("#alertPopup .alert").addClass("alert-danger");
+            $("#alertPopup h4").html("Error!");
+            $("#alertMessage").text(data);
+        } else if (notificationType === 'warning') {
+            $("#alertPopup .alert").addClass("alert-warning");
+            $("#alertPopup h4").html("Warning");
+            $("#alertMessage").text(data);
+        } else if (notificationType === 'success') {
+            $("#alertPopup .alert").addClass("alert-success");
+            $("#alertPopup h4").html("Success!");
+            $("#alertMessage").text(data || "Record Saved Successfully!");
+            delay = 2500;
         }
 
-        function alertShow(notificationType, data, callback) {
-            $("#alertPopup h4").html('');
-            $("#alertPopup .alert").removeClass("alert-success");
-            $("#alertPopup .alert").removeClass("alert-danger");
-            $("#alertPopup .alert").removeClass("alert-warning");
+        $("#alertPopup").modal({ backdrop: false }).modal('show');
 
-            var delay = 5000;
-
-            if (notificationType === "error") {
-                $("#alertPopup .alert").addClass("alert-danger");
-                $("#alertPopup h4").html("Error!");
-                $("#alertMessage").text(data);
-            } else if (notificationType === 'warning') {
-                $("#alertPopup .alert").addClass("alert-warning");
-                $("#alertPopup h4").html("Warning");
-                $("#alertMessage").text(data);
-            } else if (notificationType === 'success') {
-                $("#alertPopup .alert").addClass("alert-success");
-                $("#alertPopup h4").html("Success!");
-                $("#alertMessage").text(data || "Record Saved Successfully!");
-                delay = 2500;
-            }
-
-            $("#alertPopup").modal({ backdrop: false }).modal('show');
-
-            if (notificationType !== "error") {
-                window.setTimeout(function () {
-                    $("#alertPopup").modal('hide');
-                    if (callback) callback();
-                }, delay);
-            }
+        if (notificationType !== "error") {
+            window.setTimeout(function () {
+                $("#alertPopup").modal('hide');
+                if (callback) callback();
+            }, delay);
         }
-    </script>
+    }
+</script>
 
 </body>
 </html>

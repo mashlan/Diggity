@@ -4,8 +4,7 @@
         <div class="panel-heading">
             <div class="panel-title">
                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                    <button type="button" class="btn btn-round btn-warning" ng-click="hideEnterPrForm(true)" tooltip="Add New PR">
-                        <span class="fa fa-bold fa-plus-square-o"></span>
+                    <button type="button" class="btn btn-warning btn-fab btn-raised mdi-content-add" ng-click="hideEnterPrForm(true)" tooltip="Add New PR">
                     </button> Personal Best
                 </div>
                 <div class="col-lg-4 col-sm-4 col-md-4 col-xs-4">
@@ -43,8 +42,8 @@
                         <div class="panel panel-diggity" style="margin-bottom: 0">
                             <div class="text-success">
                                 <div class="panel-title">
-                                    <div class="panel-heading text-info">
-                                        {{history.ExerciseName}}
+                                    <div class="panel-heading">
+                                        <span class="text-primary">{{history.ExerciseName}}</span>
                                         <button type="button" class="close" ng-click="history.showEditHistory = false;" tooltip="Close">
                                             <span class="text-info">&times;</span><span class="sr-only">Close</span>
                                         </button>

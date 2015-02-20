@@ -240,8 +240,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\fonts\LICENSE.txt" />
-    <Content Include="Content\fonts\Material-Design-Icons.svg" />
+    <Content Include="fonts\LICENSE.txt" />
+    <Content Include="fonts\Material-Design-Icons.svg" />
     <Content Include="Content\jasmine\jasmine.css" />
     <Content Include="Content\jasmine\jasmine_favicon.png" />
     <Content Include="Content\material-wfont.css" />
@@ -657,9 +657,9 @@
     <Content Include="Content\material.min.css.map" />
     <Content Include="Content\ripples.css.map" />
     <Content Include="Content\ripples.min.css.map" />
-    <Content Include="Content\fonts\Material-Design-Icons.eot" />
-    <Content Include="Content\fonts\Material-Design-Icons.ttf" />
-    <Content Include="Content\fonts\Material-Design-Icons.woff" />
+    <Content Include="fonts\Material-Design-Icons.eot" />
+    <Content Include="fonts\Material-Design-Icons.ttf" />
+    <Content Include="fonts\Material-Design-Icons.woff" />
     <Content Include="Scripts\vendors\bootstrap\material.min.js.map" />
     <Content Include="Scripts\vendors\bootstrap\ripples.min.js.map" />
     <None Include="Scripts\vendors\jquery\jquery.validate-vsdoc.js" />
@@ -709,6 +709,7 @@
     <Content Include="Views\Shared\_MainMenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Content\fonts\" />
     <Folder Include="Html\WOD\" />
     <Folder Include="Views\AccountApi\" />
   </ItemGroup>
