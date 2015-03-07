@@ -41,7 +41,6 @@ namespace Diggity.Database
         public virtual DbSet<UserPreference> UserPreferences { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<PersonalRecord> PersonalRecords { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<WorkoutTemplate> WorkoutTemplates { get; set; }
@@ -52,5 +51,7 @@ namespace Diggity.Database
         public virtual DbSet<Wod> Wods { get; set; }
         public virtual DbSet<WodRound> WodRounds { get; set; }
         public virtual DbSet<WodExercise> WodExercises { get; set; }
+        public virtual DbSet<WendlerGroup> WendlerGroups { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

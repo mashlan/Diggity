@@ -1,61 +1,31 @@
 ﻿
-<h2>Create Wendler</h2>
 
+<div class="container">
 
-<tabset justified="true">
-    <tab heading="Max Weight" class="active">
-        <div class="white">
-            <br />
-            <p>
-                Set your one rep max for each of the listed exercises.
-                Values shown are taken from your last recored person best.
-            </p>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Military Press</td>
-                        <td>1 Rep X</td>
-                        <td><input class="form-control input-sm" type="number" /></td>
-                        <td>Lbs</td>
-                    </tr>
-                    <tr>
-                        <td>Bench Press</td>
-                        <td>1 Rep X</td>
-                        <td><input class="form-control input-sm" type="number" /></td>
-                        <td>Lbs</td>
-                    </tr>
-                    <tr>
-                        <td>Squat</td>
-                        <td>1 Rep X</td>
-                        <td><input class="form-control input-sm" type="number" /></td>
-                        <td>Lbs</td>
-                    </tr>
-                    <tr>
-                        <td>Deadlift</td>
-                        <td>1 Rep X</td>
-                        <td><input class="form-control input-sm" type="number" /></td>
-                        <td>Lbs</td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="list-group">
+                <a href="javascript:void(0)" class="list-group-item" ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
+                    <div class="row-picture">
+                        <img src="../../Content/images/dumbbell.png"  style="background: none;"/>
+                    </div>
+                    <div class="row-content">
+                        <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
+                        <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                        <div class="list-group-item-text">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">One Rep Max</label>
+                                <div class="col-lg-1">{{exercise.Value}} {{exercise.UnitsName}}</div>
+
+                                <label class="col-lg-2 control-label">Training Max</label>
+                                <div class="col-lg-1">{{exercise.Value}} {{exercise.UnitsName}}</div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group-separator"></div>
+                </a>
+            </div>
         </div>
-    </tab>
-    <tab heading="Program">
-        <div class="white">
-            <br />
-            <h3>Select Program</h3>
-        </div>
-    </tab>
-    <tab heading="Options">
-        <div class="white">
-            <br />
-            <h3>Select Options</h3>
-        </div>
-    </tab>
-    <tab heading="Days">
-        <div class="white">
-            <br />
-            <h3>Set Days</h3>
-        </div>
-    </tab>
-</tabset>
+    </div>
+</div>

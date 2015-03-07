@@ -1,7 +1,7 @@
 ﻿
 body {
-    margin-top: 70px;
     background-color: #f0f0f0;
+    margin: 70px 10px 10px 10px;
 }
 
 .panel-title {
@@ -239,4 +239,13 @@ i {
 
 .nav-slide ul li a:hover{
     background-color: #333333;
+}
+
+.dumbell-icon {
+    background-image: url('images/dumbbell.png');
+}
+
+.wendler-exercise {
+    margin: 5px;
+    border: 1px #598276 solid;
 }

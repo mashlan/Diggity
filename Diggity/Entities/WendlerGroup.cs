@@ -12,15 +12,17 @@ namespace Diggity.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class UserPreference : DiggityEntity
+    public partial class WendlerGroup : DiggityEntity
     {
-        public int ExerciseTypeId { get; set; }
-        public int UnitOfMeasureId { get; set; }
-        public string UserId { get; set; }
-        public int Id { get; set; }
+        public WendlerGroup()
+        {
+            this.Exercises = new HashSet<Exercise>();
+        }
     
-        public virtual ExerciseType ExerciseType { get; set; }
-        public virtual UnitOfMeasure UnitOfMeasure { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+    
+        public virtual ICollection<Exercise> Exercises { get; set; }
     }
 }

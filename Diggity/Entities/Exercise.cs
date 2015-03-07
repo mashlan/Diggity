@@ -26,10 +26,12 @@ namespace Diggity.Entities
         public string Abbreviation { get; set; }
         public string Description { get; set; }
         public int ExerciseTypeId { get; set; }
+        public Nullable<int> WendlerGroupId { get; set; }
     
         public virtual ExerciseType ExerciseType { get; set; }
         public virtual ICollection<PersonalRecord> PersonalRecordHistories { get; set; }
         public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
         public virtual ICollection<WodExercise> WodExercises { get; set; }
+        public virtual WendlerGroup WendlerGroup { get; set; }
     }
 }

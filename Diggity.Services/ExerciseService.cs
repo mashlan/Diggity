@@ -36,7 +36,8 @@ namespace Diggity.Services
                 ex.Description,
                 ExerciseTypeName = ex.ExerciseType.Name,
                 ex.ExerciseTypeId,
-                ex.Id
+                ex.Id,
+                ex.WendlerGroupId
             };
         }
     }

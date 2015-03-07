@@ -27,7 +27,7 @@ namespace Diggity.Entities
         public Nullable<int> WorkoutTemplateId { get; set; }
     
         public virtual ICollection<WorkoutSet> WorkoutSets { get; set; }
-        public virtual AspNetUser User { get; set; }
         public virtual WorkoutTemplate WorkoutTemplate { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

@@ -54,17 +54,17 @@ GO
 
 SET IDENTITY_INSERT [dbo].[Exercises] ON
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (1, N'Air Squat', N'Air SQ', N'Body weight Squat', 3)
-INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (2, N'Bench Press', N'BP', N'Standard Bench Press', 5)
-INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (3, N'Back Squat', N'BS', N'Squat with weight behind neck', 5)
+INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId], [WendlerGroupId]) VALUES (2, N'Bench Press', N'BP', N'Standard Bench Press', 5, 3)
+INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId], [WendlerGroupId]) VALUES (3, N'Back Squat', N'BS', N'Squat with weight behind neck', 5, 4)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (4, N'Clean', N'CLN', N'Lift barbell from the ground to the shoulders', 5)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (5, N'Clean and Jerk', N'C&J', N'Lift barbell from the ground to shoulders and then lifting the bar overhead', 5)
-INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (6, N'Deadlift', N'DL', N'Lift the barbell off the ground to the hips.', 5)
+INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId], [WendlerGroupId]) VALUES (6, N'Deadlift', N'DL', N'Lift the barbell off the ground to the hips.', 5, 2)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (7, N'Double Unders', N'DU', N'jump rope while swinging the rope twice under your feet', 3)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (8, N'Front Squat', N'FS', N'Squat with barbell held in front of the body across the clavicles and deltoids in either a clean grip, as is used in weightlifting, or with the arms crossed and hands placed on top of the barbell.', 5)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (9, N'Hand stand push up', N'HSPU', N'Kick up into a handstand. bend arms until nose touches floor and push back up.', 3)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (10, N'Kettlebell swing', N'KBS', N'Swing Kettlebell from between legs to overhead keeping arms straight.', 5)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (11, N'Knees to elbows', N'KBS', N'Hanging from pullup bar, lift knees to elbows', 3)
-INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (12, N'Military Press', N'MP', N'Lift bar from shoulders to overhead in strict form (i.e. no push press)', 5)
+INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId], [WendlerGroupId]) VALUES (12, N'Military Press', N'MP', N'Lift bar from shoulders to overhead in strict form (i.e. no push press)', 5, 1)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (13, N'Muscle Ups', N'MU', N'Hanging from rings you do a combination pull-up and dip so you end in an upright support.', 3)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (14, N'Overhead Squat', N'OHS', N'Full depth squat performed with arms locked out in a wide grip press position', 5)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (15, N'Power Clean', N'PC', N'Weight is raised from the floor to shoulder height', 5)
@@ -82,3 +82,13 @@ INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [Exe
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (27, N'Box Jumps', N'Box jumbs', N'From ground jump upon raised platform and jump down. repeate', 3)
 SET IDENTITY_INSERT [dbo].[Exercises] OFF
 GO
+
+
+SET IDENTITY_INSERT [dbo].[WendlerGroup] ON
+INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (1, 'Press', 'Press Group');
+INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (2, 'Deadlift', 'Deadlift Group');
+INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (3, 'Bench', 'Bench Group');
+INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (4, 'Squat', 'Squat Group');
+GO
+
+SET IDENTITY_INSERT [dbo].[WendlerGroup] OFF

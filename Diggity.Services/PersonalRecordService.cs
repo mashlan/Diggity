@@ -17,7 +17,7 @@ namespace Diggity.Services
 
         public IEnumerable<object> GetMaxEfforts(string userId)
         {
-            var entities = Repository.Find(pr => pr.UserId == userId && pr.Exercise.ExerciseTypeId == 5)
+            var entities = Repository.Find(pr => pr.UserId == userId && pr.Exercise.WendlerGroupId != null)
                 .GroupBy(g => g.ExerciseId)
                 .Select(s => s.Single(w => w.RecordDate == s.Max(m => m.RecordDate)));
 
@@ -60,7 +60,8 @@ namespace Diggity.Services
                 RecordDate = entity.RecordDate.ToShortDateString(),
                 UnitsName = entity.UnitOfMeasure.Name,
                 entity.ExerciseId,
-                entity.UnitOfMeasureId
+                entity.UnitOfMeasureId,
+                entity.Exercise.WendlerGroupId
             };
         }
     }

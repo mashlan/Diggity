@@ -59,6 +59,7 @@
     <Compile Include="Validators\PersonalRecordHistoryValidator.cs" />
     <Compile Include="Validators\UnitOfMeasureValidator.cs" />
     <Compile Include="Validators\UserPreferenceValidator.cs" />
+    <Compile Include="Validators\WorkoutValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diggity\Diggity.csproj">

@@ -29,6 +29,6 @@ namespace Diggity.Entities
     
         public virtual ICollection<TemplateDays> TemplateDays { get; set; }
         public virtual ICollection<Workout> Workouts { get; set; }
-        public virtual AspNetUser User { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

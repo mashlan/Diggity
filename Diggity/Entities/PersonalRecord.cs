@@ -23,6 +23,6 @@ namespace Diggity.Entities
     
         public virtual UnitOfMeasure UnitOfMeasure { get; set; }
         public virtual Exercise Exercise { get; set; }
-        public virtual AspNetUser User { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

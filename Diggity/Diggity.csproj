@@ -78,6 +78,9 @@
     <Compile Include="Entities\UserPreference.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\WendlerGroup.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Wod.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -109,6 +112,7 @@
     <Compile Include="Services\IPersonalRecordService.cs" />
     <Compile Include="Services\IServiceAggregate.cs" />
     <Compile Include="Services\IService.cs" />
+    <Compile Include="Services\IWendlerGeneratorService.cs" />
     <Compile Include="Validation\ISpecification.cs" />
     <Compile Include="Validation\IValidationFactory.cs" />
     <Compile Include="Validation\IValidator.cs" />

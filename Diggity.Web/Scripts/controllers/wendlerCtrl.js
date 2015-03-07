@@ -5,10 +5,12 @@ myControllers.controller('WendlerCtrl', ['$routeParams', '$scope', '$location', 
     function ($routeParams, $scope, $location, MaxLifts) {
         'use strict';
 
-        MaxLifts.query()
-            .then(function(resp) {
-                console.log(resp);
-            });
+        $scope.wenderExercises = {};
+
+        MaxLifts.query().then(function(resp) {
+            $scope.wenderExercises = resp;
+            console.log(resp);
+        });
 
     }
 ]);
