@@ -1,6 +1,6 @@
 ﻿
 body {
-    background-color: #f0f0f0;
+    background-color: #fafafa !important;
     margin: 70px 10px 10px 10px;
 }
 
@@ -241,11 +241,6 @@ i {
     background-color: #333333;
 }
 
-.dumbell-icon {
-    background-image: url('images/dumbbell.png');
-}
-
-.wendler-exercise {
-    margin: 5px;
-    border: 1px #598276 solid;
+.text-bold {
+    font-weight: bold;
 }

@@ -2,30 +2,85 @@
 
 <div class="container">
 
+    <div class="panel">
+        <div class="panel-body">
+            <h2>Wendler 5/3/1</h2>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Name</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Program Name"/>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Training Percentages</label>
+                <div class="col-lg-10">
+                    <div class="radio radio-success">
+                        <label>
+                            <input type="radio" name="sample1" value="option1" checked=""/>
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                            Lower
+                        </label>
+                    </div>
+                    <div class="radio radio-success">
+                        <label>
+                            <input type="radio" name="sample1" value="option1"/>
+                            <span class="circle"></span>
+                            <span class="check"></span>
+                            Higher
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="list-group">
-                <a href="javascript:void(0)" class="list-group-item" ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
-                    <div class="row-picture">
-                        <img src="../../Content/images/dumbbell.png"  style="background: none;"/>
-                    </div>
-                    <div class="row-content">
-                        <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
-                        <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
-                        <div class="list-group-item-text">
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">One Rep Max</label>
-                                <div class="col-lg-1">{{exercise.Value}} {{exercise.UnitsName}}</div>
-
-                                <label class="col-lg-2 control-label">Training Max</label>
-                                <div class="col-lg-1">{{exercise.Value}} {{exercise.UnitsName}}</div>
-                                <div class="clearfix"></div>
+                <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
+                    <a href="javascript:void(0)" class="list-group-item">
+                        <div class="row-picture">
+                            <img src="../../Content/images/dumbbell.png" style="background: none;"/>
+                        </div>
+                        <div class="row-content">
+                            <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
+                            <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                            <div class="list-group-item-text">
+                                <h4>
+                                    <span class="text-bold">One Rep Max</span> <span> {{exercise.Value}} {{exercise.UnitsName}}</span>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <span class="text-bold">Training Max</span> <span> {{exercise.TrainingMax}} {{exercise.UnitsName}}</span>
+                                </h4>
                             </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="list-group-separator"></div>
-                </a>
+                </div>
             </div>
+
+            <button class="btn btn-flat btn-primary" type="button" ng-click="createWendler()">Create</button>
         </div>
     </div>
+
+    <table class="table table-bordered table-condensed table-hover">
+        <thead class="bg-primary">
+        <tr>
+            <th class="text-center" ng-repeat="name in wendlerProgram">{{name.exercise}}</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="program in wendlerProgram">
+                <td ng-repeat="day in program.trainingDays">
+                    <div ng-repeat="set in day.workout">
+                        {{set.set}} - {{set.reps}} X {{set.weight}}
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>
