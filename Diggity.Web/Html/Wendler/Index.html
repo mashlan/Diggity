@@ -1,86 +1,155 @@
 ﻿
 
 <div class="container">
-
-    <div class="panel">
-        <div class="panel-body">
-            <h2>Wendler 5/3/1</h2>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">Name</label>
-                <div class="col-lg-10">
-                    <input type="text" class="form-control" placeholder="Program Name"/>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">Training Percentages</label>
-                <div class="col-lg-10">
-                    <div class="radio radio-success">
-                        <label>
-                            <input type="radio" name="sample1" value="option1" checked=""/>
-                            <span class="circle"></span>
-                            <span class="check"></span>
-                            Lower
-                        </label>
+    <form class="form-horizontal">
+        <div class="panel">
+            <div class="panel-body">
+                <h2>Wendler 5/3/1</h2>
+                
+                <!--<div class="form-group">
+                    <label class="col-lg-2 control-label">Training Percentages</label>
+                    <div class="col-lg-10">
+                        <div class="radio radio-success">
+                            <label>
+                                <input type="radio" name="sample1" value="option1" checked=""/>
+                                <span class="circle"></span>
+                                <span class="check"></span>
+                                Lower
+                            </label>
+                        </div>
+                        <div class="radio radio-success">
+                            <label>
+                                <input type="radio" name="sample1" value="option1"/>
+                                <span class="circle"></span>
+                                <span class="check"></span>
+                                Higher
+                            </label>
+                        </div>
                     </div>
-                    <div class="radio radio-success">
-                        <label>
-                            <input type="radio" name="sample1" value="option1"/>
-                            <span class="circle"></span>
-                            <span class="check"></span>
-                            Higher
-                        </label>
+                </div>-->
+
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="row-content">
+                            <h5 class="list-group-item-heading text-bold">Name</h5>
+                            <div class="list-group-item-text">
+                                <input type="text" class="form-control"/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="list-group">
-                <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
-                    <a href="javascript:void(0)" class="list-group-item">
-                        <div class="row-picture">
-                            <img src="../../Content/images/dumbbell.png" style="background: none;"/>
+                    <div class="list-group-separator"></div>
+                    <a class="list-group-item" data-toggle="modal" data-target="#boringOptionsModal">
+                        <div class="row-action-primary">
+                            <i class="mdi-image-edit"></i>
                         </div>
                         <div class="row-content">
-                            <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
-                            <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                            <div class="least-content">Click to change</div>
+                            <h5 class="list-group-item-heading text-bold">Training Percentages</h5>
                             <div class="list-group-item-text">
-                                <h4>
-                                    <span class="text-bold">One Rep Max</span> <span> {{exercise.Value}} {{exercise.UnitsName}}</span>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <span class="text-bold">Training Max</span> <span> {{exercise.TrainingMax}} {{exercise.UnitsName}}</span>
-                                </h4>
+                                Standard
                             </div>
                         </div>
                     </a>
                     <div class="list-group-separator"></div>
+                    <a class="list-group-item" data-toggle="modal" data-target="#boringOptionsModal">
+                        <div class="row-action-primary">
+                            <i class="mdi-image-edit"></i>
+                        </div>
+                        <div class="row-content">
+                            <div class="least-content">Click to change</div>
+                            <h5 class="list-group-item-heading text-bold">Boring but Big </h5>
+                            <div class="list-group-item-text">
+                                5 X 10 @ 70%
+                            </div>
+                        </div>
+                    </a>
                 </div>
             </div>
-
-            <button class="btn btn-flat btn-primary" type="button" ng-click="createWendler()">Create</button>
         </div>
-    </div>
 
-    <table class="table table-bordered table-condensed table-hover">
-        <thead class="bg-primary">
-        <tr>
-            <th class="text-center" ng-repeat="name in wendlerProgram">{{name.exercise}}</th>
-        </tr>
-        </thead>
-        <tbody>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="list-group">
+                    <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
+                        <a href="javascript:void(0)" class="list-group-item">
+                            <div class="row-picture">
+                                <img src="../../Content/images/dumbbell.png" style="background: none;"/>
+                            </div>
+                            <div class="row-content">
+                                <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
+                                <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                                <div class="list-group-item-text">
+                                    <h4>
+                                        <span class="text-bold">One Rep Max</span> <span> {{exercise.Value}} {{exercise.UnitsName}}</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="text-bold">Training Max</span> <span> {{exercise.TrainingMax}} {{exercise.UnitsName}}</span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="list-group-separator"></div>
+                    </div>
+                </div>
+
+                <button class="btn btn-flat btn-primary" type="button" ng-click="createWendler()">Create</button>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-condensed table-hover">
+            <thead class="bg-primary">
+            <tr>
+                <th class="text-center">Week</th>
+                <th class="text-center" ng-repeat="name in wendlerProgram">{{name.exercise}}</th>
+            </tr>
+            </thead>
+            <tbody>
             <tr ng-repeat="program in wendlerProgram">
+                <td>{{program.week}}</td>
                 <td ng-repeat="day in program.trainingDays">
+                    <h4>Warm Up</h4>
+                    <div ng-repeat="warm in day.warmUp">
+                        {{warm.reps}} Reps X {{warm.weight}} lbs
+                    </div>
+
+                    <h4>Workout</h4>
                     <div ng-repeat="set in day.workout">
-                        {{set.set}} - {{set.reps}} X {{set.weight}}
+                        {{set.reps}} Reps X {{set.weight}} lbs
                     </div>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+        <!-- Boring But Big Options Modal -->
+        <div class="modal fade" id="boringOptionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Boring But Big Options</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-10">
+                                <div class="radio radio-success" ng-repeat="opt in boringButBigOptions">
+                                    <label>
+                                        <input type="radio" name="boring" value="boring1"/>
+                                        <span class="circle"></span>
+                                        <span class="check"></span>
+                                        {{opt.sets}} X {{opt.reps}} @ {{opt.percent}}%
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
 </div>
+

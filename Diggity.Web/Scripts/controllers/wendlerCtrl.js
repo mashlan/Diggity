@@ -5,8 +5,20 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
     function ($routeParams, $scope, $location, MaxLifts) {
         "use strict";
 
+        
+
         $scope.wenderExercises = {};
         $scope.wendlerProgram = [];
+        $scope.boringButBigOptions = [];
+
+        function getBoringButBigOtions() {
+            for (var i = 0; i < 10; i++) {
+                var percent = 30 + (i * 5);
+                $scope.boringButBigOptions.push({ option: i, sets: 5, reps: 10, percent: percent });
+            }
+        }
+
+        getBoringButBigOtions();
 
         $scope.createWendler = function () {
             for (var week = 1; week < 5; week++) {
