@@ -5,20 +5,55 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
     function ($routeParams, $scope, $location, MaxLifts) {
         "use strict";
 
-        
 
+        $scope.selectedExercise = {};
         $scope.wenderExercises = {};
         $scope.wendlerProgram = [];
         $scope.boringButBigOptions = [];
+        $scope.boringOption = {};
+        $scope.traningPercentOptions = [
+            { option: 1, text: "Standard", description: "Recomended. Be fresher for the last big set." },
+            { option: 2, text: "Heavier", description: "Training percentages are higher in week 1 and 2" }
+        ];
+
+        $scope.trainingPercent = $scope.traningPercentOptions[0];
 
         function getBoringButBigOtions() {
             for (var i = 0; i < 10; i++) {
                 var percent = 30 + (i * 5);
                 $scope.boringButBigOptions.push({ option: i, sets: 5, reps: 10, percent: percent });
             }
+
+            //set default
+            $scope.boringOption = $scope.boringButBigOptions[8];
         }
 
         getBoringButBigOtions();
+
+        $scope.boringOptionSelected = function(opt) {
+            $scope.boringOption = opt;
+        }
+
+        $scope.updateTrainingMax = function() {
+            $scope.selectedExercise.TrainingMax = roundToNearestFive($scope.selectedExercise.Value * .9);
+        }
+
+        $scope.trainingPercentOptionSelected = function(opt) {
+            $scope.trainingPercent = opt;
+        }
+
+        $scope.setSelectedExercise = function (exercise) {
+            $scope.selectedExercise = exercise;
+            $scope.estimateWeight = null;
+            $scope.estimateReps = null;
+        }
+
+        $scope.calculateOneRepMax = function () {
+            var estimatedLift = ($scope.estimateWeight * $scope.estimateReps * .0333) + $scope.estimateWeight;
+            var estimate = roundToNearestFive(estimatedLift);
+            $scope.selectedExercise.Value = estimate;
+            $scope.selectedExercise.TrainingMax = roundToNearestFive(estimate * .9);
+        };
 
         $scope.createWendler = function () {
             for (var week = 1; week < 5; week++) {
@@ -39,20 +74,24 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             }
         }
 
+        function roundToNearestFive(weight) {
+            return 5 * Math.round(weight / 5);
+        }
+
         MaxLifts.query().then(function(resp) {
             $scope.wenderExercises = resp;
             console.log(resp);
 
             $.each($scope.wenderExercises, function(i, v) {
                 var trainingPercent = .9 * parseInt(v.Value);
-                var roundedTrainingPercent = 5 * (Math.round(trainingPercent / 5)); //round up to nearest 5 lbs
+                var roundedTrainingPercent = roundToNearestFive(trainingPercent);
                 v.TrainingMax =  roundedTrainingPercent;
             });
         });
 
         function getTrainingWeight(weight, percent) {
             var trainingPercent = percent * parseInt(weight);
-            return  5 * (Math.round(trainingPercent / 5)); //round up to nearest 5 lbs
+            return roundToNearestFive(trainingPercent);
         }
 
 

@@ -275,7 +275,11 @@
     <Content Include="Html\Timers\NumberPanel.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
+    <Content Include="Html\Wendler\BoringOptions.html" />
+    <Content Include="Html\Wendler\DaysPerWeekOptions.html" />
     <Content Include="Html\Wendler\Index.html" />
+    <Content Include="Html\Wendler\LiftingOptions.html" />
+    <Content Include="Html\Wendler\ProgramPercentsOptions.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\accountCtrl.js" />

@@ -1,44 +1,20 @@
 ﻿
-
 <div class="container">
     <form class="form-horizontal">
         <div class="panel">
             <div class="panel-body">
                 <h2>Wendler 5/3/1</h2>
-                
-                <!--<div class="form-group">
-                    <label class="col-lg-2 control-label">Training Percentages</label>
-                    <div class="col-lg-10">
-                        <div class="radio radio-success">
-                            <label>
-                                <input type="radio" name="sample1" value="option1" checked=""/>
-                                <span class="circle"></span>
-                                <span class="check"></span>
-                                Lower
-                            </label>
-                        </div>
-                        <div class="radio radio-success">
-                            <label>
-                                <input type="radio" name="sample1" value="option1"/>
-                                <span class="circle"></span>
-                                <span class="check"></span>
-                                Higher
-                            </label>
-                        </div>
-                    </div>
-                </div>-->
-
                 <div class="list-group">
                     <div class="list-group-item">
                         <div class="row-content">
                             <h5 class="list-group-item-heading text-bold">Name</h5>
                             <div class="list-group-item-text">
-                                <input type="text" class="form-control"/>
+                                <input type="text" class="form-control" placeholder="It's your workout. Name it, Find it'"/>
                             </div>
                         </div>
                     </div>
                     <div class="list-group-separator"></div>
-                    <a class="list-group-item" data-toggle="modal" data-target="#boringOptionsModal">
+                    <a class="list-group-item" data-toggle="modal" data-target="#trainingPercentOptionsModal">
                         <div class="row-action-primary">
                             <i class="mdi-image-edit"></i>
                         </div>
@@ -46,7 +22,7 @@
                             <div class="least-content">Click to change</div>
                             <h5 class="list-group-item-heading text-bold">Training Percentages</h5>
                             <div class="list-group-item-text">
-                                Standard
+                                {{trainingPercent.text}}
                             </div>
                         </div>
                     </a>
@@ -59,7 +35,7 @@
                             <div class="least-content">Click to change</div>
                             <h5 class="list-group-item-heading text-bold">Boring but Big </h5>
                             <div class="list-group-item-text">
-                                5 X 10 @ 70%
+                                {{boringOption.sets}} X {{boringOption.reps}} @ {{boringOption.percent}}%
                             </div>
                         </div>
                     </a>
@@ -71,9 +47,9 @@
             <div class="panel-body">
                 <div class="list-group">
                     <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
-                        <a href="javascript:void(0)" class="list-group-item">
+                        <a class="list-group-item" data-toggle="modal" data-target="#liftingOptionsModal" ng-click="setSelectedExercise(exercise)">
                             <div class="row-picture">
-                                <img src="../../Content/images/dumbbell.png" style="background: none;"/>
+                                <img src="../../Content/images/dumbbell.png" style="background: none;" />
                             </div>
                             <div class="row-content">
                                 <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
@@ -120,36 +96,17 @@
             </tbody>
         </table>
 
-        <!-- Boring But Big Options Modal -->
-        <div class="modal fade" id="boringOptionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Boring But Big Options</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <div class="col-lg-2"></div>
-                            <div class="col-lg-10">
-                                <div class="radio radio-success" ng-repeat="opt in boringButBigOptions">
-                                    <label>
-                                        <input type="radio" name="boring" value="boring1"/>
-                                        <span class="circle"></span>
-                                        <span class="check"></span>
-                                        {{opt.sets}} X {{opt.reps}} @ {{opt.percent}}%
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- modal directives -->
+        <boring-radio-group></boring-radio-group>
+        <training-percent-radio-group></training-percent-radio-group>
+        <lifting-option-modal></lifting-option-modal>
 
     </form>
+
+    <script>
+        $(document).ready(function () {
+            $.material.init();
+        });
+    </script>
 </div>
 

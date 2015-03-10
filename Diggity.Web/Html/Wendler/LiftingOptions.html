@@ -1,0 +1,48 @@
+﻿
+<div class="modal fade" id="liftingOptionsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">{{selectedExercise.ExerciseName}}</h4>
+            </div>
+            <div class="modal-body">
+                <h5>To estimate one rep max, take 80% of you supposed max and perform as many reps as possible. Then enter the information below and click calculate</h5>
+                <div class="form-group">
+                    <div class="form-group">
+                        <label class="col-lg-1 col-md-1 col-sm-1 control-label"></label>
+                        <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 10px;">
+                            <input type="number" class="form-control" ng-model="estimateWeight" placeholder="Weight"/>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1" style="margin-top: 15px;">
+                            X
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 10px;">
+                            <input class="form-control" type="number" ng-model="estimateReps" placeholder="Reps"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <button type="button" ng-click="calculateOneRepMax()" class="btn btn-primary"><i class="fa fa-check"></i> Calculate</button>
+                        </div>
+                    </div>
+
+                </div>
+                <h5>If you know your one rep max, enter it below</h5>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">1 Rep Max</label>
+                    <div class="col-lg-6">
+                        <input type="number" class="form-control" ng-model="selectedExercise.Value" ng-change="updateTrainingMax()"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Training Max</label>
+                    <div class="col-lg-6">
+                        <input type="text" class="form-control" disabled="disabled" ng-model="selectedExercise.TrainingMax" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

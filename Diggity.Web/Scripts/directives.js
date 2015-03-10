@@ -55,6 +55,30 @@ angular.module('myApp.directives', [])
             }
         }
     })
+    .directive("boringRadioGroup", function() {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Wendler/BoringOptions.html",
+            scope: false
+        }
+    })
+    .directive("trainingPercentRadioGroup", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Wendler/ProgramPercentsOptions.html",
+            scope: false
+        }
+    })
+    .directive("liftingOptionModal", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Wendler/LiftingOptions.html",
+            scope: false
+        }
+    })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',
