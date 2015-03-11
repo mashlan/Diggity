@@ -29,7 +29,7 @@ myControllers.controller('ExerciseTypeCtrl', ['$scope', 'ExerciseType', '$locati
         }
 
         function getExerciseType() {
-            if ($routeParams.id != 'new') {
+            if ($routeParams.id != "new") {
                 ExerciseType.get($routeParams.id)
                     .then(function (resp) {
                         $scope.exerciseType = resp;

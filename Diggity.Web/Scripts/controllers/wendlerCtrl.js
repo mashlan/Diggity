@@ -5,18 +5,23 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
     function ($routeParams, $scope, $location, MaxLifts) {
         "use strict";
 
+        $scope.daysPerWeekOptions = [
+            { option: 1, text: "4 days per week", days: 4 },
+            { option: 2, text: "3 days per week", days: 3 }
+        ];
+
+        $scope.traningPercentOptions = [
+            { option: 1, text: "Standard", description: "Recomended. Be fresher for the last big set." },
+            { option: 2, text: "Heavier", description: "Training percentages are higher in week 1 and 2" }
+        ];
 
         $scope.selectedExercise = {};
         $scope.wenderExercises = {};
         $scope.wendlerProgram = [];
         $scope.boringButBigOptions = [];
         $scope.boringOption = {};
-        $scope.traningPercentOptions = [
-            { option: 1, text: "Standard", description: "Recomended. Be fresher for the last big set." },
-            { option: 2, text: "Heavier", description: "Training percentages are higher in week 1 and 2" }
-        ];
-
         $scope.trainingPercent = $scope.traningPercentOptions[0];
+        $scope.daysPerWeek = $scope.daysPerWeekOptions[0];
 
         function getBoringButBigOtions() {
             for (var i = 0; i < 10; i++) {
@@ -42,6 +47,10 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             $scope.trainingPercent = opt;
         }
 
+        $scope.daysPerWeekSelected = function(opt) {
+            $scope.daysPerWeek = opt;
+        }
+
         $scope.setSelectedExercise = function (exercise) {
             $scope.selectedExercise = exercise;
             $scope.estimateWeight = null;
@@ -59,12 +68,14 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             for (var week = 1; week < 5; week++) {
                 $scope.wendlerProgram.push({
                     week: week,
-                    exercise: $scope.wenderExercises[week -1].ExerciseName,
                     trainingDays: []
                 });
 
                 $.each($scope.wenderExercises, function (i, v) {
                     var trainingDay = {
+                        exercise: v.ExerciseName,
+                        maxWeight: v.Value,
+                        trainingWeight: v.TrainingMax,
                         warmUp: createWarmUp(v.TrainingMax),
                         workout: createWorkout(week, v.TrainingMax)
                     };

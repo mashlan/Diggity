@@ -79,6 +79,14 @@ angular.module('myApp.directives', [])
             scope: false
         }
     })
+    .directive("daysPerWeekOptionModal", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Wendler/DaysPerWeekOptions.html",
+            scope: false
+        }
+    })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',
