@@ -1,16 +1,21 @@
 ﻿
 <div class="container">
     <form class="form-horizontal">
-        <div class="panel">
+        
+        <div class="panel non-printable">
             <div class="panel-body">
-                <h2 class="mdi-material-teal-900">Program</h2>
-                <hr />
+                <div class="diggity-panel-header">
+                    <a class="panel-toggle" ng-click="hideShowContent('program-header-icon')">
+                        <i id="program-header-icon" class="fa fa-arrow-up diggity-transition"></i>
+                    </a>
+                    <h2 class="mdi-material-teal-900">Program</h2>
+                </div>
                 <div class="list-group">
                     <div class="list-group-item">
                         <div class="row-content">
                             <label class="list-group-item-heading col-lg-1">Name</label>
                             <div class="col-lg-11">
-                                <input type="text" class="form-control" placeholder="It's your workout. Name it, Find it'" />
+                                <input type="text" class="form-control" placeholder="It's your workout. Name it, Find it'"/>
                             </div>
                         </div>
                     </div>
@@ -49,7 +54,7 @@
                             <div class="least-content">Click to change</div>
                             <h5 class="list-group-item-heading text-bold">Boring but Big </h5>
                             <div class="list-group-item-text">
-                                {{boringOption.sets}} X {{boringOption.reps}} @ {{boringOption.percent}}%
+                                {{boringOption.text}}
                             </div>
                         </div>
                     </a>
@@ -57,15 +62,19 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-default non-printable">
             <div class="panel-body">
-                <h2 class="mdi-material-teal-900">Work</h2>
-                <hr />
+                <div class="diggity-panel-header">
+                    <a class="panel-toggle" ng-click="hideShowContent('program-exercise-icon')">
+                        <i id="program-exercise-icon" class="fa fa-arrow-up diggity-transition"></i>
+                    </a>
+                    <h2 class="mdi-material-teal-900">Main Lifts</h2>
+                </div>
                 <div class="list-group">
                     <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
                         <a class="list-group-item" data-toggle="modal" data-target="#liftingOptionsModal" ng-click="setSelectedExercise(exercise)">
                             <div class="row-picture">
-                                <img src="../../Content/images/dumbbell.png" style="background: none;" />
+                                <img src="../../Content/images/dumbbell.png" style="background: none;"/>
                             </div>
                             <div class="row-content">
                                 <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
@@ -82,48 +91,53 @@
                         <div class="list-group-separator"></div>
                     </div>
                 </div>
-
-                <button class="btn btn-flat btn-primary" type="button" ng-click="createWendler()">Create</button>
             </div>
         </div>
 
-        <div class="panel panel-material-deep-orange-900" ng-repeat="week in wendlerProgram">
-            <h3 class="panel-heading">Week {{week.week}}</h3>
+        <div class="panel panel-default non-printable">
             <div class="panel-body">
+                <div class="diggity-panel-header">
+                    <a class="panel-toggle">
+                        <i class="fa fa-plus diggity-transition" data-toggle="modal" data-target="#assistanceExericiseModal"></i>
+                        <i id="program-assistance-icon" ng-click="hideShowContent('program-assistance-icon')"
+                           class="fa fa-arrow-up diggity-transition"></i>
+                    </a>
+                    <h2 class="mdi-material-teal-900">Assistance Exercises</h2>
+                </div>
                 <div class="list-group">
-                    <div class="list-group-item" ng-repeat="day in week.trainingDays">
-                        <h3 class="list-group-item-heading">{{day.exercise}}</h3>
-                        <div class="list-group-item-text">
-                            <div class="col-lg-3">
-                                <span class="text-bold">Max Weight</span> <span> {{day.maxWeight}}</span>
-                                <br/>
-                                <span class="text-bold">Training Weight</span> <span> {{day.trainingWeight}}</span>
+                    <!--<div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
+                        <a class="list-group-item" data-toggle="modal" data-target="#liftingOptionsModal" ng-click="setSelectedExercise(exercise)">
+                            <div class="row-picture">
+                                <img src="../../Content/images/dumbbell.png" style="background: none;"/>
                             </div>
-
-                            <div class="col-lg-3">
-                                <h4>Warm Up</h4>
-                                <div ng-repeat="warm in day.warmUp">
-                                    {{warm.reps}} Reps X {{warm.weight}} lbs
+                            <div class="row-content">
+                                <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
+                                <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                                <div class="list-group-item-text">
+                                    <h4>
+                                        <span class="text-bold">One Rep Max</span> <span> {{exercise.Value}} {{exercise.UnitsName}}</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="text-bold">Training Max</span> <span> {{exercise.TrainingMax}} {{exercise.UnitsName}}</span>
+                                    </h4>
                                 </div>
                             </div>
-
-                            <div class="col-lg-3">
-                                <h4>Work</h4>
-                                <div ng-repeat="work in day.workout">
-                                    {{work.reps}} Reps X {{work.weight}} lbs
-                                </div>
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
+                        </a>
                         <div class="list-group-separator"></div>
-                        <br/>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
 
+        <div class="col-lg-12">
+            <button class="btn btn-primary" style="float: right;" type="button" ng-click="createWendler()">Create</button>
+        </div>
+        <div class="clearfix"></div>
+        <br/>
+
+        <wendler-workout-month></wendler-workout-month>
 
         <!-- modal directives -->
+        <assistance-exercise-modal></assistance-exercise-modal>
         <boring-radio-group></boring-radio-group>
         <training-percent-radio-group></training-percent-radio-group>
         <lifting-option-modal></lifting-option-modal>

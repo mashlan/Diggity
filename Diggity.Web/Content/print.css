@@ -1,0 +1,51 @@
+﻿
+@media print {
+    body {
+        margin: 0 !important;
+        visibility: hidden;
+        -webkit-print-color-adjust: exact;
+    }
+    
+    .non-printable {
+        display: none;
+    }
+
+    .print-btn-group{
+        display: none;
+    }
+    
+    .workout-col {
+        width: 25%;
+        display: inline-block;
+    }
+
+    .workout-week-title {
+        background-color: #bf360c !important;
+        color: #ffffff !important;
+        display: block;
+        width: 100% !important;
+        padding: 10px;
+        top: 0 !important;
+    }
+
+    .workout-week-heading {
+        background-color: #5f6a6f;
+        color: #ffffff;
+        display: block;
+    }
+
+    .panel {
+        page-break-after: avoid;
+        height: auto !important;
+    }
+
+    .print {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    @page {
+        size: landscape;
+    }
+}
+

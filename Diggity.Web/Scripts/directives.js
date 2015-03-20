@@ -87,6 +87,22 @@ angular.module('myApp.directives', [])
             scope: false
         }
     })
+    .directive("wendlerWorkoutMonth", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Wendler/WendlerWorkoutMonth.html",
+            scope: false
+        }
+    })
+    .directive("assistanceExerciseModal", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Wendler/AssistanceExerciseModal.html",
+            scope: false
+        }
+    })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',

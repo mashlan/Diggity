@@ -20,6 +20,42 @@ i {
     vertical-align: middle;
 }
 
+.diggity-panel-header {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.diggity-panel-header h2 {
+    margin: 5px;
+}
+
+.panel-toggle {
+    position: absolute;
+    right: 16px;
+    margin-top: 5px;
+    font-size: 18px;
+    z-index: 3000;
+    color: #37474f;
+    cursor: pointer;
+}
+
+
+/*.fa-panel-toggle:before {
+    content: "\f062";
+}
+
+.fa-panel-toggle.down:before {
+    /*content: "\f063";!1!
+    -webkit-rotation: 90deg;
+    -moz-rotation: 90deg;
+    -ms-rotation: 90deg;
+    -o-rotation: 90deg;
+    rotation: 90deg;
+}*/
+
+
 .list-heading {
     font-weight: bold;
     height: 45px;
@@ -123,6 +159,7 @@ i {
 
 @media only screen and (max-width: 768px) {
     .timer ul li {font-size: 8em;}
+    .least-content{ position:relative !important;right: auto !important;}
 }
 
 .number-panel {
@@ -244,3 +281,61 @@ i {
 .text-bold {
     font-weight: bold;
 }
+
+.workout-tab {
+    height: 100%; 
+    overflow: auto;
+    padding-top: 5px;
+    width: 1150px;
+    height: -moz-calc(100% - 120px);
+    height: -webkit-calc(100% - 120px);
+    height: calc(100% - 120px);
+    position: absolute;
+    top: 0;
+    left: -1100px;
+    margin-top: 115px;
+    z-index: 1500;
+}
+
+.short-underline {
+    border-bottom: #598276 solid 1px;
+    width: 75%;
+}
+.workout-col {
+    border-right: #598276 solid 1px;
+}
+
+.workout-week-heading {
+    display: table; 
+    width: 100%
+}
+
+.workout-week-title {
+    width: 90%; 
+    display: table-cell
+}
+
+.workout-col.last {
+    border-right: none;
+}
+
+.workout-tab.in {
+    left: 100px;
+}
+
+.diggity-transition {
+    -webkit-transition: ease 1s;
+    -moz-transition: ease 1s;
+    -ms-transition: ease 1s;
+    -o-transition: ease 1s;
+    transition: ease 1s;
+}
+
+.print-btn-group {
+    margin: 0;
+    display: table-cell;
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+

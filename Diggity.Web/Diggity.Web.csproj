@@ -241,6 +241,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\dumbbell.png" />
+    <Content Include="Content\print.css" />
     <Content Include="fonts\LICENSE.txt" />
     <Content Include="fonts\Material-Design-Icons.svg" />
     <Content Include="Content\jasmine\jasmine.css" />
@@ -275,11 +276,13 @@
     <Content Include="Html\Timers\NumberPanel.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
+    <Content Include="Html\Wendler\AssistanceExerciseModal.html" />
     <Content Include="Html\Wendler\BoringOptions.html" />
     <Content Include="Html\Wendler\DaysPerWeekOptions.html" />
     <Content Include="Html\Wendler\Index.html" />
     <Content Include="Html\Wendler\LiftingOptions.html" />
     <Content Include="Html\Wendler\ProgramPercentsOptions.html" />
+    <Content Include="Html\Wendler\WendlerWorkoutMonth.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\accountCtrl.js" />

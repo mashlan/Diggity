@@ -57,6 +57,7 @@ namespace Diggity.Web
                 "~/Content/material-wfont.css",
                 "~/Content/ripples.css",
                 "~/Content/Site.css",
+                "~/Content/print.css",
                 "~/Content/font-awesome.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
