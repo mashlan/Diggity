@@ -51,6 +51,13 @@
                         {{big.reps}} Reps X {{big.weight}} <span style="float: right;">{{big.percent}}%</span>
                     </div>
                 </div>
+
+                <div class="col-lg-12" ng-repeat="asst in day.assistanceExercises">
+                    <h4 class="short-underline">{{asst.exerciseName}}</h4>
+                    <div ng-repeat="set in asst.sets">
+                        {{set.reps}} Reps X {{set.weight}}
+                    </div>
+                </div>
             </div>
             <div class="clearfix"></div>
             <div class="list-group-separator"></div>

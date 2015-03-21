@@ -103,6 +103,14 @@ angular.module('myApp.directives', [])
             scope: false
         }
     })
+     .directive("editAssistanceExerciseModal", function () {
+         return {
+             restrict: "E",
+             replace: true,
+             templateUrl: "../Html/Wendler/EditAssistanceExercise.html",
+             scope: false
+         }
+     })
     .directive('diggityGrid', function() {
         return {
             restrict: 'E',

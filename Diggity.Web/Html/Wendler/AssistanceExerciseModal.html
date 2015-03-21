@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Assistance Exercise</h4>
+                <h4 class="modal-title">Program Template</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -13,8 +13,10 @@
                     <div class="col-lg-10">
                         <div class="radio radio-success" ng-repeat="opt in assistanceOptions">
                             <label>
-                                <input type="radio" name="assistance" ng-value="opt.option"
-                                       ng-model="assistanceOption.option" />
+                                <input type="radio" name="assistance"
+                                       ng-value="opt.option"
+                                       ng-click="setAssistanceOption(opt)"
+                                       ng-model="assistanceOption.option"/>
                                 <span class="circle"></span>
                                 <span class="check"></span>
                                 {{opt.text}}
@@ -22,14 +24,9 @@
                         </div>
                     </div>
                 </div>
-
-                <p>
-                    To roll your own: <br/>
-                    1. Select the main lift you are adding assistance.<br/>
-                    2. Select an exercise to compliment the main lift. <br/>
-                    3. Edit the number of sets and reps as you see fit. <br/>
-                    
-                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

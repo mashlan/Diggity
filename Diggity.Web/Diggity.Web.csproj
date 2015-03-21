@@ -240,6 +240,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\barbell.png" />
     <Content Include="Content\images\dumbbell.png" />
     <Content Include="Content\print.css" />
     <Content Include="fonts\LICENSE.txt" />
@@ -279,6 +280,7 @@
     <Content Include="Html\Wendler\AssistanceExerciseModal.html" />
     <Content Include="Html\Wendler\BoringOptions.html" />
     <Content Include="Html\Wendler\DaysPerWeekOptions.html" />
+    <Content Include="Html\Wendler\EditAssistanceExercise.html" />
     <Content Include="Html\Wendler\Index.html" />
     <Content Include="Html\Wendler\LiftingOptions.html" />
     <Content Include="Html\Wendler\ProgramPercentsOptions.html" />
@@ -303,6 +305,7 @@
     <Content Include="Scripts\services\exerciseService.js" />
     <Content Include="Scripts\services\recordLiftsService.js" />
     <Content Include="Scripts\services\wendlerService.js" />
+    <Content Include="Scripts\services\wendlerTemplateService.js" />
     <Content Include="Scripts\vendors\bootstrap\material.js" />
     <Content Include="Scripts\vendors\bootstrap\material.min.js" />
     <Content Include="Scripts\vendors\bootstrap\ripples.js" />

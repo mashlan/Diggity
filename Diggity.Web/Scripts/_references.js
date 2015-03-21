@@ -46,3 +46,4 @@
 /// <reference path="vendors/bootstrap/material.js" />
 /// <reference path="vendors/bootstrap/ripples.js" />
 /// <reference path="services/recordliftsservice.js" />
+/// <reference path="services/wendlertemplateservice.js" />

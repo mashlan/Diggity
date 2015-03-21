@@ -49,7 +49,8 @@ namespace Diggity.Web
                 "~/Scripts/services/unitOfMeasureService.js",
                 "~/Scripts/services/exerciseService.js",
                 "~/Scripts/services/accountServices.js",
-                "~/Scripts/services/wendlerService.js"
+                "~/Scripts/services/wendlerService.js",
+                "~/Scripts/services/wendlerTemplateService.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

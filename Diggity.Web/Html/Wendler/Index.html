@@ -46,18 +46,33 @@
                         </div>
                     </a>
                     <div class="list-group-separator"></div>
-                    <a class="list-group-item" data-toggle="modal" data-target="#boringOptionsModal">
+                    <a class="list-group-item" data-toggle="modal" data-target="#assistanceExericiseModal">
                         <div class="row-action-primary">
                             <i class="mdi-image-edit"></i>
                         </div>
                         <div class="row-content">
                             <div class="least-content">Click to change</div>
-                            <h5 class="list-group-item-heading text-bold">Boring but Big </h5>
+                            <h5 class="list-group-item-heading text-bold">Template</h5>
                             <div class="list-group-item-text">
-                                {{boringOption.text}}
+                                {{assistanceOption.text}}
                             </div>
                         </div>
                     </a>
+                    <div ng-show="assistanceOption.option == 2">
+                        <div class="list-group-separator"></div>
+                        <a class="list-group-item" data-toggle="modal" data-target="#boringOptionsModal">
+                            <div class="row-action-primary">
+                                <i class="mdi-image-edit"></i>
+                            </div>
+                            <div class="row-content">
+                                <div class="least-content">Click to change</div>
+                                <h5 class="list-group-item-heading text-bold">Boring Percent</h5>
+                                <div class="list-group-item-text">
+                                    {{boringOption.text}}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,7 +89,7 @@
                     <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
                         <a class="list-group-item" data-toggle="modal" data-target="#liftingOptionsModal" ng-click="setSelectedExercise(exercise)">
                             <div class="row-picture">
-                                <img src="../../Content/images/dumbbell.png" style="background: none;"/>
+                                <img src="../../Content/images/barbell.png" style="background: none;"/>
                             </div>
                             <div class="row-content">
                                 <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
@@ -98,32 +113,33 @@
             <div class="panel-body">
                 <div class="diggity-panel-header">
                     <a class="panel-toggle">
-                        <i class="fa fa-plus diggity-transition" data-toggle="modal" data-target="#assistanceExericiseModal"></i>
+                        <i class="fa fa-plus diggity-transition" data-toggle="modal" data-target="#editAssistanceExerciseModal"></i>
                         <i id="program-assistance-icon" ng-click="hideShowContent('program-assistance-icon')"
                            class="fa fa-arrow-up diggity-transition"></i>
                     </a>
                     <h2 class="mdi-material-teal-900">Assistance Exercises</h2>
                 </div>
                 <div class="list-group">
-                    <!--<div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
-                        <a class="list-group-item" data-toggle="modal" data-target="#liftingOptionsModal" ng-click="setSelectedExercise(exercise)">
+                    <div ng-repeat="asst in customAssistanceExercises | orderBy:'WendlerGroupId'">
+                        <a class="list-group-item" data-toggle="modal" data-target="#editAssistanceExerciseModal" ng-click="">
                             <div class="row-picture">
-                                <img src="../../Content/images/dumbbell.png" style="background: none;"/>
+                                <img src="../../Content/images/barbell.png" style="background: none;" />
                             </div>
                             <div class="row-content">
-                                <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
-                                <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                                <div class="least-content">Click to edit</div>
+                                <h2 class="list-group-item-heading" style="font-size: 25px;">{{asst.mainExerciseName}}</h2>
                                 <div class="list-group-item-text">
-                                    <h4>
-                                        <span class="text-bold">One Rep Max</span> <span> {{exercise.Value}} {{exercise.UnitsName}}</span>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span class="text-bold">Training Max</span> <span> {{exercise.TrainingMax}} {{exercise.UnitsName}}</span>
-                                    </h4>
+                                    <div ng-repeat="ex in asst.exercises">
+                                        <h4>{{ex.exerciseName}}</h4>
+                                        <div ng-repeat="set in ex.sets">
+                                            {{set.reps}} Reps X {{set.weight}}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </a>
                         <div class="list-group-separator"></div>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -137,6 +153,7 @@
         <wendler-workout-month></wendler-workout-month>
 
         <!-- modal directives -->
+        <edit-assistance-exercise-modal></edit-assistance-exercise-modal>
         <assistance-exercise-modal></assistance-exercise-modal>
         <boring-radio-group></boring-radio-group>
         <training-percent-radio-group></training-percent-radio-group>
