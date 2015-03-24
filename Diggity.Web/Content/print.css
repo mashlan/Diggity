@@ -87,6 +87,12 @@
         visibility: visible !important;
     }
 
+    .edit-icon {
+        visibility: hidden;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
     @page {
         size: landscape;
     }

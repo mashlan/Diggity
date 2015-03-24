@@ -36,7 +36,7 @@ i {
     right: 16px;
     margin-top: 5px;
     font-size: 18px;
-    z-index: 3000;
+    z-index: 1000;
     color: #37474f;
     cursor: pointer;
 }
@@ -343,6 +343,8 @@ i {
     background-color: #455a64 !important;
     background: #455a64 !important;
     border: 1px solid #455a64 !important;
+    -ms-border-radius: 0;
+    border-radius: 0;
 }
 
 .nav-tabs li {
@@ -355,6 +357,18 @@ i {
 }
 
 .nav-tabs li.active {
-    background: #78909c;
+    background: #424242;;
+}
+
+.exercise-link a {
+    color: #263238;
+    text-decoration: none;
+}
+.exercise-link:hover {
+    background: #b0bec5;
+}
+
+.edit-icon {
+    float: right;
 }
 

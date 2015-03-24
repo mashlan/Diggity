@@ -1,8 +1,8 @@
 ﻿/**********************************************************************
  * ********************* Wendler Workouts *****************************
  *********************************************************************/
-myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", "MaxLifts", "WendlerTemplate",
-    function ($routeParams, $scope, $location, MaxLifts, WendlerTemplate) {
+myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", "MaxLifts", "WendlerTemplate","Exercise",
+    function ($routeParams, $scope, $location, MaxLifts, WendlerTemplate, Exercise) {
         "use strict";
 
         $scope.daysPerWeekOptions = WendlerTemplate.daysPerWeekOptions;
@@ -11,16 +11,43 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
         $scope.boringButBigOptions = WendlerTemplate.boringButBigOptions();
 
         $scope.selectedExercise = {};
+        $scope.selectedWorkoutExercise = {};
         $scope.wenderExercises = {};
         $scope.assistanceExercises = [];
         $scope.wendlerProgram = [];
         $scope.customAssistanceExercises = [];
         $scope.trainingPercent = $scope.traningPercentOptions[0];
         $scope.daysPerWeek = $scope.daysPerWeekOptions[0];
+        $scope.exerciseList = [];
 
         //set default
         $scope.boringOption = $scope.boringButBigOptions[8];
         $scope.assistanceOption = $scope.assistanceOptions[0];
+
+        function queryFinally() {
+            $scope.loading = false;
+        }
+
+        function queryError(error) {
+            window.alertShow("error", error.data.Message);
+        }
+
+        Exercise.query()
+                .then(function (resp) { $scope.exerciseList = resp; }, queryError)
+                .catch(queryError)
+                .finally(queryFinally);
+
+
+        $scope.onExerciseChange = function() {
+            var ex = $scope.selectedWorkoutExercise.Exercise;
+            $scope.selectedWorkoutExercise.exerciseName = ex.Name;
+            $scope.selectedWorkoutExercise.exerciseId = ex.Id;
+
+            //check for a pr
+            //if no pr, remove percent and weight
+
+            //else update weight based on percent.
+        }
         
         MaxLifts.query().then(function (resp) {
             $scope.wenderExercises = resp;
@@ -88,22 +115,6 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             }
         }
 
-        $scope.hideShowPanelBody = function (selector) {
-            var elem = $("#" + selector);
-
-            //get parent panel
-            var panel = elem.closest(".panel");
-            var panelBody = panel.find(".panel-body");
-
-            if (elem.hasClass("fa-rotate-180")) {
-                elem.removeClass("fa-rotate-180");
-                panelBody.show("slow");
-            } else {
-                elem.addClass("fa-rotate-180");
-                panelBody.hide("slow");
-            }
-        }
-
         $scope.printWeek = function(weekNumber) {
             var selector = "#workout_week_" + weekNumber;
             $(selector).addClass("print");
@@ -152,6 +163,12 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
                     $scope.wendlerProgram[week - 1].trainingDays.push(trainingDay);
                 });
             }
+        }
+
+        $scope.editAssistanceExercise = function(asst) {
+            $scope.selectedWorkoutExercise = asst;
+            var selected = $.grep($scope.exerciseList, function (x) { return x.Id === asst.exerciseId });
+            if (selected.length > 0) $scope.selectedWorkoutExercise.Exercise = selected[0];
         }
 
         function createAssistanceExercises(exerciseId, trainingWeight) {

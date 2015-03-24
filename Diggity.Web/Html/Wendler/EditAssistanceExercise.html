@@ -1,22 +1,47 @@
 ﻿
+
 <div class="modal fade" id="editAssistanceExerciseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Assistance Exercises</h4>
+                <h4 class="modal-title">Edit Exercise</h4>
             </div>
+
             <div class="modal-body">
                 <div class="form-group">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-10">
+                    <select class="form-control"
+                            ng-options="exercise as exercise.Name for exercise in exerciseList"
+                            ng-model="selectedWorkoutExercise.Exercise"
+                            ng-change="onExerciseChange()"></select>
+                </div>
 
-                        <p>
-                            hey there
-                        </p>
-                    </div>
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Reps</th>
+                        <th>Weight</th>
+                        <th>% Max</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="set in selectedWorkoutExercise.sets">
+                        <td><input type="number" class="form-control" ng-model="set.reps"/></td>
+                        <td><input type="number" class="form-control" ng-model="set.weight"/></td>
+                        <td>
+                            <input ng-show="set.percent" type="number" class="form-control" ng-model="set.percent"/>
+                            <label ng-hide="set.percent" class="control-label">NA</label>
+                        </td>
+                        <td><button class="btn btn-sm btn-default" style="margin: 0;"><i class="fa fa-times text-danger"></i></button></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <button type="button" class="btn btn-default"><i class="fa fa-plus"></i> Add Set</button>
                 </div>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
