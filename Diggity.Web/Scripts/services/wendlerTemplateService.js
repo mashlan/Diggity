@@ -41,7 +41,7 @@ services.factory("WendlerTemplate", ['$resource',
                 var warmUp = [];
                 warmUp.push({ set: 1, reps: 5, percent: 40, weight: getTrainingWeight(trainingWeight, .4) });
                 warmUp.push({ set: 2, reps: 5, percent: 50, weight: getTrainingWeight(trainingWeight, .5) });
-                warmUp.push({ set: 3, reps: 5, percent: 60, weight: getTrainingWeight(trainingWeight, .6) });
+                warmUp.push({ set: 3, reps: 3, percent: 60, weight: getTrainingWeight(trainingWeight, .6) });
                 return warmUp;
             },
             roundToNearestFive: function(weight) {
@@ -86,35 +86,63 @@ services.factory("WendlerTemplate", ['$resource',
 
                 return boring;
             },
-            createBoringAssistanceExercise: function (exerciseId) {
+            createBoringAssistanceExercise: function (exerciseId, trainingWeight, percent) {
                 var assistanceEx = [];
 
                 switch (exerciseId) {
-                    case 2: //Bench Bress
+                    case 2: //Bench Press
+                        assistanceEx.push({
+                            exerciseId: exerciseId,
+                            exerciseName: "Bench Press",
+                            groupedSets: [{ sets: 5, reps: 10, weight: getTrainingWeight(trainingWeight, percent / 100) }],
+                            sets: factory.createBoringButBig(trainingWeight, percent)
+                        });
                         assistanceEx.push({
                             exerciseId: 5,
                             exerciseName: "Dumbell Row",
+                            groupedSets: [{ sets: 5, reps: 10, weight: null }],
                             sets: createRepeatedSets(5, 10, null)
                         });
                         break;
                     case 3: //Back Squat
                         assistanceEx.push({
+                            exerciseId: exerciseId,
+                            exerciseName: "Back Squat",
+                            groupedSets: [{ sets: 5, reps: 10, weight: getTrainingWeight(trainingWeight, percent / 100) }],
+                            sets: factory.createBoringButBig(trainingWeight, percent)
+                        });
+                        assistanceEx.push({
                             exerciseId: 5,
                             exerciseName: "Leg Curls",
+                            groupedSets: [{ sets: 5, reps: 10, weight: null }],
                             sets: createRepeatedSets(5, 10, null)
                         });
                         break;
                     case 6: //Deadlift
                         assistanceEx.push({
+                            exerciseId: exerciseId,
+                            exerciseName: "Deadlift",
+                            groupedSets: [{ sets: 5, reps: 10, weight: getTrainingWeight(trainingWeight, percent / 100) }],
+                            sets: factory.createBoringButBig(trainingWeight, percent)
+                        });
+                        assistanceEx.push({
                             exerciseId: 5,
                             exerciseName: "Hanging Leg Raises",
+                            groupedSets: [{ sets: 5, reps: 15, weight: null }],
                             sets: createRepeatedSets(5, 15, null)
                         });
                         break;
                     case 12: //Military Press
                         assistanceEx.push({
+                            exerciseId: exerciseId,
+                            exerciseName: "Military Press",
+                            groupedSets: [{ sets: 5, reps: 10, weight: getTrainingWeight(trainingWeight, percent / 100) }],
+                            sets: factory.createBoringButBig(trainingWeight, percent)
+                        });
+                        assistanceEx.push({
                             exerciseId: 5,
                             exerciseName: "Chin ups",
+                            groupedSets: [{ sets: 5, reps: 10, weight: null }],
                             sets: createRepeatedSets(5, 10, null)
                         });
                         break;

@@ -35,14 +35,20 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
 
         $scope.boringOptionSelected = function(opt) {
             $scope.boringOption = opt;
+            $("#boringOptionsModal").modal("hide");
         }
 
         $scope.setAssistanceOption = function(opt) {
             $scope.assistanceOption = opt;
             $scope.customAssistanceExercises = [];
+            $("#assistanceExericiseModal").modal("hide");
 
-            $.each($scope.wenderExercises, function(i, v) {
-                $scope.customAssistanceExercises.push({mainExerciseName: v.ExerciseName, exercises: createAssistanceExercises(v.ExerciseId) });
+            $.each($scope.wenderExercises, function (i, v) {
+                v.customAssistanceExercises = [];
+                v.customAssistanceExercises.push({
+                    mainExerciseName: v.ExerciseName,
+                    exercises: createAssistanceExercises(v.ExerciseId, v.TrainingMax)
+                });
             });
         }
 
@@ -52,10 +58,12 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
 
         $scope.trainingPercentOptionSelected = function(opt) {
             $scope.trainingPercent = opt;
+            $("#trainingPercentOptionsModal").modal("hide");
         }
 
         $scope.daysPerWeekSelected = function(opt) {
             $scope.daysPerWeek = opt;
+            $("#daysPerWeekOptionsModal").modal("hide");
         }
 
         $scope.setSelectedExercise = function(exercise) {
@@ -80,6 +88,22 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             }
         }
 
+        $scope.hideShowPanelBody = function (selector) {
+            var elem = $("#" + selector);
+
+            //get parent panel
+            var panel = elem.closest(".panel");
+            var panelBody = panel.find(".panel-body");
+
+            if (elem.hasClass("fa-rotate-180")) {
+                elem.removeClass("fa-rotate-180");
+                panelBody.show("slow");
+            } else {
+                elem.addClass("fa-rotate-180");
+                panelBody.hide("slow");
+            }
+        }
+
         $scope.printWeek = function(weekNumber) {
             var selector = "#workout_week_" + weekNumber;
             $(selector).addClass("print");
@@ -87,12 +111,15 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             $(selector).removeClass("print");
         }
 
-        $scope.printMonth = function() {
+        $scope.printMonth = function(weekNumber) {
             var selector = ".workout-week";
             $(selector).addClass("print");
+            $(selector).parent().addClass("active");
             window.print();
 
             $(selector).removeClass("print");
+            $(selector).parent().removeClass("active");
+            $("#workout_week_" + weekNumber).parent().addClass("active");
         }
 
         $scope.calculateOneRepMax = function() {
@@ -119,10 +146,7 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
                         trainingWeight: v.TrainingMax,
                         warmUp: WendlerTemplate.createWarmUp(v.TrainingMax),
                         workout: WendlerTemplate.createWorkout(week, v.TrainingMax),
-                        boringButBig: $scope.boringOption.option > -1 
-                            ? WendlerTemplate.createBoringButBig(v.TrainingMax,$scope.boringOption.percent)
-                            : null,
-                        assistanceExercises: createAssistanceExercises(v.ExerciseId)
+                        assistanceExercises: createAssistanceExercises(v.ExerciseId, v.TrainingMax)
                     };
 
                     $scope.wendlerProgram[week - 1].trainingDays.push(trainingDay);
@@ -130,11 +154,11 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             }
         }
 
-        function createAssistanceExercises(exerciseId) {
+        function createAssistanceExercises(exerciseId, trainingWeight) {
             var asst = [];
             switch ($scope.assistanceOption.option) {
                 case 2:
-                    asst = WendlerTemplate.createBoringAssistanceExercise(exerciseId);
+                    asst = WendlerTemplate.createBoringAssistanceExercise(exerciseId, trainingWeight, $scope.boringOption.percent);
                     break;
                 case 3:
                     asst = WendlerTemplate.createTriumvirateAssistanceExercise(exerciseId);

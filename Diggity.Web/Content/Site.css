@@ -339,3 +339,22 @@ i {
     box-shadow: none;
 }
 
+.nav-tabs {
+    background-color: #455a64 !important;
+    background: #455a64 !important;
+    border: 1px solid #455a64 !important;
+}
+
+.nav-tabs li {
+    cursor: pointer;
+}
+
+.nav-tabs li:hover {
+    background: #b0bec5;
+    color: #000000;
+}
+
+.nav-tabs li.active {
+    background: #78909c;
+}
+
