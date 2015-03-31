@@ -293,7 +293,8 @@ angular.module("template/timer/timer.html", []).run(["$templateCache", function 
             '</div>' +
             '<div class="ready-timer timer text-danger"><ul></ul></div>' +
             '<div class="checkbox">' +
-                '<label><input type="checkbox" ng-model="isCountDown" >Count Down</label>' +
+                '<label><input type="checkbox" ng-model="isCountDown"><span class="square"></span><span class="check"></span> Count Down' +
+                '</label>' +
             '</div>' +
             '<div class="form-group timer-btns">' +
                 '<button class="btn-lg btn btn-success" type="button" ng-click="startTimer()" >Start</button>' +

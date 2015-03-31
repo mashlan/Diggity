@@ -5,15 +5,15 @@
 
 <form role="form" ng-hide="loading">
 
-    <div class="panel panel-primary">
+    <div class="panel panel-material-blue-grey-600">
         <div class="panel-heading">
-            <div class="col-lg-9 panel-title"><a class="fa fa-backward" href="#/exercise" tooltip="Return to Exercise List"></a> Exercise</div>
+            <div class="col-lg-9 panel-title"><a class="fa fa-backward" href="#/exercise" ></a> Exercise</div>
             <div class="col-lg-3">
                 <div class="btn-group pull-right">
-                    <button class="btn btn-link btn-sm btn-navigation" ng-hide="isEditing" tooltip="Delete {{exercise.Name}}" class="btn btn-link" type="button" ng-click="deleteRecord()"><i class="fa fa-trash-o"></i></button>
-                    <button class="btn btn-link btn-sm btn-navigation" ng-hide="isEditing" tooltip="Edit {{exercise.Name}}" class="btn btn-link" type="button" ng-click="editRecord()"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing" tooltip="Save {{exercise.Name}}" class="btn btn-link" type="button" ng-click="saveExercise()"><i class="fa fa-save"></i></button>
-                    <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing && exercise.Id != null" tooltip="Cancel Edits to {{exercise.Name}}" class="btn btn-link" type="button" ng-click="cancelEdit()"><i class="fa fa-times-circle"></i></button>
+                    <button class="btn btn-link btn-sm btn-navigation" ng-hide="isEditing" class="btn btn-link" type="button" ng-click="deleteRecord()"><i class="fa fa-trash-o"></i></button>
+                    <button class="btn btn-link btn-sm btn-navigation" ng-hide="isEditing" class="btn btn-link" type="button" ng-click="editRecord()"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing" class="btn btn-link" type="button" ng-click="saveExercise()"><i class="fa fa-save"></i></button>
+                    <button class="btn btn-link btn-sm btn-navigation" ng-show="isEditing && exercise.Id != null" class="btn btn-link" type="button" ng-click="cancelEdit()"><i class="fa fa-times-circle"></i></button>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -26,7 +26,7 @@
                     <label class="control-label" for="name">Name</label>
                     <input class="form-control" id="name" type="text" ng-model="exercise.Name" />
                 </div>
-                
+
                 <div class="form-group">
                     <label class="control-label" for="abbr">Abbreviation</label>
                     <input class="form-control" id="abbr" type="text" ng-model="exercise.Abbreviation" />
@@ -43,7 +43,7 @@
                 <select class="form-control" id="Type" name="Type"
                         ng-model="exercise.ExerciseTypeId"
                         ng-options="type.Id as type.Name for type in availableExerciseTypes"></select>
-                
+
             </div>
 
             <!-- View Record-->
@@ -57,18 +57,18 @@
                     <label class="control-label">Description:</label>
                     <label>{{exercise.Description}}</label>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="control-label">Abbreviation:</label>
                     <label>{{exercise.Abbreviation}}</label>
                 </div>
-                
+
                 <div class="form-group">
                     <label class="control-label">Exercise Type:</label>
                     <label>{{exercise.ExerciseTypeName}}</label>
                 </div>
 
-               
+
             </div>
         </div>
     </div>
