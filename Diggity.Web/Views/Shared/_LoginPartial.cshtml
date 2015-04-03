@@ -9,8 +9,8 @@
             <li>
                 <a href="#/settingsMenu" target="_self" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-ellipsis-v"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#share"><span class="fa fa-heart"></span> Share</a></li>
-                    <li><a href="#settings"><span class="fa fa-gear"></span> Settings</a></li>
+                    @*<li><a href="#share"><span class="fa fa-heart"></span> Share</a></li>*@
+                    <li><a href="#/settings"><span class="fa fa-gear"></span> Settings</a></li>
                     <li><a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();"><span class="fa fa-user"></span> Log off</a></li>
                 </ul>
             </li>
@@ -20,7 +20,6 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: new { area = "" }, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }

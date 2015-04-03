@@ -1,0 +1,30 @@
+﻿<form class="form-horizontal">
+    <div class="panel">
+        <div class="panel-title">
+            <button type="button" class="close" ng-click="hideAllForms()">
+                <span style="margin: 10px;" class="text-primary">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-md-2 control-label">Weight</label>
+                <div class="col-md-10">
+                    <input ng-model="estimatedWeight" type="number" class="form-control" placeholder="Weight" ng-change="calculateOneRepMax()"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"># of Reps</label>
+                <div class="col-md-10">
+                    <input ng-model="estimatedReps" class="form-control" type="number" placeholder="Reps" ng-change="calculateOneRepMax()"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Estimated Max</label>
+                <div class="col-md-10">
+                    <input ng-model="estimatedOneRepMax" disabled="disabled" class="form-control"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

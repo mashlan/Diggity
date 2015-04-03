@@ -31,6 +31,12 @@ angular.module('myApp.routes', ['ngRoute'])
             //HIT Timer
             $routeProvider.when('/timer', { templateUrl: '../Html/Timers/BasicTimer.html' });
 
+            //settings
+            $routeProvider.when("/settings", { templateUrl: "../Html/Settings/Index.html", controller: "SettingsCtrl" });
+
+            //WODs
+            $routeProvider.when("/wod", { templateUrl: "../Html/WOD/Index.html", controller: "WodCtrl" });
+
             //All else
             $routeProvider.otherwise({ redirectTo: '/' });
         }

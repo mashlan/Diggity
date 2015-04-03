@@ -47,3 +47,7 @@
 /// <reference path="vendors/bootstrap/ripples.js" />
 /// <reference path="services/recordliftsservice.js" />
 /// <reference path="services/wendlertemplateservice.js" />
+/// <reference path="controllers/settingsctrl.js" />
+/// <reference path="controllers/wodctrl.js" />
+/// <reference path="vendors/highcharts/highcharts.js" />
+/// <reference path="vendors/highcharts/highcharts.src.js" />

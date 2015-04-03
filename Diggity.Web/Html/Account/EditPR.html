@@ -1,35 +1,16 @@
 ﻿
-<div class="row row-action-primary" style="margin-left:10px;">
-    <div class="col-lg-4 col-md-4">
-        <div class="input-group">
-            <input class="form-control input-sm" name="recordDate_{{recordInfo.Id}}"
-                   ng-model="recordInfo.RecordDate"
-                   required
-                   type="text" />
-            <span class="input-group-btn">
-                <button type="button" class="btn btn-info btn-flat" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
-            </span>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-3">
-        <div class="form-group">
-            <input class="form-control input-sm" ng-model="recordInfo.Value" type="number" />
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-3">
-        <div class="form-group">
-            <select ng-model="recordInfo.UnitOfMeasureId"
-                    ng-options="unit.Id as unit.Name for unit in recordInfo.units"
-                    class="form-control input-sm"></select>
-        </div>
-    </div>
-    <div class="col-lg-2 col-md-2">
-        <div class="input-group">
-            <div class="input-group-btn">
-                <button class="btn btn-flat btn-info" type="button" ng-click="saveEditPR()" tooltip="Save"><span class="glyphicon glyphicon-floppy-disk"></span></button>
-                <button class="btn btn-flat btn-info" type="button" ng-click="saveEditPR()" tooltip="Delete"><span class="glyphicon glyphicon-trash"></span></button>
-            </div>
-        </div>
-    </div>
+
+<div class="row row-action-primary" style="margin-left: 10px;">
+
+    <label class="col-lg-1 control-label">Date</label>
+    <div class="col-lg-3 col-md-3">{{recordInfo.RecordDate}}</div>
+
+    <label class="col-lg-1 control-label">Amount</label>
+    <div class="col-lg-3 col-md-3">{{recordInfo.Value}}</div>
+
+    <label class="col-lg-1 control-label">Units</label>
+    <div class="col-lg-3 col-md-3">{{recordInfo.selectedUnit.Name}}</div>
+    
+    <div class="clearfix"></div>
 </div>
 

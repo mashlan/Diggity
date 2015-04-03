@@ -1,7 +1,5 @@
 ﻿
-/**********************************************************************
- * ********************* Home *****************************************
- *********************************************************************/
+
 myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', 'UnitOfMeasure', 'ExerciseType', 'PersonalRecords',
     function ($routeParams, $scope, Exercise, UnitOfMeasure, ExerciseType, PersonalRecords) {
         'use strict';
@@ -62,8 +60,82 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             scope.history.selected = true;
         }
 
+        function sortByHistoryRecordDate(asc, historyArray) {
+            if (asc) {
+                historyArray.sort(function (a, b) {
+                    return new Date(b.RecordDate) < new Date(a.RecordDate);
+                });
+            } else {
+                historyArray.sort(function (a, b) {
+                    return new Date(a.RecordDate) < new Date(b.RecordDate);
+                });
+            }
+        }
+
+        $scope.showGraph = function (scope) {
+            var exerciseId = scope.history.ExerciseId;
+            $scope.editHistoryRecords = $.grep($scope.History, function (v) { return v.ExerciseId == exerciseId; })[0].History;
+
+            var graph = $("#container_" + scope.$index);
+            var width = $(".panel").first().width();
+
+            var getExerciseDates = function (history) {
+                var data = [];
+                sortByHistoryRecordDate(true, history);
+                $.each(history, function (i, v) {
+                    var date = new Date(v.RecordDate);
+                    data.push((date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear());
+                });
+                return data;
+            };
+
+            var getExerciseData = function (history) {
+                var data = [];
+                sortByHistoryRecordDate(true, history);
+                $.each(history, function (i, v) {
+                    data.push(parseFloat(v.Value));
+                });
+                return data;
+            };
+
+            graph.highcharts({
+                chart: {
+                    width: width - 40
+                },
+                title: {
+                    text: ""
+                },
+                xAxis: {
+                    categories: getExerciseDates($scope.editHistoryRecords)
+                },
+                yAxis: {
+                    title: "",
+                    plotLines: [{
+                        value: 0,
+                        width: 1,
+                        color: "#808080"
+                    }]
+                },
+                series: [
+                    {
+                        name: scope.history.ExerciseName,
+                        data: getExerciseData($scope.editHistoryRecords)
+                    }
+                ],
+                legend: {
+                    enabled: false
+                },
+                credits: {
+                    enabled: false
+                }
+            });
+
+            //set the array back to original sort
+            sortByHistoryRecordDate(false, $scope.editHistoryRecords);
+            scope.history.showGraph = true;
+        }
+
         $scope.editHistory = function(scope) {
-            
             var histories = scope.$parent.exerciseHistory;
             $.each(histories, function(i, v) { v.showEditHistory = false; });
             var exerciseId = scope.history.ExerciseId;
@@ -71,6 +143,7 @@ myControllers.controller('AccountCtrl', ['$routeParams', '$scope', 'Exercise', '
             var units = getUnitsOfMeasure(exerciseId);
             $.each($scope.editHistoryRecords, function(i, v) {
                 v.units = units;
+                v.selectedUnit = $.grep(units, function(x) { return x.Id === v.UnitOfMeasureId })[0];
             });
             scope.history.showEditHistory = true;
         }

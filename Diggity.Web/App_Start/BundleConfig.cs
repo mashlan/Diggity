@@ -10,6 +10,9 @@ namespace Diggity.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/vendors/jquery/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/highcharts").Include(
+                "~/Scripts/vendors/highcharts/highcharts.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -37,20 +40,11 @@ namespace Diggity.Web
                 "~/Scripts/filters.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/myControllers").Include(
-                "~/Scripts/controllers/exerciseTypeController.js",
-                "~/Scripts/controllers/unitOfMeasureController.js",
-                "~/Scripts/controllers/exerciseController.js",
-                "~/Scripts/controllers/accountCtrl.js",
-                "~/Scripts/controllers/wendlerCtrl.js"
+                "~/Scripts/controllers/*.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/myServices").Include(
-                "~/Scripts/services/exerciseTypeService.js",
-                "~/Scripts/services/unitOfMeasureService.js",
-                "~/Scripts/services/exerciseService.js",
-                "~/Scripts/services/accountServices.js",
-                "~/Scripts/services/wendlerService.js",
-                "~/Scripts/services/wendlerTemplateService.js"
+                "~/Scripts/services/*.js"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

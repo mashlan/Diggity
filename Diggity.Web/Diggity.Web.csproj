@@ -242,6 +242,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\barbell.png" />
     <Content Include="Content\images\dumbbell.png" />
+    <Content Include="Content\images\lifting.png" />
     <Content Include="Content\print.css" />
     <Content Include="fonts\LICENSE.txt" />
     <Content Include="fonts\Material-Design-Icons.svg" />
@@ -272,6 +273,12 @@
     <Content Include="Html\Heros\List.html" />
     <Content Include="Html\Home.html" />
     <Content Include="Html\Account\EnterPR.html" />
+    <Content Include="Html\Settings\boxInformation.html" />
+    <Content Include="Html\Settings\changePassword.html" />
+    <Content Include="Html\Settings\editAccountInfo.html" />
+    <Content Include="Html\Settings\estimateOneRepMax.html" />
+    <Content Include="Html\Settings\Index.html" />
+    <Content Include="Html\Settings\userPreferences.html" />
     <Content Include="Html\Shared\DiggityGrid.html" />
     <Content Include="Html\Timers\BasicTimer.html" />
     <Content Include="Html\Timers\NumberPanel.html" />
@@ -285,14 +292,17 @@
     <Content Include="Html\Wendler\LiftingOptions.html" />
     <Content Include="Html\Wendler\ProgramPercentsOptions.html" />
     <Content Include="Html\Wendler\WendlerWorkoutMonth.html" />
+    <Content Include="Html\WOD\Index.html" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\config.js" />
     <Content Include="Scripts\controllers\accountCtrl.js" />
     <Content Include="Scripts\controllers\exerciseController.js" />
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
+    <Content Include="Scripts\controllers\settingsCtrl.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />
     <Content Include="Scripts\controllers\wendlerCtrl.js" />
+    <Content Include="Scripts\controllers\wodCtrl.js" />
     <Content Include="Scripts\directives.js" />
     <Content Include="Scripts\filters.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -314,6 +324,8 @@
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-0.11.0.min.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.js" />
     <Content Include="Scripts\vendors\bootstrap\ui-bootstrap-tpls-0.11.0.min.js" />
+    <Content Include="Scripts\vendors\highcharts\highcharts.js" />
+    <Content Include="Scripts\vendors\highcharts\highcharts.src.js" />
     <Content Include="Scripts\vendors\modernizr\modernizr-2.7.2.js" />
     <Content Include="Scripts\routes.js" />
     <Content Include="Scripts\services\exerciseTypeService.js" />
@@ -721,8 +733,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\fonts\" />
-    <Folder Include="Html\WOD\" />
-    <Folder Include="Views\AccountApi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
