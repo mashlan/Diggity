@@ -1,27 +1,108 @@
-﻿@if (User.Identity.IsAuthenticated)
-{
-    <ul class="nav navbar-nav">
-        <li><a href="#/wod">WOD</a></li>
-        <li><a href="#/timer"><span class="fa fa-clock-o"></span> Timer</a></li>
-        <li>
-            <a href="#/wendler" target="_self" class="dropdown-toggle" data-toggle="dropdown">
-               Lift <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#/wendler/create">Create Wendler</a></li>
-                <li><a href="#/wendler/create">Create Custom</a></li>
-            </ul>
-        </li>
-        @if (User.IsInRole("Admin"))
+﻿<div id="main_menu" class="list-group diggity-menu diggity-menu-transition">
+
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        if (User.IsInRole("Admin"))
         {
-            <li>
-                <a href="#/exerciseType" target="_self" class="dropdown-toggle" data-toggle="dropdown">Admin <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#/exerciseType">Exercise Types</a></li>
-                    <li><a href="#unitOfMeasure">Units Of Measure</a></li>
-                    <li><a href="#exercise">Exercise</a></li>
-                </ul>
-            </li>
+
+            <a href="#exerciseType" class="list-group-item">
+                <h4 class="text-primary" style="font-weight: bold">
+                    <i class="fa fa-users diggity-list-icon"></i> Exercise Types
+                </h4>
+            </a>
+
+            <a href="#unitOfMeasure" class="list-group-item">
+                <h4 class="text-primary" style="font-weight: bold">
+                    <i class="fa fa-users diggity-list-icon"></i> Unit of Measure
+                </h4>
+            </a>
+
+            <a href="#exercise" class="list-group-item">
+                <h4 class="text-primary" style="font-weight: bold">
+                    <i class="fa fa-users diggity-list-icon"></i> Exercises
+                </h4>
+            </a>
+            <hr />
+
         }
-    </ul>
-}
+
+        <!-- Today's WOD-->
+        <a href="#wod" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="fa fa-users diggity-list-icon"></i> Today's WOD
+            </h4>
+        </a>
+
+        <!--Today's Workout-->
+        <a href="#user" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="mdi-action-accessibility diggity-list-icon"></i> Today's Workout
+            </h4>
+        </a>
+
+        <!--Estimate One Rep Max-->
+        <a href="#user" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="fa fa-calculator diggity-list-icon"></i> Estimate Max
+            </h4>
+        </a>
+
+        <!--Personal Records-->
+        <a href="#pr" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="fa fa-star diggity-list-icon" style="color: #FFD600 !important"></i> Personal Records
+            </h4>
+        </a>
+
+        <!--Create Wendler-->
+        <a href="#wendler/create" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="mdi-action-accessibility diggity-list-icon"></i> Wendler 5/3/1
+            </h4>
+        </a>
+
+        <!--Create Custom Workout-->
+        <a href="#user" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="mdi-action-accessibility diggity-list-icon"></i> DYI Program
+            </h4>
+        </a>
+
+        <!--Timer-->
+        <a href="#timer" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="fa fa-clock-o diggity-list-icon"></i> Timer
+            </h4>
+        </a>
+
+        <hr />
+
+        <!--Settings-->
+        <a href="#settings" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="fa fa-cog diggity-list-icon"></i> Settings
+            </h4>
+        </a>
+
+        <!--Log off-->
+        using (Html.BeginForm("LogOff", "Account", new {area = ""}, FormMethod.Post, new {id = "logoutForm"}))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();" class="list-group-item">
+                <h4 class="text-primary" style="font-weight: bold">
+                    <i class="fa fa-user diggity-list-icon"></i> Log off
+                </h4>
+            </a>
+        }
+
+    }
+    else
+    {
+        <a href="Account/LogIn" class="list-group-item">
+            <h4 class="text-primary" style="font-weight: bold">
+                <i class="fa fa-user diggity-list-icon"></i> Log In
+            </h4>
+        </a>
+    }
+</div>
