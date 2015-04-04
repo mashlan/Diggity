@@ -8,9 +8,9 @@
                     <div class="input-group-btn">
                         <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/user" ng-click="showAddGirl = true"><span class="fa fa-plus-square-o"></span> New Hero PR</a></li>
-                            <li><a href="#/user" ng-click="sortHeroHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
-                            <li><a href="#/user" ng-click="sortHeroHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Best Effort</a></li>
+                            <li><a href="javascript:void(0)" ng-click="showAddGirl = true"><span class="fa fa-plus-square-o"></span> New Hero PR</a></li>
+                            <li><a href="javascript:void(0)" ng-click="sortHeroHistoy(0)"><span class="fa fa-sort-asc"></span> Sort Most Recent</a></li>
+                            <li><a href="javascript:void(0)" ng-click="sortHeroHistoy(1)"><span class="fa fa-sort-asc"></span> Sort Best Effort</a></li>
                         </ul>
                     </div>
                 </div>
@@ -30,8 +30,8 @@
                 <td>{{hero.Name}}</td>
                 <td>{{hero.Time}}</td>
                 <td>On {{hero.RecordDate}}</td>
-                <td><a href="#/user" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
-                <td><a href="#/user" tooltip="Edit" ng-click="editHeroHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
+                <td><a href="javascript:void(0)" tooltip="Show Graph"><span class="glyphicon glyphicon-stats text-info"></span></a></td>
+                <td><a href="javascript:void(0)" tooltip="Edit" ng-click="editHeroHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a></td>
             </tr>
             <tr ng-show="hero.showEditHistory">
                 <td colspan="5">

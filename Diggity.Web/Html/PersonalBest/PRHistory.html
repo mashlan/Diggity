@@ -13,8 +13,8 @@
                         <div class="input-group-btn">
                             <button class="btn btn-warning dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="#/user" ng-click="sortHistoy(0)"><span class="fa fa-calendar"></span> Show Most Recent</a></li>
-                                <li><a href="#/user" ng-click="sortHistoy(1)"><span class="fa fa-exclamation"></span> Show Max Effort</a></li>
+                                <li><a href="#/pr" ng-click="sortHistoy(0)"><span class="fa fa-calendar"></span> Show Most Recent</a></li>
+                                <li><a href="#/pr" ng-click="sortHistoy(1)"><span class="fa fa-exclamation"></span> Show Max Effort</a></li>
                             </ul>
                         </div>
                     </div>
@@ -33,8 +33,8 @@
                 <td class="col-lg-3">{{history.Value}} {{history.UnitsName}}</td>
                 <td class="col-lg-4">On {{history.RecordDate}}</td>
                 <td class="col-lg-1">
-                    <a href="#/user" ng-click="showGraph(this)"><span class="glyphicon glyphicon-stats text-info"></span></a>
-                    <a href="#/user" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a>
+                    <a href="javascript:void(0)" ng-click="showGraph(this)"><span class="glyphicon glyphicon-stats text-info"></span></a>
+                    <a href="javascript:void(0)" ng-click="editHistory(this)"><span class="fa fa-bold fa-edit text-info"></span></a>
                 </td>
             </tr>
             <tr ng-show="history.showGraph" style="width: 100%">
@@ -43,7 +43,7 @@
                         <div class="panel-body" style="width: 100%">
                             <h4 class="alert alert-info" style="margin-top: 0; font-weight: bold">
                                 PR Graph for {{history.ExerciseName}}
-                                <small> <span class="pull-right"><a href="#/user" ng-click="history.showGraph = false" class="glyphicon glyphicon-remove"></a> </span></small>
+                                <small> <span class="pull-right"><a href="javascript:void(0)" ng-click="history.showGraph = false" class="glyphicon glyphicon-remove"></a> </span></small>
                             </h4>
                             <div id="container_{{$index}}" style="width: 100%; height: 400px; margin-bottom: 5px;"></div>
                         </div>

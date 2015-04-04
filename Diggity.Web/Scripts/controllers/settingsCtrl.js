@@ -1,7 +1,7 @@
 ﻿
-myControllers.controller('SettingsCtrl', ['$routeParams', '$scope', 'Exercise', 'UnitOfMeasure', 'ExerciseType', 'PersonalRecords',
+myControllers.controller("SettingsCtrl", ["$routeParams", "$scope", "Exercise", "UnitOfMeasure", "ExerciseType", "PersonalRecords",
     function($routeParams, $scope, Exercise, UnitOfMeasure, ExerciseType, PersonalRecords) {
-        'use strict';
+        "use strict";
 
         $scope.oldpass = null;
         $scope.newpass = null;

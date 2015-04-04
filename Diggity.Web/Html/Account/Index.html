@@ -1,6 +1,134 @@
 ﻿
-<pr-history ng-init="getHistory()"></pr-history>
 
-<!--<girls-history></girls-history>
+<div class="form-group">
+    <div class=" list-group">
+        <!-- Today's WOD-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="fa fa-users"></i>
+            </div>
+            <div class="row-content">
+                <a href="#wod">
+                    <h4 class="text-primary" style="font-weight: bold">Today's WOD</h4>
+                    <p class="diggity-text">Today's Workout of the day</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
 
-<hero-history></hero-history>-->
+        <!--Today's Workout-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="mdi-action-accessibility"></i>
+            </div>
+            <div class="row-content">
+                <a href="#user">
+                    <h4 class="text-primary" style="font-weight: bold">Today's Workout</h4>
+                    <p class="diggity-text">Your Personal Workout for today</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Estimate One Rep Max-->
+        <div class="list-group-item">
+            <div class="row-action-primary diggity-list-icon">
+                <i class="fa fa-calculator"></i>
+            </div>
+            <div class="row-content">
+                <a href="#user" ng-click="showEstimationFormForm()">
+                    <h4 class="text-primary" style="font-weight: bold">Estimate Your One Rep Max</h4>
+                    <p id="oneRepMaxEstimation_text" class="diggity-text">Uses the Brzycki formula to predict your one rep max.</p>
+                </a>
+                <one-rep-max-form id="oneRepMaxEstimation_form" style="display: none;"></one-rep-max-form>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Personal Records-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="fa fa-star" style="color: #FFD600 !important"></i>
+            </div>
+            <div class="row-content">
+                <a href="#/pr">
+                    <h4 class="text-primary" style="font-weight: bold">Personal Records</h4>
+                    <p class="diggity-text">View and record your very best</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Create Wendler-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="mdi-action-accessibility"></i>
+            </div>
+            <div class="row-content">
+                <a href="#wendler/create">
+                    <h4 class="text-primary" style="font-weight: bold">Create Wendler 5/3/1</h4>
+                    <p class="diggity-text">Read the book!</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Create Custom Workout-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="mdi-action-accessibility"></i>
+            </div>
+            <div class="row-content">
+                <a href="#user">
+                    <h4 class="text-primary" style="font-weight: bold">Roll your own Program</h4>
+                    <p class="diggity-text">DYI weight lifting program</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Timer-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="fa fa-clock-o"></i>
+            </div>
+            <div class="row-content">
+                <a href="#timer">
+                    <h4 class="text-primary" style="font-weight: bold">Timer</h4>
+                    <p class="diggity-text">HITT Timer</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Settings-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="fa fa-cog"></i>
+            </div>
+            <div class="row-content">
+                <a href="#settings">
+                    <h4 class="text-primary" style="font-weight: bold">Settings</h4>
+                    <p class="diggity-text">Manage your settings</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+        <!--Log off-->
+        <div class="list-group-item">
+            <div class="row-picture diggity-list-icon">
+                <i class="fa fa-user"></i>
+            </div>
+            <div class="row-content">
+                <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();">
+                    <h4 class="text-primary" style="font-weight: bold">Log off</h4>
+                    <p class="diggity-text">DYI weight lifting program</p>
+                </a>
+            </div>
+        </div>
+        <div class="list-group-separator"></div>
+
+    </div>
+</div>
+

@@ -51,3 +51,4 @@
 /// <reference path="controllers/wodctrl.js" />
 /// <reference path="vendors/highcharts/highcharts.js" />
 /// <reference path="vendors/highcharts/highcharts.src.js" />
+/// <reference path="controllers/personalbestctrl.js" />

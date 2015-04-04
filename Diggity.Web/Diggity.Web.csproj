@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +21,7 @@
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>1.0</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -258,11 +260,12 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Html\Account\EditPR.html" />
-    <Content Include="Html\Account\GirlsHistory.html" />
-    <Content Include="Html\Account\HeroHistory.html" />
+    <Content Include="Html\PersonalBest\EditPR.html" />
+    <Content Include="Html\PersonalBest\GirlsHistory.html" />
+    <Content Include="Html\PersonalBest\HeroHistory.html" />
     <Content Include="Html\Account\Index.html" />
-    <Content Include="Html\Account\PRHistory.html" />
+    <Content Include="Html\PersonalBest\Index.html" />
+    <Content Include="Html\PersonalBest\PRHistory.html" />
     <Content Include="Html\ExerciseType\ExerciseTypeEdit.html" />
     <Content Include="Html\ExerciseType\ExerciseTypeView.html" />
     <Content Include="Html\Exercise\ExerciseEdit.html" />
@@ -272,11 +275,11 @@
     <Content Include="Html\Heros\Edit.html" />
     <Content Include="Html\Heros\List.html" />
     <Content Include="Html\Home.html" />
-    <Content Include="Html\Account\EnterPR.html" />
+    <Content Include="Html\PersonalBest\EnterPR.html" />
     <Content Include="Html\Settings\boxInformation.html" />
     <Content Include="Html\Settings\changePassword.html" />
     <Content Include="Html\Settings\editAccountInfo.html" />
-    <Content Include="Html\Settings\estimateOneRepMax.html" />
+    <Content Include="Html\Shared\estimateOneRepMax.html" />
     <Content Include="Html\Settings\Index.html" />
     <Content Include="Html\Settings\userPreferences.html" />
     <Content Include="Html\Shared\DiggityGrid.html" />
@@ -299,6 +302,7 @@
     <Content Include="Scripts\controllers\exerciseController.js" />
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
+    <Content Include="Scripts\controllers\personalBestCtrl.js" />
     <Content Include="Scripts\controllers\settingsCtrl.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />
     <Content Include="Scripts\controllers\wendlerCtrl.js" />
@@ -761,6 +765,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

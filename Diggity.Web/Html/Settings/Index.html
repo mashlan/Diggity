@@ -2,46 +2,7 @@
 
 <div class="form-group">
     <div class=" list-group">
-        <div class="list-group-item">
-            <div class="row-picture diggity-list-icon">
-                <i class="fa fa-users"></i>
-            </div>
-            <div class="row-content">
-                <a href="#settings">
-                    <h4 class="text-primary" style="font-weight: bold">Today's WOD</h4>
-                    <p class="diggity-text">Today's Workout of the day</p>
-                </a>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
-        <div class="list-group-item">
-            <div class="row-picture diggity-list-icon">
-                <i class="mdi-action-accessibility"></i>
-            </div>
-            <div class="row-content">
-                <a href="#settings">
-                    <h4 class="text-primary" style="font-weight: bold">Today's Workout</h4>
-                    <p class="diggity-text">Your Personal Workout for today</p>
-                </a>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
-        <div class="list-group-item">
-            <div class="row-action-primary diggity-list-icon">
-                <i class="fa fa-calculator"></i>
-            </div>
-            <div class="row-content">
-                <a href="#settings" ng-click="showEstimationFormForm()">
-                    <h4 class="text-primary" style="font-weight: bold">Estimate Your One Rep Max</h4>
-                    <p id="oneRepMaxEstimation_text" class="diggity-text">Uses the Brzycki formula to predict your one rep max.</p>
-                </a>
-                <one-rep-max-form id="oneRepMaxEstimation_form" style="display: none;"></one-rep-max-form>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
+        
         <div class="list-group-item">
             <div class="row-action-primary diggity-list-icon">
                 <i class="mdi-action-settings-input-composite"></i>
@@ -61,25 +22,11 @@
                 <i class="mdi-communication-quick-contacts-mail"></i>
             </div>
             <div class="row-content">
-                <a href="#settings" ng-click="editAccountInfo()">
-                    <h4 class="text-primary" style="font-weight: bold">Personal Info</h4>
-                    <p id="account_info_text" class="diggity-text">Update name and email</p>
+                <a href="Account/Manage" ng-click="editAccountInfo()">
+                    <h4 class="text-primary" style="font-weight: bold">Manage Account</h4>
+                    <p id="account_info_text" class="diggity-text">Update name, email and password</p>
                 </a>
                 <edit-account-info id="account_info" style="display: none"></edit-account-info>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
-        <div class="list-group-item">
-            <div class="row-action-primary diggity-list-icon">
-                <i class="">***</i>
-            </div>
-            <div class="row-content">
-                <a href="#settings" ng-click="showChangePassword()">
-                    <h4 class="text-primary" style="font-weight: bold;">Change Password</h4>
-                    <p id="change_password_text" class="diggity-text">Change your password</p>
-                </a>
-                <change-password-form id="change_password" style="display: none;"></change-password-form>
             </div>
         </div>
         <div class="list-group-separator"></div>

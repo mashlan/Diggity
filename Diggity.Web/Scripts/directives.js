@@ -20,35 +20,35 @@ angular.module("myApp.directives", [])
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "../Html/Account/EnterPR.html"
+            templateUrl: "../Html/PersonalBest/EnterPR.html"
         }
     })
     .directive("prHistory", function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "../Html/Account/PRHistory.html"
+            templateUrl: "../Html/PersonalBest/PRHistory.html"
         }
     })
     .directive("heroHistory", function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "../Html/Account/HeroHistory.html"
+            templateUrl: "../Html/PersonalBest/HeroHistory.html"
         }
     })
     .directive("girlsHistory", function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "../Html/Account/GirlsHistory.html"
+            templateUrl: "../Html/PersonalBest/GirlsHistory.html"
         }
     })
     .directive("editHistoryRecord", function() {
         return {
             restrict: "E",
             replace: true,
-            templateUrl: "../Html/Account/EditPR.html",
+            templateUrl: "../Html/PersonalBest/EditPR.html",
             scope: {
                 recordInfo: "=record",
                 openDatepicker: "&"
@@ -131,7 +131,7 @@ angular.module("myApp.directives", [])
             return {
                 restrict: "E",
                 replace: false,
-                templateUrl: "../Html/Settings/estimateOneRepMax.html"
+                templateUrl: "../Html/Shared/estimateOneRepMax.html"
             };
         }
     ])
