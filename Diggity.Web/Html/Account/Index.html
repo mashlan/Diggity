@@ -5,7 +5,7 @@
         <!-- Today's WOD-->
         <div class="list-group-item">
             <div class="row-picture diggity-list-icon">
-                <i class="fa fa-users"></i>
+                <i class="gym gym-kettlebell gym-large"></i>
             </div>
             <div class="row-content">
                 <a href="#wod">
@@ -19,7 +19,7 @@
         <!--Today's Workout-->
         <div class="list-group-item">
             <div class="row-picture diggity-list-icon">
-                <i class="mdi-action-accessibility"></i>
+                <i class="gym gym-dumbbell" style="font-size: 1.2em !important;"></i>
             </div>
             <div class="row-content">
                 <a href="#user">
@@ -36,11 +36,10 @@
                 <i class="fa fa-calculator"></i>
             </div>
             <div class="row-content">
-                <a href="#user" ng-click="showEstimationFormForm()">
-                    <h4 class="text-primary" style="font-weight: bold">Estimate Your One Rep Max</h4>
-                    <p id="oneRepMaxEstimation_text" class="diggity-text">Uses the Brzycki formula to predict your one rep max.</p>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#one_rep_max_modal">
+                    <h4 class="text-primary" style="font-weight: bold">Estimate One Rep Max</h4>
+                    <p class="diggity-text">Uses the Brzycki formula to predict your one rep max.</p>
                 </a>
-                <one-rep-max-form id="oneRepMaxEstimation_form" style="display: none;"></one-rep-max-form>
             </div>
         </div>
         <div class="list-group-separator"></div>
@@ -62,11 +61,11 @@
         <!--Create Wendler-->
         <div class="list-group-item">
             <div class="row-picture diggity-list-icon">
-                <i class="mdi-action-accessibility"></i>
+                <i class="gym gym-barbell" style="font-size: 2em !important;"></i>
             </div>
             <div class="row-content">
                 <a href="#wendler/create">
-                    <h4 class="text-primary" style="font-weight: bold">Create Wendler 5/3/1</h4>
+                    <h4 class="text-primary" style="font-weight: bold">Wendler 5/3/1</h4>
                     <p class="diggity-text">Read the book!</p>
                 </a>
             </div>
@@ -76,12 +75,12 @@
         <!--Create Custom Workout-->
         <div class="list-group-item">
             <div class="row-picture diggity-list-icon">
-                <i class="mdi-action-accessibility"></i>
+                <i class="gym gym-dumbbell-sm" style="font-size: 2em !important;"></i>
             </div>
             <div class="row-content">
                 <a href="#user">
-                    <h4 class="text-primary" style="font-weight: bold">Roll your own Program</h4>
-                    <p class="diggity-text">DYI weight lifting program</p>
+                    <h4 class="text-primary" style="font-weight: bold">DYI Program</h4>
+                    <p class="diggity-text">DIY weight lifting program</p>
                 </a>
             </div>
         </div>
@@ -100,35 +99,6 @@
             </div>
         </div>
         <div class="list-group-separator"></div>
-
-        <!--Settings-->
-        <div class="list-group-item">
-            <div class="row-picture diggity-list-icon">
-                <i class="fa fa-cog"></i>
-            </div>
-            <div class="row-content">
-                <a href="#settings">
-                    <h4 class="text-primary" style="font-weight: bold">Settings</h4>
-                    <p class="diggity-text">Manage your settings</p>
-                </a>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
-        <!--Log off-->
-        <div class="list-group-item">
-            <div class="row-picture diggity-list-icon">
-                <i class="fa fa-user"></i>
-            </div>
-            <div class="row-content">
-                <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();">
-                    <h4 class="text-primary" style="font-weight: bold">Log off</h4>
-                    <p class="diggity-text">DYI weight lifting program</p>
-                </a>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
     </div>
 </div>
 

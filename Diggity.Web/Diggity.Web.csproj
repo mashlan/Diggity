@@ -689,6 +689,7 @@
     <Content Include="fonts\Material-Design-Icons.woff" />
     <Content Include="Scripts\vendors\bootstrap\material.min.js.map" />
     <Content Include="Scripts\vendors\bootstrap\ripples.min.js.map" />
+    <Content Include="fonts\GYM.ttf" />
     <None Include="Properties\PublishProfiles\Production.pubxml" />
     <None Include="Scripts\vendors\jquery\jquery.validate-vsdoc.js" />
     <None Include="Scripts\vendors\jquery\jquery-2.1.1.intellisense.js" />

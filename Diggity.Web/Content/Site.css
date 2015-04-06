@@ -14,15 +14,11 @@ body {
     padding: 8px;
 }
 
-
-.selected-menu i, .selected-menu span {
-    color: #ffffff !important;
-}
-
 .selected-menu span {
     text-transform: none;
-    font-size: 1.5em;
+    font-size: 1.9em;
     margin: 0;
+    color: #ffffff !important;
 }
 
 .diggity-page-bar {
@@ -47,6 +43,8 @@ body {
     z-index: 1000;
     border: 1px solid #598276;
     background-color: #fff;
+    -webkit-box-shadow: 1px 1px 7px #696969;
+    -ms-box-shadow: 1px 1px 7px #696969;
     box-shadow: 1px 1px 7px #696969;
 }
 
@@ -444,6 +442,9 @@ i {
     font-size: 1.5em !important;
 }
 
+.list-group-item:hover h4 i {
+    color: #f44336 !important;
+}
 
 .diggity-list-icon i {
     background: none !important;
@@ -454,4 +455,50 @@ i {
 .diggity-button {
     text-transform: none !important;
     padding: 8px !important;
+}
+
+/* http://www.dafont.com/gym.font */
+@font-face {
+    font-family: 'GYM';
+    src: url('../fonts/GYM.ttf') format('truetype');
+}
+.gym {
+    font: normal normal normal 14px/1 GYM;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+}
+
+.gym-large {
+    font-size: 1.5em !important;
+}
+
+.gym-x-large {
+    font-size: 2.5em !important;
+}
+
+.gym-bench-press:before {
+    content: 'Y';
+}
+
+.gym-kettlebell:before {
+    content: 'a';
+}
+
+.gym-dumbbell:before {
+    content: 'V';
+}
+
+.gym-overhead-press:before {
+    content: 'K';
+}
+
+.gym-dumbbell-sm:before {
+    content: 'h';
+}
+
+.gym-barbell:before {
+    content: 'u';
 }

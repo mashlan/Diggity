@@ -4,9 +4,10 @@ myControllers.controller("AccountCtrl", ["$routeParams", "$scope", "Exercise", "
     function ($routeParams, $scope, Exercise, UnitOfMeasure, ExerciseType, PersonalRecords) {
         "use strict";
         
-        $scope.estimatedWeight = 0;
-        $scope.estimatedReps = 0;
-        $scope.estimatedOneRepMax = 0;
+        $scope.estimatedWeight = null;
+        $scope.estimatedReps = null;
+        $scope.estimatedOneRepMax = null;
+        $scope.estimatedTrainingMax = null;
 
         $scope.reset = function () {
             $scope.err = null;
@@ -19,6 +20,8 @@ myControllers.controller("AccountCtrl", ["$routeParams", "$scope", "Exercise", "
             var reps = parseFloat($scope.estimatedReps);
             var estimatedLift = weight * (1 + (reps / 30));
             var roundedToFive = (Math.round(estimatedLift / 5) * 5);
+            var trainingMax = (Math.round(estimatedLift * .9 / 5) * 5);
+            $scope.estimatedTrainingMax = trainingMax;
             $scope.estimatedOneRepMax = roundedToFive;
         };
 
