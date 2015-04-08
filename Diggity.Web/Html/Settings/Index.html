@@ -1,16 +1,22 @@
 ﻿
-
-<div class="form-group">
+<div class="form-group panel panel-material-blue-900">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span class="fa fa-cog fa-3x"></span>
+            <h2 style="display: inline-block"> Settings</h2>
+            <div id="settings_title" style="margin-left: 70px;"></div>
+        </div>
+    </div>
     <div class=" list-group">
-        
+
         <div class="list-group-item">
             <div class="row-action-primary diggity-list-icon">
                 <i class="mdi-action-settings-input-composite"></i>
             </div>
             <div class="row-content">
                 <a href="#settings" ng-click="showPreferencesForm()">
-                    <h4 class="text-primary" style="font-weight: bold">Preferences</h4>
-                    <p id="preferences_form_text" class="diggity-text">Enter or update your preferred units of measure</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Preferences</h4>
+                    <p id="preferences_form_text" class="text-diggity">Enter or update your preferred units of measure</p>
                 </a>
                 <user-preferences-form id="preferences_form" style="display: none;"></user-preferences-form>
             </div>
@@ -23,8 +29,8 @@
             </div>
             <div class="row-content">
                 <a href="Account/Manage" ng-click="editAccountInfo()">
-                    <h4 class="text-primary" style="font-weight: bold">Manage Account</h4>
-                    <p id="account_info_text" class="diggity-text">Update name, email and password</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Manage Account</h4>
+                    <p id="account_info_text" class="text-diggity">Update name, email and password</p>
                 </a>
                 <edit-account-info id="account_info" style="display: none"></edit-account-info>
             </div>
@@ -37,14 +43,19 @@
             </div>
             <div class="row-content">
                 <a href="#settings" ng-click="showBoxInfo()">
-                    <h4 class="text-primary" style="font-weight: bold">Your Box</h4>
-                    <p id="box_info_text" class="diggity-text">Select or update your Box</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Your Box</h4>
+                    <p id="box_info_text" class="text-diggity">Select or update your Box</p>
                 </a>
                 <box-info-form id="box_info" style="display: none;"></box-info-form>
             </div>
-            <div class="list-group-separator"></div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#settings_title").text(window.currentUser);
+        })
+    </script>
 </div>
 
 

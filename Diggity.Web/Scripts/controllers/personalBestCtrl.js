@@ -76,7 +76,7 @@ myControllers.controller("PersonalBestCtrl", ["$routeParams", "$scope", "Exercis
             $scope.editHistoryRecords = $.grep($scope.History, function (v) { return v.ExerciseId == exerciseId; })[0].History;
 
             var graph = $("#container_" + scope.$index);
-            var width = $(".panel").first().width();
+            var width = $("#pr_history_panel").width();
 
             var getExerciseDates = function (history) {
                 var data = [];

@@ -2,8 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>WOD Diggity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="tovnfjaxau39BGXEqsrFM1ZRhO4A8Ma6PvfJ76V1Nr0" />
+    <title>Woddiggity</title>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
    
     @Styles.Render("~/Content/css")
@@ -57,14 +58,65 @@
     <meta name="description" content="The description of my page" />
 </head>
 <body>
-    @RenderBody()
-    @RenderSection("scripts", false)
+
+    @Html.Partial("_MainMenuPartial")
+
+<div class="diggity-page-bar">
+    <button id="menu_button" type="button" onclick=" displayMenu() "
+            class="diggity-page-header btn btn-material-blue-grey-800" style="padding: 0; margin-left: 20px;">
+        <i class="fa fa-navicon"></i>
+    </button>
+    <a href="~/#user" class="diggity-page-header btn btn-material-blue-grey-800">Woddiggity</a>
+</div>
+
+<div id="alertPopup" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="alert" style="margin-bottom: 0">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"></h4>
+                <p id="alertMessage" style="font-size: 1.3em;"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@RenderBody()
+@RenderSection("scripts", false)
 
 <script type="text/javascript">
-    
-    $(document).ready(function () {
+    var currentUser = '@User.Identity.Name';
+
+    $(document).ready(function() {
         $.material.init();
+
+        $("#main_menu").on("click", "a", function() {
+            $("#main_menu").removeClass("in");
+
+            var opt = $("#selected_menu_opt");
+            var classList = $(this).find("i").first().attr("class");
+            var text = $(this).find("h4").first().text();
+            $("#main_menu a").removeClass("selected");
+            $(this).addClass("selected");
+            opt.removeClass();
+            opt.addClass(classList);
+
+            $("#current_page_link").text(text);
+        });
+
+        $("body").click(function(evt) {
+            if ($(evt.target).parents("#menu_button").length == 0) {
+                $("#main_menu").removeClass("in");
+            }
+        });
     });
+
+    function displayMenu() {
+        var menu = $("#main_menu");
+        if (menu.hasClass("in")) menu.removeClass("in");
+        else menu.addClass("in");
+    }
 
     function toggleNav() {
         var menu = $("#main-menu");
@@ -103,7 +155,7 @@
         $("#alertPopup").modal({ backdrop: false }).modal('show');
 
         if (notificationType !== "error") {
-            window.setTimeout(function () {
+            window.setTimeout(function() {
                 $("#alertPopup").modal('hide');
                 if (callback) callback();
             }, delay);

@@ -16,6 +16,13 @@ angular.module("myApp.directives", [])
             }
         }
     })
+    .directive("titlePage", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            templateUrl: "../Html/Home.html"
+        }
+    })
     .directive("prEntry", function() {
         return {
             restrict: "E",

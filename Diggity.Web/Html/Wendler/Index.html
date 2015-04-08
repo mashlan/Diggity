@@ -1,7 +1,26 @@
 ﻿
+
 <div class="container">
     <form class="form-horizontal">
-        
+
+        <div class="panel panel-material-teal-900">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span class="gym gym-barbell gym-xx-large"></span>
+                    <h2 style="display: inline-block"> Wendler 5/3/1</h2>
+                    <div id="wendler_title" style="margin-left: 60px;"></div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <p> Comming Soon!</p>
+                <ul>
+                    <li>List of pervious wendlers</li>
+                    <li>option to bumb weights up</li>
+                </ul>
+            </div>
+        </div>
+
+
         <div class="panel non-printable">
             <div class="panel-body">
                 <div class="diggity-panel-header">
@@ -111,13 +130,14 @@
                 </div>
             </div>
         </div>
-        
+
+
         <div class="non-printable">
             <div class="col-lg-12">
                 <button class="btn btn-primary" style="float: right;" type="button" ng-click="createWendler()">Create</button>
             </div>
             <div class="clearfix"></div>
-            <br />
+            <br/>
         </div>
 
         <wendler-workout-month></wendler-workout-month>
@@ -131,5 +151,12 @@
         <days-per-week-option-modal></days-per-week-option-modal>
 
     </form>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#wendler_title").text(window.currentUser);
+        })
+    </script>
 </div>
+
 

@@ -1,7 +1,14 @@
 ﻿
 
-<div class="form-group">
-    <div class=" list-group">
+<div class="form-group panel panel-material-green-700">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span class="fa fa-tachometer fa-3x"></span>
+            <h2 style="display: inline-block"> Dashboard</h2>
+            <div id="dashboard_title" style="margin-left: 70px;"></div>
+        </div>
+    </div>
+    <div class=" list-group diggity-list-group">
         <!-- Today's WOD-->
         <div class="list-group-item">
             <div class="row-picture diggity-list-icon">
@@ -9,8 +16,8 @@
             </div>
             <div class="row-content">
                 <a href="#wod">
-                    <h4 class="text-primary" style="font-weight: bold">Today's WOD</h4>
-                    <p class="diggity-text">Today's Workout of the day</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Today's WOD</h4>
+                    <p class="text-diggity">Today's Workout of the day</p>
                 </a>
             </div>
         </div>
@@ -23,8 +30,8 @@
             </div>
             <div class="row-content">
                 <a href="#user">
-                    <h4 class="text-primary" style="font-weight: bold">Today's Workout</h4>
-                    <p class="diggity-text">Your Personal Workout for today</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Today's Workout</h4>
+                    <p class="text-diggity">Your Personal Workout for today</p>
                 </a>
             </div>
         </div>
@@ -37,8 +44,8 @@
             </div>
             <div class="row-content">
                 <a href="javascript:void(0)" data-toggle="modal" data-target="#one_rep_max_modal">
-                    <h4 class="text-primary" style="font-weight: bold">Estimate One Rep Max</h4>
-                    <p class="diggity-text">Uses the Brzycki formula to predict your one rep max.</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Estimate One Rep Max</h4>
+                    <p class="text-diggity">Uses the Brzycki formula to predict your one rep max.</p>
                 </a>
             </div>
         </div>
@@ -51,8 +58,8 @@
             </div>
             <div class="row-content">
                 <a href="#/pr">
-                    <h4 class="text-primary" style="font-weight: bold">Personal Records</h4>
-                    <p class="diggity-text">View and record your very best</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Personal Records</h4>
+                    <p class="text-diggity">View and record your very best</p>
                 </a>
             </div>
         </div>
@@ -65,8 +72,8 @@
             </div>
             <div class="row-content">
                 <a href="#wendler/create">
-                    <h4 class="text-primary" style="font-weight: bold">Wendler 5/3/1</h4>
-                    <p class="diggity-text">Read the book!</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Wendler 5/3/1</h4>
+                    <p class="text-diggity">Read the book!</p>
                 </a>
             </div>
         </div>
@@ -79,8 +86,8 @@
             </div>
             <div class="row-content">
                 <a href="#user">
-                    <h4 class="text-primary" style="font-weight: bold">DYI Program</h4>
-                    <p class="diggity-text">DIY weight lifting program</p>
+                    <h4 class="text-diggity" style="font-weight: bold">DIY Program</h4>
+                    <p class="text-diggity">DIY weight lifting program</p>
                 </a>
             </div>
         </div>
@@ -93,12 +100,18 @@
             </div>
             <div class="row-content">
                 <a href="#timer">
-                    <h4 class="text-primary" style="font-weight: bold">Timer</h4>
-                    <p class="diggity-text">HITT Timer</p>
+                    <h4 class="text-diggity" style="font-weight: bold">Timer</h4>
+                    <p class="text-diggity">HITT Timer</p>
                 </a>
             </div>
         </div>
         <div class="list-group-separator"></div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#dashboard_title").text(window.currentUser);
+        })
+    </script>
 </div>
 
