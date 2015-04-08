@@ -37,6 +37,11 @@ angular.module("myApp.routes", ["ngRoute"])
             //WODs
             $routeProvider.when("/wod", { templateUrl: "../Html/WOD/Index.html", controller: "WodCtrl" });
 
+            //Weight Lifting Workouts
+            $routeProvider.when("/liftingWorkouts", { templateUrl: "../Html/WeightLifting/Index.html", controller: "MyLiftsCtrl" });
+            $routeProvider.when("/liftingWorkouts/create", { templateUrl: "../Html/WeightLifting/CreateLiftingProgram.html", controller: "MyLiftsCtrl" });
+
+
             //Personal Records
             $routeProvider.when("/pr", { templateUrl: "../Html/PersonalBest/Index.html", controller: "PersonalBestCtrl" });
 

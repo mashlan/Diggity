@@ -80,9 +80,14 @@ footer {
     background-color: #ECEFF1;
 }
 
-.block-text  p{
-    font-size: 2em;
-    font-family: "Roboto"
+.diggity-thumbnail  p{
+    font-size: 1.6em;
+    font-family: "Roboto";
+    text-align: center;
+}
+
+.info-block {
+    margin-top: 40px;
 }
 
 .diggity-list-group a{

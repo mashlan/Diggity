@@ -4,7 +4,7 @@
     <div class="container">
         @if (Request.IsAuthenticated)
         {
-            <div ng-controller="HomeCtrl" ng-init="redirectToUserPage()"></div>
+            <div ng-controller="HomeCtrl" ng-init="redirectToUserPage('@User.Identity.Name')"></div>
             <div ng-view></div>
         }
         else

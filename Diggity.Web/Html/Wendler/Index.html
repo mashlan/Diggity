@@ -3,12 +3,12 @@
 <div class="container">
     <form class="form-horizontal">
 
-        <div class="panel panel-material-teal-900">
+        <div class="panel panel-material-teal-900 non-printable">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <span class="gym gym-barbell gym-xx-large"></span>
+                    <span class="fa fa-edit fa-3x"></span>
                     <h2 style="display: inline-block"> Wendler 5/3/1</h2>
-                    <div id="wendler_title" style="margin-left: 60px;"></div>
+                    <div id="wendler_title" style="margin-left: 70px;">{{user}}</div>
                 </div>
             </div>
             <div class="panel-body">
@@ -17,6 +17,7 @@
                     <li>List of pervious wendlers</li>
                     <li>option to bumb weights up</li>
                 </ul>
+
             </div>
         </div>
 
@@ -111,7 +112,7 @@
                     <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
                         <a class="list-group-item" data-toggle="modal" data-target="#liftingOptionsModal" ng-click="setSelectedExercise(exercise)">
                             <div class="row-picture">
-                                <span class="gym gym-barbell gym-x-large"></span>
+                                <img src="../../Content/images/dumbbell.png" style="background: transparent;" />
                             </div>
                             <div class="row-content">
                                 <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
@@ -151,12 +152,6 @@
         <days-per-week-option-modal></days-per-week-option-modal>
 
     </form>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#wendler_title").text(window.currentUser);
-        })
-    </script>
 </div>
 
 

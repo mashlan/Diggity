@@ -287,6 +287,8 @@
     <Content Include="Html\Timers\NumberPanel.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureEdit.html" />
     <Content Include="Html\UnitOfMeasure\UnitOfMeasureView.html" />
+    <Content Include="Html\WeightLifting\CreateLiftingProgram.html" />
+    <Content Include="Html\WeightLifting\Index.html" />
     <Content Include="Html\Wendler\AssistanceExerciseModal.html" />
     <Content Include="Html\Wendler\BoringOptions.html" />
     <Content Include="Html\Wendler\DaysPerWeekOptions.html" />
@@ -302,6 +304,7 @@
     <Content Include="Scripts\controllers\exerciseController.js" />
     <Content Include="Scripts\controllers\exerciseTypeController.js" />
     <Content Include="Scripts\controllers\homeController.js" />
+    <Content Include="Scripts\controllers\myLiftsCtrl.js" />
     <Content Include="Scripts\controllers\personalBestCtrl.js" />
     <Content Include="Scripts\controllers\settingsCtrl.js" />
     <Content Include="Scripts\controllers\unitOfMeasureController.js" />

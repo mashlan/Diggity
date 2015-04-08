@@ -1,12 +1,13 @@
 ﻿/**********************************************************************
  * ********************* Home *****************************************
  *********************************************************************/
-myControllers.controller('HomeCtrl', ['$routeParams', '$scope', '$location',
-    function ($routeParams, $scope, $location) {
+myControllers.controller('HomeCtrl', ['$routeParams', '$scope', "$rootScope", '$location',
+    function ($routeParams, $scope, $rootScope, $location) {
         'use strict';
 
-        $scope.redirectToUserPage = function() {
+        $scope.redirectToUserPage = function(user) {
             $location.path("/user");
+            $rootScope.user = user;
         }
     }
 ]);
