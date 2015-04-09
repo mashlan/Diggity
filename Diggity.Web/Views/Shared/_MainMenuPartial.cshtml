@@ -8,120 +8,123 @@
         </div>
     </div>
 
-    <div class="list-group">
-        @if (User.Identity.IsAuthenticated)
-        {
-
-            if (User.IsInRole("Admin"))
+    <div class="main">
+        <div class="list-group">
+            @if (User.Identity.IsAuthenticated)
             {
+            
+                if (User.IsInRole("Admin"))
+                {
 
-                <a href="#exerciseType" class="list-group-item">
+                    <a href="#exerciseType" class="list-group-item">
+                        <h5 class="text-diggity" style="font-weight: bold">
+                            <i class="fa fa-list diggity-list-icon"></i> Exercise Types
+                        </h5>
+                    </a>
+
+                    <a href="#unitOfMeasure" class="list-group-item">
+                        <h5 class="text-diggity" style="font-weight: bold">
+                            <i class="fa fa-flask diggity-list-icon"></i> Unit of Measure
+                        </h5>
+                    </a>
+
+                    <a href="#exercise" class="list-group-item">
+                        <h5 class="text-diggity" style="font-weight: bold">
+                            <i class="fa fa-database diggity-list-icon"></i> Exercises
+                        </h5>
+                    </a>
+                    <hr/>
+
+                }
+
+                <!-- Dashboard-->
+                <a href="#user" class="list-group-item">
                     <h5 class="text-diggity" style="font-weight: bold">
-                        <i class="gym gym-dumbbell diggity-list-icon"></i> Exercise Types
+                        <i class="fa fa-tachometer diggity-list-icon"></i> Dashboard
                     </h5>
                 </a>
 
-                <a href="#unitOfMeasure" class="list-group-item">
-                    <h5 class="text-diggity" style="font-weight: bold">
-                        <i class="gym gym-dumbbell diggity-list-icon"></i> Unit of Measure
-                    </h5>
-                </a>
-
-                <a href="#exercise" class="list-group-item">
-                    <h5 class="text-diggity" style="font-weight: bold">
-                        <i class="gym gym-dumbbell diggity-list-icon"></i> Exercises
-                    </h5>
-                </a>
                 <hr/>
 
-            }
-
-            <!-- Today's WOD-->
-            <a href="#user" class="list-group-item">
-                <h5 class="text-diggity" style="font-weight: bold">
-                    <i class="fa fa-tachometer diggity-list-icon"></i> Dashboard
-                </h5>
-            </a>
-
-            <!--Today's Workout-->
-                @*<a href="#user" class="list-group-item">
-                        <h4 class="text-primary" style="font-weight: bold">
-                            <i class="mdi-action-accessibility diggity-list-icon"></i> Today's Workout
-                        </h4>
-                    </a>*@
-
-            <!--Estimate One Rep Max-->
-            <a href="javascript:void(0)" class="list-group-item" data-toggle="modal" data-target="#one_rep_max_modal">
-                <h5 class="text-diggity" style="font-weight: bold">
-                    <i class="fa fa-calculator diggity-list-icon"></i> Estimate Max
-                </h5>
-            </a>
-
-            <!--Personal Records-->
-                @*<a href="#pr" class="list-group-item">
-                        <h4 class="text-primary" style="font-weight: bold">
-                            <i class="fa fa-star diggity-list-icon" style="color: #FFD600 !important"></i> Personal Records
-                        </h4>
-                    </a>*@
-
-                @*<!--Create Wendler-->
-                    <a href="#wendler/create" class="list-group-item">
-                        <h4 class="text-primary" style="font-weight: bold">
-                            <i class="mdi-action-accessibility diggity-list-icon"></i> Wendler 5/3/1
-                        </h4>
-                    </a>
-
-                    <!--Create Custom Workout-->
-                    <a href="#user" class="list-group-item">
-                        <h4 class="text-primary" style="font-weight: bold">
-                            <i class="mdi-action-accessibility diggity-list-icon"></i> DYI Program
-                        </h4>
-                    </a>
-
-                    <!--Timer-->
-                    <a href="#timer" class="list-group-item">
-                        <h4 class="text-primary" style="font-weight: bold">
-                            <i class="fa fa-clock-o diggity-list-icon"></i> Timer
-                        </h4>
-                    </a>*@
-
-            <hr/>
-
-            <!--Settings-->
-            <a href="#settings" class="list-group-item">
-                <h5 class="text-diggity" style="font-weight: bold">
-                    <i class="fa fa-cog diggity-list-icon"></i> Settings
-                </h5>
-            </a>
-
-            <!--Log off-->
-            using (Html.BeginForm("LogOff", "Account", new {area = ""}, FormMethod.Post, new {id = "logoutForm"}))
-            {
-                @Html.AntiForgeryToken()
-                <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();" class="list-group-item">
+                <!-- Today's WOD-->
+                <a href="#wod" class="list-group-item">
                     <h5 class="text-diggity" style="font-weight: bold">
-                        <i class="fa fa-user diggity-list-icon"></i> Log off
+                        <i class="fa fa-cube diggity-list-icon"></i> Today's WOD
+                    </h5>
+                </a>
+
+
+                <!--Today's Workout-->
+                <a href="#liftingWorkouts" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-database diggity-list-icon"></i> Today's Lift
+                    </h5>
+                </a>
+
+                <!--Personal Records-->
+                <a href="#pr" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-trophy diggity-list-icon"></i> Personal Records
+                    </h5>
+                </a>
+
+                <!--Create Wendler-->
+                <a href="#wendler/create" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-edit diggity-list-icon"></i> Wendler 5/3/1
+                    </h5>
+                </a>
+
+                <!--Create Custom Workout-->
+                <a href="#liftingWorkouts/create" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-edit diggity-list-icon"></i> DYI Program
+                    </h5>
+                </a>
+
+                <!--Timer-->
+                <a href="#timer" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-clock-o diggity-list-icon"></i> Timer
+                    </h5>
+                </a>
+
+                <hr/>
+
+                <!--Settings-->
+                <a href="#settings" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-cog diggity-list-icon"></i> Settings
+                    </h5>
+                </a>
+
+                <!--Log off-->
+                using (Html.BeginForm("LogOff", "Account", new {area = ""}, FormMethod.Post, new {id = "logoutForm"}))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();" class="list-group-item">
+                        <h5 class="text-diggity" style="font-weight: bold">
+                            <i class="fa fa-user diggity-list-icon"></i> Log off
+                        </h5>
+                    </a>
+                }
+
+            }
+            else
+            {
+                <a href="Account/LogIn" class="list-group-item">
+                    <h5 class="text-diggity" style="font-weight: bold">
+                        <i class="fa fa-user diggity-list-icon"></i> Log In
                     </h5>
                 </a>
             }
-
-        }
-        else
-        {
-            <a href="Account/LogIn" class="list-group-item">
-                <h5 class="text-diggity" style="font-weight: bold">
-                    <i class="fa fa-user diggity-list-icon"></i> Log In
-                </h5>
-            </a>
-        }
+        </div>
     </div>
 
     <footer>
-        <hr style="margin: 2px;"/>
+        <hr style="margin: 2px;" />
         <h5>&copy; Woddigity  <a href="#">About</a></h5>
-        
+
     </footer>
 </div>
-
-
 

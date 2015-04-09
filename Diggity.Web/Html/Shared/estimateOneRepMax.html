@@ -1,43 +1,46 @@
 ﻿
-<div class="modal fade" id="one_rep_max_modal" tabindex="-1" role="dialog" ng-controller="AccountCtrl">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Estimate One Rep Max</h4>
+<div class="panel panel-warning" ng-controller="AccountCtrl" style="margin: 10px">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            This is only an estimate and should not be concidered your actual one rep max.
+        </h3>
+        <h4>For best results, use a weight that you can lift close to 10 reps.</h4>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 control-label">Weight</label>
+                <div class="col-lg-10 col-md-10">
+                    <input ng-model="estimatedWeight" type="number" class="form-control" placeholder="Weight" ng-change="calculateOneRepMax()" />
+                </div>
             </div>
-            <div class="modal-body">
-                <form class="form-horizontal">
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Weight</label>
-                        <div class="col-md-10">
-                            <input ng-model="estimatedWeight" type="number" class="form-control" placeholder="Weight" ng-change="calculateOneRepMax()"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Reps</label>
-                        <div class="col-md-10">
-                            <input ng-model="estimatedReps" class="form-control" type="number" placeholder="Reps" ng-change="calculateOneRepMax()"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">Max</label>
-                        <div class="col-md-10">
-                            <input ng-model="estimatedOneRepMax" disabled="disabled" class="form-control"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-2 control-label">90% Max</label>
-                        <div class="col-md-10">
-                            <input ng-model="estimatedTrainingMax" disabled="disabled" class="form-control" />
-                        </div>
-                    </div>
-                </form>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 control-label">Reps</label>
+                <div class="col-lg-10 col-md-10">
+                    <input ng-model="estimatedReps" class="form-control" type="number" placeholder="Reps" ng-change="calculateOneRepMax()" />
+                </div>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 control-label">Max</label>
+                <div class="col-lg-10 col-md-10">
+                    <input ng-model="estimatedOneRepMax" disabled="disabled" class="form-control" />
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 control-label">90% Max</label>
+                <div class="col-lg-10 col-md-10">
+                    <input ng-model="estimatedTrainingMax" disabled="disabled" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10">
+                    <button type="button" class="btn btn-primary" ng-click="showEstimationForm()">Close</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
+
 

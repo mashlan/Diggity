@@ -72,6 +72,11 @@ footer {
     box-shadow: 1px 1px 7px #696969;
 }
 
+.diggity-menu  .main {
+    height: calc(100% - 170px);
+    overflow: auto;
+}
+
 .diggity-menu.in {
     left: 0; 
 }
@@ -483,7 +488,7 @@ i {
     font-size: 1.5em !important;
 }
 
-.list-group-item:hover h4 i {
+.list-group-item:hover h5 i {
     color: #f44336 !important;
 }
 

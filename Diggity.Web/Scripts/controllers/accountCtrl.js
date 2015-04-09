@@ -19,26 +19,19 @@ myControllers.controller("AccountCtrl", ["$routeParams", "$scope", "Exercise", "
             var weight = parseFloat($scope.estimatedWeight);
             var reps = parseFloat($scope.estimatedReps);
             var estimatedLift = weight * (1 + (reps / 30));
-            var roundedToFive = (Math.round(estimatedLift / 5) * 5);
-            var trainingMax = (Math.round(estimatedLift * .9 / 5) * 5);
+            var roundedToFive = (Math.round(estimatedLift));
+            var trainingMax = (Math.round(estimatedLift * .9));
             $scope.estimatedTrainingMax = trainingMax;
             $scope.estimatedOneRepMax = roundedToFive;
         };
 
         
-        $scope.showEstimationFormForm = function () {
-            resetEditForms();
-            $("#oneRepMaxEstimation_text").toggle();
-            $("#oneRepMaxEstimation_form").toggle();
-        };
-        
-        function resetEditForms() {
-            $("#oneRepMaxEstimation_text").show();
-            $("#oneRepMaxEstimation_form").hide();
-        }
+        $scope.showEstimationForm = function () {
+            $("#oneRepMaxEstimation_form").slideToggle("slow");
 
-        $scope.hideAllForms = function () {
-            resetEditForms();
-        }
+            if ($("#oneRepMaxEstimation_form").is(":visible")) {
+                $("html, body").animate({ scrollTop: $("#oneRepMaxEstimation_form").offset().top });
+            }
+        };
     }
 ]);

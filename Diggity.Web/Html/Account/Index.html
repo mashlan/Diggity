@@ -36,21 +36,7 @@
             </div>
         </div>
         <div class="list-group-separator"></div>
-
-        <!--Estimate One Rep Max-->
-        <div class="list-group-item">
-            <div class="row-action-primary diggity-list-icon">
-                <i class="fa fa-calculator"></i>
-            </div>
-            <div class="row-content">
-                <a href="javascript:void(0)" data-toggle="modal" data-target="#one_rep_max_modal">
-                    <h4 class="text-diggity" style="font-weight: bold">Estimate One Rep Max</h4>
-                    <p class="text-diggity">Uses the Brzycki formula to predict your one rep max</p>
-                </a>
-            </div>
-        </div>
-        <div class="list-group-separator"></div>
-
+        
         <!--Personal Records-->
         <div class="list-group-item">
             <div class="row-picture diggity-list-icon">
@@ -63,6 +49,21 @@
                 </a>
             </div>
         </div>
+        <div class="list-group-separator"></div>
+
+        <!--Estimate One Rep Max-->
+        <div class="list-group-item">
+            <div class="row-action-primary diggity-list-icon">
+                <i class="fa fa-calculator"></i>
+            </div>
+            <div class="row-content">
+                <a href="javascript:void(0)" ng-click="showEstimationForm()">
+                    <h4 class="text-diggity" style="font-weight: bold">Estimate One Rep Max</h4>
+                    <p id="oneRepMaxEstimation_text" class="text-diggity">Uses the Brzycki formula to predict your one rep max</p>
+                </a>
+            </div>
+        </div>
+        <one-rep-max-form id="oneRepMaxEstimation_form" style="display: none; width: 100%;"></one-rep-max-form>
         <div class="list-group-separator"></div>
 
         <!--Create Wendler-->
