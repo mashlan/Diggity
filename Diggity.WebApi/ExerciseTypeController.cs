@@ -13,7 +13,6 @@ namespace Diggity.WebApi
         {
         }
 
-        [Authorize(Roles = "Admin")]
         public HttpResponseMessage Get()
         {
             return ApiGetFunc(ServiceAggregate.ExerciseType.GetAllSimple, null);
