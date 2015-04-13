@@ -83,7 +83,10 @@ angular.module("myApp.directives", [])
             restrict: "E",
             replace: true,
             templateUrl: "../Html/Wendler/LiftingOptions.html",
-            scope: false
+            scope: {
+                selectedExercise: "=exercise",
+                calculateMax: "&"
+            }
         }
     })
     .directive("daysPerWeekOptionModal", function() {
