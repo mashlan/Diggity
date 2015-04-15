@@ -1,42 +1,48 @@
 ﻿
 
-<div class="panel animate-show" ng-show="selectedExercise.showForm">
-    <div class="panel-body">
-        <h5>To estimate one rep max, take 80% of you supposed max and perform as many reps as possible. Then enter the information below and click calculate</h5>
-        <div class="form-group">
+<div class="col-lg-11 col-lg-offset-1 col-md-11 col-md-offset-1 col-sm-11 col-sm-offset-1">
+    <div class="panel animate-show" ng-show="selectedExercise.showForm">
+        <div class="panel-body">
+            <h4>To estimate one rep max, take 80% of you supposed max and perform as many reps as possible. Then enter the information below and click calculate</h4>
             <div class="form-group">
-                <label class="col-lg-1 col-md-1 col-sm-1 control-label"></label>
-                <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 10px;">
-                    <input type="number" class="form-control" ng-model="selectedExercise.estimateWeight" placeholder="Weight" />
+                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">Weight</label>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <input type="number" class="form-control" ng-model="selectedExercise.estimateWeight" placeholder="Weight"/>
                 </div>
-                <div class="col-lg-1 col-md-1 col-sm-1" style="margin-top: 15px;">
-                    X
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">Reps</label>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <input class="form-control" type="number" ng-model="selectedExercise.estimateReps" placeholder="Reps"/>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3" style="margin-top: 10px;">
-                    <input class="form-control" type="number" ng-model="selectedExercise.estimateReps" placeholder="Reps" />
+            </div>
+            <div class="clearfix"></div>
+            <div class=" form-group">
+                <div class="col-lg-8 col-md-8 text-right">
+                    <button type="button" ng-click="calculateMax()" class="btn btn-primary">Calculate</button>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3">
-                    <button type="button" ng-click="calculateMax()" class="btn btn-primary"><i class="fa fa-check"></i> Calculate</button>
+            </div>
+            <div class="clearfix"></div>
+
+            <h4>If you know your one rep max, enter it below</h4>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">1 Rep Max</label>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <input type="number" class="form-control" ng-model="selectedExercise.Value" ng-change="updateTrainingMax()"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-3 control-label">Training Max</label>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <input type="text" class="form-control" disabled="disabled" ng-model="selectedExercise.TrainingMax"/>
                 </div>
             </div>
 
-        </div>
-        <h5>If you know your one rep max, enter it below</h5>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">1 Rep Max</label>
-            <div class="col-lg-6">
-                <input type="number" class="form-control" ng-model="selectedExercise.Value" ng-change="updateTrainingMax()" />
+            <div class="form-group">
+                <div class="col-lg-8 col-md-8 text-right">
+                    <button type="button" class="btn btn-primary" ng-click="selectedExercise.showForm = false;">Done</button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-3 control-label">Training Max</label>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" disabled="disabled" ng-model="selectedExercise.TrainingMax" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <button type="button" class="btn btn-default" ng-click="selectedExercise.showForm = false;">Close</button>
         </div>
     </div>
 </div>

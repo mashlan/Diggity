@@ -85,7 +85,8 @@ angular.module("myApp.directives", [])
             templateUrl: "../Html/Wendler/LiftingOptions.html",
             scope: {
                 selectedExercise: "=exercise",
-                calculateMax: "&"
+                calculateMax: "&",
+                updateTrainingMax: "&"
             }
         }
     })

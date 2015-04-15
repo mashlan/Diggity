@@ -553,6 +553,28 @@ i {
     content: 'u';
 }
 
+.df {
+    font-family: "Roboto";
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.df-x1-2 {
+    font-size: 1.2em !important;
+}
+
+.df-x2 {
+    font-size: 2em !important;
+}
+
+.df-percent:before {
+    content: "%";
+}
+
+.df-wendler:before {
+    content: "5/3/1";
+}
+
 .animate-show {
     -webkit-transition: all linear 0.3s;
     -moz-transition: all linear 0.3s;

@@ -47,31 +47,71 @@ services.factory("WendlerTemplate", ['$resource',
             roundToNearestFive: function(weight) {
                 return 5 * Math.round(weight / 5);
             },
-            createWorkout: function(weekNumber, trainingWeight) {
+            createWorkout: function(weekNumber, trainingWeight, percentOption) {
                 var workout = [];
                 switch (weekNumber) {
                 case 1:
-                    workout.push({ set: 1, reps: 5, percent: 65, weight: getTrainingWeight(trainingWeight, .65), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 2, reps: 5, percent: 75, weight: getTrainingWeight(trainingWeight, .75), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 3, reps: 5, percent: 85, weight: getTrainingWeight(trainingWeight, .85), maxEffort: true, weekNumber: weekNumber });
+                    workout = threeByFive(weekNumber, trainingWeight, percentOption);
                     break;
                 case 2:
-                    workout.push({ set: 1, reps: 3, percent: 70, weight: getTrainingWeight(trainingWeight, .70), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 2, reps: 3, percent: 80, weight: getTrainingWeight(trainingWeight, .80), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 3, reps: 3, percent: 90, weight: getTrainingWeight(trainingWeight, .90), maxEffort: true, weekNumber: weekNumber });
+                    workout = threeByThree(weekNumber, trainingWeight, percentOption);
                     break;
                 case 3:
-                    workout.push({ set: 1, reps: 5, percent: 75, weight: getTrainingWeight(trainingWeight, .75), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 2, reps: 3, percent: 85, weight: getTrainingWeight(trainingWeight, .85), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 3, reps: 1, percent: 95, weight: getTrainingWeight(trainingWeight, .95), maxEffort: true, weekNumber: weekNumber });
+                    workout = fiveThreeOne(weekNumber, trainingWeight);
                     break;
                 case 4:
-                    workout.push({ set: 1, reps: 5, percent: 40, weight: getTrainingWeight(trainingWeight, .4), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 2, reps: 5, percent: 50, weight: getTrainingWeight(trainingWeight, .5), maxEffort: false, weekNumber: weekNumber });
-                    workout.push({ set: 3, reps: 5, percent: 60, weight: getTrainingWeight(trainingWeight, .6), maxEffort: false, weekNumber: weekNumber });
+                    workout = deload(weekNumber, trainingWeight);
                     break;
                 }
                 return workout;
+            },
+            createThreeDayWorkout: function (weekNumber, day, trainingWeight, percentOption) {
+                var workout = [];
+
+                switch (weekNumber) {
+                case 1:
+                    workout = threeByFive(weekNumber, trainingWeight, percentOption);
+                    break;
+                case 2:
+                    switch (day) {
+                    case 1:
+                        workout = threeByFive(weekNumber, trainingWeight, percentOption);
+                        break;
+                    default:
+                        workout = threeByThree(weekNumber, trainingWeight, percentOption);
+                        break;
+                    }
+                    break;
+                case 3:
+                    switch (day) {
+                    case 1:
+                        workout = threeByThree(weekNumber, trainingWeight, percentOption);
+                        break;
+                    case 2:
+                        workout = threeByThree(weekNumber, trainingWeight, percentOption);
+                        break;
+                    case 3:
+                        workout = fiveThreeOne(weekNumber, trainingWeight);
+                        break;
+                    }
+                    break;
+                case 4:
+                    workout = fiveThreeOne(weekNumber, trainingWeight);
+                    break;
+                case 5:
+                    workout = deload(weekNumber, trainingWeight);
+                    break;
+                case 6:
+                    switch (day) {
+                    case 1:
+                        workout = deload(weekNumber, trainingWeight);
+                        break;
+                    }
+                    break;
+                default:
+                }
+                return workout;
+
             },
             createBoringButBig: function(trainingWeight, percent) {
                 var boring = [];
@@ -284,6 +324,48 @@ services.factory("WendlerTemplate", ['$resource',
             return factory.roundToNearestFive(trainingPercent);
         }
 
+        function threeByFive(weekNumber, trainingWeight, percentOption) {
+            var workout = [];
+            if (percentOption.option === 2) {
+                workout.push({ set: 1, reps: 5, percent: 75, weight: getTrainingWeight(trainingWeight, .75), maxEffort: false, weekNumber: weekNumber });
+                workout.push({ set: 2, reps: 5, percent: 80, weight: getTrainingWeight(trainingWeight, .80), maxEffort: false, weekNumber: weekNumber });
+            } else {
+                workout.push({ set: 1, reps: 5, percent: 65, weight: getTrainingWeight(trainingWeight, .65), maxEffort: false, weekNumber: weekNumber });
+                workout.push({ set: 2, reps: 5, percent: 75, weight: getTrainingWeight(trainingWeight, .75), maxEffort: false, weekNumber: weekNumber });
+            }
+            workout.push({ set: 3, reps: 5, percent: 85, weight: getTrainingWeight(trainingWeight, .85), maxEffort: true, weekNumber: weekNumber });
+            return workout;
+        }
+
+        function threeByThree(weekNumber, trainingWeight, percentOption) {
+            var workout = [];
+            if (percentOption.option === 2) {
+                workout.push({ set: 1, reps: 3, percent: 80, weight: getTrainingWeight(trainingWeight, .80), maxEffort: false, weekNumber: weekNumber });
+                workout.push({ set: 2, reps: 3, percent: 85, weight: getTrainingWeight(trainingWeight, .85), maxEffort: false, weekNumber: weekNumber });
+            } else {
+                workout.push({ set: 1, reps: 3, percent: 70, weight: getTrainingWeight(trainingWeight, .70), maxEffort: false, weekNumber: weekNumber });
+                workout.push({ set: 2, reps: 3, percent: 80, weight: getTrainingWeight(trainingWeight, .80), maxEffort: false, weekNumber: weekNumber });
+            }
+            workout.push({ set: 3, reps: 3, percent: 90, weight: getTrainingWeight(trainingWeight, .90), maxEffort: true, weekNumber: weekNumber });
+            return workout;
+        }
+
+        function fiveThreeOne(weekNumber, trainingWeight) {
+            var workout = [];
+            workout.push({ set: 1, reps: 5, percent: 75, weight: getTrainingWeight(trainingWeight, .75), maxEffort: false, weekNumber: weekNumber });
+            workout.push({ set: 2, reps: 3, percent: 85, weight: getTrainingWeight(trainingWeight, .85), maxEffort: false, weekNumber: weekNumber });
+            workout.push({ set: 3, reps: 1, percent: 95, weight: getTrainingWeight(trainingWeight, .95), maxEffort: true, weekNumber: weekNumber });
+            return workout;
+        }
+
+        function deload(weekNumber, trainingWeight) {
+            var workout = [];
+            workout.push({ set: 1, reps: 5, percent: 40, weight: getTrainingWeight(trainingWeight, .4), maxEffort: false, weekNumber: weekNumber });
+            workout.push({ set: 2, reps: 5, percent: 50, weight: getTrainingWeight(trainingWeight, .5), maxEffort: false, weekNumber: weekNumber });
+            workout.push({ set: 3, reps: 5, percent: 60, weight: getTrainingWeight(trainingWeight, .6), maxEffort: false, weekNumber: weekNumber });
+            return workout;
+        }
+        
         return factory;
     }
 ]);

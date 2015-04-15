@@ -3,12 +3,12 @@
 <div class="container">
     <form class="form-horizontal">
 
-        <div class="panel panel-material-teal-900 non-printable">
+        <div class="panel panel-material-teal-900 non-printable" style="margin-bottom: 0;">
             <div class="panel-heading">
                 <div class="panel-title">
-                    <span class="fa fa-edit fa-3x"></span>
-                    <h2 style="display: inline-block"> Wendler 5/3/1</h2>
-                    <div id="wendler_title" style="margin-left: 70px;">{{user}}</div>
+                    <span class="df df-wendler df-x2" style="font-style:italic"></span>
+                    <h2 style="display: inline-block"> Wendler</h2>
+                    <div id="wendler_title" style="margin-left: 90px;">{{user}}</div>
                 </div>
             </div>
             <div class="panel-body">
@@ -17,18 +17,16 @@
                     <li>List of pervious wendlers</li>
                     <li>option to bumb weights up</li>
                 </ul>
-
             </div>
         </div>
 
-
-        <div class="panel non-printable">
+        <div class="panel non-printable" style="margin-top: 2px; margin-bottom: 2px;">
             <div class="panel-body">
                 <div class="diggity-panel-header">
                     <a class="panel-toggle" ng-click="hideShowContent('program-header-icon')">
                         <i id="program-header-icon" class="fa fa-arrow-up diggity-transition"></i>
                     </a>
-                    <h2 class="mdi-material-teal-900">Program</h2>
+                    <h2 class="mdi-material-teal-900">Template</h2>
                 </div>
                 <div class="list-group">
                     <div class="list-group-item">
@@ -57,7 +55,7 @@
 
                     <a class="list-group-item" ng-click="hideShowTrainingPercentForm()">
                         <div class="row-picture">
-                            <span class="fa fa-2x fa-edit"></span>
+                            <span class="df df-percent df-x2"></span>
                         </div>
                         <div class="row-content">
                             <div class="least-content">Click to change</div>
@@ -76,7 +74,7 @@
                         </div>
                         <div class="row-content">
                             <div class="least-content">Click to change</div>
-                            <h5 class="list-group-item-heading text-bold">Template</h5>
+                            <h5 class="list-group-item-heading text-bold">Assistance Template</h5>
                             <div class="list-group-item-text" ng-hide="showAssistanceExerciesForm">
                                 {{assistanceOption.text}}
                             </div>
@@ -114,7 +112,7 @@
                 </div>
                 <div class="list-group">
                     <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
-                        <a class="list-group-item" ng-click="exercise.showForm = !exercise.showForm;">
+                        <a class="list-group-item" ng-click="hideShowLiftForm(exercise)" id="lifting_option_form_{{exercise.Id}}">
                             <div class="row-picture">
                                 <img src="../../Content/images/dumbbell.png" style="background: transparent;" />
                             </div>
@@ -131,7 +129,9 @@
                             </div>
                         </a>
 
-                        <lifting-option-modal exercise="exercise" calculate-max="calculateOneRepMax(exercise)"></lifting-option-modal>
+                        <lifting-option-modal exercise="exercise"
+                                              calculate-max="calculateOneRepMax(exercise)"
+                                              update-training-max="updateTrainingMax(exercise)"></lifting-option-modal>
 
                         <div class="list-group-separator"></div>
                     </div>

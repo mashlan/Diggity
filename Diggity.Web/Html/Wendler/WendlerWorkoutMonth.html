@@ -21,13 +21,13 @@
                 </div>
 
                 <div class="panel-body">
-                    <div class="col-lg-3 workout-col" ng-class="{last: 3 === $index}"
-                         ng-repeat="day in week.trainingDays | orderBy:'groupId'">
+                    <div class="workout-col" ng-class="columnSpacing"
+                         ng-repeat="day in week.trainingDays">
                         <h3>{{day.exercise}}</h3>
                         <div class="">
                             <div class="col-lg-12">
                                 <span class="text-bold">Max Weight</span> <span> {{day.maxWeight}}</span>
-                                <br/>
+                                <br />
                                 <span class="text-bold">Training Weight</span> <span> {{day.trainingWeight}}</span>
                             </div>
 

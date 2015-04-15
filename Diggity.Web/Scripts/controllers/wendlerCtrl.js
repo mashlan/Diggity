@@ -9,6 +9,7 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
         $scope.traningPercentOptions = WendlerTemplate.trainingPercentOptions;
         $scope.assistanceOptions = WendlerTemplate.templateOptions;
         $scope.boringButBigOptions = WendlerTemplate.boringButBigOptions();
+        $scope.columnSpacing = "col-lg-3";
       
 
         $scope.selectedExercise = {};
@@ -68,31 +69,51 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             });
         });
 
+        function hideSubForms() {
+            $scope.showTrainingPercentOptions = false;
+            $scope.showBoringButBigForm = false;
+            $scope.showAssistanceExerciesForm = false;
+            $scope.showDaysPerWeekForm = false;
+
+            $.each($scope.wenderExercises, function(i, v) {
+                v.showForm = false;
+            });
+        }
+
         $scope.hideShowTrainingPercentForm = function() {
-            $scope.showTrainingPercentOptions = !$scope.showTrainingPercentOptions;
+            var show = !$scope.showTrainingPercentOptions;
+            hideSubForms();
+            $scope.showTrainingPercentOptions = show;
+
             if ($scope.showTrainingPercentOptions) {
-                $("html, body").animate({ scrollTop: 653 -75 });
+                $("html, body").animate({ scrollTop: 653 -95 });
             }
         }
 
         $scope.hideShowBoringButBigForm = function() {
-            $scope.showBoringButBigForm = !$scope.showBoringButBigForm;
+            var show = !$scope.showBoringButBigForm;
+            hideSubForms();
+            $scope.showBoringButBigForm = show;
             if ($scope.showBoringButBigForm) {
-                $("html, body").animate({ scrollTop: 825 - 75 });
+                $("html, body").animate({ scrollTop: 825 - 95 });
             }
         }
 
         $scope.hideShowAssistanceExerciesForm = function() {
-            $scope.showAssistanceExerciesForm = !$scope.showAssistanceExerciesForm;
+            var show = !$scope.showAssistanceExerciesForm;
+            hideSubForms();
+            $scope.showAssistanceExerciesForm = show;
             if ($scope.showAssistanceExerciesForm) {
-                $("html, body").animate({ scrollTop: 739- 75 });
+                $("html, body").animate({ scrollTop: 739- 95 });
             }
         }
 
         $scope.hideShowDaysPerWeekForm = function() {
-            $scope.showDaysPerWeekForm = !$scope.showDaysPerWeekForm;
+            var show = !$scope.showDaysPerWeekForm;
+            hideSubForms();
+            $scope.showDaysPerWeekForm = show;
             if ($scope.showDaysPerWeekForm) {
-                $("html, body").animate({ scrollTop: 567 - 75 });
+                $("html, body").animate({ scrollTop: 567 - 95 });
             }
         }
 
@@ -176,28 +197,51 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             exercise.TrainingMax = WendlerTemplate.roundToNearestFive(estimate * .9);
         };
 
-        $scope.createWendler = function () {
-            $scope.wendlerProgram = []; //clear workout
+        $scope.updateTrainingMax = function(exercise) {
+            exercise.TrainingMax = WendlerTemplate.roundToNearestFive(exercise.Value * .9);
+        }
 
-            for (var week = 1; week < 5; week++) {
+        $scope.hideShowLiftForm = function (exercise) {
+            var show = !exercise.showForm;
+            hideSubForms();
+            exercise.showForm = show;
+            var offset = $("#lifting_option_form_" + exercise.Id).offset().top;
+            if (exercise.showForm) {
+                $("html, body").animate({ scrollTop: offset - 100});
+            }
+        }
+
+        $scope.createWendler = function () {
+            $scope.columnSpacing = $scope.daysPerWeek.days === 4 ? "col-lg-3" : "col-lg-4";
+            $scope.wendlerProgram = []; //clear workout
+            var weekNumber = ($scope.daysPerWeek.days === 4) ? 5 : 7;
+            var daysNumber = $scope.daysPerWeek.days === 4 ? 5 : 4;
+            
+            for (var week = 1; week < weekNumber; week++) {
                 $scope.wendlerProgram.push({
                     week: week,
                     trainingDays: []
                 });
 
-                $.each($scope.wenderExercises, function(i, v) {
+                for (var day = 1; day < daysNumber; day++) {
+                    var exercise = getExercise(week, day);
+
+                    if(week === 6 && day > 1) break;
+
                     var trainingDay = {
-                        exercise: v.ExerciseName,
-                        groupId: v.WendlerGroupId,
-                        maxWeight: v.Value,
-                        trainingWeight: v.TrainingMax,
-                        warmUp: WendlerTemplate.createWarmUp(v.TrainingMax),
-                        workout: WendlerTemplate.createWorkout(week, v.TrainingMax),
-                        assistanceExercises: createAssistanceExercises(v.ExerciseId, v.TrainingMax)
+                        exercise: exercise.ExerciseName,
+                        groupId: exercise.WendlerGroupId,
+                        maxWeight: exercise.Value,
+                        trainingWeight: exercise.TrainingMax,
+                        warmUp: WendlerTemplate.createWarmUp(exercise.TrainingMax),
+                        workout: daysNumber > 4
+                            ? WendlerTemplate.createWorkout(week, exercise.TrainingMax, $scope.trainingPercent) :
+                            WendlerTemplate.createThreeDayWorkout(week, day, exercise.TrainingMax, $scope.trainingPercent),
+                        assistanceExercises: createAssistanceExercises(exercise.ExerciseId, exercise.TrainingMax)
                     };
 
                     $scope.wendlerProgram[week - 1].trainingDays.push(trainingDay);
-                });
+                }
             }
         }
 
@@ -230,6 +274,43 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             }
             return asst;
         }
-        
+
+        function getExercise(weekNumber, dayNumber) {
+            if ($scope.daysPerWeek.days === 4) {
+                return $scope.wenderExercises[dayNumber - 1];
+            }
+
+            switch (weekNumber) {
+            case 1:
+                if (dayNumber === 1) return getWendler(8); //military press
+                if (dayNumber === 2) return getWendler(5); //deadlift
+                return getWendler(1); //bench press
+            case 2:
+                if (dayNumber === 1) return getWendler(16); //squat
+                if (dayNumber === 2) return getWendler(8); //military press
+                return getWendler(5); //deadlift
+            case 3:
+                if (dayNumber === 1) return getWendler(1); //bench press
+                if (dayNumber === 2) return getWendler(16); //squat
+                return getWendler(8); //military press
+            case 4:
+                if (dayNumber === 1) return getWendler(5); //deadlift
+                if (dayNumber === 2) return getWendler(1); //bench press
+                return getWendler(16); //squat
+            case 5:
+                if (dayNumber === 1) return getWendler(8); //military press
+                if (dayNumber === 2) return getWendler(5); //deadlift
+                return getWendler(1); //bench press
+            case 6:
+                return getWendler(16); //squat
+            default:
+                return null;
+            }
+
+            function getWendler(id) {
+               return $.grep($scope.wenderExercises, function(w) { return w.Id === id; })[0];
+            }
+        }
+
     }
 ]);
