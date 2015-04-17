@@ -19,6 +19,14 @@ footer {
     padding-left: 20px;
 }
 
+.print-only {
+    display: none !important;
+}
+
+.print-only-block {
+    display: none !important;
+}
+
 .container {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -152,6 +160,10 @@ i {
     cursor: pointer;
 }
 
+.panel-toggle button {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
 
 /*.fa-panel-toggle:before {
     content: "\f062";

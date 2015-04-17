@@ -102,7 +102,7 @@
             </div>
         </div>
 
-        <div class="panel panel-default non-printable">
+        <div class="panel panel-default non-printable" style="margin-top: 2px; margin-bottom: 2px;">
             <div class="panel-body">
                 <div class="diggity-panel-header">
                     <a class="panel-toggle" ng-click="hideShowContent('program-exercise-icon')">
@@ -138,21 +138,27 @@
                 </div>
             </div>
         </div>
-
-
-        <div class="non-printable">
-            <div class="col-lg-12">
-                <button class="btn btn-primary" style="float: right;" type="button" ng-click="createWendler()">Create</button>
+        
+        <div class="panel panel-default" style="margin-top: 2px; margin-bottom: 2px;">
+            <div class="panel-body">
+                <div class="diggity-panel-header display-only">
+                    <div class="panel-toggle display-only">
+                        <button class="btn btn-material-teal-900 diggity-button" type="button" ng-click="createWendler()"><i class="fa fa-bolt"></i> Create</button>
+                        <button class="btn btn-material-teal-900 diggity-button" type="button" ng-click="printMonth()"><i class="fa fa-print"></i> Print</button>
+                        <button class="btn btn-material-teal-900 diggity-button" type="button" ng-click="createWendler()"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                    <h2 class="mdi-material-teal-900 display-only">Program</h2>
+                </div>
+                <div class="list-group">
+                    <wendler-workout-month></wendler-workout-month>
+                </div>
             </div>
-            <div class="clearfix"></div>
-            <br/>
         </div>
 
-        <wendler-workout-month></wendler-workout-month>
-
         <!-- modal directives -->
-        <edit-assistance-exercise-modal></edit-assistance-exercise-modal>
-
+        <div class="non-printable">
+            <edit-assistance-exercise-modal></edit-assistance-exercise-modal>
+        </div>
     </form>
 </div>
 

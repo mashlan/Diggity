@@ -172,22 +172,12 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             }
         }
 
-        $scope.printWeek = function(weekNumber) {
-            var selector = "#workout_week_" + weekNumber;
-            $(selector).addClass("print");
-            window.print();
-            $(selector).removeClass("print");
-        }
-
-        $scope.printMonth = function(weekNumber) {
+        $scope.printMonth = function() {
             var selector = ".workout-week";
             $(selector).addClass("print");
-            $(selector).parent().addClass("active");
             window.print();
 
             $(selector).removeClass("print");
-            $(selector).parent().removeClass("active");
-            $("#workout_week_" + weekNumber).parent().addClass("active");
         }
 
         $scope.calculateOneRepMax = function(exercise) {
@@ -220,7 +210,9 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             for (var week = 1; week < weekNumber; week++) {
                 $scope.wendlerProgram.push({
                     week: week,
-                    trainingDays: []
+                    trainingDays: [],
+                    isVisible: week === 1,
+                    isLast: week === weekNumber - 1
                 });
 
                 for (var day = 1; day < daysNumber; day++) {
@@ -237,7 +229,8 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
                         workout: daysNumber > 4
                             ? WendlerTemplate.createWorkout(week, exercise.TrainingMax, $scope.trainingPercent) :
                             WendlerTemplate.createThreeDayWorkout(week, day, exercise.TrainingMax, $scope.trainingPercent),
-                        assistanceExercises: createAssistanceExercises(exercise.ExerciseId, exercise.TrainingMax)
+                        assistanceExercises: createAssistanceExercises(exercise.ExerciseId, exercise.TrainingMax),
+                        isLast: day === daysNumber - 1
                     };
 
                     $scope.wendlerProgram[week - 1].trainingDays.push(trainingDay);

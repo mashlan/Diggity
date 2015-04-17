@@ -1,64 +1,56 @@
 ﻿
+<div class="workout-week" ng-repeat="week in wendlerProgram" ng-class="{last: week.isLast}">
+    <h2 class="print-only-block diggity-panel-header"><i class="fa fa-calendar"></i> Week {{week.week}}</h2>
+    <a id="workout_week_{{week.week}}" class="list-group-item display-only" style="margin-bottom: 5px;"
+       ng-click="week.isVisible = !week.isVisible">
+        <div class="row-picture">
+            <span class="fa fa-calendar fa-2x"></span>
+        </div>
+        <div class="row-content display-only">
+            <div class="least-content">
+                Click to <span ng-show="week.isVisible">hide</span>
+                <span ng-hide="week.isVisible">show</span>
+            </div>
+            <h5 class="list-group-item-heading text-bold">Week {{week.week}}</h5>
+        </div>
+    </a>
+    <div class="workout-col" ng-show="week.isVisible"
+         ng-class="{last: day.isLast, 'col-lg-3': daysPerWeek.days === 4, 'col-lg-4': daysPerWeek.days === 3, 'workout-col-3': daysPerWeek.days === 3, 'workout-col-4': daysPerWeek.days === 4 }"
+         ng-repeat="day in week.trainingDays">
+        <h3 class="">{{day.exercise}}</h3>
+        <div class="">
+            <div class="col-lg-12">
+                <span class="text-bold">Max Weight</span> <span> {{day.maxWeight}}</span>
+                <br/>
+                <span class="text-bold">Training Weight</span> <span> {{day.trainingWeight}}</span>
+            </div>
 
-<div>
-    <tabset>
-        <tab ng-repeat="week in wendlerProgram" heading="Week {{week.week}}">
-            <div id="workout_week_{{week.week}}" class="panel panel-material-grey-800 workout-week">
-                <div class="panel-heading workout-week-heading">
-                    <h3 class="workout-week-title">
-                        Week {{week.week}}
-                    </h3>
-                    <div class="btn-group btn-group-sm print-btn-group">
-                        <a href=" javascript:void(0)" data-target="#" style="float: right;"
-                           class="btn btn-flat dropdown-toggle" data-toggle="dropdown">
-                            <i style="color: #ffffff;" class="fa fa-print"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" ng-click="printWeek(week.week)">Print Week {{week.week}}</a></li>
-                            <li><a href="javascript:void(0)" ng-click="printMonth(week.week)">Print Month</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="panel-body">
-                    <div class="workout-col" ng-class="columnSpacing"
-                         ng-repeat="day in week.trainingDays">
-                        <h3>{{day.exercise}}</h3>
-                        <div class="">
-                            <div class="col-lg-12">
-                                <span class="text-bold">Max Weight</span> <span> {{day.maxWeight}}</span>
-                                <br />
-                                <span class="text-bold">Training Weight</span> <span> {{day.trainingWeight}}</span>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <h4 class="short-underline">Warm Up</h4>
-                                <div ng-repeat="warm in day.warmUp">
-                                    {{warm.reps}} Reps X {{warm.weight}} <span style="float: right;">{{warm.percent}}%</span>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12">
-                                <h4 class="short-underline">Work</h4>
-                                <div ng-repeat="work in day.workout">
-                                    {{work.reps}}<span ng-show="work.maxEffort">+</span> Reps X {{work.weight}} <span style="float: right;">{{work.percent}}%</span>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-12 exercise-link" ng-repeat="asst in day.assistanceExercises">
-                                <h4 class="short-underline">{{asst.exerciseName}} <span class="fa fa-pencil edit-icon"></span> </h4>
-                                <a href="javascript:void(0)" data-toggle="modal" data-target="#editAssistanceExerciseModal" ng-click="editAssistanceExercise(asst)">
-                                    <div ng-repeat="set in asst.sets">
-                                        {{set.reps}} Reps X {{set.weight}} <span ng-show="set.percent" style="float: right;">{{set.percent}}%</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="clearfix"></div>
-                    </div>
+            <div class="col-lg-12">
+                <h4 class="short-underline">Warm Up</h4>
+                <div ng-repeat="warm in day.warmUp">
+                    <span class="fa fa-square-o print-only"></span> {{warm.reps}} Reps X {{warm.weight}} <span style="float: right;">{{warm.percent}}%</span>
                 </div>
             </div>
-        </tab>
-    </tabset>
+
+            <div class="col-lg-12">
+                <h4 class="short-underline">Work</h4>
+                <div ng-repeat="work in day.workout">
+                    <span class="fa fa-square-o print-only"></span> {{work.reps}}<span ng-show="work.maxEffort">+</span> Reps X {{work.weight}} <span style="float: right;">{{work.percent}}%</span>
+                </div>
+            </div>
+
+            <div class="col-lg-12 exercise-link" ng-repeat="asst in day.assistanceExercises">
+                <h4 class="short-underline">{{asst.exerciseName}} <span class="fa fa-pencil edit-icon"></span> </h4>
+                <a href="javascript:void(0)" data-toggle="modal" data-target="#editAssistanceExerciseModal" ng-click="editAssistanceExercise(asst)">
+                    <div ng-repeat="set in asst.sets">
+                        <span class="fa fa-square-o print-only"></span> {{set.reps}} Reps X {{set.weight}} <span ng-show="set.percent" style="float: right;">{{set.percent}}%</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <hr class="display-only" ng-show="week.isVisible"/>
 </div>
+
+
