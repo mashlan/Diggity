@@ -216,15 +216,16 @@ i {
 
 .timer{
     margin: 0 auto;
-    width: 990px;
+    width: 1690px;
     font-weight: bold;
 }
 
     .timer ul {
-        width: 220px;
+        margin-left: 50px;
+        width: 380px;
         margin: 0;
         padding: 0;
-        height: 360px;
+        height: 660px;
         overflow-y: scroll;
         -webkit-overflow-scrolling: auto;
         -ms-overflow-style: none;
@@ -237,12 +238,12 @@ i {
     }
 
     .timer ul.spacer {
-        width: 81px !important;
+        width: 170px !important;
         cursor: default !important;
     }
 
 .timer ul li {
-    font-size: 24em;
+    font-size: 44em;
     padding: 0;
     margin: 0;
     line-height: 1;

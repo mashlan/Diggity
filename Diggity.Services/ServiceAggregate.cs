@@ -9,7 +9,7 @@ namespace Diggity.Services
         private readonly IRepositoryAggregate repositoryAggregate;
         private readonly IValidationFactory validationFactory;
 
-        private IService<Exercise> exercise;
+        private IExerciseService exercise;
         private IService<ExerciseType> exerciseType;
         private IService<UnitOfMeasure> unitOfMeasure;
         private IService<Workout> workout;
@@ -24,7 +24,7 @@ namespace Diggity.Services
             this.validationFactory = validationFactory;
         }
 
-        public IService<Exercise> Exercise
+        public IExerciseService Exercise
         {
             get
             {

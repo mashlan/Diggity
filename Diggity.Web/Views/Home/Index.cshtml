@@ -1,7 +1,7 @@
 ﻿
 <div ng-app="myApp">
     
-    <div class="container">
+    <div>
         @if (Request.IsAuthenticated)
         {
             <div ng-controller="HomeCtrl" ng-init="redirectToUserPage('@User.Identity.Name')"></div>

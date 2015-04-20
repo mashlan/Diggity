@@ -111,14 +111,14 @@
                     <h2 class="mdi-material-teal-900">Main Lifts</h2>
                 </div>
                 <div class="list-group">
-                    <div ng-repeat="exercise in wenderExercises | orderBy:'WendlerGroupId'">
+                    <div ng-repeat="exercise in wenderExercises">
                         <a class="list-group-item" ng-click="hideShowLiftForm(exercise)" id="lifting_option_form_{{exercise.Id}}">
                             <div class="row-picture">
                                 <img src="../../Content/images/dumbbell.png" style="background: transparent;" />
                             </div>
                             <div class="row-content">
                                 <div class="least-content">Record Date - {{exercise.RecordDate}}</div>
-                                <h4 class="list-group-item-heading">{{exercise.ExerciseName}}</h4>
+                                <h4 class="list-group-item-heading">{{exercise.Name}}</h4>
                                 <div class="list-group-item-text" ng-hide="exercise.showForm">
                                     <h4>
                                         <span class="text-bold">One Rep Max</span> <span> {{exercise.Value}} {{exercise.UnitsName}}</span>

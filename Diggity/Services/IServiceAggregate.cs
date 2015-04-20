@@ -4,7 +4,7 @@ namespace Diggity.Services
 {
     public interface IServiceAggregate
     {
-        IService<Exercise> Exercise { get; }
+        IExerciseService Exercise { get; }
         IService<ExerciseType> ExerciseType { get; }
         IService<UnitOfMeasure> UnitOfMeasure { get; }
         IService<Workout> Workout { get; }

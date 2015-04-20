@@ -321,6 +321,7 @@
     <Content Include="Scripts\services\accountServices.js" />
     <Content Include="Scripts\services\exerciseService.js" />
     <Content Include="Scripts\services\recordLiftsService.js" />
+    <Content Include="Scripts\services\wendlerExerciseService.js" />
     <Content Include="Scripts\services\wendlerService.js" />
     <Content Include="Scripts\services\wendlerTemplateService.js" />
     <Content Include="Scripts\vendors\bootstrap\material.js" />

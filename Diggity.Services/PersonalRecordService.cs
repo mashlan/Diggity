@@ -22,7 +22,15 @@ namespace Diggity.Services
                 .Select(s => s.Single(w => w.RecordDate == s.Max(m => m.RecordDate)));
 
             return entities.Select(GetObject);
-        } 
+        }
+
+        public IEnumerable<PersonalRecord> FindMostRecent(Expression<Func<PersonalRecord, bool>> expression)
+        {
+            var entities = Repository.Find(expression).GroupBy(g => g.ExerciseId)
+                .Select(s => s.Single(w => w.RecordDate == s.Max(m => m.RecordDate)));
+
+            return entities;
+        }
 
         public override IEnumerable<object> FindSimple(Expression<Func<PersonalRecord, bool>> expression)
         {

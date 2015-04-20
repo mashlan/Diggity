@@ -53,3 +53,4 @@
 /// <reference path="vendors/highcharts/highcharts.src.js" />
 /// <reference path="controllers/personalbestctrl.js" />
 /// <reference path="controllers/myliftsctrl.js" />
+/// <reference path="services/wendlerexerciseservice.js" />

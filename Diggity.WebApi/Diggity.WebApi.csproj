@@ -78,6 +78,7 @@
     <Compile Include="PersonalRecordController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitOfMeasureController.cs" />
+    <Compile Include="WendlerExerciseController.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diggity.Security\Diggity.Security.csproj">

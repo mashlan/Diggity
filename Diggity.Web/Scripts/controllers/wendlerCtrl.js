@@ -1,8 +1,8 @@
 ﻿/**********************************************************************
  * ********************* Wendler Workouts *****************************
  *********************************************************************/
-myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", "MaxLifts", "WendlerTemplate","Exercise",
-    function ($routeParams, $scope, $location, MaxLifts, WendlerTemplate, Exercise) {
+myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", "WendlerExercise", "WendlerTemplate", "Exercise",
+    function ($routeParams, $scope, $location, WendlerExercise, WendlerTemplate, Exercise) {
         "use strict";
 
         $scope.daysPerWeekOptions = WendlerTemplate.daysPerWeekOptions;
@@ -58,11 +58,13 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             //else update weight based on percent.
         }
         
-        MaxLifts.query().then(function (resp) {
+        WendlerExercise.query().then(function (resp) {
             $scope.wenderExercises = resp;
             console.log(resp);
 
             $.each($scope.wenderExercises, function (i, v) {
+                v.Value = v.PersonalRecords[0] != null ? v.PersonalRecords[0].Value : 0;
+                v.RecordDate = v.PersonalRecords[0] != null ? v.PersonalRecords[0].RecordDate : "NA";
                 var trainingPercent = .9 * parseInt(v.Value);
                 var roundedTrainingPercent = WendlerTemplate.roundToNearestFive(trainingPercent);
                 v.TrainingMax = roundedTrainingPercent;
@@ -221,7 +223,7 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
                     if(week === 6 && day > 1) break;
 
                     var trainingDay = {
-                        exercise: exercise.ExerciseName,
+                        exercise: exercise.Name,
                         groupId: exercise.WendlerGroupId,
                         maxWeight: exercise.Value,
                         trainingWeight: exercise.TrainingMax,
@@ -229,7 +231,7 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
                         workout: daysNumber > 4
                             ? WendlerTemplate.createWorkout(week, exercise.TrainingMax, $scope.trainingPercent) :
                             WendlerTemplate.createThreeDayWorkout(week, day, exercise.TrainingMax, $scope.trainingPercent),
-                        assistanceExercises: createAssistanceExercises(exercise.ExerciseId, exercise.TrainingMax),
+                        assistanceExercises: createAssistanceExercises(exercise.Id, exercise.TrainingMax),
                         isLast: day === daysNumber - 1
                     };
 
