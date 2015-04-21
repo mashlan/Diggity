@@ -62,13 +62,13 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
             $scope.wenderExercises = resp;
             console.log(resp);
 
-            $.each($scope.wenderExercises, function (i, v) {
-                v.Value = v.PersonalRecords[0] != null ? v.PersonalRecords[0].Value : 0;
-                v.RecordDate = v.PersonalRecords[0] != null ? v.PersonalRecords[0].RecordDate : "NA";
-                var trainingPercent = .9 * parseInt(v.Value);
-                var roundedTrainingPercent = WendlerTemplate.roundToNearestFive(trainingPercent);
-                v.TrainingMax = roundedTrainingPercent;
-            });
+            //$.each($scope.wenderExercises, function (i, v) {
+            //    v.Value = v.PersonalRecords[0] != null ? v.PersonalRecords[0].Value : 0;
+            //    v.RecordDate = v.PersonalRecords[0] != null ? v.PersonalRecords[0].RecordDate : "NA";
+            //    var trainingPercent = .9 * parseInt(v.Value);
+            //    var roundedTrainingPercent = WendlerTemplate.roundToNearestFive(trainingPercent);
+            //    v.TrainingMax = roundedTrainingPercent;
+            //});
         });
 
         function hideSubForms() {

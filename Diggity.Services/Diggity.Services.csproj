@@ -48,6 +48,7 @@
     <Compile Include="UnitOfMeasureService.cs" />
     <Compile Include="UserPreferenceService.cs" />
     <Compile Include="WenderGeneratorService.cs" />
+    <Compile Include="WendlerExerciseService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Diggity\Diggity.csproj">

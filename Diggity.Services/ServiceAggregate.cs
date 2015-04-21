@@ -17,6 +17,7 @@ namespace Diggity.Services
         private IService<UserPreference> userPreference;
         private IPersonalRecordService personalRecordHistory;
         private IWendlerGeneratorService wendlerGenerator;
+        private IWendlerExerciseService wendlerExercise;
 
         public ServiceAggregate(IRepositoryAggregate repositoryAggregate, IValidationFactory validationFactory)
         {
@@ -96,6 +97,12 @@ namespace Diggity.Services
                                repositoryAggregate.PersonalRecordHistory,
                                validationFactory.GetValidator<PersonalRecord>(repositoryAggregate)));
             }
+        }
+
+        public IWendlerExerciseService WendlerExercise
+        {
+            get { return wendlerExercise ??(wendlerExercise = new WendlerExerciseService(repositoryAggregate, 
+                repositoryAggregate.Exercise, validationFactory.GetValidator<Exercise>(repositoryAggregate))); }
         }
 
         public IWendlerGeneratorService WendlerGenerator
