@@ -18,10 +18,72 @@ angular.module('hitt.timer', ['template/timer/timer.html'])
             var secTensUl = timer.find('ul.seconds.tens');
             var secOnesUl = timer.find('ul.seconds.ones');
 
+            $scope.enteredTime = 0;
+
             $scope.Timer = {
                 Minutes: 0,
                 Seconds: 0,
                 ElapsedTime: ""
+            }
+
+            $scope.showSetTime = function() {
+                $(".number-panel").addClass("in");
+            }
+
+            $scope.clearTime = function() {
+                $scope.enteredTime = 0;
+                updateSelectedTime(0, 0, 0, 0);
+                triggerAnimation(0, 0, 0, 0);
+            }
+
+            $scope.backupOne = function() {
+                
+            }
+
+            $scope.addTime = function(value) {
+                var valueString = value.toString();
+                var currentTimeString = $scope.enteredTime.toString();
+                var newTimeString = currentTimeString + valueString;
+
+                var newTime = parseInt(newTimeString);
+                if (newTime > 9999) return;
+                $scope.enteredTime = newTime;
+                console.log($scope.enteredTime);
+
+                var secOnes = 0;
+                var secTens = 0;
+                var minOnes = 0;
+                var minTens = 0;
+                
+                if( newTime < 10) {
+                    secOnes = newTime;
+                }
+
+                if (newTime >= 10 && newTime < 100) {
+                    secOnes = newTime % 10;
+                    secTens = (newTime - secOnes) / 10;
+                }
+
+                if (newTime >= 100 && newTime < 1000) {
+                    var tenSpot = newTime % 100;
+                    secOnes = tenSpot % 10;
+                    secTens = (tenSpot - secOnes) / 10;
+
+                    minOnes = ((newTime - secOnes - (secTens * 10)) / 100);
+                }
+
+                if (newTime >= 1000) {
+                    var hundSpot = newTime % 1000;
+                    var tenSpot = hundSpot % 100;
+                    secOnes = tenSpot % 10;
+                    secTens = (tenSpot - secOnes) / 10;
+                    minOnes = (hundSpot - tenSpot) / 100;
+                    minTens = (newTime - hundSpot) / 1000;
+                }
+
+                console.log("secOnes: " + secOnes + " secTens: " + secTens + " minOnes: " + minOnes + " minTens: " + minTens);
+                updateSelectedTime(secOnes, secTens, minOnes, minTens);
+                triggerAnimation(minTens, minOnes, secTens, secOnes);
             }
 
             $scope.isCountDown = false;

@@ -9,6 +9,10 @@ body {
     height: 100%;
 }
 
+.content-wrapper {
+    height: calc(100% - 87px);
+}
+
 footer {
     position: absolute;
     overflow: hidden;
@@ -216,16 +220,15 @@ i {
 
 .timer{
     margin: 0 auto;
-    width: 1690px;
+    width: 99%;
     font-weight: bold;
 }
 
     .timer ul {
-        margin-left: 50px;
-        width: 380px;
+        width: 22%;
         margin: 0;
         padding: 0;
-        height: 660px;
+        height: 580px;
         overflow-y: scroll;
         -webkit-overflow-scrolling: auto;
         -ms-overflow-style: none;
@@ -238,7 +241,7 @@ i {
     }
 
     .timer ul.spacer {
-        width: 170px !important;
+        width: 10% !important;
         cursor: default !important;
     }
 
@@ -247,11 +250,9 @@ i {
     padding: 0;
     margin: 0;
     line-height: 1;
-    /*border: 1px solid #ffffff;*/
+    height: 580px;
     text-align: center;
     cursor: pointer;
-    display: inline-block;
-    /*background-color: #708090;*/
 }
 
 .timer div {
@@ -270,25 +271,148 @@ i {
     float: left;
 }
 
-@media only screen and (max-width: 992px) {
-   .timer{ width: 80%;}
-    .timer ul {
-        width: 20%;
-        height: 180px;
+
+@media (min-width: 319px) {
+     #timer_box {
+        height: 320px;
     }
 
-    .timer ul li { font-size: 12em; }
+    #right_box, #left_box {
+        min-height: calc(100% - 320px);
+    }
 
+    .timer ul, .timer ul li {
+        height: 130px;
+    }
+
+    .timer ul li {
+        font-size: 8em;
+    }
 }
 
-@media only screen and (max-width: 768px) {
-    .timer ul li {font-size: 8em;}
-    .least-content{ position:relative !important;right: auto !important;}
+@media (min-width: 567px) {
+     #timer_box {
+        height: 328px;
+    }
+
+    #right_box, #left_box {
+        min-height: calc(100% - 328px);
+    }
+
+    .timer ul, .timer ul li {
+        height: 200px;
+    }
+
+    .timer ul li {
+        font-size: 14em;
+    }
 }
+
+@media (min-width: 768px) {
+    #timer_box {
+        height: 428px;
+    }
+
+    #right_box, #left_box {
+        min-height: calc(100% - 428px);
+    }
+
+     .timer ul, .timer ul li {
+        height: 300px;
+    }
+
+    .timer ul li {
+        font-size: 20em;
+    }
+}
+
+@media (min-width: 992px) {
+     #timer_box {
+        height: 528px;
+    }
+
+    #right_box, #left_box {
+        min-height: calc(100% - 528px);
+    }
+
+    .timer ul, .timer ul li {
+        height: 300px;
+    }
+
+    .timer ul li {
+        font-size: 20em;
+    }
+}
+
+@media (min-width: 1024px) {
+    #timer_box {
+        height: 528px;
+    }
+
+    #right_box, #left_box {
+        min-height: calc(100% - 528px);
+    }
+
+    .timer ul,  .timer ul li {
+         height: 400px;
+     }
+
+    .timer ul li {
+        font-size: 26em;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    #timer_box {
+        height: 580px;
+    }
+
+    #right_box, #left_box {
+        min-height: calc(100% - 580px);
+    }
+
+     .timer ul,  .timer ul li {
+         height: 450px;
+     }
+
+    .timer ul li {
+        font-size: 34em;
+    }
+}
+
+
+@media (min-width: 1660px) {
+    #timer_box {
+        height: 708px;
+    }
+
+    #right_box, #left_box {
+        min-height: calc(100% - 708px);
+    }
+
+     .timer ul,  .timer ul li {
+         height: 580px;
+     }
+
+    .timer ul li {
+        font-size: 44em;
+    }
+}
+
 
 .number-panel {
-    width: 290px;
+    width: 292px;
     margin: 0 auto;
+    margin-left: -290px;
+    position: absolute;
+    z-index: 1000;
+    background: #ffffff;
+    border: 1px solid #708090;
+}
+
+.number-panel.in {
+    margin-left: 0;
 }
 
 .number-panel .number {
@@ -302,6 +426,12 @@ i {
     display: inline-block;
     background-color: #708090;
 }
+
+.number-panel .number:hover {
+    background-color: #616161;
+    color: #ffffff;
+}
+
 
 .check-group li{
     border: none;

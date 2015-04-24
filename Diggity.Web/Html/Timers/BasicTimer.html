@@ -1,9 +1,43 @@
 ﻿
 
-<hitt-timer enable-click="true"
-            enable-mousewheel="true"
-            end-file-scource=""
-            show-ready-timer="true"
-            buzzard-file-source="../../Content/audio/47434^BUZZER.mp3"
-            beep-file-source="../../Content/audio/beep-07.wav">
-</hitt-timer>
+<div style="height: 100%">
+    <!--<button type="button" class="btn btn-material-blue-grey-800" ng-click="showSetTime()"><i class="fa fa-adjust"></i></button>
+
+    <div class="number-panel diggity-transition">
+        <div class="number" ng-click="addTime(1)">1</div>
+        <div class="number" ng-click="addTime(2)">2</div>
+        <div class="number" ng-click="addTime(3)">3</div>
+
+        <div class="number" ng-click="addTime(4)">4</div>
+        <div class="number" ng-click="addTime(5)">5</div>
+        <div class="number" ng-click="addTime(6)">6</div>
+
+        <div class="number" ng-click="addTime(7)">7</div>
+        <div class="number" ng-click="addTime(8)">8</div>
+        <div class="number" ng-click="addTime(9)">9</div>
+
+        <div class="number" ng-click="clearTime()"><i class="fa fa-trash-o"></i>
+        </div>
+        <div class="number" ng-click="addTime(0)">0</div>
+        <div class="number" ng-click="backupOne()"><i class="fa fa-share"></i></div>
+    </div>-->
+
+    <div id="timer_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <hitt-timer enable-click="true"
+                    enable-mousewheel="true"
+                    end-file-scource=""
+                    show-ready-timer="true"
+                    buzzard-file-source="../../Content/audio/47434^BUZZER.mp3"
+                    beep-file-source="../../Content/audio/beep-07.wav">
+        </hitt-timer>
+    </div>
+
+    <div id="left_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="background: #fa8072">
+
+    </div>
+
+    <div id="right_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="background: #0000ff">
+        
+    </div>
+
+</div>

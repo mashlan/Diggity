@@ -1,3 +1,48 @@
 ﻿
 
-<h2>Create your own weight lifting program coming soon!</h2>
+<div class="container">
+
+    <div class="panel panel-material-teal-900 non-printable" style="margin-bottom: 0;">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <span class="fa fa-edit fa-2x"></span>
+                <h2 style="display: inline-block"> DIY Lifting Program</h2>
+                <div id="diy_title" style="margin-left: 50px;">{{user}}</div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <p> Comming Soon!</p>
+            <ul>
+                <li>Edit previous program</li>
+                <li>see list of programs</li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="panel non-printable" style="margin-top: 2px; margin-bottom: 2px;">
+        <div class="panel-body">
+            <div class="diggity-panel-header">
+                <a class="panel-toggle" ng-click="hideShowContent('program-header-icon')">
+                    <i id="program-header-icon" class="fa fa-arrow-up diggity-transition"></i>
+                </a>
+                <h2 class="mdi-material-teal-900">Program</h2>
+            </div>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="row-picture">
+                        <span class="fa fa-cogs"></span>
+                    </div>
+                    <div class="row-content">
+                        <div class="list-group-item-heading text-bold">Create Workout</div>
+                        <button type="button" class="btn btn-fab-default"><i class="fa fa-edit"></i> Warm Up</button>
+                        <button type="button" class="btn btn-fab-default"><i class="fa fa-edit"></i> Workout</button>
+                        <button type="button" class="btn btn-fab-default"><i class="fa fa-edit"></i> Cool Down</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

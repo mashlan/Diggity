@@ -5,7 +5,7 @@ myControllers.controller('HomeCtrl', ['$routeParams', '$scope', "$rootScope", '$
     function ($routeParams, $scope, $rootScope, $location) {
         'use strict';
 
-        $scope.redirectToUserPage = function(user) {
+        $scope.redirectToUserPage = function (user) {
             $location.path("/user");
             $rootScope.user = user;
         }

@@ -1,11 +1,11 @@
 ﻿
-<div ng-app="myApp">
+<div ng-app="myApp" class="content-wrapper">
     
-    <div>
+    <div style="height: 100%;">
         @if (Request.IsAuthenticated)
         {
             <div ng-controller="HomeCtrl" ng-init="redirectToUserPage('@User.Identity.Name')"></div>
-            <div ng-view autoscroll="true"></div>
+            <div ng-view autoscroll="true" style="height: 100%;"></div>
         }
         else
         {

@@ -25,18 +25,22 @@ namespace Diggity.Services
 
         public IEnumerable<IWendlerExercise> FindWendlers(string userId)
         {
+            //get all wendler exercises
             var exercises = Repository.Find(e => e.WendlerGroupId != null).OrderBy(o => o.WendlerGroupId).ToList();
             var exerciseIds = exercises.Select(s => s.Id).ToList();
+
+            //get max pr record for wendler exercises
             var prRecords = RepositoryAggregate.PersonalRecordHistory.Find(
                 pr => pr.UserId == userId && exerciseIds.Contains(pr.ExerciseId))
                 .GroupBy(g => g.ExerciseId)
                 .Select(s => s.Single(w => w.RecordDate == s.Max(m => m.RecordDate))).ToList();
 
+            //convert exercise type to wendler exercise type
             var wendlers = exercises
                 .Select(s => s.ConvertToModel<Exercise, WendlerExercise, IWendlerExercise>(new WendlerExercise()))
                 .ToList();
 
-
+            //set pr info
             foreach (var wendler in wendlers)
             {
                 var exerciseId = wendler.ExerciseId;
