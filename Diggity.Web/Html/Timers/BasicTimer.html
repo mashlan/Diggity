@@ -1,30 +1,10 @@
 ﻿
 
 <div style="height: 100%">
-    <!--<button type="button" class="btn btn-material-blue-grey-800" ng-click="showSetTime()"><i class="fa fa-adjust"></i></button>
 
-    <div class="number-panel diggity-transition">
-        <div class="number" ng-click="addTime(1)">1</div>
-        <div class="number" ng-click="addTime(2)">2</div>
-        <div class="number" ng-click="addTime(3)">3</div>
-
-        <div class="number" ng-click="addTime(4)">4</div>
-        <div class="number" ng-click="addTime(5)">5</div>
-        <div class="number" ng-click="addTime(6)">6</div>
-
-        <div class="number" ng-click="addTime(7)">7</div>
-        <div class="number" ng-click="addTime(8)">8</div>
-        <div class="number" ng-click="addTime(9)">9</div>
-
-        <div class="number" ng-click="clearTime()"><i class="fa fa-trash-o"></i>
-        </div>
-        <div class="number" ng-click="addTime(0)">0</div>
-        <div class="number" ng-click="backupOne()"><i class="fa fa-share"></i></div>
-    </div>-->
-
-    <div id="timer_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <hitt-timer enable-click="true"
-                    enable-mousewheel="true"
+    <div id="timer_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="actionStatus">
+        <hitt-timer enable-click="false"
+                    enable-mousewheel="false"
                     end-file-scource=""
                     show-ready-timer="true"
                     buzzard-file-source="../../Content/audio/47434^BUZZER.mp3"
@@ -32,12 +12,55 @@
         </hitt-timer>
     </div>
 
-    <div id="left_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="background: #fa8072">
-
+    <div id="left_box" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="actionStatus">
+        {{currentInterval}}/{{intervalCount}}
     </div>
 
-    <div id="right_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" style="background: #0000ff">
-        
+    <div id="action_box" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="actionStatus">
+        {{intervalStatusText}}
+    </div>
+
+    <div id="right_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <h3>Setup</h3>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-md-2">Prepare Interval</label>
+            <div class="col-lg-2">
+                <input type="number" class="form-control" placeholder="Secs" ng-model="prepareInterval" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-md-2">Work Interval</label>
+            <div class="col-lg-2">
+                <input type="number" class="form-control" placeholder="Mins" ng-model="workInterval.Minutes"/>
+            </div>
+            <div class="col-lg-2">
+                <input type="number" class="form-control" placeholder="Secs" ng-model="workInterval.Seconds"/>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-md-2">Rest Interval</label>
+            <div class="col-lg-2">
+                <input type="number" class="form-control" placeholder="Mins" ng-model="restInterval.Minutes" />
+            </div>
+            <div class="col-lg-2">
+                <input type="number" class="form-control" placeholder="Secs" ng-model="restInterval.Seconds" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-lg-2 col-md-2">Rounds</label>
+            <div class="col-lg-2">
+                <input type="number" class="form-control" placeholder="Count" ng-model="intervalCount" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <button class="btn btn-success" type="button">Set Time</button>
     </div>
 
 </div>
