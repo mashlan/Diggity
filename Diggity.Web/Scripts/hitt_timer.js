@@ -10,180 +10,232 @@ angular.module('hitt.timer', ['template/timer/timer.html'])
     ])
     .controller("hittTimerController", ['$scope',
         function ($scope) {
-            var myTimer;
+            var myTimer = null;
             var timer = $(".timer");
-            var countdownTimer = $('.ready-timer');
+            var readyTimer = $('.ready-timer');
             var minTensUl = timer.find('ul.minutes.tens');
             var minOnesUl = timer.find('ul.minutes.ones');
-            var secTensUl = timer.find('ul.seconds.tens');
-            var secOnesUl = timer.find('ul.seconds.ones');
+            var secTensUl = timer.find('ul.seconds.tens').first();
+            var secOnesUl = timer.find('ul.seconds.ones').first();
 
-            $scope.enteredTime = 0;
-
-            $scope.Timer = {
-                Minutes: 0,
-                Seconds: 0,
-                ElapsedTime: ""
-            }
-
-            $scope.showSetTime = function() {
-                $(".number-panel").addClass("in");
-            }
-
-            $scope.clearTime = function() {
-                $scope.enteredTime = 0;
-                updateSelectedTime(0, 0, 0, 0);
-                triggerAnimation(0, 0, 0, 0);
-            }
-
-            $scope.backupOne = function() {
-                
-            }
-
-            $scope.addTime = function(value) {
-                var valueString = value.toString();
-                var currentTimeString = $scope.enteredTime.toString();
-                var newTimeString = currentTimeString + valueString;
-
-                var newTime = parseInt(newTimeString);
-                if (newTime > 9999) return;
-                $scope.enteredTime = newTime;
-                console.log($scope.enteredTime);
-
-                var secOnes = 0;
-                var secTens = 0;
-                var minOnes = 0;
-                var minTens = 0;
-                
-                if( newTime < 10) {
-                    secOnes = newTime;
-                }
-
-                if (newTime >= 10 && newTime < 100) {
-                    secOnes = newTime % 10;
-                    secTens = (newTime - secOnes) / 10;
-                }
-
-                if (newTime >= 100 && newTime < 1000) {
-                    var tenSpot = newTime % 100;
-                    secOnes = tenSpot % 10;
-                    secTens = (tenSpot - secOnes) / 10;
-
-                    minOnes = ((newTime - secOnes - (secTens * 10)) / 100);
-                }
-
-                if (newTime >= 1000) {
-                    var hundSpot = newTime % 1000;
-                    var tenSpot = hundSpot % 100;
-                    secOnes = tenSpot % 10;
-                    secTens = (tenSpot - secOnes) / 10;
-                    minOnes = (hundSpot - tenSpot) / 100;
-                    minTens = (newTime - hundSpot) / 1000;
-                }
-
-                console.log("secOnes: " + secOnes + " secTens: " + secTens + " minOnes: " + minOnes + " minTens: " + minTens);
-                updateSelectedTime(secOnes, secTens, minOnes, minTens);
-                triggerAnimation(minTens, minOnes, secTens, secOnes);
-            }
-
-            $scope.isCountDown = false;
+            $scope.actionStatus = "";
             $scope.lessThanTen = false;
+            $scope.restInterval = { Minutes: null, Seconds: null };
+            $scope.workInterval = { Minutes: null, Seconds: null };
+            $scope.prepareInterval = 10;
+            $scope.intervalCount = null;
+            $scope.currentInterval = 0;
+            $scope.intervalStatusText = "";
+            $scope.createInterval = false;
+            $scope.isInterval = false;
 
+            var currentTime = 0;
+            var offSet = 0;
+            var duration = null;
+
+            reset();
+
+            $scope.clearHittInterval = function() {
+                resetInterval();
+            }
+
+            function resetInterval() {
+                $scope.restInterval = { Minutes: null, Seconds: null };
+                $scope.workInterval = { Minutes: null, Seconds: null };
+                $scope.prepareInterval = null;
+                $scope.intervalCount = null;
+                $scope.currentInterval = 0;
+            }
+
+            function reset() {
+                $scope.actionStatus = "";
+                $scope.currentInterval = 0;
+                currentTime = 0;
+                if (myTimer) window.clearInterval(myTimer);
+                myTimer = null;
+                offSet = 0;
+                duration = null;
+                displayTime(0, 0);
+                $scope.lessThanTen = false;
+                $scope.intervalStatusText = "";
+                $scope.isInterval = false;
+            }
+
+            function delta() {
+                var now = Date.now();
+                var d = now - offSet;
+
+                offSet = now;
+                return d;
+            }
+
+            function countDown(startTime, duration) {
+                //get the number of seconds that have elapsed since countdown started
+                var diff = duration - (((Date.now() - startTime) / 1000) | 0);
+                var minutes = ((diff / 60) | 0);
+                var seconds = ((diff % 60) | 0);
+                
+                displayTime(minutes, seconds);
+            }
+
+            function countUp() {
+                currentTime += delta();
+                var diff = currentTime / 1000;
+                var minutes = ((diff / 60) | 0);
+                var seconds = ((diff % 60) | 0);
+
+                displayTime(minutes, seconds);
+            }
+
+            function displayTime(minutes, seconds) {
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                var secOnes = seconds % 10;
+                var secTens = Math.floor(seconds / 10);
+                var minOnes = minutes % 10;
+                var minTens = Math.floor(minutes / 10);
+                
+                triggerAnimation(minTens, minOnes, secTens, secOnes);
+                updateSelectedTime(secOnes, secTens, minOnes, minTens);
+
+                //console.log("m: " + minutes + " s: " + seconds);
+            }
+           
             $scope.startTimer = function () {
-                console.log("timer started");
-                timer.hide();
-                countdownTimer.show();
-                var beep = document.getElementById("beep_sound");
-                var buzz = document.getElementById("buzz_sound");
+                $scope.createInterval = false;
+                $scope.isInterval = false;
+                if ($scope.currentInterval === 0 && $scope.prepareInterval > 0) runReadyTimer();
+                else runTimer();
+            }
 
-                var coundownUl = countdownTimer.find('ul');
-                var scrollMargin = coundownUl.find('li').first().height();
-                var countDownInt = 9;
+            function runReadyTimer() {
+                $scope.intervalStatusText = "Ready";
+                $scope.actionStatus = "timer-action-ready";
+                timer.hide();
+                readyTimer.show();
+
+                var readyTens = readyTimer.find("ul.seconds.tens");
+                var readyOnes = readyTimer.find("ul.seconds.ones");
+                var scrollMargin = readyTens.find("li").first().height();
+                var countDownInt = $scope.prepareInterval;
                 var countDown = setInterval(function () { myCountDown(); }, 1000);
 
                 function myCountDown() {
-                    coundownUl.animate({ scrollTop: scrollMargin * (countDownInt) }, 200);
+                    var secOnes = countDownInt % 10;
+                    var secTens = Math.floor(countDownInt / 10);
                     countDownInt--;
-                    beep.play();
+
+                    readyTens.animate({ scrollTop: scrollMargin * (secTens) }, 200);
+                    readyOnes.animate({ scrollTop: scrollMargin * (secOnes) }, 200);
+                   
                     if (countDownInt < 0) {
-                        buzz.play();
+                        $scope.actionStatus = "timer-action-work";
+                        $scope.$apply();
+
+                        //buzz.play();
                         window.clearInterval(countDown);
                         timer.show();
-                        countdownTimer.hide();
+                        readyTimer.hide();
+                        readyTens.animate({ scrollTop: scrollMargin * (0) }, 200);
+                        readyOnes.animate({ scrollTop: scrollMargin * (0) }, 200);
                         runTimer();
                     }
                 }
             }
 
             $scope.stopTimer = function () {
-                console.log("timer stopped");
+                $scope.actionStatus = "timer-action-pause";
                 window.clearInterval(myTimer);
+                myTimer = null;
 
-                $scope.Timer.Minutes = getMinutes();
-                $scope.Timer.Seconds = getSeconds();
-                $scope.Timer.ElapsedTime = "Minutes: " + $scope.Timer.Minutes + " Seconds: " + $scope.Timer.Seconds;
-
-                console.log("time = " + $scope.Timer.ElapsedTime);
+                if (duration > 0) duration = (getMinutes() * 60) + getSeconds();
             }
 
             $scope.resetTimer = function () {
-                console.log("timer reset");
-                timer.find('li').removeClass('selected');
-                timer.find('li:contains("0")').addClass('selected');
-                triggerAnimation(0, 0, 0, 0);
-                $scope.isCountDown = false;
+                reset();
+            }
+
+            function runRestTimer() {
+                $scope.intervalStatusText = "Rest";
+                var beep = document.getElementById("beep_sound");
+                var buzz = document.getElementById("buzz_sound");
+
+                if (myTimer) window.clearInterval(myTimer);
+                $scope.actionStatus = "timer-action-rest";
                 $scope.lessThanTen = false;
+
+                duration = (($scope.restInterval.Minutes * 60) | 0) + ($scope.restInterval.Seconds | 0);
+                currentTime = Date.now();
+                offSet = Date.now();
+
+                myRestFunc(); //don't wait for a second to start
+                myTimer = setInterval(function() { myRestFunc(); }, 1000);
+
+                function myRestFunc() {
+
+                    countDown(currentTime, duration);
+
+                    var timeLeft = duration - (((Date.now() - currentTime) / 1000) | 0);
+                    if (timeLeft <= 3) {
+                        //$scope.lessThanTen = true;
+                        //$scope.$apply();
+                        beep.play();
+                    }
+                    if (timeLeft <= 0) {
+                        duration = null;
+                        window.clearInterval(myTimer);
+                        myTimer = null;
+                        $scope.lessThanTen = false;
+                        $scope.$apply();
+                        //buzz.play();
+                        runTimer();
+                    }
+                }
             }
 
             function runTimer() {
+                $scope.intervalStatusText = "Work";
                 var beep = document.getElementById("beep_sound");
-                var seconds = getSeconds();
-                var minutes = getMinutes();
+                var buzz = document.getElementById("buzz_sound");
 
-                var startingSeconds = seconds;
-                var startingMinutes = minutes;
+                $scope.currentInterval++;
+                $scope.actionStatus = "timer-action-work";
 
-                var d0 = (new Date());
-                d0 = (new Date(d0.getTime() + (minutes * 60000) + (seconds * 1000))).valueOf();
-                myTimer = setInterval(function () { myTimerFunc(d0); }, 1000);
+                if (!duration) duration = (($scope.workInterval.Minutes * 60) | 0) + ($scope.workInterval.Seconds | 0);
+                $scope.isInterval = duration > 0;
+                $scope.$apply();
 
-                function myTimerFunc(initialTime) {
-                    var now = new Date();
-                    if ($scope.isCountDown) {
-                        now = now.valueOf();
+                if ($scope.isInterval) currentTime = Date.now();
+                offSet = Date.now();
+
+                myTimerFunc(); //don't wait for a second to start
+                if (!myTimer) myTimer = setInterval(function () { myTimerFunc(); }, 1000);
+                
+                function myTimerFunc() {
+                    if (duration > 0) {
+                        countDown(currentTime, duration);
+
+                        var timeLeft = duration - (((Date.now() - currentTime) / 1000) | 0);
+                        if (timeLeft <= 3) {
+                            //$scope.lessThanTen = true;
+                            //$scope.$apply();
+                            beep.play();
+                        }
+                        if (timeLeft <= 0) {
+                           // buzz.play();
+                            $scope.lessThanTen = false;
+                            if ($scope.currentInterval === $scope.intervalCount) {
+                                reset();
+                                $scope.$apply();
+                            }else if ($scope.intervalCount && $scope.intervalCount > 0 && $scope.currentInterval < $scope.intervalCount) {
+                                runRestTimer();
+                                $scope.$apply();
+                            }
+                        }
                     } else {
-                        now = (new Date(now.getTime() + (startingMinutes * 60000) + (startingSeconds * 1000))).valueOf();
+                        countUp();
                     }
-
-                    // calculate time difference between now and initial time
-                    var diff = Math.abs(now - initialTime);
-
-                    //if we are not counting down, add the set starting time
-                    if (!$scope.isCountDown) {
-                        diff = diff + (startingMinutes * 60000) + (startingSeconds * 1000);
-                    }
-
-                    minutes = Math.floor(diff / 1000 / 60);
-                    seconds = Math.floor(diff / 1000) - minutes * 60;
-
-                    var secOnes = seconds % 10;
-                    var secTens = Math.floor(seconds / 10);
-                    var minOnes = minutes % 10;
-                    var minTens = Math.floor(minutes / 10);
-
-                    triggerAnimation(minTens, minOnes, secTens, secOnes);
-
-                    if ($scope.isCountDown) {
-                        $scope.lessThanTen = (minutes < 1 && seconds < 10);
-                        $scope.$apply();
-                        if ($scope.lessThanTen && $scope.isCountDown) beep.play();
-                    }
-
-                    if (seconds === 0 && minutes === 0) {
-                        window.clearInterval(myTimer);
-                    }
-
-                    updateSelectedTime(secOnes, secTens, minOnes, minTens);
                 }
             }
 
@@ -267,9 +319,10 @@ angular.module('hitt.timer', ['template/timer/timer.html'])
 
                 if (attr.hasOwnProperty('showReadyTimer') && attr.showReadyTimer === "true") {
                     var ready = element.find('.ready-timer');
-                    ready.find('ul').append(createLis(9));
+                    ready.find('ul.seconds.tens').append(createLis(9));
+                    ready.find('ul.seconds.ones').append(createLis(9));
                     ready.find('li').removeClass('selected');
-                    ready.find('li:contains("9")').addClass("selected");
+                    ready.find('li:contains("0")').addClass("selected");
                 }
 
                 $compile(timerUl)(scope);
@@ -308,6 +361,10 @@ angular.module('hitt.timer', ['template/timer/timer.html'])
     .directive("disableScroll", function () {
         return function (scope, element) {
             element.bind("mousewheel", function (e) {
+                e.preventDefault();
+            });
+
+            element.bind("touchmove", function (e) {
                 e.preventDefault();
             });
         }
@@ -353,15 +410,9 @@ angular.module("template/timer/timer.html", []).run(["$templateCache", function 
                 '<ul class="seconds tens" ng-class="{\'text-danger\': lessThanTen}"></ul>' +
                 '<ul class="seconds ones" ng-class="{\'text-danger\': lessThanTen}"></ul>' +
             '</div>' +
-            '<div class="ready-timer timer text-danger"><ul></ul></div>' +
-            '<div class="checkbox">' +
-                '<label><input type="checkbox" ng-model="isCountDown"><span class="square"></span><span class="check"></span> Count Down' +
-                '</label>' +
-            '</div>' +
-            '<div class="form-group timer-btns">' +
-                '<button class="btn-lg btn btn-success" type="button" ng-click="startTimer()" >Start</button>' +
-                '<button class="btn btn-lg btn-danger" type="button" ng-click="stopTimer()" >Stop</button>' +
-                '<button class="btn btn-lg btn-warning" type="button" ng-click="resetTimer()" >Reset</button>' +
+            '<div class="ready-timer timer text-danger">' +
+                '<ul class="seconds tens"></ul>' +
+                '<ul class="seconds ones"></ul>' +
             '</div>' +
         '</div>'
       );
