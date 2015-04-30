@@ -301,7 +301,7 @@ i {
 
 @media (min-width: 319px) {
      #timer_box {
-        height: 250px;
+        height: 170px;
     }
 
     #left_box, #action_box {
@@ -319,11 +319,11 @@ i {
 
 @media (min-width: 567px) {
      #timer_box {
-        height: 328px;
+        height: 240px;
     }
 
     #left_box, #action_box {
-        font-size: 8em;
+        font-size: 7em;
     }
 
     .timer ul, .timer ul li {
@@ -337,11 +337,11 @@ i {
 
 @media (min-width: 768px) {
     #timer_box {
-        height: 428px;
+        height: 320px;
     }
     
     #left_box, #action_box {
-        font-size: 12em;
+        font-size: 9em;
     }
 
      .timer ul, .timer ul li {
@@ -359,7 +359,7 @@ i {
     }
 
     #left_box, #action_box {
-        font-size: 10em;
+        font-size: 9em;
     }
 
     .timer ul, .timer ul li {
@@ -373,11 +373,11 @@ i {
 
 @media (min-width: 1024px) {
     #timer_box {
-        height: 528px;
+        height: 410px;
     }
 
     #left_box, #action_box {
-        font-size: 14em;
+        font-size: 12em;
     }
 
     .timer ul,  .timer ul li {
@@ -392,11 +392,11 @@ i {
 
 @media (min-width: 1200px) {
     #timer_box {
-        height: 520px;
+        height: 440px;
     }
 
     #left_box, #action_box {
-        font-size: 14em;
+        font-size: 13em;
     }
 
      .timer ul,  .timer ul li {
@@ -411,11 +411,11 @@ i {
 
 @media (min-width: 1660px) {
     #timer_box {
-        height: 660px;
+        height: 580px;
     }
 
     #left_box, #action_box {
-        font-size: 15em;
+        font-size: 14em;
     }
 
      .timer ul,  .timer ul li {
@@ -495,7 +495,7 @@ i {
 }
 
 .timer-btns button {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .btn-round {

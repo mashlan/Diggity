@@ -1,8 +1,7 @@
 ﻿
 
-<div style="height: 100%">
-
-    <div id="timer_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-class="actionStatus">
+<div style="height: 100%" ng-class="actionStatus">
+    <div id="timer_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <hitt-timer enable-click="false"
                     enable-mousewheel="false"
                     end-file-scource=""
@@ -12,55 +11,62 @@
         </hitt-timer>
     </div>
 
-    <div id="left_box" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="actionStatus">
+    <div class="form-group timer-btns" ng-class="actionStatus">
+        <button class="btn-lg btn btn-success" type="button" ng-click="startTimer()"><i class="fa fa-play"></i></button>
+        <button class="btn btn-lg btn-danger" type="button" ng-click="stopTimer()"><i class="fa fa-pause"></i></button>
+        <button class="btn btn-lg btn-warning" type="button" ng-click="resetTimer()"><i class="fa fa-refresh"></i></button>
+        <button class="btn btn-lg btn-primary" type="button" ng-click="createInterval = !createInterval"><i class="fa fa-cog"></i></button>
+    </div>
+
+    <div id="left_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-show="isInterval" ng-class="actionStatus">
         {{currentInterval}}/{{intervalCount}}
     </div>
 
-    <div id="action_box" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-class="actionStatus">
+    <div id="action_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-show="isInterval" ng-class="actionStatus">
         {{intervalStatusText}}
     </div>
 
-    <div id="right_box" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <h3>Setup</h3>
-
+    <div id="right_box" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="createInterval">
+        <br/>
         <div class="form-group">
-            <label class="control-label col-lg-2 col-md-2">Prepare Interval</label>
-            <div class="col-lg-2">
-                <input type="number" class="form-control" placeholder="Secs" ng-model="prepareInterval" />
+            <label class="control-label text-right col-lg-2 col-md-2">Prepare (secs)</label>
+            <div class="col-lg-2 col-md-2">
+                <input type="number" class="form-control" placeholder="secs" ng-model="prepareInterval" />
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <label class="control-label text-right col-lg-2 col-md-2">Work Interval (mins:secs)</label>
+            <div class="col-lg-2 col-md-2">
+                <input type="number" class="form-control" placeholder="mins" ng-model="workInterval.Minutes" />
+            </div>
+            <div class="col-lg-2 col-md-2">
+                <input type="number" class="form-control" placeholder="secs" ng-model="workInterval.Seconds" />
             </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-lg-2 col-md-2">Work Interval</label>
-            <div class="col-lg-2">
-                <input type="number" class="form-control" placeholder="Mins" ng-model="workInterval.Minutes"/>
+            <label class="control-label text-right col-lg-2 col-md-2">Rest Interval (mins:secs)</label>
+            <div class="col-lg-2 col-md-2">
+                <input type="number" class="form-control" placeholder="mins" ng-model="restInterval.Minutes" />
             </div>
-            <div class="col-lg-2">
-                <input type="number" class="form-control" placeholder="Secs" ng-model="workInterval.Seconds"/>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-lg-2 col-md-2">Rest Interval</label>
-            <div class="col-lg-2">
-                <input type="number" class="form-control" placeholder="Mins" ng-model="restInterval.Minutes" />
-            </div>
-            <div class="col-lg-2">
-                <input type="number" class="form-control" placeholder="Secs" ng-model="restInterval.Seconds" />
+            <div class="col-lg-2 col-md-2">
+                <input type="number" class="form-control" placeholder="secs" ng-model="restInterval.Seconds" />
             </div>
             <div class="clearfix"></div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-lg-2 col-md-2">Rounds</label>
-            <div class="col-lg-2">
-                <input type="number" class="form-control" placeholder="Count" ng-model="intervalCount" />
+            <label class="control-label text-right col-lg-2 col-md-2">Rounds</label>
+            <div class="col-lg-2 col-md-2">
+                <input type="number" class="form-control" placeholder="count" ng-model="intervalCount"/>
             </div>
             <div class="clearfix"></div>
         </div>
-        <button class="btn btn-success" type="button">Set Time</button>
+        <button class="btn btn-success" type="button" ng-click="clearHittInterval()">Clear</button>
+        <button class="btn btn-success" type="button" ng-click="createInterval = false">Done</button>
     </div>
 
 </div>
