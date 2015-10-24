@@ -5,52 +5,53 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="51be51a772da45758c0361c8d61e27f2" Name="Main" >
-        <EntityTypeShape EntityType="Model.Exercise" Width="1.5" PointX="12.625" PointY="4" />
-        <EntityTypeShape EntityType="Model.ExerciseType" Width="1.5" PointX="10.375" PointY="4.25" />
-        <EntityTypeShape EntityType="Model.UnitOfMeasure" Width="2.125" PointX="4.5" PointY="4.125" />
+        <EntityTypeShape EntityType="Model.Exercise" Width="1.5" PointX="15" PointY="8.875" />
+        <EntityTypeShape EntityType="Model.ExerciseType" Width="1.5" PointX="10.75" PointY="7" />
+        <EntityTypeShape EntityType="Model.UnitOfMeasure" Width="2.125" PointX="7.875" PointY="7" />
         <AssociationConnector Association="Model.FK_ExerciseTypeExercise" />
-        <EntityTypeShape EntityType="Model.Workout" Width="1.5" PointX="3" PointY="17.5" />
-        <EntityTypeShape EntityType="Model.WorkoutSet" Width="1.875" PointX="1.875" PointY="12.875" />
-        <EntityTypeShape EntityType="Model.UserPreference" Width="1.5" PointX="2.25" PointY="8.375" />
+        <EntityTypeShape EntityType="Model.Workout" Width="1.5" PointX="5.25" PointY="14.5" />
+        <EntityTypeShape EntityType="Model.WorkoutSet" Width="1.875" PointX="7.5" PointY="14" />
+        <EntityTypeShape EntityType="Model.UserPreference" Width="1.5" PointX="5.25" PointY="8.75" />
         <AssociationConnector Association="Model.UserPreferenceExerciseType" />
         <AssociationConnector Association="Model.UserPreferenceUnitOfMeasure" />
         <AssociationConnector Association="Model.UnitOfMeasureExerciseType" />
-        <EntityTypeShape EntityType="Model.PersonalRecord" Width="1.875" PointX="1.875" PointY="4" />
+        <EntityTypeShape EntityType="Model.PersonalRecord" Width="1.875" PointX="5.25" PointY="5.25" />
         <AssociationConnector Association="Model.PersonalRecordHistoryUnitOfMeasure" />
         <AssociationConnector Association="Model.PersonalRecordHistoryExercise" />
         <AssociationConnector Association="Model.WorkoutSetExercise" />
         <AssociationConnector Association="Model.WorkoutSetUnitOfMeasure" />
         <AssociationConnector Association="Model.WorkoutWorkoutSet" />
-        <EntityTypeShape EntityType="Model.WorkoutTemplate" Width="1.5" PointX="0.75" PointY="21" />
-        <EntityTypeShape EntityType="Model.TemplateDays" Width="1.5" PointX="3" PointY="21.25" />
+        <EntityTypeShape EntityType="Model.WorkoutTemplate" Width="1.5" PointX="7.5" PointY="10.25" />
+        <EntityTypeShape EntityType="Model.TemplateDays" Width="1.5" PointX="9.75" PointY="10.5" />
         <AssociationConnector Association="Model.TemplateDaysWorkoutSet" />
         <AssociationConnector Association="Model.WorkoutTemplateTemplateDays" />
         <AssociationConnector Association="Model.WorkoutWorkoutTemplate" />
-        <EntityTypeShape EntityType="Model.DayOfWeek" Width="1.5" PointX="5.25" PointY="21.625" />
+        <EntityTypeShape EntityType="Model.DayOfWeek" Width="1.5" PointX="12" PointY="10.875" />
         <AssociationConnector Association="Model.TemplateDaysDayOfWeek" />
-        <EntityTypeShape EntityType="Model.WodUnitType" Width="1.75" PointX="9.125" PointY="17.875" />
-        <EntityTypeShape EntityType="Model.WodUnitOfMeasure" Width="1.75" PointX="6.5" PointY="15.75" />
+        <EntityTypeShape EntityType="Model.WodUnitType" Width="1.75" PointX="15.25" PointY="3.25" />
+        <EntityTypeShape EntityType="Model.WodUnitOfMeasure" Width="1.75" PointX="12.75" PointY="3" />
         <AssociationConnector Association="Model.WodUnitOfMeasureWodUnitType" />
-        <EntityTypeShape EntityType="Model.Wod" Width="1.875" PointX="12" PointY="15.25" />
-        <EntityTypeShape EntityType="Model.WodRound" Width="1.5" PointX="12.125" PointY="18.5" />
-        <EntityTypeShape EntityType="Model.WodExercise" Width="1.5" PointX="9.5" PointY="20.125" />
+        <EntityTypeShape EntityType="Model.Wod" Width="1.875" PointX="10.125" PointY="3" />
+        <EntityTypeShape EntityType="Model.WodRound" Width="1.5" PointX="7.875" PointY="3.125" />
+        <EntityTypeShape EntityType="Model.WodExercise" Width="1.5" PointX="5.625" PointY="0.75" />
         <AssociationConnector Association="Model.WodExerciseWodRound" />
         <AssociationConnector Association="Model.WodRoundWod" />
         <AssociationConnector Association="Model.WodExerciseExercise" />
         <AssociationConnector Association="Model.WodExerciseUnitOfMeasure" />
         <AssociationConnector Association="Model.WodWodUnitOfMeasure" />
-        <EntityTypeShape EntityType="Model.WendlerGroup" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Model.WendlerGroup" Width="1.5" PointX="12.75" PointY="13.5" />
         <AssociationConnector Association="Model.fk_ExerciseWendlerGroup" />
-        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="18" />
+        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="11.875" />
+        <EntityTypeShape EntityType="Model.AspNetUser" Width="1.5" PointX="3" PointY="10.125" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="Model.FK_PersonalRecordHistoryAspNetUser" />
         <AssociationConnector Association="Model.FK_UserPreferenceAspNetUser" />
         <AssociationConnector Association="Model.FK_WorkoutAspNetUser" />
         <AssociationConnector Association="Model.FK_WorkoutTemplateAspNetUser" />
-        </Diagram>
-      <Diagram DiagramId="5a610bbe7ae342578ab849f2f1cd6b2c" Name="User Model" >
-        <EntityTypeShape EntityType="Model.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="Model.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="3.75" />
-        <EntityTypeShape EntityType="Model.AspNetRole" Width="1.5" PointX="0.75" PointY="2.75" />
+        <AssociationConnector Association="Model.AspNetUserRoles1" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

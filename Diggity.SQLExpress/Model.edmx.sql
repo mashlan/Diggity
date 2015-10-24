@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/11/2014 10:49:03
+-- Date Created: 09/28/2015 09:37:31
 -- Generated from EDMX file: C:\Users\eric.mashlan\Documents\GitHub\Diggity\Diggity.SQLExpress\Model.edmx
 -- --------------------------------------------------
 
@@ -17,20 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_ExerciseTypeExercise]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Exercises] DROP CONSTRAINT [FK_ExerciseTypeExercise];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRole]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRole];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserPreferenceExerciseType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceExerciseType];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UserPreferenceUnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceUnitOfMeasure];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_UnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_UnitOfMeasure];
-GO
-IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_ExerciseType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_ExerciseType];
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId];
@@ -38,59 +29,41 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserPreferenceAspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceAspNetUser];
+IF OBJECT_ID(N'[dbo].[FK_ExerciseTypeExercise]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Exercises] DROP CONSTRAINT [FK_ExerciseTypeExercise];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PersonalRecordHistoryUnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PersonalRecords] DROP CONSTRAINT [FK_PersonalRecordHistoryUnitOfMeasure];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonalRecordHistoryExercise]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[PersonalRecords] DROP CONSTRAINT [FK_PersonalRecordHistoryExercise];
+IF OBJECT_ID(N'[dbo].[fk_ExerciseWendlerGroup]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Exercises] DROP CONSTRAINT [fk_ExerciseWendlerGroup];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonalRecordHistoryAspNetUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PersonalRecords] DROP CONSTRAINT [FK_PersonalRecordHistoryAspNetUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutSetExercise]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetExercise];
+IF OBJECT_ID(N'[dbo].[FK_PersonalRecordHistoryExercise]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonalRecords] DROP CONSTRAINT [FK_PersonalRecordHistoryExercise];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutSetUnitOfMeasure]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetUnitOfMeasure];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutWorkoutSet];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutAspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutAspNetUser];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TemplateDaysWorkoutSet]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_TemplateDaysWorkoutSet];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutTemplateTemplateDays]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TemplateDays] DROP CONSTRAINT [FK_WorkoutTemplateTemplateDays];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutTemplate]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutWorkoutTemplate];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkoutTemplateAspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WorkoutTemplates] DROP CONSTRAINT [FK_WorkoutTemplateAspNetUser];
+IF OBJECT_ID(N'[dbo].[FK_PersonalRecordHistoryUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonalRecords] DROP CONSTRAINT [FK_PersonalRecordHistoryUnitOfMeasure];
 GO
 IF OBJECT_ID(N'[dbo].[FK_TemplateDaysDayOfWeek]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TemplateDays] DROP CONSTRAINT [FK_TemplateDaysDayOfWeek];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRole]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRole];
+IF OBJECT_ID(N'[dbo].[FK_TemplateDaysWorkoutSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_TemplateDaysWorkoutSet];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
+IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_ExerciseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_ExerciseType];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WodUnitOfMeasureWodUnitType]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WodUnitOfMeasures] DROP CONSTRAINT [FK_WodUnitOfMeasureWodUnitType];
+IF OBJECT_ID(N'[dbo].[FK_UnitOfMeasureExerciseType_UnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UnitOfMeasureExerciseType] DROP CONSTRAINT [FK_UnitOfMeasureExerciseType_UnitOfMeasure];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WodExerciseWodRound]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseWodRound];
+IF OBJECT_ID(N'[dbo].[FK_UserPreferenceAspNetUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceAspNetUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_WodRoundWod]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[WodRounds] DROP CONSTRAINT [FK_WodRoundWod];
+IF OBJECT_ID(N'[dbo].[FK_UserPreferenceExerciseType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceExerciseType];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserPreferenceUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserPreferences] DROP CONSTRAINT [FK_UserPreferenceUnitOfMeasure];
 GO
 IF OBJECT_ID(N'[dbo].[FK_WodExerciseExercise]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseExercise];
@@ -98,31 +71,46 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_WodExerciseUnitOfMeasure]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseUnitOfMeasure];
 GO
+IF OBJECT_ID(N'[dbo].[FK_WodExerciseWodRound]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodExercises] DROP CONSTRAINT [FK_WodExerciseWodRound];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodRoundWod]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodRounds] DROP CONSTRAINT [FK_WodRoundWod];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WodUnitOfMeasureWodUnitType]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WodUnitOfMeasures] DROP CONSTRAINT [FK_WodUnitOfMeasureWodUnitType];
+GO
 IF OBJECT_ID(N'[dbo].[FK_WodWodUnitOfMeasure]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Wods] DROP CONSTRAINT [FK_WodWodUnitOfMeasure];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutAspNetUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutAspNetUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutSetExercise]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetExercise];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutSetUnitOfMeasure]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutSetUnitOfMeasure];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutTemplateAspNetUser]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutTemplates] DROP CONSTRAINT [FK_WorkoutTemplateAspNetUser];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutTemplateTemplateDays]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TemplateDays] DROP CONSTRAINT [FK_WorkoutTemplateTemplateDays];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutSet]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkoutSets] DROP CONSTRAINT [FK_WorkoutWorkoutSet];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkoutWorkoutTemplate]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Workouts] DROP CONSTRAINT [FK_WorkoutWorkoutTemplate];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Exercises]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Exercises];
-GO
-IF OBJECT_ID(N'[dbo].[ExerciseTypes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ExerciseTypes];
-GO
-IF OBJECT_ID(N'[dbo].[UnitOfMeasures]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UnitOfMeasures];
-GO
-IF OBJECT_ID(N'[dbo].[Workouts]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Workouts];
-GO
-IF OBJECT_ID(N'[dbo].[WorkoutSets]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WorkoutSets];
-GO
-IF OBJECT_ID(N'[dbo].[UserPreferences]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[UserPreferences];
+IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AspNetRoles];
 GO
 IF OBJECT_ID(N'[dbo].[AspNetUserClaims]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserClaims];
@@ -130,44 +118,62 @@ GO
 IF OBJECT_ID(N'[dbo].[AspNetUserLogins]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserLogins];
 GO
+IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AspNetUserRoles];
+GO
 IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUsers];
-GO
-IF OBJECT_ID(N'[dbo].[PersonalRecords]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[PersonalRecords];
-GO
-IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AspNetRoles];
-GO
-IF OBJECT_ID(N'[dbo].[WorkoutTemplates]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WorkoutTemplates];
-GO
-IF OBJECT_ID(N'[dbo].[TemplateDays]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TemplateDays];
 GO
 IF OBJECT_ID(N'[dbo].[DayOfWeeks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DayOfWeeks];
 GO
-IF OBJECT_ID(N'[dbo].[WodUnitTypes]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WodUnitTypes];
+IF OBJECT_ID(N'[dbo].[Exercises]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Exercises];
 GO
-IF OBJECT_ID(N'[dbo].[WodUnitOfMeasures]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WodUnitOfMeasures];
+IF OBJECT_ID(N'[dbo].[ExerciseTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ExerciseTypes];
 GO
-IF OBJECT_ID(N'[dbo].[Wods]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Wods];
+IF OBJECT_ID(N'[dbo].[PersonalRecords]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonalRecords];
 GO
-IF OBJECT_ID(N'[dbo].[WodRounds]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WodRounds];
-GO
-IF OBJECT_ID(N'[dbo].[WodExercises]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[WodExercises];
+IF OBJECT_ID(N'[dbo].[TemplateDays]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TemplateDays];
 GO
 IF OBJECT_ID(N'[dbo].[UnitOfMeasureExerciseType]', 'U') IS NOT NULL
     DROP TABLE [dbo].[UnitOfMeasureExerciseType];
 GO
-IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AspNetUserRoles];
+IF OBJECT_ID(N'[dbo].[UnitOfMeasures]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UnitOfMeasures];
+GO
+IF OBJECT_ID(N'[dbo].[UserPreferences]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserPreferences];
+GO
+IF OBJECT_ID(N'[dbo].[WendlerGroups]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WendlerGroups];
+GO
+IF OBJECT_ID(N'[dbo].[WodExercises]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodExercises];
+GO
+IF OBJECT_ID(N'[dbo].[WodRounds]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodRounds];
+GO
+IF OBJECT_ID(N'[dbo].[Wods]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Wods];
+GO
+IF OBJECT_ID(N'[dbo].[WodUnitOfMeasures]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodUnitOfMeasures];
+GO
+IF OBJECT_ID(N'[dbo].[WodUnitTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WodUnitTypes];
+GO
+IF OBJECT_ID(N'[dbo].[Workouts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Workouts];
+GO
+IF OBJECT_ID(N'[dbo].[WorkoutSets]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkoutSets];
+GO
+IF OBJECT_ID(N'[dbo].[WorkoutTemplates]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkoutTemplates];
 GO
 
 -- --------------------------------------------------
@@ -180,7 +186,8 @@ CREATE TABLE [dbo].[Exercises] (
     [Name] nvarchar(max)  NOT NULL,
     [Abbreviation] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
-    [ExerciseTypeId] int  NOT NULL
+    [ExerciseTypeId] int  NOT NULL,
+    [WendlerGroupId] int  NULL
 );
 GO
 
@@ -234,41 +241,6 @@ CREATE TABLE [dbo].[UserPreferences] (
 );
 GO
 
--- Creating table 'AspNetUserClaims'
-CREATE TABLE [dbo].[AspNetUserClaims] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [UserId] nvarchar(128)  NOT NULL,
-    [ClaimType] nvarchar(max)  NULL,
-    [ClaimValue] nvarchar(max)  NULL
-);
-GO
-
--- Creating table 'AspNetUserLogins'
-CREATE TABLE [dbo].[AspNetUserLogins] (
-    [LoginProvider] nvarchar(128)  NOT NULL,
-    [ProviderKey] nvarchar(128)  NOT NULL,
-    [UserId] nvarchar(128)  NOT NULL
-);
-GO
-
--- Creating table 'AspNetUsers'
-CREATE TABLE [dbo].[AspNetUsers] (
-    [Id] nvarchar(128)  NOT NULL,
-    [Hometown] nvarchar(max)  NULL,
-    [Email] nvarchar(256)  NULL,
-    [EmailConfirmed] bit  NOT NULL,
-    [PasswordHash] nvarchar(max)  NULL,
-    [SecurityStamp] nvarchar(max)  NULL,
-    [PhoneNumber] nvarchar(max)  NULL,
-    [PhoneNumberConfirmed] bit  NOT NULL,
-    [TwoFactorEnabled] bit  NOT NULL,
-    [LockoutEndDateUtc] datetime  NULL,
-    [LockoutEnabled] bit  NOT NULL,
-    [AccessFailedCount] int  NOT NULL,
-    [UserName] nvarchar(256)  NOT NULL
-);
-GO
-
 -- Creating table 'PersonalRecords'
 CREATE TABLE [dbo].[PersonalRecords] (
     [Id] int IDENTITY(1,1) NOT NULL,
@@ -277,13 +249,6 @@ CREATE TABLE [dbo].[PersonalRecords] (
     [UnitOfMeasureId] int  NOT NULL,
     [ExerciseId] int  NOT NULL,
     [UserId] nvarchar(128)  NOT NULL
-);
-GO
-
--- Creating table 'AspNetRoles'
-CREATE TABLE [dbo].[AspNetRoles] (
-    [Id] nvarchar(128)  NOT NULL,
-    [Name] nvarchar(256)  NOT NULL
 );
 GO
 
@@ -361,6 +326,56 @@ CREATE TABLE [dbo].[WodExercises] (
 );
 GO
 
+-- Creating table 'WendlerGroups'
+CREATE TABLE [dbo].[WendlerGroups] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Description] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'AspNetRoles'
+CREATE TABLE [dbo].[AspNetRoles] (
+    [Id] nvarchar(128)  NOT NULL,
+    [Name] nvarchar(256)  NOT NULL
+);
+GO
+
+-- Creating table 'AspNetUserClaims'
+CREATE TABLE [dbo].[AspNetUserClaims] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [UserId] nvarchar(128)  NOT NULL,
+    [ClaimType] nvarchar(max)  NULL,
+    [ClaimValue] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'AspNetUserLogins'
+CREATE TABLE [dbo].[AspNetUserLogins] (
+    [LoginProvider] nvarchar(128)  NOT NULL,
+    [ProviderKey] nvarchar(128)  NOT NULL,
+    [UserId] nvarchar(128)  NOT NULL
+);
+GO
+
+-- Creating table 'AspNetUsers'
+CREATE TABLE [dbo].[AspNetUsers] (
+    [Id] nvarchar(128)  NOT NULL,
+    [Hometown] nvarchar(max)  NULL,
+    [Email] nvarchar(256)  NULL,
+    [EmailConfirmed] bit  NOT NULL,
+    [PasswordHash] nvarchar(max)  NULL,
+    [SecurityStamp] nvarchar(max)  NULL,
+    [PhoneNumber] nvarchar(max)  NULL,
+    [PhoneNumberConfirmed] bit  NOT NULL,
+    [TwoFactorEnabled] bit  NOT NULL,
+    [LockoutEndDateUtc] datetime  NULL,
+    [LockoutEnabled] bit  NOT NULL,
+    [AccessFailedCount] int  NOT NULL,
+    [UserName] nvarchar(256)  NOT NULL
+);
+GO
+
 -- Creating table 'UnitOfMeasureExerciseType'
 CREATE TABLE [dbo].[UnitOfMeasureExerciseType] (
     [UnitOfMeasures_Id] int  NOT NULL,
@@ -415,33 +430,9 @@ ADD CONSTRAINT [PK_UserPreferences]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'AspNetUserClaims'
-ALTER TABLE [dbo].[AspNetUserClaims]
-ADD CONSTRAINT [PK_AspNetUserClaims]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [LoginProvider], [ProviderKey], [UserId] in table 'AspNetUserLogins'
-ALTER TABLE [dbo].[AspNetUserLogins]
-ADD CONSTRAINT [PK_AspNetUserLogins]
-    PRIMARY KEY CLUSTERED ([LoginProvider], [ProviderKey], [UserId] ASC);
-GO
-
--- Creating primary key on [Id] in table 'AspNetUsers'
-ALTER TABLE [dbo].[AspNetUsers]
-ADD CONSTRAINT [PK_AspNetUsers]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'PersonalRecords'
 ALTER TABLE [dbo].[PersonalRecords]
 ADD CONSTRAINT [PK_PersonalRecords]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'AspNetRoles'
-ALTER TABLE [dbo].[AspNetRoles]
-ADD CONSTRAINT [PK_AspNetRoles]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -493,13 +484,43 @@ ADD CONSTRAINT [PK_WodExercises]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'WendlerGroups'
+ALTER TABLE [dbo].[WendlerGroups]
+ADD CONSTRAINT [PK_WendlerGroups]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'AspNetRoles'
+ALTER TABLE [dbo].[AspNetRoles]
+ADD CONSTRAINT [PK_AspNetRoles]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'AspNetUserClaims'
+ALTER TABLE [dbo].[AspNetUserClaims]
+ADD CONSTRAINT [PK_AspNetUserClaims]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [LoginProvider], [ProviderKey], [UserId] in table 'AspNetUserLogins'
+ALTER TABLE [dbo].[AspNetUserLogins]
+ADD CONSTRAINT [PK_AspNetUserLogins]
+    PRIMARY KEY CLUSTERED ([LoginProvider], [ProviderKey], [UserId] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'AspNetUsers'
+ALTER TABLE [dbo].[AspNetUsers]
+ADD CONSTRAINT [PK_AspNetUsers]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [UnitOfMeasures_Id], [ExerciseTypes_Id] in table 'UnitOfMeasureExerciseType'
 ALTER TABLE [dbo].[UnitOfMeasureExerciseType]
 ADD CONSTRAINT [PK_UnitOfMeasureExerciseType]
     PRIMARY KEY CLUSTERED ([UnitOfMeasures_Id], [ExerciseTypes_Id] ASC);
 GO
 
--- Creating primary key on [AspNetRoles_Id], [AspNetUsers_Id] in table 'AspNetUserRoles'
+-- Creating primary key on [RoleId], [UserId] in table 'AspNetUserRoles'
 ALTER TABLE [dbo].[AspNetUserRoles]
 ADD CONSTRAINT [PK_AspNetUserRoles]
     PRIMARY KEY CLUSTERED ([RoleId], [UserId] ASC);
@@ -578,51 +599,6 @@ ON [dbo].[UnitOfMeasureExerciseType]
     ([ExerciseTypes_Id]);
 GO
 
--- Creating foreign key on [UserId] in table 'AspNetUserClaims'
-ALTER TABLE [dbo].[AspNetUserClaims]
-ADD CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId'
-CREATE INDEX [IX_FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]
-ON [dbo].[AspNetUserClaims]
-    ([UserId]);
-GO
-
--- Creating foreign key on [UserId] in table 'AspNetUserLogins'
-ALTER TABLE [dbo].[AspNetUserLogins]
-ADD CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId'
-CREATE INDEX [IX_FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]
-ON [dbo].[AspNetUserLogins]
-    ([UserId]);
-GO
-
--- Creating foreign key on [UserId] in table 'UserPreferences'
-ALTER TABLE [dbo].[UserPreferences]
-ADD CONSTRAINT [FK_UserPreferenceAspNetUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_UserPreferenceAspNetUser'
-CREATE INDEX [IX_FK_UserPreferenceAspNetUser]
-ON [dbo].[UserPreferences]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [UnitOfMeasureId] in table 'PersonalRecords'
 ALTER TABLE [dbo].[PersonalRecords]
 ADD CONSTRAINT [FK_PersonalRecordHistoryUnitOfMeasure]
@@ -651,21 +627,6 @@ GO
 CREATE INDEX [IX_FK_PersonalRecordHistoryExercise]
 ON [dbo].[PersonalRecords]
     ([ExerciseId]);
-GO
-
--- Creating foreign key on [UserId] in table 'PersonalRecords'
-ALTER TABLE [dbo].[PersonalRecords]
-ADD CONSTRAINT [FK_PersonalRecordHistoryAspNetUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonalRecordHistoryAspNetUser'
-CREATE INDEX [IX_FK_PersonalRecordHistoryAspNetUser]
-ON [dbo].[PersonalRecords]
-    ([UserId]);
 GO
 
 -- Creating foreign key on [ExerciseId] in table 'WorkoutSets'
@@ -713,21 +674,6 @@ ON [dbo].[WorkoutSets]
     ([WorkoutId]);
 GO
 
--- Creating foreign key on [UserId] in table 'Workouts'
-ALTER TABLE [dbo].[Workouts]
-ADD CONSTRAINT [FK_WorkoutAspNetUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_WorkoutAspNetUser'
-CREATE INDEX [IX_FK_WorkoutAspNetUser]
-ON [dbo].[Workouts]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [TemplateDaysId] in table 'WorkoutSets'
 ALTER TABLE [dbo].[WorkoutSets]
 ADD CONSTRAINT [FK_TemplateDaysWorkoutSet]
@@ -773,21 +719,6 @@ ON [dbo].[Workouts]
     ([WorkoutTemplateId]);
 GO
 
--- Creating foreign key on [UserId] in table 'WorkoutTemplates'
-ALTER TABLE [dbo].[WorkoutTemplates]
-ADD CONSTRAINT [FK_WorkoutTemplateAspNetUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_WorkoutTemplateAspNetUser'
-CREATE INDEX [IX_FK_WorkoutTemplateAspNetUser]
-ON [dbo].[WorkoutTemplates]
-    ([UserId]);
-GO
-
 -- Creating foreign key on [DayOfWeekId] in table 'TemplateDays'
 ALTER TABLE [dbo].[TemplateDays]
 ADD CONSTRAINT [FK_TemplateDaysDayOfWeek]
@@ -801,30 +732,6 @@ GO
 CREATE INDEX [IX_FK_TemplateDaysDayOfWeek]
 ON [dbo].[TemplateDays]
     ([DayOfWeekId]);
-GO
-
--- Creating foreign key on [AspNetRoles_Id] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRole]
-    FOREIGN KEY ([RoleId])
-    REFERENCES [dbo].[AspNetRoles]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [AspNetUsers_Id] in table 'AspNetUserRoles'
-ALTER TABLE [dbo].[AspNetUserRoles]
-ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUser]
-    FOREIGN KEY ([UserId])
-    REFERENCES [dbo].[AspNetUsers]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUser'
-CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUser]
-ON [dbo].[AspNetUserRoles]
-    ([UserId]);
 GO
 
 -- Creating foreign key on [WodUnitTypeId] in table 'WodUnitOfMeasures'
@@ -915,6 +822,135 @@ GO
 CREATE INDEX [IX_FK_WodWodUnitOfMeasure]
 ON [dbo].[Wods]
     ([WodUnitOfMeasureId]);
+GO
+
+-- Creating foreign key on [WendlerGroupId] in table 'Exercises'
+ALTER TABLE [dbo].[Exercises]
+ADD CONSTRAINT [fk_ExerciseWendlerGroup]
+    FOREIGN KEY ([WendlerGroupId])
+    REFERENCES [dbo].[WendlerGroups]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'fk_ExerciseWendlerGroup'
+CREATE INDEX [IX_fk_ExerciseWendlerGroup]
+ON [dbo].[Exercises]
+    ([WendlerGroupId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'AspNetUserClaims'
+ALTER TABLE [dbo].[AspNetUserClaims]
+ADD CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId'
+CREATE INDEX [IX_FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]
+ON [dbo].[AspNetUserClaims]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'AspNetUserLogins'
+ALTER TABLE [dbo].[AspNetUserLogins]
+ADD CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId'
+CREATE INDEX [IX_FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]
+ON [dbo].[AspNetUserLogins]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'PersonalRecords'
+ALTER TABLE [dbo].[PersonalRecords]
+ADD CONSTRAINT [FK_PersonalRecordHistoryAspNetUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonalRecordHistoryAspNetUser'
+CREATE INDEX [IX_FK_PersonalRecordHistoryAspNetUser]
+ON [dbo].[PersonalRecords]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'UserPreferences'
+ALTER TABLE [dbo].[UserPreferences]
+ADD CONSTRAINT [FK_UserPreferenceAspNetUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UserPreferenceAspNetUser'
+CREATE INDEX [IX_FK_UserPreferenceAspNetUser]
+ON [dbo].[UserPreferences]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'Workouts'
+ALTER TABLE [dbo].[Workouts]
+ADD CONSTRAINT [FK_WorkoutAspNetUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkoutAspNetUser'
+CREATE INDEX [IX_FK_WorkoutAspNetUser]
+ON [dbo].[Workouts]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [UserId] in table 'WorkoutTemplates'
+ALTER TABLE [dbo].[WorkoutTemplates]
+ADD CONSTRAINT [FK_WorkoutTemplateAspNetUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkoutTemplateAspNetUser'
+CREATE INDEX [IX_FK_WorkoutTemplateAspNetUser]
+ON [dbo].[WorkoutTemplates]
+    ([UserId]);
+GO
+
+-- Creating foreign key on [RoleId] in table 'AspNetUserRoles'
+ALTER TABLE [dbo].[AspNetUserRoles]
+ADD CONSTRAINT [FK_AspNetUserRoles_AspNetRole]
+    FOREIGN KEY ([RoleId])
+    REFERENCES [dbo].[AspNetRoles]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [UserId] in table 'AspNetUserRoles'
+ALTER TABLE [dbo].[AspNetUserRoles]
+ADD CONSTRAINT [FK_AspNetUserRoles_AspNetUser]
+    FOREIGN KEY ([UserId])
+    REFERENCES [dbo].[AspNetUsers]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_AspNetUserRoles_AspNetUser'
+CREATE INDEX [IX_FK_AspNetUserRoles_AspNetUser]
+ON [dbo].[AspNetUserRoles]
+    ([UserId]);
 GO
 
 -- --------------------------------------------------

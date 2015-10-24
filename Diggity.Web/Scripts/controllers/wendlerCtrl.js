@@ -225,13 +225,13 @@ myControllers.controller("WendlerCtrl", ["$routeParams", "$scope", "$location", 
                     var trainingDay = {
                         exercise: exercise.Name,
                         groupId: exercise.WendlerGroupId,
-                        maxWeight: exercise.Value,
-                        trainingWeight: exercise.TrainingMax,
-                        warmUp: WendlerTemplate.createWarmUp(exercise.TrainingMax),
+                        maxWeight: exercise.MaxEffort,
+                        trainingWeight: exercise.TrainingWeight,
+                        warmUp: WendlerTemplate.createWarmUp(exercise.TrainingWeight),
                         workout: daysNumber > 4
-                            ? WendlerTemplate.createWorkout(week, exercise.TrainingMax, $scope.trainingPercent) :
-                            WendlerTemplate.createThreeDayWorkout(week, day, exercise.TrainingMax, $scope.trainingPercent),
-                        assistanceExercises: createAssistanceExercises(exercise.Id, exercise.TrainingMax),
+                            ? WendlerTemplate.createWorkout(week, exercise.TrainingWeight, $scope.trainingPercent) :
+                            WendlerTemplate.createThreeDayWorkout(week, day, exercise.TrainingWeight, $scope.trainingPercent),
+                        assistanceExercises: createAssistanceExercises(exercise.ExerciseId, exercise.TrainingWeight),
                         isLast: day === daysNumber - 1
                     };
 

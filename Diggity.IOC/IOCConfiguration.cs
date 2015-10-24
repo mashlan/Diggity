@@ -1,7 +1,5 @@
 ﻿using System.Configuration;
 using System.Data.Entity.Core.EntityClient;
-using Diggity.Database;
-using Diggity.Entities;
 using Diggity.Repository;
 using Diggity.Rules;
 using Diggity.Services;
@@ -9,6 +7,8 @@ using Diggity.SQLExpress;
 using Diggity.Validation;
 using Diggity.WebApi;
 using StructureMap;
+using Exercise = Diggity.Entities.Exercise;
+using ModelContainer = Diggity.Database.ModelContainer;
 
 namespace Diggity.IOC
 {

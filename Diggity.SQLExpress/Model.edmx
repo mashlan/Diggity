@@ -5,7 +5,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -129,7 +129,7 @@
           <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Id" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="WendlerGroup">
+        <EntityType Name="WendlerGroups">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -285,10 +285,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_ExerciseWendlerGroup">
-          <End Role="WendlerGroup" Type="Self.WendlerGroup" Multiplicity="0..1" />
+          <End Role="WendlerGroups" Type="Self.WendlerGroups" Multiplicity="0..1" />
           <End Role="Exercises" Type="Self.Exercises" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="WendlerGroup">
+            <Principal Role="WendlerGroups">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Exercises">
@@ -586,7 +586,7 @@
           <EntitySet Name="UnitOfMeasureExerciseType" EntityType="Self.UnitOfMeasureExerciseType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UnitOfMeasures" EntityType="Self.UnitOfMeasures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPreferences" EntityType="Self.UserPreferences" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="WendlerGroup" EntityType="Self.WendlerGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WendlerGroups" EntityType="Self.WendlerGroups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WodExercises" EntityType="Self.WodExercises" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WodRounds" EntityType="Self.WodRounds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Wods" EntityType="Self.Wods" Schema="dbo" store:Type="Tables" />
@@ -616,7 +616,7 @@
             <End Role="Exercises" EntitySet="Exercises" />
           </AssociationSet>
           <AssociationSet Name="fk_ExerciseWendlerGroup" Association="Self.fk_ExerciseWendlerGroup">
-            <End Role="WendlerGroup" EntitySet="WendlerGroup" />
+            <End Role="WendlerGroups" EntitySet="WendlerGroups" />
             <End Role="Exercises" EntitySet="Exercises" />
           </AssociationSet>
           <AssociationSet Name="FK_PersonalRecordHistoryAspNetUser" Association="Self.FK_PersonalRecordHistoryAspNetUser">
@@ -743,8 +743,6 @@
             <End Role="UnitOfMeasure" EntitySet="UnitOfMeasures" />
             <End Role="ExerciseType" EntitySet="ExerciseTypes" />
           </AssociationSet>
-          <EntitySet Name="AspNetUserClaims" EntityType="Model.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Model.AspNetUserLogin" />
           <EntitySet Name="PersonalRecords" EntityType="Model.PersonalRecord" />
           <AssociationSet Name="PersonalRecordHistoryUnitOfMeasure" Association="Model.PersonalRecordHistoryUnitOfMeasure">
             <End Role="PersonalRecordHistory" EntitySet="PersonalRecords" />
@@ -754,7 +752,6 @@
             <End Role="PersonalRecordHistory" EntitySet="PersonalRecords" />
             <End Role="Exercise" EntitySet="Exercises" />
           </AssociationSet>
-          <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRole" />
           <AssociationSet Name="WorkoutSetExercise" Association="Model.WorkoutSetExercise">
             <End Role="WorkoutSet" EntitySet="WorkoutSets" />
             <End Role="Exercise" EntitySet="Exercises" />
@@ -820,6 +817,9 @@
             <End Role="WendlerGroup" EntitySet="WendlerGroups" />
             <End Role="Exercise" EntitySet="Exercises" />
           </AssociationSet>
+          <EntitySet Name="AspNetRoles" EntityType="Model.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Model.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Model.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="Model.AspNetUser" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -845,7 +845,7 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="WorkoutTemplate" EntitySet="WorkoutTemplates" />
           </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Model.AspNetUserRoles">
+          <AssociationSet Name="AspNetUserRoles1" Association="Model.AspNetUserRoles1">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
           </AssociationSet>
@@ -987,27 +987,6 @@
           <End Type="Model.UnitOfMeasure" Role="UnitOfMeasure" Multiplicity="*" />
           <End Type="Model.ExerciseType" Role="ExerciseType" Multiplicity="*" />
         </Association>
-        <EntityType Name="AspNetUserClaim">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="AspNetUserLogin">
-          <Key>
-            <PropertyRef Name="LoginProvider" />
-            <PropertyRef Name="ProviderKey" />
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
-        </EntityType>
         <EntityType Name="PersonalRecord">
           <Key>
             <PropertyRef Name="Id" />
@@ -1046,14 +1025,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AspNetRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
-          </EntityType>
         <Association Name="WorkoutSetExercise">
           <End Type="Model.WorkoutSet" Role="WorkoutSet" Multiplicity="*" />
           <End Type="Model.Exercise" Role="Exercise" Multiplicity="1" />
@@ -1322,6 +1293,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Model.AspNetUserRoles1" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
@@ -1345,7 +1345,7 @@
           <NavigationProperty Name="UserPreferences" Relationship="Model.FK_UserPreferenceAspNetUser" FromRole="AspNetUser" ToRole="UserPreference" />
           <NavigationProperty Name="Workouts" Relationship="Model.FK_WorkoutAspNetUser" FromRole="AspNetUser" ToRole="Workout" />
           <NavigationProperty Name="WorkoutTemplates" Relationship="Model.FK_WorkoutTemplateAspNetUser" FromRole="AspNetUser" ToRole="WorkoutTemplate" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Model.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetRoles" Relationship="Model.AspNetUserRoles1" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -1423,7 +1423,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="AspNetUserRoles">
+        <Association Name="AspNetUserRoles1">
           <End Type="Model.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="*" />
         </Association>
@@ -1436,12 +1436,12 @@
     <EntitySetMapping Name="Exercises">
       <EntityTypeMapping TypeName="IsTypeOf(Model.Exercise)">
         <MappingFragment StoreEntitySet="Exercises">
-          <ScalarProperty Name="WendlerGroupId" ColumnName="WendlerGroupId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="ExerciseTypeId" ColumnName="ExerciseTypeId" />
+          <ScalarProperty Name="WendlerGroupId" ColumnName="WendlerGroupId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1500,25 +1500,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserClaims">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserClaim)">
-        <MappingFragment StoreEntitySet="AspNetUserClaims">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
-          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetUserLogins">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserLogin)">
-        <MappingFragment StoreEntitySet="AspNetUserLogins">
-          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="PersonalRecords">
       <EntityTypeMapping TypeName="IsTypeOf(Model.PersonalRecord)">
         <MappingFragment StoreEntitySet="PersonalRecords">
@@ -1528,14 +1509,6 @@
           <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
           <ScalarProperty Name="ExerciseId" ColumnName="ExerciseId" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="AspNetRoles">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetRole)">
-        <MappingFragment StoreEntitySet="AspNetRoles">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1621,6 +1594,61 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="WendlerGroups">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.WendlerGroup)">
+        <MappingFragment StoreEntitySet="WendlerGroups">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetRole)">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserClaim)">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUserLogin)">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="IsTypeOf(Model.AspNetUser)">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Hometown" ColumnName="Hometown" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="UnitOfMeasureExerciseType" TypeName="Model.UnitOfMeasureExerciseType" StoreEntitySet="UnitOfMeasureExerciseType">
       <EndProperty Name="UnitOfMeasure">
         <ScalarProperty Name="Id" ColumnName="UnitOfMeasures_Id" />
@@ -1629,35 +1657,7 @@
         <ScalarProperty Name="Id" ColumnName="ExerciseTypes_Id" />
       </EndProperty>
     </AssociationSetMapping>
-          <EntitySetMapping Name="WendlerGroups">
-            <EntityTypeMapping TypeName="Model.WendlerGroup">
-              <MappingFragment StoreEntitySet="WendlerGroup">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AspNetUsers">
-            <EntityTypeMapping TypeName="Model.AspNetUser">
-              <MappingFragment StoreEntitySet="AspNetUsers">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Hometown" ColumnName="Hometown" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+          <AssociationSetMapping Name="AspNetUserRoles1" TypeName="Model.AspNetUserRoles1" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetUser">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>

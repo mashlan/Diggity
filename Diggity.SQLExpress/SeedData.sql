@@ -52,6 +52,15 @@ INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTyp
 INSERT INTO [dbo].[UnitOfMeasureExerciseType] ([UnitOfMeasures_Id], [ExerciseTypes_Id]) VALUES (2, 5)
 GO
 
+SET IDENTITY_INSERT [dbo].[WendlerGroups] ON
+INSERT INTO [dbo].[WendlerGroups]([Id],[Name],[Description]) VALUES (1, 'Press', 'Press Group');
+INSERT INTO [dbo].[WendlerGroups]([Id],[Name],[Description]) VALUES (2, 'Deadlift', 'Deadlift Group');
+INSERT INTO [dbo].[WendlerGroups]([Id],[Name],[Description]) VALUES (3, 'Bench', 'Bench Group');
+INSERT INTO [dbo].[WendlerGroups]([Id],[Name],[Description]) VALUES (4, 'Squat', 'Squat Group');
+GO
+
+SET IDENTITY_INSERT [dbo].[WendlerGroups] OFF
+
 SET IDENTITY_INSERT [dbo].[Exercises] ON
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId]) VALUES (1, N'Air Squat', N'Air SQ', N'Body weight Squat', 3)
 INSERT INTO [dbo].[Exercises] ([Id], [Name], [Abbreviation], [Description], [ExerciseTypeId], [WendlerGroupId]) VALUES (2, N'Bench Press', N'BP', N'Standard Bench Press', 5, 3)
@@ -84,11 +93,3 @@ SET IDENTITY_INSERT [dbo].[Exercises] OFF
 GO
 
 
-SET IDENTITY_INSERT [dbo].[WendlerGroup] ON
-INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (1, 'Press', 'Press Group');
-INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (2, 'Deadlift', 'Deadlift Group');
-INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (3, 'Bench', 'Bench Group');
-INSERT INTO [dbo].[WendlerGroup]([Id],[Name],[Description]) VALUES (4, 'Squat', 'Squat Group');
-GO
-
-SET IDENTITY_INSERT [dbo].[WendlerGroup] OFF
